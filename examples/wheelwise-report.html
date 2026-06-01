@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI 简历优化工具 | WheelWise 报告展示</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f9fc;
+        --surface: #ffffff;
+        --surface-2: #eef6f4;
+        --ink: #142033;
+        --muted: #5b677a;
+        --line: #d9e2ec;
+        --blue: #2563eb;
+        --teal: #0f9f8f;
+        --coral: #e15f4f;
+        --amber: #b7791f;
+        --shadow: 0 18px 44px rgba(20, 32, 51, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Microsoft YaHei", sans-serif;
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .hero {
+        padding: 56px 0 28px;
+      }
+
+      .topline {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 38px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        color: var(--ink);
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--blue), var(--teal));
+        box-shadow: 0 10px 26px rgba(37, 99, 235, 0.24);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+        gap: 38px;
+        align-items: center;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 720px;
+        font-size: clamp(38px, 6vw, 72px);
+        line-height: 0.98;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 640px;
+        margin: 22px 0 0;
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .verdict-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .verdict {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid rgba(37, 99, 235, 0.22);
+        border-radius: 8px;
+        background: #ffffff;
+        padding: 12px 14px;
+        font-weight: 800;
+        box-shadow: 0 12px 30px rgba(20, 32, 51, 0.08);
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--teal);
+      }
+
+      .media {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .media img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      section {
+        padding: 34px 0;
+      }
+
+      h2 {
+        margin: 0 0 16px;
+        font-size: clamp(26px, 3vw, 38px);
+        line-height: 1.12;
+        letter-spacing: 0;
+      }
+
+      h3 {
+        margin: 0 0 10px;
+        font-size: 18px;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .band {
+        border-top: 1px solid var(--line);
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        padding: 20px;
+        box-shadow: 0 12px 30px rgba(20, 32, 51, 0.06);
+      }
+
+      .metric {
+        font-size: 32px;
+        line-height: 1;
+        font-weight: 900;
+        color: var(--blue);
+      }
+
+      .map {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .step {
+        min-height: 124px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        padding: 16px;
+      }
+
+      .step strong {
+        display: block;
+        color: var(--blue);
+        margin-bottom: 8px;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 12px;
+      }
+
+      .time-row {
+        display: grid;
+        grid-template-columns: 110px minmax(0, 1fr);
+        gap: 16px;
+        align-items: start;
+        border-left: 3px solid var(--teal);
+        padding-left: 16px;
+      }
+
+      .demo {
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        gap: 18px;
+      }
+
+      .demo-panel {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        padding: 18px;
+      }
+
+      .score {
+        display: grid;
+        place-items: center;
+        width: 124px;
+        height: 124px;
+        border-radius: 50%;
+        margin: 0 auto 18px;
+        background: conic-gradient(var(--teal) 0 72%, #d8ebe8 72% 100%);
+        color: var(--ink);
+        font-size: 28px;
+        font-weight: 900;
+      }
+
+      .list {
+        display: grid;
+        gap: 10px;
+        padding: 0;
+        margin: 12px 0 0;
+        list-style: none;
+      }
+
+      .list li {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fbfdff;
+        padding: 12px;
+      }
+
+      .risk {
+        border-left: 4px solid var(--coral);
+      }
+
+      .validation {
+        border-left: 4px solid var(--amber);
+      }
+
+      .footer {
+        padding: 34px 0 56px;
+      }
+
+      @media (max-width: 860px) {
+        .hero-grid,
+        .grid-2,
+        .grid-3,
+        .demo,
+        .map {
+          grid-template-columns: 1fr;
+        }
+
+        .time-row {
+          grid-template-columns: 1fr;
+        }
+
+        .topline {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="shell">
+        <div class="topline">
+          <div class="brand">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span>WheelWise 报告展示</span>
+          </div>
+          <span>Markdown 来源：wheelwise-report-ai-resume-optimizer.md</span>
+        </div>
+
+        <div class="hero-grid">
+          <div>
+            <h1>AI 简历优化工具</h1>
+            <p class="lead">
+              建议先验证岗位定向简历优化是否能让用户相信并愿意付费，再决定是否构建完整 SaaS。
+            </p>
+            <div class="verdict-row">
+              <div class="verdict"><span class="dot"></span>结论：先验证</div>
+              <div class="verdict"><span class="dot"></span>交付形态：Web App</div>
+            </div>
+          </div>
+          <figure class="media">
+            <img
+              src="./assets/ai-resume-optimizer-concept.png"
+              alt="AI 简历优化工具概念图，展示简历、岗位描述和 AI 反馈面板"
+            />
+          </figure>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="band">
+        <div class="shell grid-3">
+          <div class="card">
+            <div class="metric">先验证</div>
+            <p class="muted">类别拥挤，直接做完整 SaaS 风险高。</p>
+          </div>
+          <div class="card">
+            <div class="metric">Web App</div>
+            <p class="muted">适合上传、分析、保存和导出。</p>
+          </div>
+          <div class="card">
+            <div class="metric">Build 核心</div>
+            <p class="muted">反馈逻辑和评分标准是主要差异化。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="shell">
+          <h2>决策地图</h2>
+          <p class="muted">从用户问题到 MVP 验证，报告把工程投入先压到最关键的假设上。</p>
+          <div class="map" aria-label="决策地图">
+            <div class="step"><strong>用户问题</strong>不知道简历与目标岗位哪里不匹配。</div>
+            <div class="step"><strong>产品切口</strong>针对具体 JD 给出可解释修改建议。</div>
+            <div class="step"><strong>MVP 范围</strong>上传、分析、建议、导出和反馈收集。</div>
+            <div class="step"><strong>验证条件</strong>真实用户愿意上传材料并按建议修改。</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell grid-2">
+          <div>
+            <h2>MVP 路线图</h2>
+            <div class="timeline">
+              <div class="time-row">
+                <strong>7 天</strong>
+                <p>做一个可点击 Demo，找 5 个真实求职者测试上传、分析和建议可信度。</p>
+              </div>
+              <div class="time-row">
+                <strong>14 天</strong>
+                <p>补齐文档解析、建议质量评估和导出流程，测试一次性付费或人工复核。</p>
+              </div>
+              <div class="time-row">
+                <strong>30 天</strong>
+                <p>根据转化和反馈决定是否加入账号、历史记录和支付。</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>go/no-go 条件</h3>
+            <p class="muted">
+              如果 10 个用户中至少 4 个愿意为结果付费或留下强复用意愿，则继续；否则暂停完整 SaaS，转向轻量服务或细分人群验证。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="demo">
+        <div class="shell">
+          <h2>Demo 截面</h2>
+          <div class="demo">
+            <div class="demo-panel">
+              <div class="score">72%</div>
+              <h3>岗位匹配度</h3>
+              <p class="muted">当前简历与目标 JD 匹配中等，建议补强项目结果、技能证据和量化指标。</p>
+            </div>
+            <div class="demo-panel">
+              <h3>核心交互</h3>
+              <ul class="list">
+                <li>上传简历并粘贴目标岗位 JD。</li>
+                <li>点击分析后进入 loading 状态，再显示评分、缺口和建议。</li>
+                <li>切换原文与建议版本，并导出可投递文本。</li>
+                <li>empty / error / success 状态均由 mock 数据模拟。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell grid-2">
+          <div class="card risk">
+            <h2>关键风险</h2>
+            <ul class="list">
+              <li>同质化严重：必须聚焦岗位定向匹配解释。</li>
+              <li>隐私顾虑：需要明确删除机制和本地预览边界。</li>
+              <li>建议质量不稳定：早期用人工复核校准样本。</li>
+            </ul>
+          </div>
+          <div class="card validation">
+            <h2>验证实验</h2>
+            <p class="muted">
+              收集 10 份真实简历和 JD，生成建议并访谈。如果 6 人以上愿意按建议修改，进入下一轮 MVP；否则缩小目标用户或转人工服务。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="shell">
+          <h2>Codex-ready 执行计划</h2>
+          <div class="grid-3">
+            <div class="card">
+              <h3>报告</h3>
+              <p class="muted">维护全中文 Markdown 报告，包含视觉说明、Demo 说明和行动建议。</p>
+            </div>
+            <div class="card">
+              <h3>展示</h3>
+              <p class="muted">生成静态 HTML 展示层，内容来源于同一份 Markdown 报告。</p>
+            </div>
+            <div class="card">
+              <h3>验证</h3>
+              <p class="muted">用真实求职者测试上传、建议可信度、付费意愿和复用意愿。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell">
+        <p class="muted">
+          本 HTML 是 WheelWise 示例报告的展示层；事实来源仍是同目录下的中文 Markdown 报告。
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

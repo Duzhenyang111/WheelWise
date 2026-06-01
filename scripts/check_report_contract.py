@@ -69,7 +69,9 @@ def section_body(text: str, title: str) -> str:
     return text[match.end() : match.end() + next_heading.start()]
 
 
-def validate_report(path: Path, *, skip_filename: bool = False) -> list[str]:
+def validate_report(
+    path: Path, *, skip_filename: bool = False, check_local_assets: bool = False
+) -> list[str]:
     text = path.read_text(encoding="utf-8")
     problems: list[str] = []
 
@@ -110,6 +112,13 @@ def validate_report(path: Path, *, skip_filename: bool = False) -> list[str]:
     visual = section_body(text, "视觉说明")
     if not re.search(r"!\[[^\]]+\]\([^\)]+\)|```mermaid", visual):
         problems.append("视觉说明必须包含 Markdown 图片引用或 Mermaid fallback")
+    elif check_local_assets:
+        for image_ref in re.findall(r"!\[[^\]]+\]\(([^\)]+)\)", visual):
+            if re.match(r"https?://|data:", image_ref):
+                continue
+            image_path = (path.parent / image_ref).resolve()
+            if not image_path.exists():
+                problems.append(f"视觉说明引用的图片文件不存在：{image_ref}")
 
     demo = section_body(text, "UI Demo / 交互 Demo")
     for keyword in ["Demo 路径", "运行方式", "核心交互", "mock 数据", "未接入真实后端"]:
@@ -120,6 +129,16 @@ def validate_report(path: Path, *, skip_filename: bool = False) -> list[str]:
     for keyword in ["wheelwise-report.html", "展示层", "Markdown"]:
         if keyword not in html:
             problems.append(f"HTML 展示文件缺少：{keyword}")
+    if check_local_assets and "已生成" in html:
+        html_refs = re.findall(r"`([^`]+\.html(?:#[^`]+)?)`|(?<![\w.-])([./\w-]+\.html)(?:#[\w-]+)?", html)
+        flattened_refs = [left or right for left, right in html_refs]
+        for html_ref in flattened_refs:
+            clean_ref = html_ref.split("#", 1)[0]
+            if clean_ref.startswith("http://") or clean_ref.startswith("https://"):
+                continue
+            html_path = (path.parent / clean_ref).resolve()
+            if not html_path.exists():
+                problems.append(f"HTML 展示文件标记为已生成，但文件不存在：{html_ref}")
 
     outro = section_body(text, "最终建议与下一步行动")
     for keyword in ["一句话判断", "7 天", "14 天", "30 天"]:
@@ -139,9 +158,18 @@ def main() -> int:
         action="store_true",
         help="Validate structure only, useful for shared templates.",
     )
+    parser.add_argument(
+        "--check-local-assets",
+        action="store_true",
+        help="Also verify local image and generated HTML references exist.",
+    )
     args = parser.parse_args()
 
-    problems = validate_report(args.report, skip_filename=args.skip_filename)
+    problems = validate_report(
+        args.report,
+        skip_filename=args.skip_filename,
+        check_local_assets=args.check_local_assets,
+    )
     if problems:
         print(f"FAIL {args.report}")
         for problem in problems:
