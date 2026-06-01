@@ -36,4 +36,12 @@ Why this surface:
 Why alternatives lose:
 Surface-specific constraints:
 Validation implication:
+Decision:
+Why chosen:
+Why alternatives lose:
+Evidence:
+Assumptions:
+Risks:
+Fallback:
+Confidence:
 ```

@@ -32,11 +32,16 @@ Module:
 Recommended strategy:
 Suggested option(s):
 Why:
+Why alternatives lose:
+Evidence:
+Assumptions:
 Surface fit:
 License/security/privacy notes:
 Cost and lock-in:
+Risks:
 Fallback:
 Confidence:
 ```
 
 Read `../../shared/references/build-buy-reuse-vocabulary.md` for shared terminology.
+Read `../../shared/references/decision-rationale-standard.md` for decision rationale requirements.

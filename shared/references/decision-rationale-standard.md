@@ -1,0 +1,24 @@
+# Decision Rationale Standard
+
+Every key WheelWise decision must explain the decision, not only state it.
+
+Use this structure for verdict, delivery surface, product strategy, module strategy, technical stack, visual brief, UI demo, commercialization notes, and execution order:
+
+```text
+Decision:
+Why chosen:
+Why alternatives lose:
+Evidence:
+Assumptions:
+Risks:
+Fallback:
+Confidence:
+```
+
+Guidelines:
+
+- Evidence can be user-provided facts, repository inspection, current web research, known platform constraints, or explicit analysis.
+- Assumptions must be labeled when evidence is missing.
+- Confidence must be High, Medium, or Low.
+- Fallback should name the next-best option or the validation step that changes the decision.
+- If a decision depends on current vendor, competitor, license, or repository facts, verify with current sources or mark the evidence gap.

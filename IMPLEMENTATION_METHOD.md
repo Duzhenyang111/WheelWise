@@ -383,7 +383,7 @@ WheelWise should use a Superpowers-style multi-skill package structure.
 
 The important design point: `skills/` contains multiple independent skills. Shared references, tools, and templates can live at the package level or inside individual skill folders when they are specific to one skill.
 
-Version 1 implements the core closed loop. Future versions can add `market-research`, `customer-discovery`, `product-strategy`, `technical-planning`, and `commercialization` as additional first-class skills.
+Version 1 implemented the core closed loop. Version 2 adds `product-strategy`, `technical-planning`, `visual-brief`, and `ui-demo` as first-class skills. Future versions can still add full `market-research`, `customer-discovery`, and `commercialization` skills.
 
 ```text
 wheelwise/
@@ -403,12 +403,22 @@ wheelwise/
       SKILL.md
     feasibility-review/
       SKILL.md
+    product-strategy/
+      SKILL.md
     surface-strategy/
       SKILL.md
     reuse-evaluator/
       SKILL.md
+    technical-planning/
+      SKILL.md
     risk-review/
       SKILL.md
+    visual-brief/
+      SKILL.md
+    ui-demo/
+      SKILL.md
+      references/
+        ui-ux-pro-max-adaptation.md
     parallel-research/
       SKILL.md
       templates/
@@ -418,11 +428,14 @@ wheelwise/
   shared/
     references/
       build-buy-reuse-vocabulary.md
+      decision-rationale-standard.md
       output-quality-bar.md
       external-skills.md
     templates/
       new-product-brief.md
       final-wheelwise-report.md
+      visual-brief.md
+      ui-demo-spec.md
   examples/
     ai-resume-optimizer.md
 ```
@@ -629,3 +642,134 @@ Product module decomposition
 ```
 
 That is what separates WheelWise from a generic product-planning tool or a generic coding agent.
+
+## 13. Version 2 Upgrade: Explainable, Visual, Demo-Ready Product Plans
+
+V2 preserves the V1 Superpowers-style multi-skill pack architecture. `using-wheelwise` remains the only main entry skill, and new capabilities are added as first-class skill folders instead of being hidden inside one large reference directory.
+
+V2 upgrades WheelWise from "Codex-ready execution plan" to:
+
+```text
+Explainable product decision
++ image-level visual brief
++ interactive demo or simulator plan
++ Codex-ready execution plan
+```
+
+### 13.1 V2 Main Workflow
+
+```text
+idea-intake
+-> surface-strategy
+-> feasibility-review
+-> product-strategy
+-> reuse-evaluator
+-> technical-planning
+-> risk-review
+-> visual-brief
+-> ui-demo when applicable
+-> execution-plan
+-> New Product Brief
+```
+
+### 13.2 V2 First-Class Skills
+
+| Skill | Role |
+| --- | --- |
+| `product-strategy` | Connects `feasibility-review` to positioning, differentiation, MVP scope, user-facing workflow, feature priority, product wedge, and validation focus. |
+| `technical-planning` | Connects `reuse-evaluator` to stack, architecture, data model, integrations, deployment path, surface constraints, and technical risks without contradicting module decisions. |
+| `visual-brief` | Produces image-level visual explanation specs such as concept images, decision maps, MVP roadmaps, module maps, architecture illustrations, demo mockups, and validation funnels. Mermaid is fallback only. |
+| `ui-demo` | Produces a full interactive demo spec using mock data, local state, fixtures, static JSON, localStorage, or simulated APIs. For API/CLI/automation products, it specifies a playground, terminal simulator, request explorer, or workflow simulator. |
+
+### 13.3 Decision Rationale Standard
+
+Every key decision must include:
+
+```text
+Decision
+Why chosen
+Why alternatives lose
+Evidence
+Assumptions
+Risks
+Fallback
+Confidence
+```
+
+This applies to verdict, delivery surface, product strategy, Build / Buy / Reuse / Fork / Reference decisions, technical stack, visual brief, UI demo, commercialization notes, and execution order.
+
+### 13.4 Visual Brief Rules
+
+`visual-brief` should make the recommendation easier to explain to stakeholders and users.
+
+Allowed outputs include:
+
+- Product concept image.
+- Decision map.
+- MVP roadmap.
+- Module map.
+- Architecture illustration.
+- Demo mockup.
+- Validation funnel.
+
+Each visual must include title, type, what it explains, why it helps, image prompt or production method, fallback, and report placement. It may reference UI UX Pro Max as design intelligence, but must not copy external skill content.
+
+### 13.5 UI Demo Rules
+
+`ui-demo` should plan a complete interactive front-end demo for user-visible products without requiring a real backend.
+
+The demo must include page or screen structure, core flow, clickable navigation, forms, state changes, mock data, loading/empty/error/success states, responsive behavior, component structure, run instructions, and demo boundaries.
+
+For products without a traditional UI:
+
+- API/SaaS backend: API playground, request/response explorer, docs preview, or workflow simulator.
+- CLI/dev tool: terminal simulator with commands, outputs, errors, and success states.
+- Automation/workflow tool: trigger/action simulator with run history, retry, error, and success states.
+
+### 13.6 V2 Repository Additions
+
+```text
+skills/
+  product-strategy/
+    SKILL.md
+  technical-planning/
+    SKILL.md
+  visual-brief/
+    SKILL.md
+  ui-demo/
+    SKILL.md
+    references/
+      ui-ux-pro-max-adaptation.md
+shared/
+  references/
+    decision-rationale-standard.md
+  templates/
+    visual-brief.md
+    ui-demo-spec.md
+```
+
+### 13.7 V2 Final Report Requirements
+
+The full New Product Brief must include:
+
+- Idea summary.
+- Delivery surface.
+- Verdict.
+- Decision rationale summary.
+- Target customer.
+- Problem and urgency.
+- Market notes.
+- Customer assumptions.
+- Differentiation.
+- MVP scope.
+- Product strategy.
+- Build / Buy / Reuse / Fork / Reference decisions.
+- Technical implementation path.
+- Visual Brief.
+- UI Demo / Interaction Demo.
+- Commercialization notes.
+- Key risks.
+- Validation experiments.
+- Codex-ready execution plan.
+
+`execution-plan` must include tasks for generating the visual brief and the UI demo or simulator.

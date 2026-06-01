@@ -16,11 +16,18 @@ Choose one: Build MVP / Validate First / Pause / Reject
 
 Confidence:
 
+## Decision Rationale Summary
+
+| Decision area | Decision | Why chosen | Why alternatives lose | Evidence | Assumptions | Risks | Fallback | Confidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
 ## Target Customer
 
 ## Problem and Urgency
 
-## Market and Competitor Notes
+## Market Notes
+
+## Customer Assumptions
 
 ## Differentiation
 
@@ -30,10 +37,24 @@ In scope:
 
 Out of scope:
 
+## Product Strategy
+
+Positioning:
+
+User-facing workflow:
+
+Feature priority:
+
+Product wedge:
+
+What to validate first:
+
+Product assumptions:
+
 ## Build / Buy / Reuse / Fork / Reference Decisions
 
-| Module | Decision | Suggested option | Rationale | Risks | Fallback |
-| --- | --- | --- | --- | --- | --- |
+| Module | Decision | Suggested option | Why chosen | Why alternatives lose | Evidence | Assumptions | Risks | Fallback | Confidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 ## Technical Implementation Path
 
@@ -46,6 +67,33 @@ Data model:
 Integrations:
 
 Deployment:
+
+Surface-specific constraints:
+
+Reuse alignment notes:
+
+## Visual Brief
+
+Use `visual-brief.md` when a full visual plan is needed.
+
+| Visual title | Type | Explains | Why it helps | Prompt or method | Placement |
+| --- | --- | --- | --- | --- | --- |
+
+## UI Demo / Interaction Demo
+
+Use `ui-demo-spec.md` when a full demo spec is needed.
+
+Demo type:
+
+Primary flow:
+
+Pages/screens or simulator panels:
+
+Mock data and state:
+
+Loading/empty/error/success states:
+
+Run instructions:
 
 ## Commercialization Notes
 
@@ -82,3 +130,7 @@ Tests:
 Acceptance criteria:
 
 Codex-ready prompt:
+
+Visual-brief task:
+
+UI demo or simulator task:

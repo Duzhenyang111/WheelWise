@@ -4,10 +4,13 @@ WheelWise may reference or optionally depend on external skill ecosystems, but i
 
 ## UI UX Pro Max
 
+UI UX Pro Max is the design intelligence reference for ui-demo and visual-brief work.
+
 - GitHub: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
 - Skills listing: https://skills.sh/nexu-io/open-design/ui-ux-pro-max
-- Suggested use: UI direction, information architecture, design-system guidance, and UI anti-pattern review.
-- WheelWise role: pass product type, user, surface, modules, and constraints to a UI/UX skill when UI planning is needed.
+- Suggested use: design intelligence reference for `ui-demo` and `visual-brief`, including UI direction, information architecture, design-system thinking, style selection, component/layout reasoning, and anti-pattern review.
+- WheelWise role: pass product type, user, surface, modules, constraints, product strategy, and demo needs to a UI/UX skill when visual or demo planning is needed.
+- Boundary: do not copy UI UX Pro Max content into WheelWise. Capture only WheelWise-specific adaptation notes and final decisions.
 
 ## product-on-purpose/pm-skills
 

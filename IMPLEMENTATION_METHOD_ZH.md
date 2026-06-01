@@ -383,7 +383,7 @@ Use WheelWise to evaluate this idea: ...
 
 关键点：`skills/` 下面放多个独立 skill。共享 references、tools、templates 可以放在包级别，也可以放在具体 skill 内部。
 
-第一版先实现核心闭环。后续可以继续把 `market-research`、`customer-discovery`、`product-strategy`、`technical-planning`、`commercialization` 扩展成一级 skill。
+第一版先实现核心闭环。V2 新增 `product-strategy`、`technical-planning`、`visual-brief` 和 `ui-demo` 作为一级 skill。后续仍可继续把完整的 `market-research`、`customer-discovery`、`commercialization` 扩展成一级 skill。
 
 ```text
 wheelwise/
@@ -403,12 +403,22 @@ wheelwise/
       SKILL.md
     feasibility-review/
       SKILL.md
+    product-strategy/
+      SKILL.md
     surface-strategy/
       SKILL.md
     reuse-evaluator/
       SKILL.md
+    technical-planning/
+      SKILL.md
     risk-review/
       SKILL.md
+    visual-brief/
+      SKILL.md
+    ui-demo/
+      SKILL.md
+      references/
+        ui-ux-pro-max-adaptation.md
     parallel-research/
       SKILL.md
       templates/
@@ -418,11 +428,14 @@ wheelwise/
   shared/
     references/
       build-buy-reuse-vocabulary.md
+      decision-rationale-standard.md
       output-quality-bar.md
       external-skills.md
     templates/
       new-product-brief.md
       final-wheelwise-report.md
+      visual-brief.md
+      ui-demo-spec.md
   examples/
     ai-resume-optimizer.md
 ```
@@ -629,3 +642,134 @@ WheelWise 真正应该自研的是：
 ```
 
 这才是它区别于普通产品规划工具和普通 coding agent 的地方。
+
+## 13. V2 升级：可解释、可展示、可交互 Demo 的产品方案
+
+V2 保留 V1 的 Superpowers-style 多 skill pack 架构。`using-wheelwise` 仍然是唯一主入口，新增能力必须作为一级 skill 文件夹加入，而不是塞进一个大型 reference 目录。
+
+V2 把 WheelWise 从“Codex-ready 执行计划”升级为：
+
+```text
+可解释的产品决策
++ 图片级视觉说明
++ 可交互 demo 或 simulator 方案
++ Codex-ready 执行计划
+```
+
+### 13.1 V2 主流程
+
+```text
+idea-intake
+-> surface-strategy
+-> feasibility-review
+-> product-strategy
+-> reuse-evaluator
+-> technical-planning
+-> risk-review
+-> visual-brief
+-> ui-demo when applicable
+-> execution-plan
+-> New Product Brief
+```
+
+### 13.2 V2 一级 Skill
+
+| Skill | 作用 |
+| --- | --- |
+| `product-strategy` | 连接 `feasibility-review`，输出 positioning、differentiation、MVP scope、user-facing workflow、feature priority、product wedge 和 validation focus。 |
+| `technical-planning` | 连接 `reuse-evaluator`，输出 stack、architecture、data model、integrations、deployment path、surface constraints 和 technical risks，并且不能和模块决策冲突。 |
+| `visual-brief` | 生成图片级视觉说明规格，例如产品概念图、决策地图、MVP 路线图、模块地图、架构示意图、demo mockup 和验证漏斗。Mermaid 只能作为 fallback。 |
+| `ui-demo` | 用 mock data、local state、fixtures、static JSON、localStorage 或 simulated API 规划完整可交互 demo。API/CLI/自动化产品则输出 playground、terminal simulator、request explorer 或 workflow simulator。 |
+
+### 13.3 决策解释标准
+
+每个关键决策都必须包含：
+
+```text
+Decision
+Why chosen
+Why alternatives lose
+Evidence
+Assumptions
+Risks
+Fallback
+Confidence
+```
+
+适用范围包括 verdict、delivery surface、product strategy、Build / Buy / Reuse / Fork / Reference 决策、technical stack、visual brief、UI demo、commercialization notes 和 execution order。
+
+### 13.4 Visual Brief 规则
+
+`visual-brief` 应该让推荐方案更容易被利益相关者和用户理解。
+
+可输出：
+
+- 产品概念图。
+- 决策地图。
+- MVP 路线图。
+- 模块地图。
+- 架构示意图。
+- Demo mockup。
+- 验证漏斗。
+
+每个 visual 必须包含 title、type、解释内容、为什么有助理解、图片生成 prompt 或制作方法、fallback 和报告放置位置。它可以把 UI UX Pro Max 作为设计智能参考，但不能复制外部 skill 内容。
+
+### 13.5 UI Demo 规则
+
+`ui-demo` 应该为用户可见产品规划一个不依赖真实后端的完整可交互前端 demo。
+
+Demo 必须包含页面/屏幕结构、核心流程、可点击导航、表单、状态变化、mock 数据、loading/empty/error/success 状态、响应式布局、组件结构、运行方式和 demo 边界。
+
+对没有传统 UI 的产品：
+
+- API/SaaS backend：API playground、request/response explorer、docs preview 或 workflow simulator。
+- CLI/dev tool：带命令、输出、错误和成功状态的 terminal simulator。
+- 自动化/workflow tool：带 run history、retry、error 和 success 状态的 trigger/action simulator。
+
+### 13.6 V2 仓库新增结构
+
+```text
+skills/
+  product-strategy/
+    SKILL.md
+  technical-planning/
+    SKILL.md
+  visual-brief/
+    SKILL.md
+  ui-demo/
+    SKILL.md
+    references/
+      ui-ux-pro-max-adaptation.md
+shared/
+  references/
+    decision-rationale-standard.md
+  templates/
+    visual-brief.md
+    ui-demo-spec.md
+```
+
+### 13.7 V2 最终报告要求
+
+完整 New Product Brief 必须包含：
+
+- Idea summary。
+- Delivery surface。
+- Verdict。
+- Decision rationale summary。
+- Target customer。
+- Problem and urgency。
+- Market notes。
+- Customer assumptions。
+- Differentiation。
+- MVP scope。
+- Product strategy。
+- Build / Buy / Reuse / Fork / Reference decisions。
+- Technical implementation path。
+- Visual Brief。
+- UI Demo / Interaction Demo。
+- Commercialization notes。
+- Key risks。
+- Validation experiments。
+- Codex-ready execution plan。
+
+`execution-plan` 必须包含生成 visual brief 和 UI demo 或 simulator 的任务。

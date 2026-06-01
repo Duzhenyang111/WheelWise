@@ -30,3 +30,5 @@ Owner or decision point:
 ```
 
 Surface-specific risk must be included. A browser extension has permission and store-review risk; a mobile app has app-store and device-permission risk; an API/SaaS has uptime, abuse, auth, and observability risk.
+
+When risk review changes the verdict, scope, stack, demo, or execution order, apply `../../shared/references/decision-rationale-standard.md`.

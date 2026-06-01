@@ -8,7 +8,11 @@
 | "Should I build this myself?" | `reuse-evaluator` -> `risk-review` |
 | "Find existing tools/open-source alternatives" | `reuse-evaluator`; optionally `parallel-research` |
 | "Is this worth pursuing?" | `idea-intake` -> `surface-strategy` -> `feasibility-review` |
-| "Turn this into Codex tasks" | Ensure prior decisions exist, then `execution-plan` |
+| "Define MVP or product strategy" | `feasibility-review` -> `product-strategy` |
+| "Pick stack or architecture" | `reuse-evaluator` -> `technical-planning` -> `risk-review` |
+| "Make this presentable" | `visual-brief`; add `ui-demo` when interaction helps |
+| "Create a clickable demo" | `product-strategy` -> `technical-planning` -> `ui-demo` |
+| "Turn this into Codex tasks" | Ensure V2 decisions exist, then `execution-plan` |
 | "Review risks" | `risk-review`; add `reuse-evaluator` if dependency/license risk is central |
 
 Always return to `using-wheelwise` for synthesis.

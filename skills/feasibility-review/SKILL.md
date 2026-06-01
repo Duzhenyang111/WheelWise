@@ -41,4 +41,11 @@ Main evidence:
 Blocking unknowns:
 Validation needed:
 Go/no-go threshold:
+Decision:
+Why chosen:
+Why alternatives lose:
+Evidence:
+Assumptions:
+Risks:
+Fallback:
 ```
