@@ -1,6 +1,6 @@
 # UI UX Pro Max Adaptation for WheelWise
 
-UI UX Pro Max is a design-intelligence reference for WheelWise `ui-demo` and `visual-brief` work. Use it as inspiration for systematic design choices, not as copied content.
+UI UX Pro Max is a design-intelligence reference for WheelWise `ui-demo`, `visual-brief`, and optional `wheelwise-report.html` display work. Use it as inspiration for systematic design choices, not as copied content.
 
 ## WheelWise Adaptation
 
@@ -12,6 +12,7 @@ For each demo, define:
 - Visual system: color role, typography role, spacing density, component language, icon use, and data-display style.
 - Interaction model: navigation, forms, feedback, state transitions, and recovery paths.
 - Anti-pattern checks: unclear hierarchy, fake static screens, missing states, one-note palette, poor mobile fit, inaccessible contrast, or demo flows that hide the core value.
+- HTML report display: cover, core conclusion, decision map, MVP roadmap, visual explanation, demo slice, risk/validation, and execution-plan sections sourced from the Markdown report.
 
 ## Surface Guidance
 
@@ -29,3 +30,5 @@ For each demo, define:
 ## Output Expectations
 
 The demo should be believable enough for validation: a user can click through the core flow, see realistic data, encounter states, and understand what backend work remains.
+
+For `wheelwise-report.html`, the design should make the report easier to present, not create a second source of truth. The HTML must preserve the Chinese conclusions and decisions from the Markdown report.

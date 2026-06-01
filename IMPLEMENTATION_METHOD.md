@@ -862,3 +862,77 @@ If only prompts or production methods exist, write those prompts or methods in t
 ### 14.4 Execution Plan Requirement
 
 `execution-plan` must include a task to generate or update the Chinese Markdown report file. The final chat response should state the report path and a brief completion summary, not replace the report with a chat-only summary.
+
+## 15. Version 2.5.1 Upgrade: Progressive Chinese Report and Optional HTML Display
+
+V2.5.1 tightens the final report contract based on real output failures. The problem to prevent is a report that looks like internal skill outputs pasted together, contains English module headings, lacks images or diagrams, and ends without concrete next actions.
+
+### 15.1 Progressive Report Structure
+
+The final Markdown report must be structured as a reader-facing product brief:
+
+```text
+Report guide
+-> User and problem
+-> Decisions and recommended solution
+-> Visual explanation and interactive demo
+-> Commercialization, risks, and validation
+-> Codex-ready execution plan
+-> Final recommendation and next actions
+```
+
+In the actual report, these sections must be written in Chinese. Do not use headings such as `Idea Intake`, `Surface Strategy`, `Reuse Evaluator`, `Technical Planning`, `Risk Review`, `UI Demo Scope`, or `MVP Execution Plan`.
+
+### 15.2 Required Opening and Ending
+
+The opening section `报告说明与阅读导览` must include:
+
+- Report purpose.
+- Applicable stage.
+- Core conclusion preview.
+- Reading path.
+
+The ending section `最终建议与下一步行动` must include:
+
+- One-sentence judgment.
+- 7-day action.
+- 14-day action.
+- 30-day action.
+- go/no-go or continue/stop conditions.
+
+### 15.3 Visual Priority
+
+WheelWise should prioritize real image assets when image generation is available. Generated or existing assets must be referenced from the Markdown report with normal Markdown image syntax.
+
+If image generation is unavailable, WheelWise must fall back to Mermaid. At least one visual fallback must be a decision map, MVP roadmap, or validation funnel.
+
+### 15.4 HTML Display Layer
+
+WheelWise may generate `wheelwise-report.html` as an optional static display layer. Markdown remains the source of truth.
+
+The HTML display should include:
+
+- Cover.
+- Core conclusion.
+- Decision map.
+- MVP roadmap.
+- Visual explanation.
+- Demo section.
+- Risk and validation section.
+- Execution plan.
+
+UI UX Pro Max or other UI/UX skills may be used as design intelligence for the HTML display, visual brief, or demo plan, but WheelWise must not copy external skill content.
+
+### 15.5 Self-Check and Validation
+
+Before final response, `using-wheelwise` must check:
+
+- The report file follows the `wheelwise-report*.md` naming rule.
+- All required Chinese sections exist and appear in progressive order.
+- The opening and ending sections are detailed.
+- No forbidden English skill-module headings remain.
+- `视觉说明` contains an image reference or Mermaid fallback.
+- `UI Demo / 交互 Demo` contains path, run method, core interactions, mock data, state coverage, and backend boundary.
+- `HTML 展示文件` records the HTML display rule even when HTML generation is skipped.
+
+The repository includes `scripts/check_report_contract.py` to validate final reports and templates against these contract rules.

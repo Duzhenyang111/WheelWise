@@ -5,7 +5,7 @@ description: Use when WheelWise must plan a complete interactive product demo fo
 
 # UI Demo
 
-Plan a complete interactive demo that helps users see and test the product concept before backend implementation. Use mock data, local state, fixtures, localStorage, static JSON, or simulated APIs instead of real backend services. For V2.5 final output, write demo results so they can be inserted into the Chinese Markdown report's `UI Demo / 交互 Demo` section.
+Plan a complete interactive demo that helps users see and test the product concept before backend implementation. Use mock data, local state, fixtures, localStorage, static JSON, or simulated APIs instead of real backend services. For V2.5+ final output, write demo results so they can be inserted into the Chinese Markdown report's `UI Demo / 交互 Demo` section and, when enabled, into `wheelwise-report.html`.
 
 ## Demo Rule
 
@@ -30,12 +30,28 @@ Include:
 - Run instructions.
 - Demo boundaries: what is simulated and what is not.
 - Demo path.
+- HTML display placement when a static report display is generated.
 
 ## Design Adaptation
 
-Read `references/ui-ux-pro-max-adaptation.md` when planning visual style. Borrow the approach of using design intelligence, anti-pattern checks, and surface-aware styling, but do not copy external skill content.
+Read `references/ui-ux-pro-max-adaptation.md` when planning visual style or HTML display. Borrow the approach of using design intelligence, anti-pattern checks, and surface-aware styling, but do not copy external skill content.
 
 Apply `../../shared/references/decision-rationale-standard.md` to demo format, stack, and flow decisions.
+
+## HTML Display Spec
+
+When the report needs an HTML companion, specify `wheelwise-report.html` as a static display layer sourced from the Markdown report. The spec must include:
+
+- Cover and core conclusion.
+- Decision map and MVP roadmap.
+- Visual explanation assets or Mermaid fallback placement.
+- Demo slice with the most important screen, simulator, or interaction state.
+- Risk and validation section.
+- Codex-ready execution plan section.
+- Responsive behavior and accessibility expectations.
+- Clear note that Markdown remains the source of truth.
+
+If a UI/UX skill is available, it may guide layout, hierarchy, color, typography, and anti-pattern checks. If unavailable, provide a Codex-ready HTML implementation task instead of blocking.
 
 ## Output Shape
 
@@ -52,6 +68,8 @@ Component structure:
 Demo path:
 Run instructions:
 Demo limitations:
+HTML display file:
+HTML display role:
 
 Decision rationale:
 Decision:
@@ -74,4 +92,6 @@ Demo 路径：
 mock 数据说明：
 loading / empty / error / success 状态：
 未接入真实后端的范围：
+HTML 展示文件：
+HTML 展示用途：
 ```

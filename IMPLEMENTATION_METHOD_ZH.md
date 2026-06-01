@@ -862,3 +862,77 @@ fallback
 ### 14.4 执行计划要求
 
 `execution-plan` 必须包含生成或更新中文 Markdown 报告文件的任务。最终聊天回复只需要说明报告路径和简短完成摘要，不能用聊天摘要替代报告文件。
+
+## 15. V2.5.1 升级：递进式中文报告与可选 HTML 展示
+
+V2.5.1 基于真实生成结果的问题收紧最终报告契约。要避免的情况是：报告像内部 skill 输出拼接、残留英文模块标题、没有图片或图表、开头过薄、结尾没有具体行动建议。
+
+### 15.1 递进式报告结构
+
+最终 Markdown 报告必须是面向读者的产品方案，而不是内部模块堆叠：
+
+```text
+报告说明与阅读导览
+-> 用户与问题
+-> 决策与推荐方案
+-> 视觉说明与交互 Demo
+-> 商业化、风险与验证
+-> Codex-ready 执行计划
+-> 最终建议与下一步行动
+```
+
+实际报告章节必须使用中文。不要把 `Idea Intake`、`Surface Strategy`、`Reuse Evaluator`、`Technical Planning`、`Risk Review`、`UI Demo Scope`、`MVP Execution Plan` 等英文内部模块名作为章节标题。
+
+### 15.2 必需开头与结尾
+
+开头 `报告说明与阅读导览` 必须包含：
+
+- 报告目的。
+- 适用阶段。
+- 核心结论预览。
+- 阅读方式。
+
+结尾 `最终建议与下一步行动` 必须包含：
+
+- 一句话判断。
+- 7 天行动。
+- 14 天行动。
+- 30 天行动。
+- go/no-go 或继续/停止条件。
+
+### 15.3 视觉优先级
+
+有生图能力时，WheelWise 应优先生成真实图片资产，并在 Markdown 报告中使用普通 Markdown 图片语法引用。
+
+如果没有生图能力，必须降级使用 Mermaid。至少一个 fallback 视觉应是决策地图、MVP 路线图或验证漏斗。
+
+### 15.4 HTML 展示层
+
+WheelWise 可以生成 `wheelwise-report.html` 作为可选静态展示层。Markdown 仍然是事实来源。
+
+HTML 展示应包含：
+
+- 封面。
+- 核心结论。
+- 决策地图。
+- MVP 路线图。
+- 视觉说明。
+- Demo 截面。
+- 风险与验证。
+- 执行计划。
+
+UI UX Pro Max 或其他 UI/UX skill 可以作为 HTML 展示、视觉说明或 Demo 规划的设计智能参考，但 WheelWise 不能复制外部 skill 内容。
+
+### 15.5 自检与校验
+
+最终回复前，`using-wheelwise` 必须检查：
+
+- 报告文件符合 `wheelwise-report*.md` 命名规则。
+- 所有必需中文章节存在，并按递进顺序排列。
+- 开头与结尾足够详细。
+- 没有禁止的英文 skill 模块标题。
+- `视觉说明` 包含图片引用或 Mermaid fallback。
+- `UI Demo / 交互 Demo` 包含路径、运行方式、核心交互、mock 数据、状态覆盖和后端边界。
+- `HTML 展示文件` 即使本轮不生成 HTML，也要记录 HTML 展示规则。
+
+仓库包含 `scripts/check_report_contract.py`，用于按这些契约规则校验最终报告和模板。

@@ -27,6 +27,8 @@ Steps:
 9. Create visual brief.
 10. Create UI demo or simulator spec when applicable.
 11. Produce Codex-ready execution plan.
+12. Generate or plan the progressive Chinese Markdown report.
+13. Generate or plan `wheelwise-report.html` when a presentation layer helps.
 
 ## Research-Heavy Workflow
 
@@ -40,4 +42,16 @@ Steps:
 1. Run core workflow through `technical-planning`.
 2. Run `visual-brief` for image-level explanation assets.
 3. Run `ui-demo` for user-visible surfaces, or simulator mode for API/CLI/automation.
-4. Ensure `execution-plan` includes tasks to generate the visual brief and demo.
+4. Ensure `execution-plan` includes tasks to generate the visual brief, demo, Markdown report, and optional HTML display.
+
+## Final Report Workflow
+
+Use when the user asks for a finished WheelWise report or when a full workflow is complete.
+
+Steps:
+1. Read `final-output-contract.md`.
+2. Use `new-product-brief.md` unless the user explicitly wants a shorter report.
+3. Write the report in progressive Chinese sections, not internal skill-module sections.
+4. Include image assets or Mermaid fallback.
+5. Include UI demo details and HTML display rules.
+6. Run the report self-check before responding with artifact paths.
