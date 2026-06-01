@@ -1,136 +1,207 @@
-# New Product Brief
+# 项目标题
 
-## Idea Summary
+报告文件：`wheelwise-report.md`
 
-## Delivery Surface
+> 如果用户提供了 idea 名称，可将文件命名为 `wheelwise-report-<idea-slug>.md`。本报告正文必须全中文；专有名词、技术栈、产品名、代码路径、命令、API 名称以及 Build / Buy / Reuse / Fork / Reference 标签可保留英文。
 
-Primary surface:
+## 想法摘要
 
-Alternatives considered:
+## 交付形态
 
-Surface-specific constraints:
+主要交付形态：
 
-## Verdict
+备选形态：
 
-Choose one: Build MVP / Validate First / Pause / Reject
+形态约束：
 
-Confidence:
+决策解释：
 
-## Decision Rationale Summary
+- 决策是什么：
+- 为什么选择它：
+- 为什么不选替代方案：
+- 证据：
+- 假设：
+- 风险：
+- fallback：
+- 信心等级：
 
-| Decision area | Decision | Why chosen | Why alternatives lose | Evidence | Assumptions | Risks | Fallback | Confidence |
+## 结论：构建 MVP / 先验证 / 暂停 / 放弃
+
+结论：
+
+信心等级：
+
+决策解释：
+
+- 决策是什么：
+- 为什么选择它：
+- 为什么不选替代方案：
+- 证据：
+- 假设：
+- 风险：
+- fallback：
+- 信心等级：
+
+## 决策解释摘要
+
+| 决策领域 | 决策是什么 | 为什么选择它 | 为什么不选替代方案 | 证据 | 假设 | 风险 | fallback | 信心等级 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
-## Target Customer
+## 目标用户
 
-## Problem and Urgency
+## 问题与紧迫性
 
-## Market Notes
+## 市场备注
 
-## Customer Assumptions
+## 用户假设
 
-## Differentiation
+## 差异化
 
-## MVP Scope
+## MVP 范围
 
-In scope:
+范围内：
 
-Out of scope:
+范围外：
 
-## Product Strategy
+## 产品策略
 
-Positioning:
+定位：
 
-User-facing workflow:
+用户可见流程：
 
-Feature priority:
+功能优先级：
 
-Product wedge:
+产品切入点：
 
-What to validate first:
+优先验证内容：
 
-Product assumptions:
+产品假设：
 
-## Build / Buy / Reuse / Fork / Reference Decisions
+决策解释：
 
-| Module | Decision | Suggested option | Why chosen | Why alternatives lose | Evidence | Assumptions | Risks | Fallback | Confidence |
+- 决策是什么：
+- 为什么选择它：
+- 为什么不选替代方案：
+- 证据：
+- 假设：
+- 风险：
+- fallback：
+- 信心等级：
+
+## Build / Buy / Reuse / Fork / Reference 决策
+
+| 模块 | 决策 | 推荐方案 | 为什么选择它 | 为什么不选替代方案 | 证据 | 假设 | 风险 | fallback | 信心等级 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
-## Technical Implementation Path
+## 技术实现路径
 
-Stack:
+推荐技术栈：
 
-Architecture:
+高层架构：
 
-Data model:
+数据模型草图：
 
-Integrations:
+集成方案：
 
-Deployment:
+部署路径：
 
-Surface-specific constraints:
+交付形态约束：
 
-Reuse alignment notes:
+与复用决策的一致性：
 
-## Visual Brief
+决策解释：
 
-Use `visual-brief.md` when a full visual plan is needed.
+- 决策是什么：
+- 为什么选择它：
+- 为什么不选替代方案：
+- 证据：
+- 假设：
+- 风险：
+- fallback：
+- 信心等级：
 
-| Visual title | Type | Explains | Why it helps | Prompt or method | Placement |
+## 视觉说明
+
+> 如果已经生成图片资产，使用 Markdown 引用，例如：`![产品概念图](./assets/visual-brief.png)`。如果只生成图片 prompt 或制作方法，也必须写在本节。
+
+| 视觉标题 | 类型 | 解释内容 | 为什么帮助理解推荐方案 | 图片生成 prompt / 制作方法 | 放置位置 |
 | --- | --- | --- | --- | --- | --- |
 
-## UI Demo / Interaction Demo
+图片资产：
 
-Use `ui-demo-spec.md` when a full demo spec is needed.
+```markdown
+![产品概念图](./assets/visual-brief.png)
+```
 
-Demo type:
+## UI Demo / 交互 Demo
 
-Primary flow:
+Demo 路径：
 
-Pages/screens or simulator panels:
+运行方式：
 
-Mock data and state:
+核心交互：
 
-Loading/empty/error/success states:
+页面 / 屏幕 / 模拟器面板：
 
-Run instructions:
+mock 数据说明：
 
-## Commercialization Notes
+loading / empty / error / success 状态：
 
-Business model:
+未接入真实后端的范围：
 
-Pricing or packaging hypothesis:
+## 商业化备注
 
-Acquisition channel:
+商业模式：
 
-Early monetization test:
+定价或包装假设：
 
-## Key Risks
+获客渠道：
 
-| Risk | Severity | Likelihood | Mitigation |
+早期变现测试：
+
+决策解释：
+
+- 决策是什么：
+- 为什么选择它：
+- 为什么不选替代方案：
+- 证据：
+- 假设：
+- 风险：
+- fallback：
+- 信心等级：
+
+## 关键风险
+
+| 风险 | 严重程度 | 可能性 | 缓解方式 |
 | --- | --- | --- | --- |
 
-## Validation Experiments
+## 验证实验
 
-| Experiment | Tests | Method | Success threshold |
+| 实验 | 验证内容 | 方法 | 成功标准 |
 | --- | --- | --- | --- |
 
-## Codex-Ready Execution Plan
+## Codex-ready 执行计划
 
-### Milestone 1
+### 里程碑 1
 
-Goal:
+目标：
 
-Tasks:
+任务：
 
-Files/modules:
+文件 / 模块：
 
-Tests:
+测试：
 
-Acceptance criteria:
+验收标准：
 
-Codex-ready prompt:
+Codex-ready prompt：
 
-Visual-brief task:
+视觉说明任务：
 
-UI demo or simulator task:
+UI Demo / 交互 Demo 任务：
+
+Markdown 报告任务：
+
+```text
+生成或更新 wheelwise-report.md，确保报告正文全中文，并包含视觉说明、Demo 说明、决策解释、风险、验证实验和 Codex-ready 执行计划。
+```

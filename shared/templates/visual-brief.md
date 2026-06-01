@@ -1,38 +1,44 @@
-# Visual Brief
+# 视觉说明
 
-## Visual Summary
+## 视觉摘要
 
-## Visual Assets
+## 视觉资产
 
-| Visual title | Type | Explains | Why it helps | Placement |
+| 视觉标题 | 类型 | 解释内容 | 为什么帮助理解推荐方案 | 放置位置 |
 | --- | --- | --- | --- | --- |
 
-## Image Prompts or Production Methods
+## 图片生成 Prompt / 制作方法
 
-### Visual 1
+### 视觉 1
 
-Title:
+视觉标题：
 
-Type:
+类型：
 
-Prompt or method:
+图片生成 prompt / 制作方法：
 
-Fallback:
+Markdown 图片引用：
 
-## Decision Rationale
+```markdown
+![产品概念图](./assets/visual-brief.png)
+```
 
-Decision:
+fallback：
 
-Why chosen:
+## 决策解释
 
-Why alternatives lose:
+决策是什么：
 
-Evidence:
+为什么选择它：
 
-Assumptions:
+为什么不选替代方案：
 
-Risks:
+证据：
 
-Fallback:
+假设：
 
-Confidence:
+风险：
+
+fallback：
+
+信心等级：

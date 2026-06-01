@@ -2,6 +2,19 @@
 
 Every key WheelWise decision must explain the decision, not only state it.
 
+In the final WheelWise report, use Chinese field names:
+
+```text
+决策是什么：
+为什么选择它：
+为什么不选替代方案：
+证据：
+假设：
+风险：
+fallback：
+信心等级：
+```
+
 Use this structure for verdict, delivery surface, product strategy, module strategy, technical stack, visual brief, UI demo, commercialization notes, and execution order:
 
 ```text

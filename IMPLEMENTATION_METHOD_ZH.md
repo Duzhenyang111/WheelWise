@@ -773,3 +773,92 @@ shared/
 - Codex-ready execution plan。
 
 `execution-plan` 必须包含生成 visual brief 和 UI demo 或 simulator 的任务。
+
+## 14. V2.5 升级：单个全中文 Markdown 报告文件
+
+V2.5 不推翻 V2 架构。`using-wheelwise` 仍然是唯一主入口，`visual-brief`、`ui-demo`、`product-strategy`、`technical-planning` 和 `decision-rationale-standard` 继续作为一级能力保留。
+
+V2.5 只升级最终产物契约：
+
+```text
+WheelWise 最终输出 = 一个完整的全中文 Markdown 报告文件
+```
+
+默认文件名：
+
+```text
+wheelwise-report.md
+```
+
+如果用户提供了 idea 名称，可以使用：
+
+```text
+wheelwise-report-<idea-slug>.md
+```
+
+报告正文必须全中文。专有名词、技术栈、产品名、代码路径、命令、API 名称以及 Build / Buy / Reuse / Fork / Reference 标签可以保留英文。
+
+### 14.1 V2.5 必需报告章节
+
+Markdown 报告必须包含以下中文章节：
+
+1. 项目标题
+2. 想法摘要
+3. 交付形态
+4. 结论：构建 MVP / 先验证 / 暂停 / 放弃
+5. 决策解释摘要
+6. 目标用户
+7. 问题与紧迫性
+8. 市场备注
+9. 用户假设
+10. 差异化
+11. MVP 范围
+12. 产品策略
+13. Build / Buy / Reuse / Fork / Reference 决策
+14. 技术实现路径
+15. 视觉说明
+16. UI Demo / 交互 Demo
+17. 商业化备注
+18. 关键风险
+19. 验证实验
+20. Codex-ready 执行计划
+
+### 14.2 中文决策解释
+
+最终报告中的每个关键决策都必须解释：
+
+```text
+决策是什么
+为什么选择它
+为什么不选替代方案
+证据
+假设
+风险
+fallback
+信心等级
+```
+
+适用范围包括 verdict、delivery surface、product strategy、Build / Buy / Reuse / Fork / Reference 决策、technical stack、visual brief、UI demo、commercialization notes 和 execution order。
+
+### 14.3 视觉和 Demo 汇入规则
+
+`visual-brief` 输出必须写入 `视觉说明` 章节。如果有图片资产，用 Markdown 引用：
+
+```markdown
+![产品概念图](./assets/visual-brief.png)
+```
+
+如果只有 prompt 或制作方法，也必须写在同一章节。
+
+`ui-demo` 输出必须写入 `UI Demo / 交互 Demo` 章节，并包含：
+
+- Demo 路径。
+- 运行命令。
+- 核心交互。
+- mock 数据说明。
+- loading / empty / error / success 状态。
+- 未接入真实后端的范围。
+
+### 14.4 执行计划要求
+
+`execution-plan` 必须包含生成或更新中文 Markdown 报告文件的任务。最终聊天回复只需要说明报告路径和简短完成摘要，不能用聊天摘要替代报告文件。

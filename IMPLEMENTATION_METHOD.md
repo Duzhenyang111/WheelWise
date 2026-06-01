@@ -773,3 +773,92 @@ The full New Product Brief must include:
 - Codex-ready execution plan.
 
 `execution-plan` must include tasks for generating the visual brief and the UI demo or simulator.
+
+## 14. Version 2.5 Upgrade: Single Chinese Markdown Report File
+
+V2.5 does not replace the V2 architecture. `using-wheelwise` remains the only main entry skill, and `visual-brief`, `ui-demo`, `product-strategy`, `technical-planning`, and `decision-rationale-standard` remain first-class capabilities.
+
+The V2.5 change is the final artifact contract:
+
+```text
+WheelWise final output = one complete Chinese Markdown report file
+```
+
+Default filename:
+
+```text
+wheelwise-report.md
+```
+
+If the user provides an idea name, WheelWise may use:
+
+```text
+wheelwise-report-<idea-slug>.md
+```
+
+The report body must be fully Chinese. Product names, technical stacks, code paths, commands, API names, and Build / Buy / Reuse / Fork / Reference labels may remain English.
+
+### 14.1 V2.5 Required Report Sections
+
+The Markdown report must include these Chinese sections:
+
+1. 项目标题
+2. 想法摘要
+3. 交付形态
+4. 结论：构建 MVP / 先验证 / 暂停 / 放弃
+5. 决策解释摘要
+6. 目标用户
+7. 问题与紧迫性
+8. 市场备注
+9. 用户假设
+10. 差异化
+11. MVP 范围
+12. 产品策略
+13. Build / Buy / Reuse / Fork / Reference 决策
+14. 技术实现路径
+15. 视觉说明
+16. UI Demo / 交互 Demo
+17. 商业化备注
+18. 关键风险
+19. 验证实验
+20. Codex-ready 执行计划
+
+### 14.2 Chinese Decision Rationale
+
+Every key decision in the final report must explain:
+
+```text
+决策是什么
+为什么选择它
+为什么不选替代方案
+证据
+假设
+风险
+fallback
+信心等级
+```
+
+This applies to verdict, delivery surface, product strategy, Build / Buy / Reuse / Fork / Reference decisions, technical stack, visual brief, UI demo, commercialization notes, and execution order.
+
+### 14.3 Visual and Demo Integration
+
+`visual-brief` outputs must be written into the `视觉说明` section. If image assets exist, reference them with Markdown:
+
+```markdown
+![产品概念图](./assets/visual-brief.png)
+```
+
+If only prompts or production methods exist, write those prompts or methods in the same section.
+
+`ui-demo` outputs must be written into the `UI Demo / 交互 Demo` section, including:
+
+- Demo path.
+- Run command.
+- Core interactions.
+- Mock data notes.
+- Loading / empty / error / success states.
+- Scope not connected to a real backend.
+
+### 14.4 Execution Plan Requirement
+
+`execution-plan` must include a task to generate or update the Chinese Markdown report file. The final chat response should state the report path and a brief completion summary, not replace the report with a chat-only summary.

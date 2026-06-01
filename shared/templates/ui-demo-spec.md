@@ -1,76 +1,80 @@
-# UI Demo Spec
+# UI Demo / 交互 Demo 规格
 
-## Demo Overview
+## Demo 概览
 
-Demo type:
+Demo 类型：
 
-Target surface:
+目标交付形态：
 
-Primary user:
+主要用户：
 
-Primary flow:
+核心流程：
 
-## Pages, Screens, or Simulator Panels
+Demo 路径：
 
-| Screen | Purpose | Key interactions | States |
+运行方式：
+
+## 页面 / 屏幕 / 模拟器面板
+
+| 页面或面板 | 目的 | 核心交互 | 状态 |
 | --- | --- | --- | --- |
 
-## Interaction Model
+## 交互模型
 
-Navigation:
+导航：
 
-Forms:
+表单：
 
-State changes:
+状态变化：
 
-Validation:
+校验：
 
-## Mock Data and Simulation
+## Mock 数据与模拟
 
-Data source:
+数据来源：
 
-Fixtures:
+fixtures：
 
-localStorage or local state:
+localStorage 或本地状态：
 
-Simulated API behavior:
+模拟 API 行为：
 
-## Required States
+## 必备状态
 
-Loading:
+Loading：
 
-Empty:
+Empty：
 
-Error:
+Error：
 
-Success:
+Success：
 
-## Component Structure
+## 组件结构
 
-## Responsive Behavior
+## 响应式行为
 
-## Run Instructions
+## 运行方式
 
-## Demo Boundaries
+## Demo 边界
 
-Simulated:
+已模拟：
 
-Not included:
+未接入真实后端的范围：
 
-## Decision Rationale
+## 决策解释
 
-Decision:
+决策是什么：
 
-Why chosen:
+为什么选择它：
 
-Why alternatives lose:
+为什么不选替代方案：
 
-Evidence:
+证据：
 
-Assumptions:
+假设：
 
-Risks:
+风险：
 
-Fallback:
+fallback：
 
-Confidence:
+信心等级：
