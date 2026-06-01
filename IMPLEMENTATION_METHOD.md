@@ -910,6 +910,8 @@ If image generation is unavailable, WheelWise must fall back to Mermaid. At leas
 
 WheelWise may generate `index.html` inside the report folder as a static display layer. `report.md` remains the source of truth.
 
+The HTML display should reinterpret the report as a designed webpage, not merely convert Markdown headings and tables into HTML. It should use layout, imagery, charts, visual hierarchy, and motion to make the report easier to understand.
+
 The HTML display should include:
 
 - Cover.
@@ -917,9 +919,12 @@ The HTML display should include:
 - Decision map.
 - MVP roadmap.
 - Visual explanation.
-- Demo section.
+- Product or interaction preview section.
 - Risk and validation section.
 - Execution plan.
+- A designed presentation of the substantive report content.
+
+When the product has a user-facing surface, WheelWise should also create or specify a separate interactive prototype page such as `prototype.html`. A website idea should show the website UI; a web app should show the workspace; mobile, desktop, extension, API, CLI, and automation ideas should be simulated in HTML using the appropriate surface metaphor.
 
 UI UX Pro Max or other UI/UX skills may be used as design intelligence for the HTML display, visual brief, or demo plan, but WheelWise must not copy external skill content.
 
@@ -1018,3 +1023,31 @@ python scripts/check_report_contract.py examples/ai-resume-optimizer --folder --
 ```
 
 The validator must reject missing `report.md`, missing `index.html`, missing `assets/`, missing image assets, broken Markdown image references, broken HTML image references, and common English display terms in Markdown or webpage visible text.
+
+## 17. Version 3.0 Upgrade: Designed HTML Display and Interactive Prototype
+
+V3.0 keeps the report-folder contract and adds two stronger presentation requirements:
+
+```text
+wheelwise-report-<idea-slug>/
+  report.md
+  index.html
+  prototype.html
+  assets/
+    concept.svg
+```
+
+`report.md` remains the source of truth. `index.html` is a designed report presentation, not a plain Markdown conversion. It should use dense visuals, charts, cards, timelines, product screenshots or mockups, motion, and clear hierarchy to help a beginner understand feasibility, product value, implementation path, and next actions.
+
+`prototype.html` or an equivalent page is the product-surface simulation. It should demonstrate the target user experience with local simulated data:
+
+- Website: landing page and conversion flow.
+- Web app: dashboard, workspace, forms, state changes, and core workflow.
+- Mobile: phone frame, mobile navigation, and touch-like flows.
+- Desktop: desktop window, local-file flows, menus, and panels.
+- Browser extension: popup, options page, and webpage context.
+- API/backend service: request builder, response viewer, docs, logs, and key management.
+- CLI/dev tool: terminal commands, config, errors, and success states.
+- Automation/workflow tool: trigger/action builder, run history, retry, error, and success paths.
+
+V3.0 full reports should also include a high-information-density visual asset, such as a product decision poster or implementation map. Thin decorative imagery is not enough for a full WheelWise report.

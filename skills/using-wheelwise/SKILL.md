@@ -64,14 +64,19 @@ Idea
 - Do not use internal skill names as final report sections. Forbidden report headings include `Idea Intake`, `Surface Strategy`, `Feasibility Review`, `Product Strategy`, `Reuse Evaluator`, `Technical Planning`, `Risk Review`, `UI Demo Scope`, and `MVP Execution Plan`.
 - The final report must be progressive: `报告说明与阅读导览` -> user/problem -> decision/recommendation -> visual/demo -> risk/validation -> execution plan -> `最终建议与下一步行动`.
 - If visual-brief produces images or image prompts, place them in the report's `视觉说明` section. If image assets exist, reference them with Markdown such as `![产品概念图](./assets/concept.png)`.
+- For full reports, visual assets should be information-dense and presentation-ready, such as a product decision poster, feature map, implementation map, or validation roadmap. A thin decorative image is not enough.
 - Prefer real image assets when image generation is available. If image generation is unavailable, include a Mermaid 兜底图表 in `视觉说明`; all chart labels must be Chinese.
 - If image generation cannot reliably render Chinese text, generate images without text and place Chinese explanations in `report.md` and `index.html`.
 - If ui-demo produces a demo, place 演示路径、运行方式、核心交互、模拟数据说明、状态覆盖、后端边界 in the report's `交互演示` section.
 - Add a `网页展示文件` section. Default path is `index.html`. State that it is a display layer sourced from `report.md` and list the required display modules.
+- `index.html` must present the complete source report content, not only a short landing-page summary. It may add a cover, navigation, callouts, or visual panels, but every substantive section from `report.md` must remain visible in the page.
+- `index.html` must reinterpret the report as a designed HTML presentation with layout, imagery, charts, visual hierarchy, and motion. Do not merely convert Markdown headings and tables into HTML.
+- When a product has any user-facing surface, create or specify a separate interactive prototype page such as `demo.html`. For websites, show the actual website interface; for web applications, show the product workspace; for mobile, desktop, extension, API, CLI, or automation products, simulate that surface in HTML.
 - If UI UX Pro Max or another UI/UX skill is available, it may be used as design intelligence for the webpage display file, visual brief, or demo surface. Do not copy external skill content.
 - Keep implementation surface visible throughout: website, web app, mobile app, desktop app, browser extension, API/SaaS, CLI, or automation tool.
 - Do not invent market, customer, pricing, channel, policy, license, or repository facts. If current facts matter, browse using `../../shared/references/web-research-standard.md` or mark the evidence gap and lower confidence.
 - Full reports must include market evidence, user evidence, commercialization assumptions, and a source-evidence summary when current research was needed.
+- Full reports must be understandable to a beginner: explain whether the idea is feasible, why it is feasible or not, the main selling proposition, what the product becomes after validation, frontend design, backend design, technical route, user acquisition, and operations plan.
 - Do not copy external skill content. External skills belong in `../../shared/references/external-skills.md` as references or optional dependencies.
 - Use `risk-review` consistently for risk work. Do not create alternate risk skill names.
 - Final report should follow `../../shared/templates/new-product-brief.md` unless the user explicitly asks for a shorter Chinese report, in which case use `../../shared/templates/final-wheelwise-report.md`.
@@ -90,5 +95,8 @@ Before sending the final chat response, confirm:
 - `视觉说明` contains real Markdown image references under `assets/`, or Mermaid 兜底图表 when image generation is unavailable.
 - `交互演示` includes 演示路径、运行方式、核心交互、模拟数据、加载 / 空状态 / 错误 / 成功状态、后端边界。
 - `网页展示文件` records `index.html` rules.
+- `index.html` displays the complete `report.md` content in a readable, structured page; it is not an abridged summary.
+- A separate interactive prototype page exists or is explicitly planned when the product has a user-facing surface; it demonstrates the target product UI rather than the report.
 - `可交给 Codex 执行的计划` includes tasks to create or update the report folder, source report, webpage display file, and assets.
 - Market, customer, and commercialization claims separate source evidence from analysis assumptions, and any current fact that matters has been browsed or marked as an evidence gap.
+- The report clearly explains feasibility, why the recommendation is believable, main selling proposition, frontend design, backend design, technical route, acquisition, and operations in Chinese.

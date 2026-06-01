@@ -1,7 +1,7 @@
 {
   "name": "wheelwise",
-  "version": "0.2.8",
-  "description": "A product and engineering decision skill pack for turning ideas into a Chinese report folder with report.md, index.html, assets, visuals, demos, and execution plans.",
+  "version": "3.0.0",
+  "description": "A product and engineering decision skill pack for turning ideas into a Chinese report folder with report.md, designed index.html, interactive prototype HTML, assets, visuals, demos, and execution plans.",
   "author": {
     "name": "WheelWise",
     "email": "noreply@example.com"
@@ -19,7 +19,7 @@
   "interface": {
     "displayName": "WheelWise",
     "shortDescription": "Generate progressive Chinese reports with visuals, demos, HTML display, and execution plans.",
-    "longDescription": "WheelWise is a multi-skill product decision pack that structures raw ideas, selects the delivery surface, researches market/customer/commercial evidence, reviews feasibility and risk, evaluates existing solutions, creates visual briefs and interactive demo specs, and produces one complete Chinese report folder with report.md, index.html, assets, and an execution plan.",
+    "longDescription": "WheelWise is a multi-skill product decision pack that structures raw ideas, selects the delivery surface, researches market/customer/commercial evidence, reviews feasibility and risk, evaluates existing solutions, creates dense visual briefs, designed HTML report displays, interactive prototype HTML, and one complete Chinese report folder with report.md, index.html, assets, and an execution plan.",
     "developerName": "WheelWise",
     "category": "Productivity",
     "capabilities": [

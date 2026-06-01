@@ -17,9 +17,10 @@ Read `../../shared/references/decision-rationale-standard.md` for commercializat
 1. Restate the product strategy, target customer, delivery surface, and minimum viable product scope.
 2. Search current competitor pricing, free/paid boundaries, packaging, channel rules, platform fees, and buyer payment patterns when relevant.
 3. Choose one primary business model and one fallback.
-4. Define pricing assumptions, package boundaries, acquisition channels, sales motion, and early monetization tests.
-5. Identify revenue risks and validation thresholds.
-6. Apply the decision rationale fields to the recommended commercial path.
+4. Define pricing assumptions, package boundaries, acquisition channels, sales motion, activation path, retention loop, and early monetization tests.
+5. Define the first 30-day operating cadence: content, outreach, onboarding, customer success, support, and metric review.
+6. Identify revenue risks and validation thresholds.
+7. Apply the decision rationale fields to the recommended commercial path.
 
 ## Minimum Search Coverage
 
@@ -45,6 +46,9 @@ Packaging:
 Free / paid boundary:
 Acquisition channels:
 Sales motion:
+Activation path:
+Retention loop:
+Operating cadence:
 Early monetization tests:
 Revenue risks:
 

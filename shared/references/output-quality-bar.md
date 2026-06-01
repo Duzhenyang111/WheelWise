@@ -15,6 +15,7 @@ A WheelWise answer is acceptable only when it:
 - Makes a clear verdict.
 - Names the delivery surface.
 - Includes market evidence, user evidence, commercialization assumptions, and a source-evidence summary when current facts materially affect the recommendation.
+- Explains the idea clearly enough for a beginner: feasibility, why it is feasible or not, main selling proposition, product shape after validation, frontend design, backend design, technical route, user acquisition, and operations.
 - Includes decision rationale for key decisions in Chinese: 决策是什么, 为什么选择它, 为什么不选替代方案, 证据, 假设, 风险, 兜底方案, 信心等级.
 - Separates evidence from assumptions.
 - Uses `shared/references/web-research-standard.md` for current market, customer, pricing, channel, policy, vendor, license, or repository facts; if research is unavailable, marks the evidence gap and lowers confidence.
@@ -23,9 +24,13 @@ A WheelWise answer is acceptable only when it:
 - Gives module-level 自研 / 购买 / 复用 / 分叉改造 / 参考 decisions.
 - Connects `reuse-evaluator` decisions to `technical-planning` without contradictions.
 - Includes image-level visual explanation via `visual-brief` for full reports, written into the `视觉说明` section with image references under `assets/`, or Mermaid 兜底图表 when image generation is unavailable.
+- Uses a dense, explanatory primary visual for full reports; the image should communicate value proposition, user, workflow, technical route, commercialization, validation, and next actions rather than acting as decoration.
 - Includes an interactive demo plan or API/CLI/workflow simulator spec when applicable, expressed in Chinese visible text.
 - Includes 演示路径, run command when needed, core interactions, simulated data notes, and backend simulation boundary in the `交互演示` section.
 - Includes a `网页展示文件` section. If `index.html` is generated, it is listed as a display layer sourced from `report.md`; if not, the report records whether it is recommended or skipped.
+- If `index.html` is generated for a full report, it displays the complete `report.md` content, not only an abridged landing-page summary.
+- `index.html` reinterprets the report as a designed HTML presentation with images, charts, hierarchy, and motion; it is not a plain Markdown-to-HTML conversion.
+- User-facing products include a separate interactive prototype page, such as `demo.html`, that simulates the actual product surface and core interactions with local data.
 - Calls out license, privacy, security, dependency, market, and execution risks where relevant.
 - Produces a plan Codex can act on, including visual-brief, demo, report folder creation/update tasks, source report tasks, webpage display tasks, and asset generation tasks.
 - Keeps `using-wheelwise` responsible for final synthesis.

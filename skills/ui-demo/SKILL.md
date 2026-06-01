@@ -48,10 +48,26 @@ When the report needs a webpage companion, specify `index.html` inside the repor
 - Interaction slice with the most important screen, simulator, or interaction state.
 - Risk and validation section.
 - 可交给 Codex 执行的计划 section.
+- Complete report body that preserves every substantive section from `report.md`.
 - Responsive behavior and accessibility expectations.
 - Clear note that `report.md` remains the source report.
 
 If a UI/UX skill is available, it may guide layout, hierarchy, color, typography, and anti-pattern checks. If unavailable, provide a task that Codex can implement instead of blocking. All visible output text must be Chinese.
+
+For full reports, `index.html` must not be a short marketing page or plain Markdown conversion. It should reinterpret `report.md` as a designed presentation with visual hierarchy, charts, motion, screenshots or mockups, and a complete report body.
+
+Create or specify a separate interactive prototype page, defaulting to `demo.html`, when the product has a user-facing surface:
+
+- Website idea: show the actual website UI and its key interactions.
+- Web application idea: show the dashboard/workspace flow.
+- Mobile app idea: simulate a phone frame with mobile navigation and touch-like interactions.
+- Desktop app idea: simulate desktop windows, sidebars, menus, and local-file flows.
+- Browser extension idea: simulate popup, options page, and content-script context.
+- API/software-service backend idea: simulate an API playground, request builder, response viewer, docs, logs, and keys.
+- CLI/developer tool idea: simulate a terminal with commands, outputs, config, errors, and success states.
+- Automation/workflow idea: simulate trigger/action builder, run history, retry, error, and success paths.
+
+The prototype page must use local simulated data and must explain what is simulated. It is separate from the report display page.
 
 ## Output Shape
 
@@ -70,6 +86,8 @@ Run instructions:
 演示限制:
 Webpage display file:
 Webpage display role:
+Interactive prototype file:
+Interactive prototype role:
 
 Decision rationale:
 Decision:
@@ -94,4 +112,6 @@ In the final report, use Chinese field names:
 未接入真实后端的范围：
 网页展示文件：
 网页展示用途：
+交互原型文件：
+交互原型用途：
 ```

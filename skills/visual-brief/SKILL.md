@@ -41,7 +41,9 @@ Use one or more:
 ## Required Coverage
 
 - At least one visual must explain the main decision path or tradeoff.
+- At least one visual for a full report should be a dense product-information poster or decision infographic with clear sections for value proposition, user, scenario, workflow, technical route, commercialization, risks, validation, and next actions.
 - Full reports should include two to three visuals when useful: product concept, decision map, roadmap, validation funnel, module map, or interaction mockup.
+- Avoid thin decorative concept art as the only visual. The primary visual must help a reader understand the idea without reading the whole report.
 - Each visual must state whether it belongs in source report only, webpage display only, or both.
 - All final-report field names must be Chinese. English labels such as `Visual Brief`, `Type`, or `Explains` must not be used as report section headings.
 - Final visible output must use the Chinese display vocabulary from `using-wheelwise/references/final-output-contract.md`.

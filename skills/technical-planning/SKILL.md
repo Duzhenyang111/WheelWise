@@ -19,9 +19,10 @@ Connect `reuse-evaluator` to `execution-plan`. The technical plan must honor the
 1. Restate the delivery surface and MVP workflow.
 2. Map each module decision to an implementation path.
 3. Recommend a stack that fits the surface and reuse decisions.
-4. Outline architecture, data model, integrations, deployment, and observability.
-5. Call out surface-specific constraints such as mobile store review, browser permissions, API uptime, CLI packaging, or automation retries.
-6. Apply `../../shared/references/decision-rationale-standard.md` to stack and architecture choices.
+4. Outline frontend design, backend design, architecture, data model, integrations, deployment, and observability.
+5. Explain the data flow from user action to backend processing to visible result.
+6. Call out surface-specific constraints such as mobile store review, browser permissions, API uptime, CLI packaging, or automation retries.
+7. Apply `../../shared/references/decision-rationale-standard.md` to stack and architecture choices.
 
 ## Conflict Check
 
@@ -34,8 +35,12 @@ Connect `reuse-evaluator` to `execution-plan`. The technical plan must honor the
 
 ```text
 Recommended stack:
+Frontend design:
+Backend design:
 High-level architecture:
 Data model outline:
+Data flow:
+API and integration boundaries:
 Integrations:
 Deployment path:
 Surface-specific constraints:

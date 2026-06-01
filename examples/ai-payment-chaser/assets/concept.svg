@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="2200" viewBox="0 0 1400 2200" role="img" aria-label="款到助手完整产品信息图">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#061d38"/><stop offset="0.55" stop-color="#0b3f73"/><stop offset="1" stop-color="#0a6b83"/></linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#edf7ff"/></linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#00152d" flood-opacity="0.35"/></filter>
+    <style>
+      .title{font-family:Arial,'Microsoft YaHei',sans-serif;font-weight:900;fill:#fff}
+      .sub{font-family:Arial,'Microsoft YaHei',sans-serif;font-weight:700;fill:#dff6ff}
+      .small{font-family:Arial,'Microsoft YaHei',sans-serif;font-size:22px;fill:#12324a}
+      .tiny{font-family:Arial,'Microsoft YaHei',sans-serif;font-size:18px;fill:#12324a}
+      .label{font-family:Arial,'Microsoft YaHei',sans-serif;font-size:24px;font-weight:800;fill:#fff}
+      .cardTitle{font-family:Arial,'Microsoft YaHei',sans-serif;font-size:28px;font-weight:900;fill:#fff}
+      .num{font-family:Arial,'Microsoft YaHei',sans-serif;font-size:42px;font-weight:900;fill:#fff}
+      .h{font-family:Arial,'Microsoft YaHei',sans-serif;font-size:28px;font-weight:900;fill:#083763}
+      .body{font-family:Arial,'Microsoft YaHei',sans-serif;font-size:21px;fill:#12324a}
+      .white{fill:#fff}.muted{fill:#dff6ff}.blue{fill:#0b5db3}.green{fill:#13804a}.orange{fill:#f97316}.red{fill:#c0262d}
+    </style>
+  </defs>
+  <rect width="1400" height="2200" fill="url(#bg)"/>
+  <path d="M0 2100 C260 2010 420 2140 700 2060 C1000 1975 1140 2050 1400 1970 L1400 2200 L0 2200 Z" fill="#05305d" opacity="0.8"/>
+
+  <text x="54" y="76" class="sub" font-size="30">WheelWise 测试样例</text>
+  <text x="54" y="150" class="title" font-size="78">款到助手</text>
+  <text x="420" y="148" class="title" font-size="50">智能收款提醒工作台</text>
+  <text x="56" y="205" class="sub" font-size="31">关系安全｜人工确认｜逾期看板｜回款复盘｜先验证再开发</text>
+  <rect x="1110" y="45" width="230" height="86" rx="18" fill="#0c4f94" stroke="#b8e7ff" stroke-width="2"/>
+  <text x="1140" y="82" class="label">当前结论</text><text x="1140" y="118" class="num" font-size="34">先验证</text>
+
+  <g transform="translate(35 245)">
+    <g><rect width="168" height="78" rx="14" fill="#0b65c2" stroke="#b8e7ff"/><text x="22" y="32" class="num">4/10</text><text x="24" y="61" class="label" font-size="20">导入即继续</text></g>
+    <g transform="translate(184 0)"><rect width="168" height="78" rx="14" fill="#0b65c2" stroke="#b8e7ff"/><text x="22" y="32" class="num">3步</text><text x="24" y="61" class="label" font-size="20">提醒节奏</text></g>
+    <g transform="translate(368 0)"><rect width="168" height="78" rx="14" fill="#0b65c2" stroke="#b8e7ff"/><text x="22" y="32" class="num">19</text><text x="24" y="61" class="label" font-size="20">美元价格锚</text></g>
+    <g transform="translate(552 0)"><rect width="168" height="78" rx="14" fill="#0b65c2" stroke="#b8e7ff"/><text x="22" y="32" class="num">5分</text><text x="24" y="61" class="label" font-size="20">完成激活</text></g>
+    <g transform="translate(736 0)"><rect width="168" height="78" rx="14" fill="#0b65c2" stroke="#b8e7ff"/><text x="22" y="32" class="num">周一</text><text x="24" y="61" class="label" font-size="20">待办摘要</text></g>
+    <g transform="translate(920 0)"><rect width="168" height="78" rx="14" fill="#0b65c2" stroke="#b8e7ff"/><text x="22" y="32" class="num">周五</text><text x="24" y="61" class="label" font-size="20">回款复盘</text></g>
+    <g transform="translate(1104 0)"><rect width="226" height="78" rx="14" fill="#0b65c2" stroke="#b8e7ff"/><text x="22" y="32" class="num">不抽成</text><text x="24" y="61" class="label" font-size="20">订阅制验证</text></g>
+  </g>
+
+  <g transform="translate(35 350)">
+    <rect width="405" height="412" rx="18" fill="url(#card)" filter="url(#shadow)"/>
+    <rect width="405" height="54" rx="18" fill="#0b5db3"/><text x="24" y="37" class="cardTitle">1 为什么这个想法可行</text>
+    <text x="28" y="90" class="body">● 逾期发票会直接影响现金流</text>
+    <text x="28" y="126" class="body">● 小团队没有专职收款人员</text>
+    <text x="28" y="162" class="body">● 手动提醒容易忘、也尴尬</text>
+    <text x="28" y="198" class="body">● 现有工具常偏重会计或全自动</text>
+    <text x="28" y="234" class="body">● 窄切口可先用表格导入验证</text>
+    <text x="28" y="270" class="body">● 核心风险可用访谈和原型确认</text>
+    <rect x="28" y="310" width="348" height="70" rx="12" fill="#e0f2fe" stroke="#0b5db3"/>
+    <text x="48" y="338" class="h" font-size="24">验证门槛</text><text x="48" y="366" class="body">10人中4人愿导入真实发票</text>
+  </g>
+
+  <g transform="translate(35 790)">
+    <rect width="405" height="520" rx="18" fill="url(#card)" filter="url(#shadow)"/>
+    <rect width="405" height="54" rx="18" fill="#0b5db3"/><text x="24" y="37" class="cardTitle">2 产品主流程</text>
+    <rect x="36" y="88" width="330" height="64" rx="12" fill="#dbeafe" stroke="#0b5db3"/><text x="60" y="128" class="h" font-size="25">导入发票</text>
+    <path d="M201 158 v42" stroke="#0b5db3" stroke-width="5"/><path d="M185 190 l16 20 16-20" fill="none" stroke="#0b5db3" stroke-width="5"/>
+    <rect x="36" y="215" width="330" height="64" rx="12" fill="#dcfce7" stroke="#13804a"/><text x="60" y="255" class="h" font-size="25">生成提醒节奏</text>
+    <path d="M201 285 v42" stroke="#13804a" stroke-width="5"/><path d="M185 317 l16 20 16-20" fill="none" stroke="#13804a" stroke-width="5"/>
+    <rect x="36" y="342" width="330" height="64" rx="12" fill="#fff7ed" stroke="#f97316"/><text x="60" y="382" class="h" font-size="25">人工确认发送</text>
+    <path d="M201 412 v42" stroke="#f97316" stroke-width="5"/><path d="M185 444 l16 20 16-20" fill="none" stroke="#f97316" stroke-width="5"/>
+    <rect x="36" y="469" width="330" height="36" rx="12" fill="#fee2e2" stroke="#c0262d"/><text x="60" y="494" class="body">回款复盘与下次建议</text>
+  </g>
+
+  <g transform="translate(470 350)">
+    <rect width="460" height="960" rx="22" fill="#081b2f" stroke="#b8e7ff" stroke-width="2" filter="url(#shadow)"/>
+    <text x="42" y="68" class="sub" font-size="28">产品工作台示意</text>
+    <rect x="42" y="105" width="376" height="700" rx="24" fill="#f8fbff"/>
+    <rect x="68" y="135" width="324" height="62" rx="14" fill="#0b5db3"/><text x="90" y="176" class="label">本周收款总览</text>
+    <g transform="translate(68 220)">
+      <rect width="145" height="92" rx="14" fill="#dbeafe"/><text x="18" y="35" class="h" font-size="22">逾期金额</text><text x="18" y="74" class="orange" font-family="Arial" font-size="34" font-weight="900">$17.5K</text>
+      <rect x="178" width="145" height="92" rx="14" fill="#dcfce7"/><text x="196" y="35" class="h" font-size="22">待提醒</text><text x="196" y="74" class="green" font-family="Arial" font-size="34" font-weight="900">12张</text>
+    </g>
+    <rect x="68" y="340" width="324" height="84" rx="14" fill="#ffffff" stroke="#bfd8ee"/><text x="92" y="372" class="h" font-size="22">蓝鲸设计工作室</text><text x="92" y="402" class="body">逾期 7 天｜建议正常语气</text>
+    <rect x="68" y="446" width="324" height="84" rx="14" fill="#ffffff" stroke="#bfd8ee"/><text x="92" y="478" class="h" font-size="22">北岸顾问公司</text><text x="92" y="508" class="body">逾期 15 天｜建议坚定语气</text>
+    <rect x="68" y="552" width="324" height="168" rx="14" fill="#e0f2fe" stroke="#0b5db3"/>
+    <text x="92" y="586" class="h" font-size="22">提醒草稿</text>
+    <text x="92" y="620" class="tiny">您好，想确认这张发票是否</text>
+    <text x="92" y="648" class="tiny">已经进入付款流程。如需我们</text>
+    <text x="92" y="676" class="tiny">补充资料，请直接告诉我。</text>
+    <rect x="92" y="742" width="134" height="42" rx="21" fill="#13804a"/><text x="122" y="770" class="label" font-size="21">确认发送</text>
+    <rect x="244" y="742" width="118" height="42" rx="21" fill="#fff" stroke="#0b5db3"/><text x="276" y="770" class="blue" font-family="Arial" font-size="21" font-weight="800">编辑</text>
+    <rect x="42" y="836" width="376" height="82" rx="14" fill="#0b5db3"/><text x="70" y="870" class="label">核心卖点</text><text x="70" y="900" class="sub" font-size="22">不伤客户关系地提高回款效率</text>
+  </g>
+
+  <g transform="translate(960 350)">
+    <rect width="405" height="276" rx="18" fill="url(#card)" filter="url(#shadow)"/>
+    <rect width="405" height="54" rx="18" fill="#0b5db3"/><text x="24" y="37" class="cardTitle">3 目标用户与场景</text>
+    <text x="28" y="92" class="body">● 自由职业者</text><text x="228" y="92" class="body">● 小型代理公司</text>
+    <text x="28" y="132" class="body">● 独立顾问</text><text x="228" y="132" class="body">● 兼职财务</text>
+    <text x="28" y="178" class="body">每月 10 到 80 张发票</text>
+    <text x="28" y="216" class="body">经常有 7 天以上逾期款</text>
+    <text x="28" y="254" class="body">没有专职收款人员</text>
+  </g>
+  <g transform="translate(960 650)">
+    <rect width="405" height="332" rx="18" fill="url(#card)" filter="url(#shadow)"/>
+    <rect width="405" height="54" rx="18" fill="#0b5db3"/><text x="24" y="37" class="cardTitle">4 前端怎么设计</text>
+    <text x="28" y="94" class="body">● 工作台，不做营销首页</text>
+    <text x="28" y="132" class="body">● 总览、发票、提醒队列、客户</text>
+    <text x="28" y="170" class="body">● 右侧提醒编辑抽屉</text>
+    <text x="28" y="208" class="body">● 温和 / 正常 / 坚定语气切换</text>
+    <text x="28" y="246" class="body">● 发送前必须预览和确认</text>
+    <text x="28" y="284" class="body">● 加载、空、错误、成功状态齐全</text>
+  </g>
+  <g transform="translate(960 1008)">
+    <rect width="405" height="302" rx="18" fill="url(#card)" filter="url(#shadow)"/>
+    <rect width="405" height="54" rx="18" fill="#0b5db3"/><text x="24" y="37" class="cardTitle">5 后端与技术路线</text>
+    <text x="28" y="94" class="body">● 用户、组织、客户、发票</text>
+    <text x="28" y="132" class="body">● 提醒计划、消息草稿、发送日志</text>
+    <text x="28" y="170" class="body">● 表格导入先行，集成后置</text>
+    <text x="28" y="208" class="body">● 邮件与支付能力购买</text>
+    <text x="28" y="246" class="body">● 提醒节奏和语气策略自研</text>
+  </g>
+
+  <g transform="translate(35 1340)">
+    <rect width="405" height="312" rx="18" fill="url(#card)" filter="url(#shadow)"/>
+    <rect width="405" height="54" rx="18" fill="#0b5db3"/><text x="24" y="37" class="cardTitle">6 自研 / 购买 / 复用</text>
+    <text x="28" y="94" class="body">购买：登录、邮件、支付链接</text>
+    <text x="28" y="132" class="body">复用：界面组件、图表、表格</text>
+    <text x="28" y="170" class="body">自研：提醒节奏、语气、状态流</text>
+    <text x="28" y="208" class="body">参考：会计系统字段和权限</text>
+    <text x="28" y="246" class="body">不做：完整会计和法律催收</text>
+  </g>
+  <g transform="translate(470 1340)">
+    <rect width="460" height="312" rx="18" fill="url(#card)" filter="url(#shadow)"/>
+    <rect width="460" height="54" rx="18" fill="#0b5db3"/><text x="24" y="37" class="cardTitle">7 拉新与运营</text>
+    <text x="30" y="94" class="body">拉新：提醒文案生成器、模板库、检查表</text>
+    <text x="30" y="132" class="body">合作：会计师、记账服务、自由职业者社区</text>
+    <text x="30" y="170" class="body">激活：5 分钟内生成第一条提醒计划</text>
+    <text x="30" y="208" class="body">留存：周一待办摘要，周五回款复盘</text>
+    <text x="30" y="246" class="body">变现：免费试用后按月订阅，不按回款抽成</text>
+  </g>
+  <g transform="translate(960 1340)">
+    <rect width="405" height="312" rx="18" fill="url(#card)" filter="url(#shadow)"/>
+    <rect width="405" height="54" rx="18" fill="#0b5db3"/><text x="24" y="37" class="cardTitle">8 风险与验证</text>
+    <text x="28" y="94" class="body">风险：竞品已有基础提醒</text>
+    <text x="28" y="132" class="body">风险：客户和发票数据敏感</text>
+    <text x="28" y="170" class="body">实验：10 人访谈和发票导入</text>
+    <text x="28" y="208" class="body">实验：三档价格测试</text>
+    <text x="28" y="246" class="body">停止：用户不愿上传或发送</text>
+  </g>
+
+  <g transform="translate(35 1682)">
+    <rect width="1330" height="238" rx="20" fill="#ffffff" opacity="0.95" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="1330" height="62" rx="20" fill="#0b5db3"/><text x="32" y="42" class="cardTitle">30 天执行路线</text>
+    <text x="42" y="104" class="h">7 天</text><text x="42" y="140" class="body">访谈 10 个目标用户，收集 20 条逾期发票样例，手工生成提醒节奏。</text>
+    <text x="42" y="190" class="h">14 天</text><text x="145" y="190" class="body">上线落地页、提醒文案生成器和静态原型，测试卖点与价格。</text>
+    <text x="690" y="104" class="h">30 天</text><text x="690" y="140" class="body">验证通过后开发真实版本；验证不足则转成模板库或一次性设置服务。</text>
+    <text x="690" y="190" class="h">继续条件</text><text x="825" y="190" class="body">4 人导入、3 人使用文案、2 人愿付费或预约。</text>
+  </g>
+
+  <text x="62" y="2038" class="title" font-size="52">先验证，再开发；先帮用户安全催款，再做完整自动化。</text>
+  <rect x="1038" y="1988" width="300" height="86" rx="43" fill="#ffffff" stroke="#8ed8ff" stroke-width="4"/>
+  <text x="1086" y="2043" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="30" font-weight="900" fill="#0b3f73">查看完整报告</text>
+  <text x="62" y="2120" class="sub" font-size="24">信息来源：同目录 report.md，本图只作为高密度展示摘要。</text>
+</svg>

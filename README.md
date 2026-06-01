@@ -30,14 +30,15 @@ Core workflow:
 12. Plan an interaction demo, simulator, playground, or workflow preview when useful.
 13. Generate a complete Chinese report folder.
 
-## V2.8 Output Contract
+## V3.0 Output Contract
 
-WheelWise V2.8 no longer outputs a loose Markdown file. The final artifact is a report folder:
+WheelWise V3.0 no longer outputs a loose Markdown file. The final artifact is a report folder:
 
 ```text
 wheelwise-report/
   report.md
   index.html
+  prototype.html
   assets/
     concept.png
 ```
@@ -52,6 +53,8 @@ wheelwise-report-<idea-slug>/
 ```
 
 `report.md` is the source of truth. `index.html` is a static display layer generated from the same Chinese report. `assets/` stores generated or selected visuals.
+
+In V3.0, `index.html` must be a designed presentation page with imagery, charts, layout, visual hierarchy, and motion. It must not be a plain Markdown-to-HTML conversion. For products with a user-facing surface, add a separate prototype page such as `prototype.html` to simulate the actual website, web application, mobile app, desktop app, browser extension, API playground, CLI terminal, or workflow tool.
 
 All user-visible text in generated artifacts must be Chinese, including Markdown body text, webpage copy, image text, chart labels, alt text, table fields, and report explanations. Technical stacks, code identifiers, commands, package names, API names, and file paths may remain English when they are literal technical references.
 
@@ -98,10 +101,12 @@ shared/
   references/
   templates/
 examples/
-  ai-resume-optimizer/
+  ai-payment-chaser/
     report.md
     index.html
+    prototype.html
     assets/
+      concept.svg
 scripts/
   check_report_contract.py
 ```
@@ -148,31 +153,33 @@ Use $using-wheelwise to evaluate which modules should be self-built, purchased, 
 Expected final chat response should be short and artifact-oriented:
 
 ```text
-Report folder: wheelwise-report-ai-resume-optimizer/
-Source report: wheelwise-report-ai-resume-optimizer/report.md
-Web display: wheelwise-report-ai-resume-optimizer/index.html
+Report folder: wheelwise-report-ai-payment-chaser/
+Source report: wheelwise-report-ai-payment-chaser/report.md
+Web display: wheelwise-report-ai-payment-chaser/index.html
+Interactive prototype: wheelwise-report-ai-payment-chaser/prototype.html
 ```
 
 ## Example
 
-See the included V2.8-compatible example:
+See the included V3.0 example:
 
 ```text
-examples/ai-resume-optimizer/
+examples/ai-payment-chaser/
   report.md
   index.html
+  prototype.html
   assets/
-    concept.png
+    concept.svg
 ```
 
-The example demonstrates the folder output contract, Chinese Markdown report, Chinese static webpage, and image asset placement.
+The example demonstrates the folder output contract, Chinese Markdown report, designed HTML display, interactive product prototype, and dense visual asset placement.
 
 ## Validation
 
 Validate the example report folder:
 
 ```powershell
-python scripts\check_report_contract.py examples\ai-resume-optimizer --folder --skip-filename
+python scripts\check_report_contract.py examples\ai-payment-chaser --folder --skip-filename
 ```
 
 Validate the full report templates:
@@ -210,14 +217,16 @@ WheelWise may reference external skill ecosystems such as UI UX Pro Max, pm-skil
 
 ## Version
 
-Current plugin version: `0.2.8`.
+Current plugin version: `3.0.0`.
 
-V2.8 focuses on:
+V3.0 focuses on:
 
 - Report-folder output instead of single-file output.
 - `report.md` as source report.
-- `index.html` as Chinese webpage display layer.
+- `index.html` as a designed Chinese webpage display layer, not a Markdown conversion.
+- A separate interactive prototype HTML for user-facing product surfaces.
 - `assets/` as the required resource directory.
+- Dense product-information visuals for full reports.
 - Fully Chinese user-visible generated artifacts.
 - Stronger contract validation through `scripts/check_report_contract.py`.
 - First-class market research, customer discovery, and commercialization skills with current-source research standards.
