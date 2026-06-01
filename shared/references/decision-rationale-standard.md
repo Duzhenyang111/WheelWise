@@ -11,7 +11,7 @@ In the final WheelWise report, use Chinese field names:
 证据：
 假设：
 风险：
-fallback：
+兜底方案：
 信心等级：
 ```
 

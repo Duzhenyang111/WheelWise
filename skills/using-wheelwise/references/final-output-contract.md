@@ -1,98 +1,126 @@
-# Final Output Contract
+# 最终输出契约
 
-WheelWise final output is a Chinese Markdown report file. A static HTML display file may also be generated, but it is only a presentation layer sourced from the Markdown report.
+WheelWise 的最终产物是一个中文报告文件夹，而不是单个 Markdown 文件。文件夹内必须包含源报告、网页展示文件和图片资源。
 
-## File Contract
+## 文件夹契约
 
-- Primary file: `wheelwise-report.md`.
-- If the user provides an idea name, use `wheelwise-report-<idea-slug>.md`.
-- Optional display file: `wheelwise-report.html`.
-- The report body must be fully Chinese.
-- Titles, section names, table fields, decision explanations, risk notes, validation experiments, and execution-plan prose must be Chinese.
-- Product names, technical stacks, code paths, commands, API names, and Build / Buy / Reuse / Fork / Reference labels may remain English.
-- The chat response after generation should only state the Markdown path, the HTML path if created, and a short completion note. Do not substitute a chat summary for the file.
+- 默认目录：`wheelwise-report/`。
+- 如果用户提供 idea 名称，使用：`wheelwise-report-<idea-slug>/`。
+- 源报告文件：`report.md`。
+- 网页展示文件：`index.html`。
+- 图片与静态资源目录：`assets/`。
+- 图片建议文件名：`concept.png`、`decision-map.png`、`roadmap.png`。
+- 最终聊天回复只列出报告文件夹路径、`report.md` 路径和 `index.html` 路径；不要用聊天摘要替代文件。
 
-## Progressive Report Order
+推荐目录结构：
 
-The report must read like a finished product brief, not a concatenation of skill outputs:
+```text
+wheelwise-report-<idea-slug>/
+  report.md
+  index.html
+  assets/
+    concept.png
+    decision-map.png
+    roadmap.png
+```
+
+## 全中文可见文字规则
+
+Markdown、网页、图片内文字、图表标签、图片替代文本、表格字段和报告说明都必须使用中文。
+
+可保留英文的内容仅限技术标识：命令、文件路径、包名、代码标识符、接口名、技术栈名称和不可翻译的产品名。不要把英文作为展示文案。
+
+统一中文替代表达：
+
+| 禁用展示词 | 使用中文 |
+| --- | --- |
+| Build | 自研 |
+| Buy | 购买 |
+| Reuse | 复用 |
+| Fork | 分叉改造 |
+| Reference | 参考 |
+| Web App | 网页应用 |
+| SaaS | 软件服务 |
+| MVP | 最小可行产品 |
+| Demo | 演示 |
+| mock 数据 | 模拟数据 |
+| fallback | 兜底方案 |
+| go/no-go | 继续 / 停止条件 |
+| Codex-ready 执行计划 | 可交给 Codex 执行的计划 |
+
+禁止使用内部英文 skill 名称作为报告章节，例如 `Idea Intake`、`Surface Strategy`、`Reuse Evaluator`、`Technical Planning`、`Risk Review`、`UI Demo Scope` 和 `MVP Execution Plan`。
+
+## 递进式报告顺序
+
+报告必须像一份面向读者的产品方案，而不是内部 skill 输出拼接：
 
 ```text
 报告说明与阅读导览
 -> 用户与问题
 -> 核心决策与方案
--> 视觉说明与交互 Demo
+-> 视觉说明与交互演示
 -> 商业化、风险与验证
--> Codex-ready 执行计划
+-> 可交给 Codex 执行的计划
 -> 最终建议与下一步行动
 ```
 
-Do not use internal skill names as section headings. Forbidden headings include `Idea Intake`, `Surface Strategy`, `Feasibility Review`, `Product Strategy`, `Reuse Evaluator`, `Technical Planning`, `Risk Review`, `UI Demo Scope`, and `MVP Execution Plan`.
+## 必需中文章节
 
-## Required Chinese Sections
-
-The core New Product Brief must include the original 20 sections plus the required opening, HTML display record, and ending action section:
+`report.md` 必须包含：
 
 1. 报告说明与阅读导览
 2. 项目标题
 3. 想法摘要
 4. 交付形态
-5. 结论：构建 MVP / 先验证 / 暂停 / 放弃
+5. 结论：构建最小可行产品 / 先验证 / 暂停 / 放弃
 6. 决策解释摘要
 7. 目标用户
 8. 问题与紧迫性
 9. 市场备注
 10. 用户假设
 11. 差异化
-12. MVP 范围
+12. 最小可行产品范围
 13. 产品策略
-14. Build / Buy / Reuse / Fork / Reference 决策
+14. 自研 / 购买 / 复用 / 分叉改造 / 参考决策
 15. 技术实现路径
 16. 视觉说明
-17. UI Demo / 交互 Demo
-18. HTML 展示文件
+17. 交互演示
+18. 网页展示文件
 19. 商业化备注
 20. 关键风险
 21. 验证实验
-22. Codex-ready 执行计划
+22. 可交给 Codex 执行的计划
 23. 最终建议与下一步行动
 
-## Opening and Ending
+## 开头与结尾
 
-`报告说明与阅读导览` must include:
+`报告说明与阅读导览` 必须包含：
 
 - 报告目的。
 - 适用阶段。
 - 核心结论预览。
 - 阅读方式。
 
-`最终建议与下一步行动` must include:
+`最终建议与下一步行动` 必须包含：
 
 - 一句话判断。
 - 7 天行动。
 - 14 天行动。
 - 30 天行动。
-- go/no-go or 继续/停止条件。
+- 继续 / 停止条件。
 
-## Visual and Demo Rules
+## 视觉与网页规则
 
-- Visual brief images, image prompts, or production methods must be written into `视觉说明`.
-- Prefer real image assets when image generation is available. Existing assets must be referenced with Markdown, for example `![产品概念图](./assets/visual-brief.png)`.
-- If image generation is unavailable, include a Mermaid fallback in `视觉说明`; at least one decision map, MVP roadmap, or validation funnel is required.
-- UI demo output must be written into `UI Demo / 交互 Demo`, including demo path, run command, core interactions, mock data notes, loading/empty/error/success states, and backend simulation boundary.
-- API, CLI, automation, or developer-tool products must use an API playground, terminal simulator, request explorer, workflow simulator, or comparable non-backend demo surface.
+- `视觉说明` 必须写入图片资产、图片生成方式或图表兜底方案。
+- 有生图能力时，优先把图片保存到 `assets/` 并在源报告中引用，例如 `![产品概念图](./assets/concept.png)`。
+- 图片 prompt 必须要求图片内所有文字为中文。如果无法稳定生成正确中文，优先生成无文字图片，并把中文说明放在 `report.md` 和 `index.html`。
+- 无法生成图片时，使用 Mermaid 图表兜底；图表节点文字必须中文。
+- `交互演示` 必须写入演示路径、运行方式、核心交互、模拟数据说明、加载 / 空状态 / 错误 / 成功状态，以及未接入真实后端的范围。
+- `网页展示文件` 必须写入 `index.html`、展示层定位、源报告关系和包含模块。
+- `index.html` 是展示层，内容必须来自同一份 `report.md`，不能成为第二套事实来源。
 
-## HTML Display Rules
+## 集成规则
 
-- `wheelwise-report.html` is optional but recommended when the idea benefits from visual presentation.
-- The HTML file is not the source of truth. It must be derived from the same Chinese Markdown report.
-- If UI UX Pro Max or another UI/UX skill is available, it may be used as design intelligence only. Do not copy external skill content.
-- The HTML display should include cover, core conclusion, decision map, MVP roadmap, visual explanation, demo section, risk and validation, and execution plan.
-- If no HTML is generated, the report must still include `HTML 展示文件` and state whether it is planned, skipped, or recommended next.
-
-## Integration Rules
-
-- Decision rationales must use Chinese field names from `../../shared/references/decision-rationale-standard.md`.
-- The Codex-ready plan must include tasks to generate or update the Markdown report file.
-- If HTML is generated or recommended, the Codex-ready plan must include a task to generate or update `wheelwise-report.html`.
-
-Use `../../shared/templates/new-product-brief.md` for the full Chinese report.
+- 关键决策解释必须使用 `../../shared/references/decision-rationale-standard.md` 中的中文字段。
+- 可交给 Codex 执行的计划必须包含创建报告文件夹、写入 `report.md`、生成 `index.html`、保存图片到 `assets/`、运行产物检查的任务。
+- 使用 `../../shared/templates/new-product-brief.md` 生成完整中文报告；短报告才使用 `../../shared/templates/final-wheelwise-report.md`。

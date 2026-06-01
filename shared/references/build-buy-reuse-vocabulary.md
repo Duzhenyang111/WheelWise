@@ -1,11 +1,11 @@
-# Build / Buy / Reuse / Fork / Reference Vocabulary
+# 自研 / 购买 / 复用 / 分叉改造 / 参考词汇表
 
-| Term | Meaning |
-| --- | --- |
-| Build | Create from scratch because it is core differentiation or existing options block the product |
-| Buy | Use a SaaS product or paid API for a common non-differentiating capability |
-| Reuse | Use an existing library, template, starter kit, component, or self-hosted tool as-is or with light adaptation |
-| Fork | Start from an open-source product and maintain a customized branch |
-| Reference | Study product, UX, architecture, or data-model patterns without using the code directly |
+| 内部策略 | 最终中文展示 | 含义 |
+| --- | --- | --- |
+| Build | 自研 | 从零实现，因为它是核心差异化，或现有方案阻碍产品独特价值 |
+| Buy | 购买 | 对通用、非差异化能力使用成熟软件服务或付费接口 |
+| Reuse | 复用 | 直接或轻量适配成熟库、模板、组件、启动套件或自托管工具 |
+| Fork | 分叉改造 | 基于接近目标的开源产品维护一条定制分支 |
+| Reference | 参考 | 借鉴产品、交互、架构或数据模型，不直接使用代码 |
 
-Every important module should receive exactly one primary decision and may include one fallback.
+最终报告中的可见文字必须使用中文展示，不要把内部策略词作为报告文案。每个重要模块都应该有一个主要决策，并可包含一个兜底方案。

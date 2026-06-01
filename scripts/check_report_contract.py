@@ -9,7 +9,9 @@ thin intro/outro, and incomplete UI demo details.
 from __future__ import annotations
 
 import argparse
+from html.parser import HTMLParser
 import re
+import struct
 import sys
 from pathlib import Path
 
@@ -19,24 +21,24 @@ REQUIRED_SECTIONS = [
     "项目标题",
     "想法摘要",
     "交付形态",
-    "结论：构建 MVP / 先验证 / 暂停 / 放弃",
+    "结论：构建最小可行产品 / 先验证 / 暂停 / 放弃",
     "决策解释摘要",
     "目标用户",
     "问题与紧迫性",
     "市场备注",
     "用户假设",
     "差异化",
-    "MVP 范围",
+    "最小可行产品范围",
     "产品策略",
-    "Build / Buy / Reuse / Fork / Reference 决策",
+    "自研 / 购买 / 复用 / 分叉改造 / 参考决策",
     "技术实现路径",
     "视觉说明",
-    "UI Demo / 交互 Demo",
-    "HTML 展示文件",
+    "交互演示",
+    "网页展示文件",
     "商业化备注",
     "关键风险",
     "验证实验",
-    "Codex-ready 执行计划",
+    "可交给 Codex 执行的计划",
     "最终建议与下一步行动",
 ]
 
@@ -54,6 +56,49 @@ BANNED_ENGLISH_HEADINGS = [
     "Execution Plan",
 ]
 
+BANNED_VISIBLE_TERMS = [
+    "Build",
+    "Buy",
+    "Reuse",
+    "Fork",
+    "Reference",
+    "Web App",
+    "SaaS",
+    "MVP",
+    "Demo",
+    "mock",
+    "fallback",
+    "go/no-go",
+    "Codex-ready",
+]
+
+IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg"}
+
+
+class VisibleTextParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.parts: list[str] = []
+        self._skip_depth = 0
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag in {"style", "script"}:
+            self._skip_depth += 1
+        for name, value in attrs:
+            if name in {"alt", "title", "aria-label"} and value:
+                self.parts.append(value)
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag in {"style", "script"} and self._skip_depth:
+            self._skip_depth -= 1
+
+    def handle_data(self, data: str) -> None:
+        if not self._skip_depth:
+            self.parts.append(data)
+
+    def text(self) -> str:
+        return "\n".join(part.strip() for part in self.parts if part.strip())
+
 
 def has_heading(text: str, title: str) -> bool:
     return bool(re.search(rf"^#{{1,3}}\s+{re.escape(title)}\s*$", text, re.M))
@@ -69,17 +114,70 @@ def section_body(text: str, title: str) -> str:
     return text[match.end() : match.end() + next_heading.start()]
 
 
+def strip_markdown_code(text: str) -> str:
+    text = re.sub(r"```.*?```", "", text, flags=re.S)
+    return re.sub(r"`[^`]*`", "", text)
+
+
+def html_visible_text(path: Path) -> str:
+    parser = VisibleTextParser()
+    parser.feed(path.read_text(encoding="utf-8"))
+    return parser.text()
+
+
+def find_banned_visible_terms(text: str) -> list[str]:
+    found = []
+    for term in BANNED_VISIBLE_TERMS:
+        if re.search(rf"(?<![A-Za-z]){re.escape(term)}(?![A-Za-z])", text, re.I):
+            found.append(term)
+    return sorted(set(found), key=str.lower)
+
+
+def local_image_refs_from_markdown(text: str) -> list[str]:
+    refs = []
+    for image_ref in re.findall(r"!\[[^\]]+\]\(([^\)]+)\)", text):
+        if not re.match(r"https?://|data:", image_ref):
+            refs.append(image_ref)
+    return refs
+
+
+def local_image_refs_from_html(path: Path) -> list[str]:
+    refs = re.findall(r"<img\b[^>]*\bsrc=[\"']([^\"']+)[\"']", path.read_text(encoding="utf-8"), re.I)
+    return [ref for ref in refs if not re.match(r"https?://|data:", ref)]
+
+
+def png_dimensions(path: Path) -> tuple[int, int] | None:
+    with path.open("rb") as file:
+        header = file.read(24)
+    if len(header) >= 24 and header.startswith(b"\x89PNG\r\n\x1a\n"):
+        return struct.unpack(">II", header[16:24])
+    return None
+
+
+def validate_image_file(path: Path) -> list[str]:
+    problems = []
+    if not path.exists():
+        return [f"图片文件不存在：{path}"]
+    if path.stat().st_size <= 0:
+        problems.append(f"图片文件为空：{path}")
+    if path.suffix.lower() == ".png":
+        dimensions = png_dimensions(path)
+        if not dimensions or dimensions[0] <= 0 or dimensions[1] <= 0:
+            problems.append(f"PNG 图片尺寸无效：{path}")
+    return problems
+
+
 def validate_report(
     path: Path, *, skip_filename: bool = False, check_local_assets: bool = False
 ) -> list[str]:
     text = path.read_text(encoding="utf-8")
     problems: list[str] = []
 
-    if not skip_filename and not re.fullmatch(
+    if not skip_filename and path.name != "report.md" and not re.fullmatch(
         r"wheelwise-report(?:-[a-z0-9]+(?:-[a-z0-9]+)*)?\.md", path.name
     ):
         problems.append(
-            "文件名必须是 wheelwise-report.md 或 wheelwise-report-<idea-slug>.md"
+            "文件名必须是 report.md、wheelwise-report.md 或 wheelwise-report-<idea-slug>.md"
         )
 
     missing = [section for section in REQUIRED_SECTIONS if not has_heading(text, section)]
@@ -104,6 +202,10 @@ def validate_report(
     if banned_found:
         problems.append("禁止使用英文 skill 模块标题：" + "、".join(banned_found))
 
+    visible_terms = find_banned_visible_terms(strip_markdown_code(text))
+    if visible_terms:
+        problems.append("Markdown 可见文字包含禁止英文展示词：" + "、".join(visible_terms))
+
     intro = section_body(text, "报告说明与阅读导览")
     for keyword in ["报告目的", "适用阶段", "核心结论预览", "阅读方式"]:
         if keyword not in intro:
@@ -111,24 +213,21 @@ def validate_report(
 
     visual = section_body(text, "视觉说明")
     if not re.search(r"!\[[^\]]+\]\([^\)]+\)|```mermaid", visual):
-        problems.append("视觉说明必须包含 Markdown 图片引用或 Mermaid fallback")
+        problems.append("视觉说明必须包含 Markdown 图片引用或 Mermaid 兜底方案")
     elif check_local_assets:
-        for image_ref in re.findall(r"!\[[^\]]+\]\(([^\)]+)\)", visual):
-            if re.match(r"https?://|data:", image_ref):
-                continue
+        for image_ref in local_image_refs_from_markdown(visual):
             image_path = (path.parent / image_ref).resolve()
-            if not image_path.exists():
-                problems.append(f"视觉说明引用的图片文件不存在：{image_ref}")
+            problems.extend(validate_image_file(image_path))
 
-    demo = section_body(text, "UI Demo / 交互 Demo")
-    for keyword in ["Demo 路径", "运行方式", "核心交互", "mock 数据", "未接入真实后端"]:
+    demo = section_body(text, "交互演示")
+    for keyword in ["演示路径", "运行方式", "核心交互", "模拟数据", "未接入真实后端"]:
         if keyword not in demo:
-            problems.append(f"UI Demo / 交互 Demo 缺少：{keyword}")
+            problems.append(f"交互演示缺少：{keyword}")
 
-    html = section_body(text, "HTML 展示文件")
-    for keyword in ["wheelwise-report.html", "展示层", "Markdown"]:
+    html = section_body(text, "网页展示文件")
+    for keyword in ["index.html", "展示层", "源报告"]:
         if keyword not in html:
-            problems.append(f"HTML 展示文件缺少：{keyword}")
+            problems.append(f"网页展示文件缺少：{keyword}")
     if check_local_assets and "已生成" in html:
         html_refs = re.findall(r"`([^`]+\.html(?:#[^`]+)?)`|(?<![\w.-])([./\w-]+\.html)(?:#[\w-]+)?", html)
         flattened_refs = [left or right for left, right in html_refs]
@@ -138,21 +237,87 @@ def validate_report(
                 continue
             html_path = (path.parent / clean_ref).resolve()
             if not html_path.exists():
-                problems.append(f"HTML 展示文件标记为已生成，但文件不存在：{html_ref}")
+                problems.append(f"网页展示文件标记为已生成，但文件不存在：{html_ref}")
 
     outro = section_body(text, "最终建议与下一步行动")
     for keyword in ["一句话判断", "7 天", "14 天", "30 天"]:
         if keyword not in outro:
             problems.append(f"最终建议与下一步行动缺少：{keyword}")
-    if not re.search(r"go/no-go|Go/no-go|继续/停止|推进/停止", outro):
-        problems.append("最终建议与下一步行动缺少 go/no-go 或继续/停止条件")
+    if not re.search(r"继续\s*/\s*停止|推进\s*/\s*停止|继续条件|停止条件", outro):
+        problems.append("最终建议与下一步行动缺少继续/停止条件")
+
+    return problems
+
+
+def normalize_local_ref(ref: str) -> str:
+    return ref.replace("\\", "/").removeprefix("./")
+
+
+def validate_folder(folder: Path, *, skip_filename: bool = False) -> list[str]:
+    problems: list[str] = []
+    if not folder.exists() or not folder.is_dir():
+        return [f"报告目录不存在：{folder}"]
+    if not skip_filename and not re.fullmatch(
+        r"wheelwise-report(?:-[a-z0-9]+(?:-[a-z0-9]+)*)?", folder.name
+    ):
+        problems.append("报告目录名必须是 wheelwise-report 或 wheelwise-report-<idea-slug>")
+
+    report_path = folder / "report.md"
+    html_path = folder / "index.html"
+    assets_dir = folder / "assets"
+
+    if not report_path.exists():
+        problems.append("报告目录缺少 report.md")
+    if not html_path.exists():
+        problems.append("报告目录缺少 index.html")
+    if not assets_dir.exists() or not assets_dir.is_dir():
+        problems.append("报告目录缺少 assets/ 目录")
+
+    image_files = []
+    if assets_dir.exists() and assets_dir.is_dir():
+        image_files = [
+            path
+            for path in assets_dir.iterdir()
+            if path.is_file() and path.suffix.lower() in IMAGE_EXTENSIONS
+        ]
+        if not image_files:
+            problems.append("assets/ 目录至少需要一张图片")
+        for image_file in image_files:
+            problems.extend(validate_image_file(image_file))
+
+    if report_path.exists():
+        problems.extend(
+            validate_report(report_path, skip_filename=True, check_local_assets=True)
+        )
+        report_text = report_path.read_text(encoding="utf-8")
+        for image_ref in local_image_refs_from_markdown(report_text):
+            if not normalize_local_ref(image_ref).startswith("assets/"):
+                problems.append(f"Markdown 图片引用必须指向 assets/：{image_ref}")
+
+    if html_path.exists():
+        visible = html_visible_text(html_path)
+        html_terms = find_banned_visible_terms(visible)
+        if html_terms:
+            problems.append("HTML 可见文字包含禁止英文展示词：" + "、".join(html_terms))
+        for image_ref in local_image_refs_from_html(html_path):
+            clean_ref = image_ref.split("#", 1)[0]
+            image_path = (html_path.parent / clean_ref).resolve()
+            if not image_path.exists():
+                problems.append(f"HTML 图片引用不存在：{image_ref}")
+            elif not normalize_local_ref(clean_ref).startswith("assets/"):
+                problems.append(f"HTML 图片引用必须指向 assets/：{image_ref}")
 
     return problems
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Validate a WheelWise Markdown report.")
-    parser.add_argument("report", type=Path, help="Path to wheelwise-report*.md")
+    parser.add_argument("report", type=Path, help="Path to report.md or report folder")
+    parser.add_argument(
+        "--folder",
+        action="store_true",
+        help="Validate a WheelWise report folder with report.md, index.html, and assets/.",
+    )
     parser.add_argument(
         "--skip-filename",
         action="store_true",
@@ -165,11 +330,14 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    problems = validate_report(
-        args.report,
-        skip_filename=args.skip_filename,
-        check_local_assets=args.check_local_assets,
-    )
+    if args.folder:
+        problems = validate_folder(args.report, skip_filename=args.skip_filename)
+    else:
+        problems = validate_report(
+            args.report,
+            skip_filename=args.skip_filename,
+            check_local_assets=args.check_local_assets,
+        )
     if problems:
         print(f"FAIL {args.report}")
         for problem in problems:

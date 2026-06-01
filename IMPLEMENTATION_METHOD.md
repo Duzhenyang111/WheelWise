@@ -908,7 +908,7 @@ If image generation is unavailable, WheelWise must fall back to Mermaid. At leas
 
 ### 15.4 HTML Display Layer
 
-WheelWise may generate `wheelwise-report.html` as an optional static display layer. Markdown remains the source of truth.
+WheelWise may generate `index.html` inside the report folder as a static display layer. `report.md` remains the source of truth.
 
 The HTML display should include:
 
@@ -936,3 +936,85 @@ Before final response, `using-wheelwise` must check:
 - `HTML 展示文件` records the HTML display rule even when HTML generation is skipped.
 
 The repository includes `scripts/check_report_contract.py` to validate final reports and templates against these contract rules.
+
+## 16. Version 2.7 Upgrade: Report Folder and Fully Chinese User-Facing Artifacts
+
+V2.7 supersedes the V2.5 single-file output rule. The final artifact is now a complete report folder, not an isolated Markdown file.
+
+Default output:
+
+```text
+wheelwise-report/
+  report.md
+  index.html
+  assets/
+    concept.png
+    decision-map.png
+    roadmap.png
+```
+
+When an idea slug is available:
+
+```text
+wheelwise-report-<idea-slug>/
+  report.md
+  index.html
+  assets/
+```
+
+`report.md` is the source report. `index.html` is the display layer sourced from the same Chinese report. `assets/` stores all generated or selected images and static resources.
+
+### 16.1 Fully Chinese Visible Text
+
+All user-facing visible text in generated artifacts must be Chinese:
+
+- Markdown body, section names, table fields, alt text, and chart labels.
+- Webpage copy, navigation labels, buttons, captions, and image alt text.
+- Text inside generated images when image text is used.
+
+Technical stacks, commands, file paths, package names, API names, and code identifiers may remain English because they are technical references, not display copy.
+
+Use Chinese display terms in final artifacts:
+
+```text
+自研
+购买
+复用
+分叉改造
+参考
+网页应用
+软件服务
+最小可行产品
+演示
+模拟数据
+兜底方案
+继续 / 停止条件
+可交给 Codex 执行的计划
+```
+
+If image generation cannot reliably render Chinese text, prefer text-free images and place the Chinese explanation in `report.md` and `index.html`.
+
+### 16.2 Skill Updates
+
+- `using-wheelwise` owns final synthesis, routing discipline, folder creation rules, and Chinese visible-text self-checks.
+- `final-output-contract.md` defines the folder structure, naming, required files, image rules, and validation rules.
+- `new-product-brief.md` and `final-wheelwise-report.md` use `report.md` as the source report and include an output-folder field.
+- `visual-brief` saves image assets under `assets/` and requires Chinese image text or text-free images.
+- `ui-demo` specifies `index.html` as the webpage display file and requires all visible interface copy to be Chinese.
+- `execution-plan` includes tasks for creating the report folder, writing `report.md`, generating `index.html`, saving assets, and running contract checks.
+
+### 16.3 Validation
+
+Use folder mode for generated outputs:
+
+```text
+python scripts/check_report_contract.py wheelwise-report-<idea-slug> --folder
+```
+
+Use `--skip-filename` for example folders whose directory name is intentionally shorter:
+
+```text
+python scripts/check_report_contract.py examples/ai-resume-optimizer --folder --skip-filename
+```
+
+The validator must reject missing `report.md`, missing `index.html`, missing `assets/`, missing image assets, broken Markdown image references, broken HTML image references, and common English display terms in Markdown or webpage visible text.
