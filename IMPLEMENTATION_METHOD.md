@@ -383,7 +383,7 @@ WheelWise should use a Superpowers-style multi-skill package structure.
 
 The important design point: `skills/` contains multiple independent skills. Shared references, tools, and templates can live at the package level or inside individual skill folders when they are specific to one skill.
 
-Version 1 implemented the core closed loop. Version 2 adds `product-strategy`, `technical-planning`, `visual-brief`, and `ui-demo` as first-class skills. Future versions can still add full `market-research`, `customer-discovery`, and `commercialization` skills.
+Version 1 implemented the core closed loop. Version 2 adds `product-strategy`, `technical-planning`, `visual-brief`, and `ui-demo` as first-class skills. Version 2.8 adds full `market-research`, `customer-discovery`, and `commercialization` skills with a current-source research standard.
 
 ```text
 wheelwise/

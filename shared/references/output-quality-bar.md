@@ -14,8 +14,10 @@ A WheelWise answer is acceptable only when it:
 - Does not use English internal module headings such as `Idea Intake`, `Surface Strategy`, `Reuse Evaluator`, `Technical Planning`, `Risk Review`, `UI Demo Scope`, or `MVP Execution Plan`.
 - Makes a clear verdict.
 - Names the delivery surface.
+- Includes market evidence, user evidence, commercialization assumptions, and a source-evidence summary when current facts materially affect the recommendation.
 - Includes decision rationale for key decisions in Chinese: 决策是什么, 为什么选择它, 为什么不选替代方案, 证据, 假设, 风险, 兜底方案, 信心等级.
 - Separates evidence from assumptions.
+- Uses `shared/references/web-research-standard.md` for current market, customer, pricing, channel, policy, vendor, license, or repository facts; if research is unavailable, marks the evidence gap and lowers confidence.
 - Avoids copying external skill content.
 - Connects `feasibility-review` to `product-strategy`.
 - Gives module-level 自研 / 购买 / 复用 / 分叉改造 / 参考 decisions.

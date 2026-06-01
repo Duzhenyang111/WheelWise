@@ -1,6 +1,6 @@
 ---
 name: using-wheelwise
-description: Use when evaluating, shaping, visualizing, demoing, or planning a product idea with WheelWise, especially when the user wants MVP scope, delivery surface choice, feasibility, product strategy, build/buy/reuse/fork/reference decisions, technical planning, visual brief, interactive demo, risk review, or a Codex-ready execution plan.
+description: Use when evaluating, shaping, researching, visualizing, demoing, or planning a product idea with WheelWise, especially when the user wants market research, customer discovery, commercialization, MVP scope, delivery surface choice, feasibility, product strategy, build/buy/reuse/fork/reference decisions, technical planning, visual brief, interactive demo, risk review, or a Codex-ready execution plan.
 ---
 
 # 使用 WheelWise
@@ -12,17 +12,20 @@ WheelWise turns a raw product idea into an explainable, presentable product plan
 1. Start with `idea-intake` unless the user already supplied a complete product brief.
 2. Run `surface-strategy` before architecture or reuse decisions. Delivery surface changes validation, reuse options, and execution path.
 3. Run `feasibility-review` before detailed planning. Internally use one verdict: Build MVP, Validate First, Pause, or Reject; in final visible output translate it to Chinese.
-4. Run `product-strategy` after feasibility. It must inherit the verdict and focus the MVP around the riskiest assumption.
-5. Run `reuse-evaluator` for each important product module. Every module needs one internal decision: Build, Buy, Reuse, Fork, or Reference; final visible output must use 自研 / 购买 / 复用 / 分叉改造 / 参考.
-6. Run `technical-planning` after reuse decisions. It must not contradict module strategy choices.
-7. Run `risk-review` when decisions touch license, privacy, security, compliance, dependency, market, product, or execution risk.
-8. Run `visual-brief` for full reports so the recommendation has image-level visual explanation, not only text or Mermaid.
-9. Run `ui-demo` when the product has a user-visible surface. For API, CLI, automation, or developer-tool products, route internally to a playground, terminal simulator, request explorer, or workflow simulator; final visible output must describe these in Chinese.
-10. Run `execution-plan` only after the idea, surface, feasibility, product strategy, reuse decisions, technical plan, risks, visuals, and demo scope are coherent.
-11. Generate one final report folder. Default path: `wheelwise-report/`; if the user supplied an idea name, use `wheelwise-report-<idea-slug>/`.
-12. The folder must contain `report.md`, `index.html`, and `assets/`; images and other static resources must live under `assets/`.
-13. Run the final report self-check before responding: Chinese visible text, folder structure, progressive structure, visuals, demo details, webpage rule, detailed intro, detailed outro, and no English skill-module headings.
-14. Use `parallel-research` only for complex research or independent review. Treat subagent findings as evidence; final judgment belongs to this skill.
+4. Run `market-research` for full reports or whenever market category, competitors, substitutes, trends, pricing clues, channels, or current demand signals affect the decision.
+5. Run `customer-discovery` for full reports or whenever persona, jobs-to-be-done, pain intensity, workflow adoption, buyer/user distinction, or validation experiments affect the decision.
+6. Run `product-strategy` after feasibility and research context. It must inherit the verdict and focus the MVP around the riskiest assumption.
+7. Run `reuse-evaluator` for each important product module. Every module needs one internal decision: Build, Buy, Reuse, Fork, or Reference; final visible output must use 自研 / 购买 / 复用 / 分叉改造 / 参考.
+8. Run `technical-planning` after reuse decisions. It must not contradict module strategy choices.
+9. Run `commercialization` for full reports or whenever business model, pricing, packaging, channels, sales motion, or early monetization tests affect the decision.
+10. Run `risk-review` when decisions touch license, privacy, security, compliance, dependency, market, product, commercialization, or execution risk.
+11. Run `visual-brief` for full reports so the recommendation has image-level visual explanation, not only text or Mermaid.
+12. Run `ui-demo` when the product has a user-visible surface. For API, CLI, automation, or developer-tool products, route internally to a playground, terminal simulator, request explorer, or workflow simulator; final visible output must describe these in Chinese.
+13. Run `execution-plan` only after the idea, surface, feasibility, market research, customer discovery, product strategy, reuse decisions, technical plan, commercialization, risks, visuals, and demo scope are coherent.
+14. Generate one final report folder. Default path: `wheelwise-report/`; if the user supplied an idea name, use `wheelwise-report-<idea-slug>/`.
+15. The folder must contain `report.md`, `index.html`, and `assets/`; images and other static resources must live under `assets/`.
+16. Run the final report self-check before responding: Chinese visible text, folder structure, progressive structure, visuals, demo details, webpage rule, detailed intro, detailed outro, and no English skill-module headings.
+17. Use `parallel-research` only for complex research or independent review. Treat subagent findings as evidence; final judgment belongs to this skill.
 
 ## Route Selection
 
@@ -37,9 +40,12 @@ Idea
 -> idea-intake
 -> surface-strategy
 -> feasibility-review
+-> market-research
+-> customer-discovery
 -> product-strategy
 -> reuse-evaluator
 -> technical-planning
+-> commercialization
 -> risk-review
 -> visual-brief
 -> ui-demo when applicable
@@ -64,7 +70,8 @@ Idea
 - Add a `网页展示文件` section. Default path is `index.html`. State that it is a display layer sourced from `report.md` and list the required display modules.
 - If UI UX Pro Max or another UI/UX skill is available, it may be used as design intelligence for the webpage display file, visual brief, or demo surface. Do not copy external skill content.
 - Keep implementation surface visible throughout: website, web app, mobile app, desktop app, browser extension, API/SaaS, CLI, or automation tool.
-- Do not invent market facts. If current competitor, pricing, license, or repository health data matters, browse or mark as needing research.
+- Do not invent market, customer, pricing, channel, policy, license, or repository facts. If current facts matter, browse using `../../shared/references/web-research-standard.md` or mark the evidence gap and lower confidence.
+- Full reports must include market evidence, user evidence, commercialization assumptions, and a source-evidence summary when current research was needed.
 - Do not copy external skill content. External skills belong in `../../shared/references/external-skills.md` as references or optional dependencies.
 - Use `risk-review` consistently for risk work. Do not create alternate risk skill names.
 - Final report should follow `../../shared/templates/new-product-brief.md` unless the user explicitly asks for a shorter Chinese report, in which case use `../../shared/templates/final-wheelwise-report.md`.
@@ -84,3 +91,4 @@ Before sending the final chat response, confirm:
 - `交互演示` includes 演示路径、运行方式、核心交互、模拟数据、加载 / 空状态 / 错误 / 成功状态、后端边界。
 - `网页展示文件` records `index.html` rules.
 - `可交给 Codex 执行的计划` includes tasks to create or update the report folder, source report, webpage display file, and assets.
+- Market, customer, and commercialization claims separate source evidence from analysis assumptions, and any current fact that matters has been browsed or marked as an evidence gap.

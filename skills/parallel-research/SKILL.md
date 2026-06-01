@@ -1,6 +1,6 @@
 ---
 name: parallel-research
-description: Use when WheelWise faces broad, complex, or high-risk independent research questions that can be split across subagents or independent passes, especially market research, reuse option comparison, license review, security review, or architecture critique.
+description: Use when WheelWise faces broad, complex, or high-risk independent research questions that can be split across subagents or independent passes, especially market research, customer discovery evidence, commercialization research, reuse option comparison, license review, security review, or architecture critique.
 ---
 
 # Parallel Research
@@ -13,6 +13,7 @@ Use parallel research only when one or more are true:
 
 - The idea spans multiple independent markets, users, or product modules.
 - Multiple SaaS/API/open-source options need comparison.
+- Market, customer, or commercialization research can be split by competitor set, user segment, channel, pricing model, or geography.
 - The user asks for broad or fast research.
 - A high-risk decision needs independent review.
 - A single-threaded analysis may miss important evidence.
@@ -23,6 +24,7 @@ Use parallel research only when one or more are true:
 - Do not let subagents decide the final verdict.
 - Give each subagent one narrow brief with success criteria.
 - Ask for evidence, sources, and uncertainty.
+- Use `../../shared/references/web-research-standard.md` for briefs that depend on current market, customer, pricing, channel, policy, vendor, or repository facts.
 - Synthesize contradictions in `using-wheelwise`.
 
 ## Output Shape

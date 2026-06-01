@@ -19,17 +19,20 @@ Core workflow:
 1. Structure the raw idea.
 2. Choose the delivery surface.
 3. Review feasibility.
-4. Shape product strategy and minimum viable product scope.
-5. Evaluate module-level self-build, purchase, reuse, fork, and reference decisions.
-6. Produce a technical implementation path.
-7. Review product, market, technical, privacy, license, dependency, and execution risks.
-8. Create visual explanation assets or a Chinese Mermaid backup.
-9. Plan an interaction demo, simulator, playground, or workflow preview when useful.
-10. Generate a complete Chinese report folder.
+4. Research market category, competitors, substitutes, demand signals, and maturity when current evidence matters.
+5. Define customer hypotheses, jobs-to-be-done, pain intensity, adoption objections, and validation experiments.
+6. Shape product strategy and minimum viable product scope.
+7. Evaluate module-level self-build, purchase, reuse, fork, and reference decisions.
+8. Produce a technical implementation path.
+9. Plan business model, pricing, packaging, channels, and early monetization tests.
+10. Review product, market, technical, privacy, license, dependency, and execution risks.
+11. Create visual explanation assets or a Chinese Mermaid backup.
+12. Plan an interaction demo, simulator, playground, or workflow preview when useful.
+13. Generate a complete Chinese report folder.
 
-## V2.7 Output Contract
+## V2.8 Output Contract
 
-WheelWise V2.7 no longer outputs a loose Markdown file. The final artifact is a report folder:
+WheelWise V2.8 no longer outputs a loose Markdown file. The final artifact is a report folder:
 
 ```text
 wheelwise-report/
@@ -80,9 +83,12 @@ skills/
   idea-intake/
   surface-strategy/
   feasibility-review/
+  market-research/
+  customer-discovery/
   product-strategy/
   reuse-evaluator/
   technical-planning/
+  commercialization/
   risk-review/
   visual-brief/
   ui-demo/
@@ -108,9 +114,12 @@ scripts/
 | `idea-intake` | Converts a raw idea into a structured brief |
 | `surface-strategy` | Chooses website, webpage application, mobile app, desktop app, extension, API/service, CLI, or automation surface |
 | `feasibility-review` | Decides whether to build a minimum viable product, validate first, pause, or reject |
+| `market-research` | Researches market category, competitors, substitutes, demand signals, trends, maturity, and entry barriers |
+| `customer-discovery` | Defines personas, jobs-to-be-done, pain intensity, workflows, adoption objections, and validation experiments |
 | `product-strategy` | Defines positioning, differentiation, product wedge, and minimum viable product scope |
 | `reuse-evaluator` | Evaluates self-build, purchase, reuse, fork, and reference choices by module |
 | `technical-planning` | Converts decisions into stack, architecture, data, integration, and deployment guidance |
+| `commercialization` | Plans business model, pricing, packaging, channels, sales motion, and early monetization tests |
 | `risk-review` | Reviews market, product, technical, legal, privacy, license, dependency, and execution risks |
 | `visual-brief` | Plans or creates visual assets under `assets/` |
 | `ui-demo` | Plans a clickable demo, simulator, playground, terminal preview, or workflow preview |
@@ -146,7 +155,7 @@ Web display: wheelwise-report-ai-resume-optimizer/index.html
 
 ## Example
 
-See the included V2.7 example:
+See the included V2.8-compatible example:
 
 ```text
 examples/ai-resume-optimizer/
@@ -201,9 +210,9 @@ WheelWise may reference external skill ecosystems such as UI UX Pro Max, pm-skil
 
 ## Version
 
-Current plugin version: `0.2.7`.
+Current plugin version: `0.2.8`.
 
-V2.7 focuses on:
+V2.8 focuses on:
 
 - Report-folder output instead of single-file output.
 - `report.md` as source report.
@@ -211,3 +220,4 @@ V2.7 focuses on:
 - `assets/` as the required resource directory.
 - Fully Chinese user-visible generated artifacts.
 - Stronger contract validation through `scripts/check_report_contract.py`.
+- First-class market research, customer discovery, and commercialization skills with current-source research standards.

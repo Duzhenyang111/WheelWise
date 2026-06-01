@@ -19,20 +19,30 @@ Steps:
 1. Structure idea.
 2. Choose delivery surface.
 3. Review feasibility.
-4. Define product strategy and minimum viable product workflow.
-5. Decompose modules.
-6. Decide 自研 / 购买 / 复用 / 分叉改造 / 参考.
-7. Create technical plan aligned with reuse decisions.
-8. Review risks.
-9. Create visual brief.
-10. Create UI demo or simulator spec when applicable.
-11. Produce a plan that Codex can execute.
-12. Generate or plan the Chinese report folder.
-13. Generate or plan `index.html` when a presentation layer helps.
+4. Research market category, competitors, substitutes, and current demand signals when they affect the decision.
+5. Define customer hypotheses, jobs-to-be-done, pain intensity, and validation experiments.
+6. Define product strategy and minimum viable product workflow.
+7. Decompose modules.
+8. Decide 自研 / 购买 / 复用 / 分叉改造 / 参考.
+9. Create technical plan aligned with reuse decisions.
+10. Plan commercialization: business model, pricing, packaging, channels, and monetization tests.
+11. Review risks.
+12. Create visual brief.
+13. Create UI demo or simulator spec when applicable.
+14. Produce a plan that Codex can execute.
+15. Generate or plan the Chinese report folder.
+16. Generate or plan `index.html` when a presentation layer helps.
 
 ## Research-Heavy Workflow
 
-Use when competitor facts, pricing, license status, repository health, or vendor capabilities materially change the answer. Browse current sources when available. Use `parallel-research` only when the work can be split into independent research briefs.
+Use when competitor facts, pricing, user evidence, channel rules, platform policy, license status, repository health, market trends, or vendor capabilities materially change the answer. Browse current sources using `../../shared/references/web-research-standard.md`.
+
+Use:
+- `market-research` for category, competitor, substitute, demand, trend, channel, and maturity research.
+- `customer-discovery` for personas, jobs-to-be-done, pain evidence, adoption objections, and validation experiments.
+- `commercialization` for business model, pricing, packaging, channels, sales motion, and monetization tests.
+
+Use `parallel-research` only when the work can be split into independent research briefs.
 
 ## Demo-Ready Workflow
 

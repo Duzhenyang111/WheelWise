@@ -383,7 +383,7 @@ Use WheelWise to evaluate this idea: ...
 
 关键点：`skills/` 下面放多个独立 skill。共享 references、tools、templates 可以放在包级别，也可以放在具体 skill 内部。
 
-第一版先实现核心闭环。V2 新增 `product-strategy`、`technical-planning`、`visual-brief` 和 `ui-demo` 作为一级 skill。后续仍可继续把完整的 `market-research`、`customer-discovery`、`commercialization` 扩展成一级 skill。
+第一版先实现核心闭环。V2 新增 `product-strategy`、`technical-planning`、`visual-brief` 和 `ui-demo` 作为一级 skill。V2.8 将完整的 `market-research`、`customer-discovery`、`commercialization` 扩展成一级 skill，并加入当前来源调研标准。
 
 ```text
 wheelwise/

@@ -1,0 +1,63 @@
+---
+name: customer-discovery
+description: Use when WheelWise must define target customers, personas, jobs-to-be-done, pain intensity, current workflows, adoption objections, interview questions, or validation experiments using user evidence and current web research.
+---
+
+# Customer Discovery
+
+Turn market and product assumptions into testable customer hypotheses. Web evidence can inform discovery, but it does not replace real customer interviews.
+
+## Required Reference
+
+Read `../../shared/references/web-research-standard.md` before doing current-source research.
+
+## Process
+
+1. Restate the idea, delivery surface, target customer, and unknowns.
+2. Identify personas, buyer/user distinction, and jobs-to-be-done.
+3. Search for current user evidence when pain, workflow, willingness to adopt, or objections affect the recommendation.
+4. Prefer reviews, forums, community discussions, Q&A, product comments, public case studies, job descriptions, and workflow descriptions.
+5. Separate observed evidence from interview hypotheses.
+6. Produce interview questions and validation experiments that test the riskiest assumptions.
+
+## Evidence Rules
+
+- Treat community and review evidence as directional unless repeated across multiple sources.
+- Do not invent quotes, reviews, or user complaints.
+- Label inferred pain intensity as an assumption unless supported by strong evidence.
+- State that real interviews are still required before a confident build decision when user urgency or willingness to pay is uncertain.
+
+## Output Shape
+
+```text
+Research questions:
+Search date:
+Primary persona:
+Secondary personas:
+Buyer / decision maker:
+Jobs-to-be-done:
+Current workflow:
+Current alternatives:
+Pain intensity:
+Adoption objections:
+Willingness-to-pay or adoption signals:
+
+Source evidence:
+Source:
+Source type:
+Key finding:
+Evidence strength:
+Affected decision:
+
+Analysis assumptions:
+Unknowns:
+Interview questions:
+Validation experiments:
+Success threshold:
+Failure response:
+Impact on feasibility:
+Impact on product strategy:
+Confidence:
+```
+
+In the final Chinese report, write the results into `目标用户`, `问题与紧迫性`, `用户假设`, `验证实验`, and `最终建议与下一步行动` as needed. Do not use `Customer Discovery` as a report section heading.
