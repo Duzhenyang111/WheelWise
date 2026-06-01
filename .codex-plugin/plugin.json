@@ -1,0 +1,35 @@
+{
+  "name": "wheelwise",
+  "version": "0.1.0",
+  "description": "A product and engineering decision skill pack for turning ideas into build/buy/reuse-aware execution plans.",
+  "author": {
+    "name": "WheelWise",
+    "email": "noreply@example.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "product-planning",
+    "build-buy-reuse",
+    "mvp",
+    "codex"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "WheelWise",
+    "shortDescription": "Plan product ideas through build, buy, reuse, fork, and reference decisions.",
+    "longDescription": "WheelWise is a multi-skill product decision pack that structures raw ideas, selects the delivery surface, reviews feasibility and risk, evaluates existing solutions, and produces Codex-ready execution plans.",
+    "developerName": "WheelWise",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Research",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use $using-wheelwise to evaluate this product idea.",
+      "Use $using-wheelwise to decide what to build, buy, reuse, fork, or reference.",
+      "Use $using-wheelwise to create a Codex-ready execution plan."
+    ],
+    "brandColor": "#2563EB"
+  }
+}
