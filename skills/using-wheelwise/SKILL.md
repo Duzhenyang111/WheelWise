@@ -25,6 +25,7 @@ These internal artifacts guide the workflow but do not replace `report.md`.
 7. Run final self-check before returning artifact paths.
 8. Return only artifact paths after final report generation.
 9. Treat user-provided direction as original assumptions and challenge them with supporting and opposing evidence.
+10. In V4.3, enforce that every conclusion is backed by evidence, first-hand data, or an explicit evidence gap.
 
 ## Internal State Files
 
@@ -70,6 +71,21 @@ Direction shift levels:
 
 If a major shift is recommended but not confirmed by the user, do not enter Delivery except for an explicitly assumption-led artifact that marks the shift as unconfirmed.
 
+## V4.3 Applicability and Evidence Gate
+
+Read `../../shared/references/idea-applicability-standard.md` during Phase 0.
+
+WheelWise's core scope is digital products, software products, internet services, automation tools, developer tools, and ideas that can be shown through a web display or prototype. For local, offline, physical, regulated, supply-chain, hardware, platform-dependent, B2B, content, community, or service-heavy ideas, WheelWise must classify the idea before normal Discovery.
+
+Gate0 includes an `Evidence Requirement Check`:
+
+- If a digital product has enough target user, problem, surface, constraints, and validation intent, continue the normal workflow.
+- If a local, offline, physical, regulated, supply-chain, or hardware-heavy idea lacks necessary first-hand data, return a `补充数据清单` with collection method, sample size, continue thresholds, and stop thresholds.
+- If the idea can continue only as a limited assessment, record that limit in `project-state.md` and the final report.
+- Do not turn WheelWise into a generic business, legal, supply-chain, or industry consultant; use this gate to prevent unsupported conclusions.
+
+All conclusions must cite one of: source evidence, user-provided data, first-hand field data, prototype observation, technical spike, or an explicit evidence gap. Unsupported conclusions must be downgraded to assumptions or `Need More Evidence`.
+
 ## V4 Phase Flow
 
 ```text
@@ -77,6 +93,7 @@ using-wheelwise
 -> read/update project-state.md
 -> Phase 0 Intake
    -> idea-intake
+   -> Gate0 Evidence Requirement Check
    -> Gate0 information sufficiency
    -> surface-strategy
    -> feasibility-review: early-screening
@@ -113,11 +130,15 @@ using-wheelwise
 
 Ask the user only when basic information is insufficient to route the idea.
 
+Before asking ordinary Gate0 questions, classify the idea and run the Evidence Requirement Check from `idea-applicability-standard.md`.
+
 Allowed Gate0 questions:
 
 1. 面向谁？
 2. 你想先验证，还是直接做最小可行产品？
 3. 时间、预算或技术栈限制是什么？
+
+For local, offline, physical, regulated, supply-chain, or hardware-heavy ideas, return a `补充数据清单` instead of only asking the three generic questions. Include required data, how to collect it, minimum sample, continue threshold, and stop threshold.
 
 If reasonable assumptions can keep the workflow moving, record assumptions in `project-state.md` and continue.
 
@@ -220,6 +241,8 @@ For user-facing products, also create or specify an interactive prototype such a
 - Keep implementation surface visible throughout: website, web app, mobile app, desktop app, browser extension, API/SaaS, CLI, automation tool, or hybrid.
 - Do not invent current market, customer, pricing, channel, policy, license, vendor, or repository facts. Browse when current facts matter or mark the evidence gap.
 - Do not uncritically restate the user's idea as the recommendation. If evidence weakens the user's direction, explain the weakness and adjust the recommendation.
+- Do not present any conclusion without data, evidence, or an explicit evidence gap.
+- Compliance reminders must appear in the final report when relevant, but they do not block the normal workflow by default.
 - Use `risk-review` consistently for risk work.
 - Use `parallel-research` only for complex research or independent review. Final judgment belongs to `using-wheelwise`.
 
@@ -240,6 +263,7 @@ Before final response, confirm:
 - Visible generated text is Chinese.
 - Market, customer, reuse, and commercialization evidence is separated from assumptions.
 - Original assumptions, supporting evidence, opposing evidence, direction shift level, and user confirmation status are recorded when the recommendation differs from the user's direction.
+- Applicability class, evidence coverage, missing first-hand data, and compliance launch prerequisites are recorded when relevant.
 
 Final chat response should list only:
 

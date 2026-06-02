@@ -17,6 +17,8 @@ Create a plan Codex can execute without rediscovering product decisions.
 - Product strategy.
 - Technical plan.
 - Key risks and mitigations.
+- Evidence coverage, evidence gaps, and required supplemental data.
+- Compliance and launch prerequisites when relevant.
 - Visual brief.
 - UI demo or simulator spec when applicable.
 - Final Chinese report folder path: `wheelwise-report/` or `wheelwise-report-<idea-slug>/`.
@@ -47,6 +49,8 @@ If an input is missing, state the assumption or route back through `using-wheelw
 - Explicit task to generate or update `prototype.html` as the independent product prototype or simulator.
 - Report contract checks: folder structure, Chinese visible text, required visual assets or fallback, complete prototype details, webpage visualization record, UI quality baseline, and final action advice.
 - Validation experiments when the verdict is Validate First.
+- Supplemental-data tasks when Gate0 returns `Field Data Required`.
+- Compliance reminder tasks for the final report when China mainland launch, App, website, platform, AI, payments, personal information, minors, or regulated industries are involved.
 - Decision rationale for execution order using `../../shared/references/decision-rationale-standard.md`.
 
 ## Output Shape
@@ -71,6 +75,8 @@ Decision rationale:
 
 The source report task must say where `report.md` will be written and must require visible output text to be Chinese. It must also require `报告说明与阅读导览`, `视觉说明`, `交互演示`, `网页展示文件`, and `最终建议与下一步行动`.
 
-The webpage display task must say that `index.html` is a report visualization layer sourced from `report.md`, not a replacement source of truth or a plain Markdown conversion. It must require visual modules that cover the report's conclusion, user/problem, decision path, market/alternatives, scope, reuse decisions, technical path, commercialization, risks, validation experiments, execution plan, and final action advice. If no webpage file is created in the current run, include a concrete task for creating it later.
+The source report task must also require `执行摘要`, `调研方法与证据等级`, `市场吸引力与机会窗口`, `竞品与替代方案分析`, `合规与上线前置项`, `分阶段验证计划`, and `前端展示与交互原型`.
 
-The interactive prototype task must say that `prototype.html` is separate from `index.html` and must simulate the delivery surface with local data, user inputs, clickable interactions, loading/empty/error/success states, responsive behavior, and a clear backend boundary. If no prototype is created in the current run, include a concrete task for creating it later.
+The webpage display task must say that `index.html` is a report visualization layer sourced from `report.md`, not a replacement source of truth or a plain Markdown conversion. It must require visual modules that cover the report's conclusion, research method/evidence level, user/problem, decision path, market/alternatives, compliance prerequisites, scope, reuse decisions, technical path, commercialization, risks, staged validation plan, execution plan, and final action advice. If no webpage file is created in the current run, include a concrete task for creating it later.
+
+The interactive prototype task must say that `prototype.html` is separate from `index.html` and must simulate the delivery surface with local data, user inputs, clickable interactions, loading/empty/error/success states, responsive behavior, and a clear backend boundary. For non-digital ideas, it may be a validation dashboard, cost/margin calculator, field-data recorder, compliance checklist, supplier tracker, or pilot decision panel. If no prototype is created in the current run, include a concrete task for creating it later.

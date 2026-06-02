@@ -10,6 +10,7 @@ Turn market and product assumptions into testable customer hypotheses. Web evide
 ## Required Reference
 
 Read `../../shared/references/web-research-standard.md` before doing current-source research.
+Read `../../shared/references/idea-applicability-standard.md` when first-hand user, field, buyer, adoption, or local demand data may be required.
 
 ## Process
 
@@ -21,6 +22,7 @@ Read `../../shared/references/web-research-standard.md` before doing current-sou
 6. Check whether the evidence supports or weakens the user's stated target customer, pain urgency, workflow, adoption intent, and willingness to pay.
 7. Produce interview questions and validation experiments that test the riskiest assumptions.
 8. Mark whether the customer direction should be kept, narrowed, changed, or validated before continuing.
+9. If the target user, buyer, or purchase behavior depends on local observation, enterprise pilots, field sales, or service delivery, return required first-hand data and thresholds.
 
 ## Evidence Rules
 
@@ -34,6 +36,7 @@ Read `../../shared/references/web-research-standard.md` before doing current-sou
 ```text
 Research questions:
 Search date:
+Applicability class:
 Primary persona:
 Secondary personas:
 Buyer / decision maker:
@@ -43,6 +46,8 @@ Current alternatives:
 Pain intensity:
 Adoption objections:
 Willingness-to-pay or adoption signals:
+Data sufficiency:
+Required supplemental data:
 Original customer assumptions:
 Supporting evidence:
 Opposing evidence:
@@ -53,6 +58,7 @@ User confirmation needed:
 Source evidence:
 Source:
 Source type:
+Data source:
 Key finding:
 Evidence strength:
 Affected decision:
@@ -60,6 +66,7 @@ Supports or opposes:
 
 Analysis assumptions:
 Unknowns:
+Evidence gaps:
 Interview questions:
 Validation experiments:
 Success threshold:

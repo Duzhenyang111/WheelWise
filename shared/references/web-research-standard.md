@@ -35,6 +35,7 @@ Prefer primary sources for pricing, policies, terms, repository health, and vend
 - Use recent sources when the fact is likely to change.
 - Note contradictory evidence instead of smoothing it away.
 - Tie evidence back to the WheelWise decision it affects: feasibility, product strategy, reuse choice, risk, commercialization, validation, or execution order.
+- When public web evidence cannot answer a local, offline, physical, regulated, supply-chain, or hardware question, mark the required first-hand data instead of substituting generic market commentary.
 
 ## Counter-Evidence Discipline
 
@@ -61,9 +62,12 @@ Use these fields in research-heavy outputs:
 关键发现：
 证据强度：
 影响的决策：
+数据来源：
+证据类型：
 原始假设：
 支持 / 反驳：
 偏移程度：
 是否需要用户确认：
+证据缺口：
 仍未知：
 ```

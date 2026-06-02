@@ -11,6 +11,7 @@ Plan how the product could make money and reach early users. Use current web evi
 
 Read `../../shared/references/web-research-standard.md` before doing current-source research.
 Read `../../shared/references/decision-rationale-standard.md` for commercialization decisions.
+Read `../../shared/references/idea-applicability-standard.md` for local/offline, regulated, China mainland launch, platform, B2B, supply-chain, or commercial-operation prerequisites.
 
 ## Process
 
@@ -21,7 +22,8 @@ Read `../../shared/references/decision-rationale-standard.md` for commercializat
 5. Define the first 30-day operating cadence: content, outreach, onboarding, customer success, support, and metric review.
 6. Identify revenue risks and validation thresholds.
 7. Check whether pricing, packaging, channels, platform rules, or buyer behavior support or weaken the user's original commercial assumptions.
-8. Apply the decision rationale fields to the recommended commercial path.
+8. Identify launch/commercial prerequisites such as business entity, filing, license, platform review, payment, tax, invoice, privacy, or industry permission when relevant.
+9. Apply the decision rationale fields to the recommended commercial path.
 
 ## Minimum Search Coverage
 
@@ -40,6 +42,7 @@ If coverage is incomplete, state the evidence gap and reduce confidence.
 ```text
 Research questions:
 Search date:
+Applicability class:
 Recommended business model:
 Fallback business model:
 Pricing hypothesis:
@@ -52,6 +55,9 @@ Retention loop:
 Operating cadence:
 Early monetization tests:
 Revenue risks:
+Commercial prerequisites:
+Compliance and launch prerequisites:
+Data sufficiency:
 Original commercial assumptions:
 Supporting evidence:
 Opposing evidence:
@@ -62,6 +68,7 @@ User confirmation needed:
 Source evidence:
 Source:
 Source type:
+Data source:
 Key finding:
 Evidence strength:
 Affected decision:
@@ -72,8 +79,12 @@ Decision:
 Original assumption:
 Why chosen:
 Why alternatives lose:
+Data source:
+Evidence type:
+Evidence strength:
 Supporting evidence:
 Opposing evidence:
+Evidence gap:
 Why adjust:
 Direction shift:
 Evidence:

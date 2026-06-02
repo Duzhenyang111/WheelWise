@@ -19,6 +19,8 @@ Choose the implementation form before planning architecture, reuse, validation, 
 | API/SaaS | The user experience is integration, automation, or developer consumption | API design, auth, docs, SDKs, uptime, observability |
 | CLI | Developers/operators need local command workflows | Install path, command UX, config, package distribution |
 | Automation tool | Value comes from triggers, actions, and integrations | Reliability, retry, permissions, integration coverage |
+| Local/offline validation tool | The idea is a stall, store, local service, field activity, or physical operation that needs first-hand validation before a product surface | Field data checklist, trial dashboard, cost and margin calculator, compliance checklist |
+| Physical/hardware validation tool | The idea depends on manufacturing, supply chain, inventory, certification, or after-sales | BOM, supplier, certification, inventory, pilot, and after-sales validation |
 
 ## Decision Rules
 
@@ -28,6 +30,7 @@ Choose the implementation form before planning architecture, reuse, validation, 
 - If monetization depends on recurring team workflows, web app or API/SaaS often wins.
 - If the user's requested surface is not the best validation surface, explain the counter-evidence and mark direction shift as `Minor` or `Major`.
 - A material change from the user's requested surface is a major direction shift and must feed Gate2 user confirmation.
+- For non-digital ideas, the recommended first surface may be a validation dashboard or simulator rather than a product UI.
 
 ## Output Shape
 
@@ -43,6 +46,8 @@ Direction shift:
 User confirmation needed:
 Surface-specific constraints:
 Validation implication:
+Applicability class:
+Evidence requirement:
 Decision:
 Original assumption:
 Why chosen:

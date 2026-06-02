@@ -13,10 +13,11 @@ Review risks after the delivery surface and reuse decisions are known. Use this 
 - Product: vague workflow, low urgency, missing differentiation, excessive MVP scope.
 - Technical: hard integrations, data quality, scalability, platform constraints.
 - Security/privacy: sensitive data, auth, permissions, regulated workflows.
-- License/compliance: copyleft, unclear commercial rights, data residency, app-store rules.
+- License/compliance: copyleft, unclear commercial rights, data residency, app-store rules, China mainland ICP/App filing, business entity, public-security filing, privacy policy, user agreement, payment/tax/invoice, algorithm/generative-AI filing or application registration, and industry permits.
 - Dependency: vendor lock-in, abandoned repositories, unstable APIs.
 - Execution: team skill gap, timeline mismatch, operational burden.
 - Direction: strong counter-evidence, overconfident user assumptions, unconfirmed major pivot, or a recommendation that differs materially from the user's original direction.
+- Data sufficiency: conclusion lacks data, first-hand evidence, current sources, or a clear evidence gap.
 
 ## Output Shape
 
@@ -26,9 +27,13 @@ Category:
 Severity: Low / Medium / High
 Likelihood: Low / Medium / High
 Evidence:
+Data source:
+Evidence type:
+Evidence strength:
 Original assumption:
 Supporting evidence:
 Opposing evidence:
+Evidence gap:
 Direction shift:
 User confirmation needed:
 Mitigation:
@@ -42,6 +47,7 @@ Surface-specific risk must be included. A browser extension has permission and s
 - Read `project-state.md` and `evidence-board.md` before risk review.
 - Treat unresolved contradictions and high-impact evidence gaps as risks.
 - Treat major direction shifts without user confirmation as high-priority risks that block normal Delivery.
+- Record compliance and launch prerequisites in the final report, but do not block the workflow by default unless the idea is unsafe or illegal.
 - Update `project-state.md` with risk summary, highest-priority risk, mitigation summary, and last updated by skill.
 - Feed risks into `feasibility-review: full-review` for Gate2.
 

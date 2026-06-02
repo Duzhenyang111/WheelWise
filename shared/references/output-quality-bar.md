@@ -11,10 +11,14 @@ A WheelWise answer is acceptable only when it:
 - Uses Chinese for all visible webpage text, image text, chart labels, alt text, and presentation copy.
 - Uses Chinese display terms: 自研, 购买, 复用, 分叉改造, 参考, 网页应用, 软件服务, 最小可行产品, 演示, 模拟数据, 兜底方案, 继续 / 停止条件, 可交给 Codex 执行的计划.
 - Reads as a progressive report, not a dump of internal skill sections: opening guide, user/problem, decisions/solution, visual/demo, risks/validation, execution plan, and final action advice.
+- Reads like a product pre-research report: executive summary, assumptions, research method, evidence level, users, demand, market attractiveness, competitors, calibration, product recommendation, commercialization, compliance, risk, staged validation, technical/reuse path, prototype, and next actions.
 - Includes `报告说明与阅读导览` with report purpose, applicable stage, core conclusion preview, and reading path.
 - Includes `最终建议与下一步行动` with one-sentence judgment, 7-day, 14-day, 30-day actions, and continue/stop conditions.
 - Does not use English internal module headings such as `Idea Intake`, `Surface Strategy`, `Reuse Evaluator`, `Technical Planning`, `Risk Review`, `UI Demo Scope`, or `MVP Execution Plan`.
 - Makes a clear verdict.
+- Every conclusion is backed by data, source evidence, user-provided evidence, first-hand field data, prototype observation, technical spike, or an explicit evidence gap.
+- If evidence is missing, the conclusion is downgraded to an assumption, `Need More Evidence`, or `需要补充数据`.
+- Classifies idea applicability early and returns supplemental data requirements for local/offline, physical, regulated, supply-chain, hardware, platform-dependent, B2B, content/community, or service-heavy ideas when current data is insufficient.
 - Does not uncritically restate the user's idea; user-provided direction is treated as original assumptions until evidence supports it.
 - Explains supporting evidence, opposing evidence, why the original direction is weak, direction shift level, and user confirmation status when the recommendation changes.
 - Requires Gate2 confirmation for major direction shifts; if unconfirmed, the report marks the recommendation as unconfirmed or assumption-led.
@@ -43,6 +47,7 @@ A WheelWise answer is acceptable only when it:
 - User-facing products include a separate interactive prototype page, such as `prototype.html`, that simulates the actual product surface and core interactions with local data.
 - `prototype.html` includes clickable controls, inputs or selectors, local simulated data, state changes, loading/empty/error/success states, responsive behavior, and a clear backend boundary.
 - Calls out license, privacy, security, dependency, market, and execution risks where relevant.
+- Includes `合规与上线前置项` when relevant, including business entity, ICP/App filing, platform review, public-security filing, privacy/user agreement, payment/tax/invoice, AI/algorithm, and industry-license reminders. These are launch prerequisites or professional-review items, not legal guarantees.
 - Produces a plan Codex can act on, including visual-brief, report-visualization, ui-demo, report folder creation/update tasks, source report tasks, `index.html` visualization tasks, `prototype.html` tasks, and asset generation tasks.
 - Keeps `using-wheelwise` responsible for final synthesis.
 - Final self-check confirms project-state completeness, evidence-board coverage or gaps, Gate consistency, decision rationale, visuals, interaction demo/simulator, report folder contract, and Chinese visible text.

@@ -10,6 +10,7 @@ Research the market context behind a product idea. Use current web evidence when
 ## Required Reference
 
 Read `../../shared/references/web-research-standard.md` before doing current-source research.
+Read `../../shared/references/idea-applicability-standard.md` when the idea is local, offline, physical, regulated, supply-chain, hardware, platform-dependent, B2B, content, community, or service-heavy.
 
 ## Process
 
@@ -21,6 +22,7 @@ Read `../../shared/references/web-research-standard.md` before doing current-sou
 6. Search for counter-evidence that weakens the user's original market, customer, surface, pricing, or channel assumptions.
 7. Explain how the findings affect feasibility, product strategy, reuse decisions, risk, and validation.
 8. Mark whether findings support or oppose the original direction and whether they imply a minor or major direction shift.
+9. If the market is local, offline, physical, or supply-chain-heavy, identify what cannot be answered by web research and return required first-hand data.
 
 ## Minimum Search Coverage
 
@@ -42,6 +44,7 @@ Research questions:
 Search date:
 Market category:
 Adjacent categories:
+Applicability class:
 Direct competitors:
 Indirect substitutes:
 User demand signals:
@@ -51,6 +54,8 @@ Distribution channels:
 Market maturity:
 Entry barriers:
 Opportunity window:
+Data sufficiency:
+Required supplemental data:
 Original market assumptions:
 Supporting evidence:
 Opposing evidence:
@@ -61,6 +66,7 @@ User confirmation needed:
 Source evidence:
 Source:
 Source type:
+Data source:
 Key finding:
 Evidence strength:
 Affected decision:
@@ -68,6 +74,7 @@ Supports or opposes:
 
 Analysis assumptions:
 Unknowns:
+Evidence gaps:
 Impact on feasibility:
 Impact on product strategy:
 Impact on reuse/risk:

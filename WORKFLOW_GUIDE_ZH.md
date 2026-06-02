@@ -4,18 +4,20 @@
 
 ## 1. 总体目标
 
-WheelWise 的目标不是直接替用户写一个产品，而是在正式开发前完成一轮产品与工程决策：
+WheelWise 的目标不是直接替用户写一个产品，而是在正式开发前完成一轮有数据支撑的产品前期调研、产品与工程决策：
 
 - 把模糊想法结构化。
+- 判断 idea 适用性分类，并在数据不足时返回补充数据清单。
 - 判断最适合的交付形态。
 - 判断是否值得构建最小可行产品、先验证、暂停或放弃。
-- 补充市场、用户和商业化证据。
+- 补充市场、用户、商业化、合规和上线前置证据。
 - 明确产品策略、差异化和验证路径。
 - 判断模块应该自研、购买、复用、分叉改造或仅参考。
 - 形成技术实现路径。
 - 规划视觉说明、网页展示和交互原型。
 - 输出可交给 Codex 执行的计划。
 - 生成完整中文报告文件夹。
+- 保证所有结论都有数据、证据或明确证据缺口支撑。
 - 使用 `project-state.md` 记录跨 skill 状态。
 - 使用 `evidence-board.md` 汇总跨 skill 证据。
 
@@ -39,8 +41,11 @@ wheelwise-report-<idea-slug>/
 flowchart TD
   A["用户调用 using-wheelwise"] --> S["读取/创建 project-state.md"]
   S --> B["Phase 0：idea-intake"]
-  B --> G0{"Gate0 信息是否足够"}
-  G0 -->|不足| Q["只问：面向谁 / 验证还是最小可行产品 / 限制"]
+  B --> GE{"Gate0 适用性与证据要求检查"}
+  GE -->|线下/实体/强监管/供应链且数据不足| FDR["返回补充数据清单、继续阈值和停止阈值"]
+  FDR --> B
+  GE -->|可继续| G0{"Gate0 信息是否足够"}
+  G0 -->|不足| Q["询问基础信息或补充必要数据"]
   Q --> B
   G0 -->|足够| C["surface-strategy"]
   C --> D["feasibility-review: early-screening"]
@@ -68,7 +73,7 @@ flowchart TD
   O --> P["报告文件夹：project-state.md / evidence-board.md / report.md / index.html / assets"]
 ```
 
-`using-wheelwise` 是唯一主入口。用户不需要手动调用所有内部 skill；主入口根据请求复杂度决定是否执行完整流程、短流程或调研密集流程，并负责更新 `project-state.md`、`evidence-board.md` 与 Gate 状态。
+`using-wheelwise` 是唯一主入口。用户不需要手动调用所有内部 skill；主入口根据请求复杂度决定是否执行完整流程、短流程或调研密集流程，并负责更新 `project-state.md`、`evidence-board.md` 与 Gate 状态。V4.3 中，主入口还负责适用性分类、证据要求检查、补充数据清单、合规与上线前置项，以及“所有结论必须有数据支撑”的最终自检。
 
 ## 3. 运行模式
 

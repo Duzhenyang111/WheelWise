@@ -30,6 +30,8 @@ Maintain the shared evidence ledger for WheelWise. The board is internal state, 
 10. Recommend the next action for each weak or missing evidence area.
 11. Write a compact evidence summary back into `project-state.md`.
 
+Every full report conclusion must be traceable to the board. If the board lacks evidence for a conclusion, record an explicit evidence gap and lower confidence.
+
 ## Evidence Types
 
 Use these categories:
@@ -52,6 +54,7 @@ Use these categories:
 ```text
 Evidence item:
 Source / origin skill:
+Data source:
 Evidence type:
 Affected decision:
 Strength:
@@ -64,6 +67,17 @@ Assumption vs evidence:
 Contradiction:
 Evidence gap:
 Recommended next action:
+```
+
+For Gate0 evidence requirements, also record:
+
+```text
+Applicability class:
+Required data:
+Collection method:
+Minimum sample:
+Continue threshold:
+Stop threshold:
 ```
 
 ## Final Report Integration
@@ -80,6 +94,7 @@ Do not use `Evidence Board` as a final report section heading. Instead:
 ## Quality Bar
 
 - Every full report should have either evidence items or explicit evidence gaps.
+- Every major conclusion in the final report must have supporting evidence or an explicit gap in the board.
 - Gate2 cannot return `Go` if the board has unresolved high-impact gaps that affect feasibility, user urgency, legality, or core technical possibility.
 - Gate2 cannot return `Go` when a `Major` direction shift requires user confirmation and has not been confirmed.
 - Confidence must be lowered when evidence is missing, anecdotal, stale, or contradictory.

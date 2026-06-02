@@ -43,12 +43,14 @@ Early verdict rules:
 | Cannot continue | Legally unsafe, technically impossible, incoherent, or missing a real user/problem |
 | Not recommended now | Timing, dependency, budget, compliance, or user clarity makes discovery weak |
 | Need Gate0 input | The only blocker is missing basic user, scope, or constraint information |
+| Field Data Required | Local, offline, physical, regulated, supply-chain, or hardware-heavy idea lacks required first-hand data for a high-confidence assessment |
 
 Gate1 behavior:
 
 - If `Cannot continue` or `Not recommended now`, output the stop reason and end.
 - If `Can continue`, do not ask the user; automatically enter Discovery.
 - If `Need Gate0 input`, return control to `using-wheelwise` so it asks only the allowed Gate0 questions.
+- If `Field Data Required`, return control to `using-wheelwise` so it returns the `补充数据清单`, continue thresholds, and stop thresholds.
 
 Early output shape:
 
@@ -59,6 +61,10 @@ Confidence:
 Why:
 Main evidence:
 Blocking unknowns:
+Applicability class:
+Required field data:
+Continue thresholds:
+Stop thresholds:
 Gate1 action:
 Project-state update:
 ```

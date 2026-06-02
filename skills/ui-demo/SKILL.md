@@ -5,7 +5,9 @@ description: Use when WheelWise must plan a complete interactive product demo fo
 
 # UI Demo
 
-Plan a complete interactive prototype that helps users try the product concept before backend implementation. Use simulated data, local state, fixtures, localStorage, static JSON, or simulated APIs instead of real backend services. For final output, write prototype results into the Chinese source report's `交互演示` section and create or specify `prototype.html`.
+Plan a complete interactive prototype that helps users try the product concept before backend implementation. Use simulated data, local state, fixtures, localStorage, static JSON, or simulated APIs instead of real backend services. For final output, write prototype results into the Chinese source report's `前端展示与交互原型` section and create or specify `prototype.html`.
+
+For non-digital ideas, `prototype.html` may be a validation tool instead of a product UI: field-data checklist, trial dashboard, cost/gross-margin calculator, supplier/BOM tracker, compliance checklist, pilot-record board, or continue/stop decision panel.
 
 `ui-demo` does not own `index.html`. The report display page is handled by `report-visualization`.
 
@@ -15,6 +17,7 @@ Plan a complete interactive prototype that helps users try the product concept b
 - API or software-service backend ideas need an API playground, request/response explorer, docs preview, workflow simulator, or SDK quickstart simulator.
 - CLI/dev tool ideas need a terminal simulator with commands, outputs, errors, config, and success states.
 - Automation/workflow ideas need a trigger/action workflow simulator with retry, error, and success paths.
+- Local/offline, physical, regulated, supply-chain, or hardware-heavy ideas need a validation workflow prototype when a product UI would be misleading.
 
 In V4, no product skips interaction demonstration only because it lacks a traditional graphical UI. API, CLI, automation, backend, data, or developer products must use simulator mode.
 
@@ -54,6 +57,9 @@ Create or specify an interactive prototype page, defaulting to `prototype.html`,
 - API/software-service backend idea: simulate an API playground, request builder, response viewer, docs, logs, and keys.
 - CLI/developer tool idea: simulate a terminal with commands, outputs, config, errors, and success states.
 - Automation/workflow idea: simulate trigger/action builder, run history, retry, error, and success paths.
+- Local/offline idea: simulate field observation entry, competitor rows, compliance notes, cost/margin calculator, trial results, and continue/stop status.
+- Physical/supply-chain idea: simulate BOM, supplier options, minimum order quantity, lead time, certification status, inventory risk, and pilot order decision.
+- Regulated idea: simulate launch-readiness checklist, professional-review items, data/privacy boundary, and go-live prerequisite tracking.
 
 The prototype page must use local simulated data and must explain what is simulated. It is separate from the report display page.
 
@@ -63,6 +69,7 @@ The prototype must include at least one real state transition. Prefer multiple s
 
 - Read `project-state.md` before choosing the demo mode.
 - Use delivery surface and Gate2 status to decide whether to create a UI prototype, API playground, CLI simulator, workflow simulator, request explorer, or terminal simulator.
+- Use applicability class to decide whether `prototype.html` should be a product UI or a validation tool.
 - Update `project-state.md` with prototype status, interaction demo type, interaction demo path, simulated states, backend boundary, and last updated by skill.
 - If no prototype is generated in the current run, write a concrete prototype task into `execution-plan`.
 
@@ -71,6 +78,7 @@ The prototype must include at least one real state transition. Prefer multiple s
 ```text
 演示类型:
 Target surface:
+Applicability class:
 Primary flow:
 Pages/screens:
 Interactions:

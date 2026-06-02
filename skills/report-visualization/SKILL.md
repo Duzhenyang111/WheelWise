@@ -36,18 +36,21 @@ Choose modules according to the report content. Do not hard-code every report in
 | Report content | Preferred visual expression |
 | --- | --- |
 | Verdict and confidence | Verdict banner, decision score strip, confidence meter |
+| Research method and evidence level | Evidence source map, data-quality ladder, confidence matrix |
 | Delivery surface | Surface badge row, surface tradeoff comparison |
 | Target customer | Persona cards, segment cards, role map |
 | Problem and urgency | Before/after workflow, pain timeline, scenario storyboard |
 | Market and alternatives | Competitor matrix, substitute landscape, evidence board |
+| Market attractiveness | maturity/risk/urgency scorecard, opportunity window chart |
 | User assumptions | Assumption cards, validation priority map |
 | Differentiation | Value wedge, comparison matrix, positioning map |
 | Minimum viable product scope | In/out board, release cutline, feature priority grid |
 | Build/buy/reuse/fork/reference decisions | Module decision graph, dependency map, sourcing matrix |
 | Technical path | Architecture diagram, data flow, integration boundary map |
 | Commercialization | Pricing cards, channel funnel, monetization hypothesis board |
+| Compliance and launch prerequisites | compliance checklist, launch-readiness board, prerequisite timeline |
 | Risks | Risk matrix, mitigation board, risk radar |
-| Validation experiments | Experiment kanban, validation funnel, evidence gap board |
+| Staged validation plan | phase roadmap, experiment kanban, validation funnel, evidence gap board |
 | Execution plan | 7/14/30 day timeline, milestone roadmap, task swimlanes |
 | Final recommendation | Action cards, continue/stop condition panel |
 
@@ -59,6 +62,7 @@ For a full report, `index.html` must include:
 - Cover or hero area with project name and core conclusion.
 - Verdict banner.
 - At least eight substantive visual modules, selected from the mapping above.
+- Visual coverage for evidence level, competitor/alternative comparison, compliance prerequisites, and staged validation when those sections exist in `report.md`.
 - A visible link or callout to `prototype.html` when a prototype exists.
 - At least one local asset from `assets/`.
 - A report coverage marker or section structure that covers the main report areas: user/problem, decision/solution, visual/prototype, commercialization/risk/validation, execution/next actions.

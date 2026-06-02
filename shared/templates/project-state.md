@@ -26,6 +26,12 @@ Secondary surfaces:
 
 Workflow mode:
 
+Applicability class:
+
+Evidence requirement status:
+
+Required supplemental data:
+
 Gate status:
 
 Gate rationale:
@@ -62,7 +68,13 @@ Evidence-board path:
 
 Evidence summary:
 
+Evidence coverage:
+
 Evidence gaps:
+
+Highest-impact evidence gap:
+
+Data sufficiency:
 
 Contradictions:
 
@@ -77,6 +89,8 @@ Opposing evidence summary:
 Direction shift level:
 
 User confirmation status:
+
+Limited assessment boundary:
 
 ## Reuse And Technical State
 
@@ -93,6 +107,8 @@ Integration constraints:
 Commercialization summary:
 
 Risk summary:
+
+Compliance prerequisites summary:
 
 Highest-priority risk:
 

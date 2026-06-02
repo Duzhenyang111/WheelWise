@@ -12,6 +12,8 @@ Last updated by skill:
 
 Evidence coverage:
 
+Data sufficiency:
+
 Highest-confidence evidence:
 
 Highest-impact evidence gap:
@@ -26,8 +28,8 @@ Recommended next action:
 
 ## Evidence Items
 
-| Evidence item | Source / origin skill | Evidence type | Affected decision | Strength | Confidence | Original assumption | Supports or opposes | Direction shift | User confirmation needed | Assumption vs evidence | Contradiction | Evidence gap | Recommended next action |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Evidence item | Source / origin skill | Data source | Evidence type | Affected decision | Strength | Confidence | Original assumption | Supports or opposes | Direction shift | User confirmation needed | Assumption vs evidence | Contradiction | Evidence gap | Recommended next action |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 ## Decision Coverage
 
@@ -38,6 +40,11 @@ Recommended next action:
 
 | Gap | Why it matters | Affected phase | Suggested research or validation |
 | --- | --- | --- | --- |
+
+## Supplemental Data Requirements
+
+| Applicability class | Required data | Collection method | Minimum sample | Continue threshold | Stop threshold |
+| --- | --- | --- | --- | --- | --- |
 
 ## Contradictions
 

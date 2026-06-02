@@ -19,25 +19,22 @@ from pathlib import Path
 REQUIRED_SECTIONS = [
     "报告说明与阅读导览",
     "项目标题",
-    "想法摘要",
-    "交付形态",
-    "结论：构建最小可行产品 / 先验证 / 暂停 / 放弃",
-    "决策解释摘要",
-    "目标用户",
-    "问题与紧迫性",
-    "市场备注",
-    "用户假设",
-    "差异化",
+    "执行摘要",
+    "原始想法与关键假设",
+    "调研方法与证据等级",
+    "目标用户与使用场景",
+    "问题痛点与需求强度",
+    "市场吸引力与机会窗口",
+    "竞品与替代方案分析",
+    "原始方向校准",
+    "产品定位与差异化",
     "最小可行产品范围",
-    "产品策略",
-    "自研 / 购买 / 复用 / 分叉改造 / 参考决策",
-    "技术实现路径",
-    "视觉说明",
-    "交互演示",
-    "网页展示文件",
-    "商业化备注",
-    "关键风险",
-    "验证实验",
+    "商业模式与获客假设",
+    "合规与上线前置项",
+    "关键风险与不确定性",
+    "分阶段验证计划",
+    "技术与复用方案",
+    "前端展示与交互原型",
     "可交给 Codex 执行的计划",
     "最终建议与下一步行动",
 ]
@@ -79,6 +76,9 @@ INDEX_VISUAL_KEYWORDS = [
     "目标用户",
     "问题",
     "市场",
+    "证据",
+    "竞品",
+    "合规",
     "用户假设",
     "范围",
     "自研",
@@ -134,6 +134,8 @@ PROTOTYPE_STATE_KEYWORDS = ["加载", "空状态", "暂无", "错误", "失败",
 PROJECT_STATE_REQUIRED_FIELDS = [
     "Idea summary",
     "Current phase",
+    "Applicability class",
+    "Evidence requirement status",
     "Delivery surface",
     "Gate status",
     "Feasibility",
@@ -142,6 +144,7 @@ PROJECT_STATE_REQUIRED_FIELDS = [
     "Technical plan summary",
     "Commercialization summary",
     "Risk summary",
+    "Compliance prerequisites summary",
     "Visual/demo status",
     "Final report status",
     "Open questions",
@@ -152,6 +155,7 @@ PROJECT_STATE_REQUIRED_FIELDS = [
 EVIDENCE_BOARD_REQUIRED_FIELDS = [
     "Evidence item",
     "Source / origin skill",
+    "Data source",
     "Evidence type",
     "Affected decision",
     "Strength",
@@ -160,6 +164,7 @@ EVIDENCE_BOARD_REQUIRED_FIELDS = [
     "Contradiction",
     "Evidence gap",
     "Recommended next action",
+    "Supplemental Data Requirements",
 ]
 
 
@@ -376,25 +381,25 @@ def validate_report(
         if keyword not in intro:
             problems.append(f"报告说明与阅读导览缺少：{keyword}")
 
-    visual = section_body(text, "视觉说明")
+    visual = section_body(text, "前端展示与交互原型")
     if not re.search(r"!\[[^\]]+\]\([^\)]+\)|```mermaid", visual):
-        problems.append("视觉说明必须包含 Markdown 图片引用或 Mermaid 兜底方案")
+        problems.append("前端展示与交互原型必须包含 Markdown 图片引用或 Mermaid 兜底方案")
     elif check_local_assets:
         for image_ref in local_image_refs_from_markdown(visual):
             image_path = (path.parent / image_ref).resolve()
             problems.extend(validate_image_file(image_path))
 
-    demo = section_body(text, "交互演示")
-    for keyword in ["演示路径", "运行方式", "核心交互", "模拟数据", "未接入真实后端"]:
+    demo = section_body(text, "前端展示与交互原型")
+    for keyword in ["prototype.html", "核心交互", "模拟数据", "未接入真实后端"]:
         if keyword not in demo:
-            problems.append(f"交互演示缺少：{keyword}")
+            problems.append(f"前端展示与交互原型缺少：{keyword}")
 
-    html = section_body(text, "网页展示文件")
+    html = section_body(text, "前端展示与交互原型")
     for keyword in ["index.html", "源报告"]:
         if keyword not in html:
-            problems.append(f"网页展示文件缺少：{keyword}")
+            problems.append(f"前端展示与交互原型缺少：{keyword}")
     if "展示层" not in html and "可视化" not in html:
-        problems.append("网页展示文件缺少：展示层或可视化定位")
+        problems.append("前端展示与交互原型缺少：展示层或可视化定位")
     if check_local_assets and "已生成" in html:
         html_refs = re.findall(r"`([^`]+\.html(?:#[^`]+)?)`|(?<![\w.-])([./\w-]+\.html)(?:#[\w-]+)?", html)
         flattened_refs = [left or right for left, right in html_refs]
@@ -404,7 +409,7 @@ def validate_report(
                 continue
             html_path = (path.parent / clean_ref).resolve()
             if not html_path.exists():
-                problems.append(f"网页展示文件标记为已生成，但文件不存在：{html_ref}")
+                problems.append(f"前端展示与交互原型标记为已生成，但文件不存在：{html_ref}")
 
     outro = section_body(text, "最终建议与下一步行动")
     for keyword in ["一句话判断", "7 天", "14 天", "30 天"]:
@@ -412,6 +417,26 @@ def validate_report(
             problems.append(f"最终建议与下一步行动缺少：{keyword}")
     if not re.search(r"继续\s*/\s*停止|推进\s*/\s*停止|继续条件|停止条件", outro):
         problems.append("最终建议与下一步行动缺少继续/停止条件")
+
+    evidence = section_body(text, "调研方法与证据等级")
+    for keyword in ["数据来源", "证据类型", "证据强度"]:
+        if keyword not in evidence:
+            problems.append(f"调研方法与证据等级缺少：{keyword}")
+
+    competitors = section_body(text, "竞品与替代方案分析")
+    for keyword in ["竞品", "替代", "优势", "弱点"]:
+        if keyword not in competitors:
+            problems.append(f"竞品与替代方案分析缺少：{keyword}")
+
+    compliance = section_body(text, "合规与上线前置项")
+    for keyword in ["经营主体", "备案", "隐私", "上线前必须确认"]:
+        if keyword not in compliance:
+            problems.append(f"合规与上线前置项缺少：{keyword}")
+
+    validation = section_body(text, "分阶段验证计划")
+    for keyword in ["阶段", "成功标准", "失败后的处理"]:
+        if keyword not in validation:
+            problems.append(f"分阶段验证计划缺少：{keyword}")
 
     return problems
 
