@@ -22,7 +22,8 @@ Connect `reuse-evaluator` to `execution-plan`. The technical plan must honor the
 4. Outline frontend design, backend design, architecture, data model, integrations, deployment, and observability.
 5. Explain the data flow from user action to backend processing to visible result.
 6. Call out surface-specific constraints such as mobile store review, browser permissions, API uptime, CLI packaging, or automation retries.
-7. Apply `../../shared/references/decision-rationale-standard.md` to stack and architecture choices.
+7. Check whether technical feasibility, integration, data access, compliance, or platform constraints weaken the user's original technical path.
+8. Apply `../../shared/references/decision-rationale-standard.md` to stack and architecture choices.
 
 ## Conflict Check
 
@@ -36,6 +37,7 @@ Connect `reuse-evaluator` to `execution-plan`. The technical plan must honor the
 - Read `project-state.md` and `evidence-board.md` before planning.
 - If a technical spike was marked as needed, either incorporate its finding or keep it as an explicit evidence gap.
 - Update `project-state.md` with technical plan summary, technical spike status, integration constraints, and last updated by skill.
+- If technical planning changes the delivery surface, compliance boundary, core integration path, or feasibility path materially, return control to Gate2 unless the user already confirmed the shift.
 - Do not enter Delivery planning unless Gate2 is `Go`, assumption-led by explicit user request, or the user confirmed a non-Go Gate2 path.
 
 ## Output Shape
@@ -53,11 +55,22 @@ Deployment path:
 Surface-specific constraints:
 Technical risks:
 Reuse alignment notes:
+Original technical assumptions:
+Supporting evidence:
+Opposing evidence:
+Why original technical path may be weak:
+Direction shift:
+User confirmation needed:
 
 Decision rationale:
 Decision:
+Original assumption:
 Why chosen:
 Why alternatives lose:
+Supporting evidence:
+Opposing evidence:
+Why adjust:
+Direction shift:
 Evidence:
 Assumptions:
 Risks:

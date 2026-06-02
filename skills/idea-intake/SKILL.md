@@ -19,10 +19,12 @@ Extract or ask for:
 - Constraints: budget, timeline, team, platform, data, compliance.
 - Success metric.
 - Assumptions and unknowns.
+- User original assumptions: target customer, problem, delivery surface, product wedge, business model, compliance boundary, and technical path.
 
 ## Rules
 
 - Preserve uncertainty instead of filling gaps with confident fiction.
+- Treat user-provided claims as original assumptions, not validated facts.
 - Ask only for information that changes routing or feasibility.
 - If the user wants momentum, make assumptions explicit and continue.
 - Pass a compact idea brief to `surface-strategy`.
@@ -37,6 +39,7 @@ Current alternatives:
 Desired outcome:
 Constraints:
 Success metric:
+User original assumptions:
 Assumptions:
 Unknowns:
 ```

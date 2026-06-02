@@ -16,6 +16,7 @@ Review risks after the delivery surface and reuse decisions are known. Use this 
 - License/compliance: copyleft, unclear commercial rights, data residency, app-store rules.
 - Dependency: vendor lock-in, abandoned repositories, unstable APIs.
 - Execution: team skill gap, timeline mismatch, operational burden.
+- Direction: strong counter-evidence, overconfident user assumptions, unconfirmed major pivot, or a recommendation that differs materially from the user's original direction.
 
 ## Output Shape
 
@@ -25,6 +26,11 @@ Category:
 Severity: Low / Medium / High
 Likelihood: Low / Medium / High
 Evidence:
+Original assumption:
+Supporting evidence:
+Opposing evidence:
+Direction shift:
+User confirmation needed:
 Mitigation:
 Owner or decision point:
 ```
@@ -35,6 +41,7 @@ Surface-specific risk must be included. A browser extension has permission and s
 
 - Read `project-state.md` and `evidence-board.md` before risk review.
 - Treat unresolved contradictions and high-impact evidence gaps as risks.
+- Treat major direction shifts without user confirmation as high-priority risks that block normal Delivery.
 - Update `project-state.md` with risk summary, highest-priority risk, mitigation summary, and last updated by skill.
 - Feed risks into `feasibility-review: full-review` for Gate2.
 

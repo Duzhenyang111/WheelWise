@@ -24,6 +24,7 @@ These internal artifacts guide the workflow but do not replace `report.md`.
 6. Keep decisions explainable through evidence, assumptions, risks, and fallback plans.
 7. Run final self-check before returning artifact paths.
 8. Return only artifact paths after final report generation.
+9. Treat user-provided direction as original assumptions and challenge them with supporting and opposing evidence.
 
 ## Internal State Files
 
@@ -46,7 +47,28 @@ wheelwise-report-<idea-slug>/
 
 `project-state.md` fields must cover idea summary, current phase, delivery surface, gate status, feasibility verdict, product strategy summary, reuse decisions summary, technical plan summary, commercialization summary, risk summary, visual/demo status, final report status, open questions, assumptions, and last updated by skill.
 
-`evidence-board.md` must include evidence item, source/origin skill, evidence type, affected decision, strength, confidence, assumption vs evidence, contradiction, evidence gap, and recommended next action.
+`evidence-board.md` must include evidence item, source/origin skill, evidence type, affected decision, strength, confidence, original assumption, supports or opposes, direction shift, user confirmation needed, assumption vs evidence, contradiction, evidence gap, and recommended next action.
+
+## Challenge and Direction Calibration
+
+WheelWise must not simply complete the user's idea. Treat the user's stated target user, problem, delivery surface, product wedge, business model, compliance boundary, and technical path as original assumptions until evidence supports them.
+
+During Discovery and Synthesis:
+
+- Actively gather supporting and opposing evidence.
+- Record counter-evidence that weakens the original direction.
+- Adjust the recommendation when current evidence supports a better direction.
+- Explain why the original direction is weak whenever the recommendation changes.
+
+Direction shift levels:
+
+| Shift | Use when | Gate behavior |
+| --- | --- | --- |
+| None | Evidence supports the original direction | Continue normally |
+| Minor | Recommendation narrows scope, wording, priority, or validation order without changing the core direction | Continue, but explain the adjustment in the report |
+| Major | Target user, core problem, delivery surface, product wedge, business model, compliance boundary, or technical feasibility path changes materially | Gate2 must return `Pivot` or `Need More Evidence`; ask the user whether to continue with the new direction or keep the original direction |
+
+If a major shift is recommended but not confirmed by the user, do not enter Delivery except for an explicitly assumption-led artifact that marks the shift as unconfirmed.
 
 ## V4 Phase Flow
 
@@ -116,6 +138,7 @@ Gate2 uses `feasibility-review: full-review`.
 - `Need More Evidence`: ask whether to run the recommended research or validation.
 - `Kill`: ask only if the user wants an alternative direction or stop.
 - `Park`: ask whether to park or change constraints.
+- Unconfirmed `Major` direction shift: do not use `Go`; ask whether to follow the new evidence-led direction or keep the original direction.
 
 Normal `Go` flow must not be interrupted.
 
@@ -144,6 +167,8 @@ Run:
 
 Write market, customer, reuse, and spike findings into `evidence-board.md`. Summarize evidence coverage, contradictions, and gaps in `project-state.md`.
 
+Discovery must include both support and counter-evidence for the user's original assumptions. If evidence points to a different target user, problem, surface, wedge, business model, compliance boundary, or technical path, mark the shift level in `evidence-board.md`.
+
 ### Phase 2 Synthesis
 
 Run:
@@ -154,6 +179,8 @@ Run:
 4. `feasibility-review` in `full-review` mode
 
 Gate2 decides whether to continue into Delivery automatically or ask the user.
+
+Synthesis must explicitly compare the original direction with the evidence-led recommendation. Major shifts must be routed through Gate2 user confirmation.
 
 ### Phase 3 Delivery
 
@@ -192,6 +219,7 @@ For user-facing products, also create or specify an interactive prototype such a
 - Do not use internal skill names as final report headings.
 - Keep implementation surface visible throughout: website, web app, mobile app, desktop app, browser extension, API/SaaS, CLI, automation tool, or hybrid.
 - Do not invent current market, customer, pricing, channel, policy, license, vendor, or repository facts. Browse when current facts matter or mark the evidence gap.
+- Do not uncritically restate the user's idea as the recommendation. If evidence weakens the user's direction, explain the weakness and adjust the recommendation.
 - Use `risk-review` consistently for risk work.
 - Use `parallel-research` only for complex research or independent review. Final judgment belongs to `using-wheelwise`.
 
@@ -211,6 +239,7 @@ Before final response, confirm:
 - User-facing products have `prototype.html` or a concrete prototype task, and the prototype is not used as a report display substitute.
 - Visible generated text is Chinese.
 - Market, customer, reuse, and commercialization evidence is separated from assumptions.
+- Original assumptions, supporting evidence, opposing evidence, direction shift level, and user confirmation status are recorded when the recommendation differs from the user's direction.
 
 Final chat response should list only:
 

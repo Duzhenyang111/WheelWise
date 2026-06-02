@@ -17,12 +17,16 @@ Translate the `feasibility-review` verdict into a focused product direction. Kee
 ## Process
 
 1. Start from the feasibility verdict. If the verdict is Validate First, make validation the center of the MVP.
-2. Define positioning in one sentence for the selected customer and problem.
-3. State differentiation and why alternatives lose.
-4. Scope the MVP around the smallest user-facing workflow that tests the riskiest assumption.
-5. Prioritize features as Must / Should / Later.
-6. Name the product wedge: the first narrow use case or segment where the product can win.
-7. Apply `../../shared/references/decision-rationale-standard.md` to product strategy decisions.
+2. Compare the user's original direction with evidence from `evidence-board.md`.
+3. Choose whether to keep, narrow, pivot, validate first, or abandon the original direction.
+4. Define positioning in one sentence for the selected customer and problem.
+5. State differentiation and why alternatives lose.
+6. Scope the MVP around the smallest user-facing workflow that tests the riskiest assumption.
+7. Prioritize features as Must / Should / Later.
+8. Name the product wedge: the first narrow use case or segment where the product can win.
+9. Apply `../../shared/references/decision-rationale-standard.md` to product strategy decisions.
+
+Do not simply refine the user's idea when evidence points elsewhere. Explain why the original direction is weak and record the shift level.
 
 ## Output Shape
 
@@ -35,11 +39,22 @@ Feature priority:
 Product wedge:
 What to validate first:
 Product assumptions:
+Original strategy assumptions:
+Supporting evidence:
+Opposing evidence:
+Why original direction may be weak:
+Direction shift:
+User confirmation needed:
 
 Decision rationale:
 Decision:
+Original assumption:
 Why chosen:
 Why alternatives lose:
+Supporting evidence:
+Opposing evidence:
+Why adjust:
+Direction shift:
 Evidence:
 Assumptions:
 Risks:

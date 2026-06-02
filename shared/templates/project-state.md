@@ -68,6 +68,16 @@ Contradictions:
 
 Assumptions:
 
+Original assumptions:
+
+Supporting evidence summary:
+
+Opposing evidence summary:
+
+Direction shift level:
+
+User confirmation status:
+
 ## Reuse And Technical State
 
 Reuse decisions summary:

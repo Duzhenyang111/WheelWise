@@ -18,17 +18,21 @@ Highest-impact evidence gap:
 
 Key contradiction:
 
+Direction shift summary:
+
+User confirmation needed:
+
 Recommended next action:
 
 ## Evidence Items
 
-| Evidence item | Source / origin skill | Evidence type | Affected decision | Strength | Confidence | Assumption vs evidence | Contradiction | Evidence gap | Recommended next action |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Evidence item | Source / origin skill | Evidence type | Affected decision | Strength | Confidence | Original assumption | Supports or opposes | Direction shift | User confirmation needed | Assumption vs evidence | Contradiction | Evidence gap | Recommended next action |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 ## Decision Coverage
 
-| Decision | Supporting evidence | Opposing evidence | Evidence gap | Confidence | Next action |
-| --- | --- | --- | --- | --- | --- |
+| Decision | Original assumption | Supporting evidence | Opposing evidence | Direction shift | User confirmation needed | Evidence gap | Confidence | Next action |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 ## Evidence Gaps
 
@@ -39,6 +43,11 @@ Recommended next action:
 
 | Contradiction | Sources or origin skills | Possible explanation | How to resolve |
 | --- | --- | --- | --- |
+
+## Direction Shifts
+
+| Original direction | Recommended direction | Why original direction is weak | Evidence | Shift level | User confirmation status |
+| --- | --- | --- | --- | --- | --- |
 
 ## Assumptions To Carry Forward
 

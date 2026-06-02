@@ -18,7 +18,9 @@ Read `../../shared/references/web-research-standard.md` before doing current-sou
 3. Search for current evidence when facts may have changed.
 4. Cover direct competitors, indirect substitutes, recent market signals, pricing or packaging clues, and distribution channels or platform ecosystem.
 5. Separate source evidence from assumptions.
-6. Explain how the findings affect feasibility, product strategy, reuse decisions, risk, and validation.
+6. Search for counter-evidence that weakens the user's original market, customer, surface, pricing, or channel assumptions.
+7. Explain how the findings affect feasibility, product strategy, reuse decisions, risk, and validation.
+8. Mark whether findings support or oppose the original direction and whether they imply a minor or major direction shift.
 
 ## Minimum Search Coverage
 
@@ -49,6 +51,12 @@ Distribution channels:
 Market maturity:
 Entry barriers:
 Opportunity window:
+Original market assumptions:
+Supporting evidence:
+Opposing evidence:
+Why original direction may be weak:
+Direction shift:
+User confirmation needed:
 
 Source evidence:
 Source:
@@ -56,6 +64,7 @@ Source type:
 Key finding:
 Evidence strength:
 Affected decision:
+Supports or opposes:
 
 Analysis assumptions:
 Unknowns:
@@ -73,4 +82,5 @@ In the final Chinese report, write the results into `市场备注`, `决策解�
 - Before research, read `project-state.md` to confirm phase, delivery surface, assumptions, and open questions.
 - After research, write each meaningful finding into `evidence-board.md` through `evidence-board`.
 - Update `project-state.md` with market evidence summary, evidence gaps, contradictions, and last updated by skill.
+- If market evidence supports a different customer, problem, delivery surface, product wedge, business model, or channel, mark the shift in `evidence-board.md` and feed it to Gate2.
 - If no current research is possible, record the gap in `evidence-board.md` instead of inventing facts.

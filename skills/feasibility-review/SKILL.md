@@ -89,6 +89,9 @@ Score Low / Medium / High:
 - Legal, privacy, or compliance burden.
 - Commercial path.
 - Execution path.
+- Original direction fit.
+- Strength of supporting and opposing evidence.
+- Direction shift severity.
 
 Full verdict rules:
 
@@ -104,6 +107,7 @@ Gate2 behavior:
 
 - `Go`: do not ask the user; automatically enter Delivery.
 - `Pivot`, `Need More Evidence`, `Kill`, or `Park`: return control to `using-wheelwise` to ask for user confirmation or next direction.
+- If target user, core problem, delivery surface, product wedge, business model, compliance boundary, or technical feasibility path changes materially, the verdict cannot be `Go` until the user confirms the new direction.
 
 Full output shape:
 
@@ -113,13 +117,23 @@ Full verdict:
 Confidence:
 Gate2 action:
 Why:
+Original direction valid:
+Why original direction is weak:
+Recommended adjustment:
+Direction shift:
+User confirmation needed:
 Evidence summary:
 Evidence gaps:
 Contradictions:
 Validation threshold:
 Decision:
+Original assumption:
 Why chosen:
 Why alternatives lose:
+Supporting evidence:
+Opposing evidence:
+Why adjust:
+Direction shift:
 Evidence:
 Assumptions:
 Risks:

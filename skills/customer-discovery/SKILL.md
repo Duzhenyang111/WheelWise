@@ -18,7 +18,9 @@ Read `../../shared/references/web-research-standard.md` before doing current-sou
 3. Search for current user evidence when pain, workflow, willingness to adopt, or objections affect the recommendation.
 4. Prefer reviews, forums, community discussions, Q&A, product comments, public case studies, job descriptions, and workflow descriptions.
 5. Separate observed evidence from interview hypotheses.
-6. Produce interview questions and validation experiments that test the riskiest assumptions.
+6. Check whether the evidence supports or weakens the user's stated target customer, pain urgency, workflow, adoption intent, and willingness to pay.
+7. Produce interview questions and validation experiments that test the riskiest assumptions.
+8. Mark whether the customer direction should be kept, narrowed, changed, or validated before continuing.
 
 ## Evidence Rules
 
@@ -41,6 +43,12 @@ Current alternatives:
 Pain intensity:
 Adoption objections:
 Willingness-to-pay or adoption signals:
+Original customer assumptions:
+Supporting evidence:
+Opposing evidence:
+Why original customer direction may be weak:
+Direction shift:
+User confirmation needed:
 
 Source evidence:
 Source:
@@ -48,6 +56,7 @@ Source type:
 Key finding:
 Evidence strength:
 Affected decision:
+Supports or opposes:
 
 Analysis assumptions:
 Unknowns:
@@ -67,4 +76,5 @@ In the final Chinese report, write the results into `目标用户`, `问题与�
 - Before discovery, read `project-state.md` for current target customer, delivery surface, assumptions, and Gate status.
 - Write user evidence, interview hypotheses, adoption objections, and validation thresholds into `evidence-board.md` through `evidence-board`.
 - Update `project-state.md` with customer evidence summary, open questions, and last updated by skill.
+- If customer evidence supports a different target user, buyer, problem, adoption path, or willingness-to-pay assumption, mark the direction shift and user confirmation need in `evidence-board.md`.
 - If the output is assumption-led, mark it clearly so Gate2 can avoid treating it as strong evidence.
