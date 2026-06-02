@@ -43,8 +43,13 @@ Recommended next action:
 
 ## Supplemental Data Requirements
 
-| Applicability class | Required data | Collection method | Minimum sample | Continue threshold | Stop threshold |
-| --- | --- | --- | --- | --- | --- |
+| Applicability class | Why this data is needed | Required data | Collection method | Minimum sample | Continue threshold | Stop threshold | Compliance items to confirm | Checklist version |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
+## User Supplemental Data Received
+
+| Received data | Source | Received date | Related checklist version | Evidence type | Threshold comparison | Time-sensitive recheck needed | Next Gate0 action |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 ## Contradictions
 

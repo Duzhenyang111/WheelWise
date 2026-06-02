@@ -22,7 +22,8 @@ Read `../../shared/references/idea-applicability-standard.md` when the idea is l
 6. Search for counter-evidence that weakens the user's original market, customer, surface, pricing, or channel assumptions.
 7. Explain how the findings affect feasibility, product strategy, reuse decisions, risk, and validation.
 8. Mark whether findings support or oppose the original direction and whether they imply a minor or major direction shift.
-9. If the market is local, offline, physical, or supply-chain-heavy, identify what cannot be answered by web research and return required first-hand data.
+9. If the market is local, offline, physical, supply-chain-heavy, platform-dependent, B2B, content/community, service-heavy, or regulated, identify what cannot be answered by web research and return idea-type-specific first-hand data needs.
+10. If Gate0 is waiting for supplemental data, use any newly supplied user data as evidence, compare it with thresholds, and mark time-sensitive market or competitor facts that need refresh.
 
 ## Minimum Search Coverage
 
@@ -56,6 +57,13 @@ Entry barriers:
 Opportunity window:
 Data sufficiency:
 Required supplemental data:
+Why supplemental data is needed:
+Collection method:
+Minimum sample:
+Continue thresholds:
+Stop thresholds:
+Supplemental data checklist version:
+Time-sensitive recheck needed:
 Original market assumptions:
 Supporting evidence:
 Opposing evidence:

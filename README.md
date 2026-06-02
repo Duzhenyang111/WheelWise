@@ -31,9 +31,9 @@ Core workflow:
 13. Plan an independent interaction prototype, simulator, playground, or workflow preview.
 14. Generate a complete Chinese report folder.
 
-## V4.3 Workflow And Output Contract
+## V4.4 Workflow And Output Contract
 
-WheelWise V4.3 keeps the Superpowers-style multi-skill pack architecture and upgrades the workflow with controller-managed state, applicability classification, evidence requirements, evidence consolidation, Gate decisions, compliance reminders, report visualization, independent prototypes, and visual assets that do not depend on AI image generation.
+WheelWise V4.4 keeps the Superpowers-style multi-skill pack architecture and upgrades the workflow with controller-managed state, Gate0 Evidence Intake, dynamic supplemental-data checklists, evidence consolidation, Gate decisions, compliance reminders, report visualization, independent prototypes, and visual assets that do not depend on AI image generation.
 
 `using-wheelwise` is the controller, router, state manager, Gate owner, self-check owner, and final-report synthesizer. It reads and updates internal state as the workflow moves across skills.
 
@@ -44,7 +44,7 @@ project-state.md
 evidence-board.md
 ```
 
-`project-state.md` tracks phase, applicability class, evidence requirement status, delivery surface, Gate status, feasibility verdict, strategy summaries, open questions, assumptions, compliance prerequisites, and last updated skill. `evidence-board.md` consolidates evidence from market research, customer discovery, reuse evaluation, technical spikes, commercialization work, supplemental data requirements, and evidence gaps.
+`project-state.md` tracks phase, applicability class, Gate0 Evidence Intake status, evidence requirement status, supplemental-data checklist version, resume instruction, delivery surface, Gate status, feasibility verdict, strategy summaries, open questions, assumptions, compliance prerequisites, and last updated skill. `evidence-board.md` consolidates evidence from market research, customer discovery, reuse evaluation, technical spikes, commercialization work, dynamic supplemental data requirements, user-provided supplemental data, and evidence gaps.
 
 The final artifact is still a Chinese report folder:
 
@@ -73,15 +73,15 @@ wheelwise-report-<idea-slug>/
 
 `report.md` is the source of truth. `index.html` is the report visualization layer generated from the same Chinese report. `prototype.html` is the independent interaction prototype or simulator. `assets/` stores generated or selected visuals.
 
-In V4.3, `report.md` must read like a real product pre-research report, with executive summary, research method and evidence levels, market attractiveness, competitors and substitutes, compliance and launch prerequisites, staged validation, frontend display/prototype, and final recommendation. Every conclusion must be backed by data, evidence, or an explicit evidence gap.
+In V4.4, `report.md` must read like a real product pre-research report, with executive summary, research method and evidence levels, market attractiveness, competitors and substitutes, compliance and launch prerequisites, staged validation, frontend display/prototype, and final recommendation. Every conclusion must be backed by data, evidence, or an explicit evidence gap.
 
-In V4.3, `index.html` must be a visual consulting-style report layer. It converts the report's judgments, evidence, workflows, risks, validation experiments, commercialization notes, compliance reminders, and execution plan into cards, matrices, timelines, flows, architecture diagrams, risk boards, validation boards, and action panels. It must not be a plain Markdown-to-HTML conversion, second report, short landing page, or prototype substitute.
+In V4.4, `index.html` must be a visual consulting-style report layer. It converts the report's judgments, evidence, workflows, risks, validation experiments, commercialization notes, compliance reminders, and execution plan into cards, matrices, timelines, flows, architecture diagrams, risk boards, validation boards, and action panels. It must not be a plain Markdown-to-HTML conversion, second report, short landing page, or prototype substitute.
 
 `prototype.html` must simulate the product surface independently with local data, clickable controls, inputs, state changes, loading/empty/error/success states, responsive behavior, and a clear backend boundary. API, CLI, automation, backend, data, and developer-tool ideas use playground, terminal, request explorer, or workflow simulator modes. Offline, physical, regulated, or supply-chain ideas may use validation dashboards, cost/margin calculators, compliance checklists, supplier validation panels, or pilot-record boards.
 
-V4.3 Gate behavior:
+V4.4 Gate behavior:
 
-- Gate0 first classifies applicability and evidence requirements. Digital products continue the normal flow; offline, physical, regulated, supply-chain, or hardware-heavy ideas with insufficient data return a supplemental data checklist with continue/stop thresholds.
+- Gate0 uses one Evidence Intake step. It returns `Ready`, `Need Basic Input`, or `Field Data Required`; dynamic supplemental-data checklists are generated from the detected idea-type combination and can resume from Gate0 when the user later provides data.
 - Gate1 uses early feasibility screening. If the idea cannot continue, it stops; if it can continue, it automatically enters Discovery.
 - Gate2 uses full feasibility review. `Go` continues automatically; `Pivot`, `Need More Evidence`, `Kill`, and `Park` ask the user for direction.
 

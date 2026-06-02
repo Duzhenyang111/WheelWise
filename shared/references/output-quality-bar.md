@@ -18,15 +18,17 @@ A WheelWise answer is acceptable only when it:
 - Makes a clear verdict.
 - Every conclusion is backed by data, source evidence, user-provided evidence, first-hand field data, prototype observation, technical spike, or an explicit evidence gap.
 - If evidence is missing, the conclusion is downgraded to an assumption, `Need More Evidence`, or `需要补充数据`.
-- Classifies idea applicability early and returns supplemental data requirements for local/offline, physical, regulated, supply-chain, hardware, platform-dependent, B2B, content/community, or service-heavy ideas when current data is insufficient.
+- Uses Gate0 Evidence Intake to classify applicability and returns `Ready`, `Need Basic Input`, or `Field Data Required`.
+- Returns dynamic supplemental data requirements for local/offline, physical, regulated, supply-chain, hardware, platform-dependent, B2B, content/community, or service-heavy ideas when current data is insufficient.
+- If Gate0 returns `Field Data Required`, records a resumable pause in `project-state.md` and records user-supplied supplemental data in `evidence-board.md` before resuming.
 - Does not uncritically restate the user's idea; user-provided direction is treated as original assumptions until evidence supports it.
 - Explains supporting evidence, opposing evidence, why the original direction is weak, direction shift level, and user confirmation status when the recommendation changes.
 - Requires Gate2 confirmation for major direction shifts; if unconfirmed, the report marks the recommendation as unconfirmed or assumption-led.
 - Names the delivery surface.
 - Includes market evidence, user evidence, commercialization assumptions, and a source-evidence summary when current facts materially affect the recommendation.
 - Uses `evidence-board` to consolidate market, customer, reuse, technical-spike, and commercialization evidence before synthesis.
-- Uses `project-state.md` to keep current phase, gate status, feasibility verdict, strategy summaries, open questions, assumptions, and last-updated skill consistent.
-- Follows V4 Gate behavior: Gate0 asks only when basic information is missing; Gate1 never asks when it can continue or stop; Gate2 asks only for Pivot, Need More Evidence, Kill, or Park.
+- Uses `project-state.md` to keep current phase, Gate0 intake status, gate status, feasibility verdict, strategy summaries, open questions, assumptions, resume instruction, and last-updated skill consistent.
+- Follows V4.4 Gate behavior: Gate0 Evidence Intake asks only when basic information is missing, returns a dynamic data checklist when first-hand evidence is missing, and does not split those into two interruptions; Gate1 never asks when it can continue or stop; Gate2 asks only for Pivot, Need More Evidence, Kill, or Park.
 - Explains the idea clearly enough for a beginner: feasibility, why it is feasible or not, main selling proposition, product shape after validation, frontend design, backend design, technical route, user acquisition, and operations.
 - Includes decision rationale for key decisions in Chinese: 决策是什么, 为什么选择它, 为什么不选替代方案, 证据, 假设, 风险, 兜底方案, 信心等级.
 - Separates evidence from assumptions.

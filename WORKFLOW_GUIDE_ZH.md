@@ -7,7 +7,7 @@
 WheelWise 的目标不是直接替用户写一个产品，而是在正式开发前完成一轮有数据支撑的产品前期调研、产品与工程决策：
 
 - 把模糊想法结构化。
-- 判断 idea 适用性分类，并在数据不足时返回补充数据清单。
+- 判断 idea 适用性分类，并通过 Gate0 Evidence Intake 在数据不足时返回按类型生成的补充数据清单。
 - 判断最适合的交付形态。
 - 判断是否值得构建最小可行产品、先验证、暂停或放弃。
 - 补充市场、用户、商业化、合规和上线前置证据。
@@ -41,13 +41,13 @@ wheelwise-report-<idea-slug>/
 flowchart TD
   A["用户调用 using-wheelwise"] --> S["读取/创建 project-state.md"]
   S --> B["Phase 0：idea-intake"]
-  B --> GE{"Gate0 适用性与证据要求检查"}
-  GE -->|线下/实体/强监管/供应链且数据不足| FDR["返回补充数据清单、继续阈值和停止阈值"]
-  FDR --> B
-  GE -->|可继续| G0{"Gate0 信息是否足够"}
-  G0 -->|不足| Q["询问基础信息或补充必要数据"]
-  Q --> B
-  G0 -->|足够| C["surface-strategy"]
+  B --> GE{"Gate0 Evidence Intake"}
+  GE -->|Ready| C["surface-strategy"]
+  GE -->|Need Basic Input| Q["询问最多 1-3 个基础路由问题"]
+  GE -->|Field Data Required| FDR["返回动态补充数据清单、继续阈值、停止阈值并暂停"]
+  Q --> GE
+  FDR --> R0["用户补回数据后从 Gate0 复核继续"]
+  R0 --> GE
   C --> D["feasibility-review: early-screening"]
   D --> G1{"Gate1 初筛"}
   G1 -->|不能继续| X["输出停止理由并结束"]
@@ -73,7 +73,7 @@ flowchart TD
   O --> P["报告文件夹：project-state.md / evidence-board.md / report.md / index.html / assets"]
 ```
 
-`using-wheelwise` 是唯一主入口。用户不需要手动调用所有内部 skill；主入口根据请求复杂度决定是否执行完整流程、短流程或调研密集流程，并负责更新 `project-state.md`、`evidence-board.md` 与 Gate 状态。V4.3 中，主入口还负责适用性分类、证据要求检查、补充数据清单、合规与上线前置项，以及“所有结论必须有数据支撑”的最终自检。
+`using-wheelwise` 是唯一主入口。用户不需要手动调用所有内部 skill；主入口根据请求复杂度决定是否执行完整流程、短流程或调研密集流程，并负责更新 `project-state.md`、`evidence-board.md` 与 Gate 状态。V4.4 中，主入口还负责 Gate0 Evidence Intake、按 idea 类型生成补充数据清单、记录可恢复暂停状态、合规与上线前置项，以及“所有结论必须有数据支撑”的最终自检。
 
 ## 3. 运行模式
 

@@ -135,7 +135,13 @@ PROJECT_STATE_REQUIRED_FIELDS = [
     "Idea summary",
     "Current phase",
     "Applicability class",
+    "Gate0 intake status",
     "Evidence requirement status",
+    "Waiting for supplemental data",
+    "Supplemental data checklist version",
+    "Resume from phase",
+    "Resume instruction",
+    "Last user supplemental data received",
     "Delivery surface",
     "Gate status",
     "Feasibility",
@@ -165,6 +171,12 @@ EVIDENCE_BOARD_REQUIRED_FIELDS = [
     "Evidence gap",
     "Recommended next action",
     "Supplemental Data Requirements",
+    "Why this data is needed",
+    "Compliance items to confirm",
+    "Checklist version",
+    "User Supplemental Data Received",
+    "Threshold comparison",
+    "Time-sensitive recheck needed",
 ]
 
 

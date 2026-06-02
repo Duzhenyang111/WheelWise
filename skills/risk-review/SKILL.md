@@ -18,6 +18,7 @@ Review risks after the delivery surface and reuse decisions are known. Use this 
 - Execution: team skill gap, timeline mismatch, operational burden.
 - Direction: strong counter-evidence, overconfident user assumptions, unconfirmed major pivot, or a recommendation that differs materially from the user's original direction.
 - Data sufficiency: conclusion lacks data, first-hand evidence, current sources, or a clear evidence gap.
+- Gate0 continuation: missing dynamic supplemental data, stale time-sensitive evidence, unclear resume state, or treating a `Field Data Required` pause as a confident verdict.
 
 ## Output Shape
 
@@ -34,6 +35,9 @@ Original assumption:
 Supporting evidence:
 Opposing evidence:
 Evidence gap:
+Gate0 Evidence Intake status:
+Waiting for supplemental data:
+Time-sensitive recheck needed:
 Direction shift:
 User confirmation needed:
 Mitigation:

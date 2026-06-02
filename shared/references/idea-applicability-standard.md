@@ -17,13 +17,45 @@ Use one or more classes:
 - B2B / enterprise product: buyer and user differ, procurement, contract, integration, security review, pilot customer.
 - Content / community / service product: content supply, creator operations, retention, moderation, monetization, customer success.
 
-## Gate0 Evidence Requirement Check
+## Gate0 Evidence Intake
 
-Run this check after `idea-intake` and before normal Discovery.
+Run this intake after `idea-intake` and before normal Discovery. It is the single Gate0 entrance for both basic routing information and external or first-hand evidence needs.
 
-If the idea is a normal digital product and the target user, problem, surface, constraints, and validation intent are clear enough, continue the existing WheelWise flow.
+Gate0 returns exactly one status:
 
-If the idea is local, offline, physical, regulated, supply-chain, or hardware-heavy and the user has not provided enough first-hand data, do not produce a high-confidence verdict. Return a focused `补充数据清单` with required data, collection method, minimum sample, continue thresholds, and stop thresholds.
+- `Ready`: the idea has enough basic routing information and enough evidence to continue.
+- `Need Basic Input`: the only blocker is missing basic routing information. Ask at most three necessary questions: target customer, validation vs MVP intent, and constraints.
+- `Field Data Required`: the idea needs first-hand field, market, compliance, supply-chain, hardware, platform, B2B, content/community, or service data before any high-confidence verdict.
+
+If basic input and first-hand data are both missing, ask the fewest basic questions required for routing and include the Phase 1 supplemental-data checklist in the same Gate0 response. Do not split this into two Gate0 interruptions.
+
+If the idea is local, offline, physical, regulated, supply-chain, hardware-heavy, platform-dependent, B2B, content/community, or service-heavy and the user has not provided enough first-hand data, do not produce a high-confidence verdict. Return a dynamic `补充数据清单` generated from the detected idea-type combination.
+
+The checklist must include:
+
+- Applicability class.
+- Why each data group is needed.
+- Required data.
+- Collection method.
+- Minimum sample.
+- Continue threshold.
+- Stop threshold.
+- Compliance items to confirm.
+
+Never return a generic checklist when the idea has a specific type. Composite ideas combine checklist modules. For example, "sell one-yuan turkey noodles beside a Nanchang middle school" combines local/offline business, physical food sales, minors context, and geography-heavy constraints.
+
+## Resumable Gate0 Pause
+
+When Gate0 returns `Field Data Required`, write the pause into `project-state.md`:
+
+- Gate0 intake status: `Field Data Required`.
+- Waiting for supplemental data: yes.
+- Supplemental data checklist version.
+- Resume from phase: `Gate0 Evidence Intake`.
+- Resume instruction: the user can reply later with collected data and WheelWise must rerun Gate0 before continuing.
+- Last user supplemental data received.
+
+When the user later provides data, record it in `evidence-board.md` as user-provided or first-hand field data, compare it against the continue and stop thresholds, then rerun Gate0 Evidence Intake. If a long time has passed, keep first-hand user data but refresh or mark stale market, competitor, regulation, and platform-rule evidence as needing re-check.
 
 ## Required Data By Class
 

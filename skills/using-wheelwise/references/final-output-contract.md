@@ -78,7 +78,8 @@ Markdown、网页、图片内文字、图表标签、图片替代文本、表格
 - `evidence-board.md` 是内部证据中枢，记录 evidence item、source/origin skill、evidence type、affected decision、strength、confidence、original assumption、supports or opposes、direction shift、user confirmation needed、assumption vs evidence、contradiction、evidence gap 和 recommended next action。
 - 两者都不是最终报告章节名。
 - 最终报告必须吸收 evidence-board 的内容，把证据写入 `市场备注`、`用户假设`、`决策解释摘要`、`关键风险` 和 `验证实验`。
-- V4.3 所有结论都必须有数据、证据或明确证据缺口支撑；无证据结论必须降级为假设、需要补充数据或 Need More Evidence。
+- V4.4 所有结论都必须有数据、证据或明确证据缺口支撑；无证据结论必须降级为假设、需要补充数据或 Need More Evidence。
+- Gate0 必须使用统一的 `Gate0 Evidence Intake`。如果暂停在 `Field Data Required`，最终报告必须说明动态补充数据清单、继续/停止阈值、恢复方式，以及用户补充数据后先复核 Gate0。
 - Gate 状态必须与 `project-state.md` 中的 feasibility verdict 一致。
 - 如果最终建议不同于用户原始方向，报告必须详细说明原始假设、支持证据、反驳证据、为什么原方向不成立或不建议继续、推荐调整方向、偏移程度和用户确认状态。
 - 重大偏移必须有 Gate2 用户确认记录；如果未确认，只能标记为假设驱动或待确认方向，不能当作已批准的交付计划。
@@ -155,7 +156,7 @@ Markdown、网页、图片内文字、图表标签、图片替代文本、表格
 
 - `project-state.md` 关键字段完整。
 - `evidence-board.md` 有证据或明确证据缺口。
-- Gate0、Gate1、Gate2 状态与当前阶段一致。
+- Gate0、Gate1、Gate2 状态与当前阶段一致；如 Gate0 等待补充数据，`project-state.md` 必须包含恢复字段。
 - 关键决策都有解释。
 - `visual-brief` 有图片、图片生成说明或兜底图。
 - `ui-demo` 或模拟器方案存在。

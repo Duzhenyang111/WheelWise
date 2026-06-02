@@ -22,7 +22,8 @@ Read `../../shared/references/idea-applicability-standard.md` when first-hand us
 6. Check whether the evidence supports or weakens the user's stated target customer, pain urgency, workflow, adoption intent, and willingness to pay.
 7. Produce interview questions and validation experiments that test the riskiest assumptions.
 8. Mark whether the customer direction should be kept, narrowed, changed, or validated before continuing.
-9. If the target user, buyer, or purchase behavior depends on local observation, enterprise pilots, field sales, or service delivery, return required first-hand data and thresholds.
+9. If the target user, buyer, or purchase behavior depends on local observation, enterprise pilots, field sales, platform behavior, content/community operations, or service delivery, return idea-type-specific first-hand data and thresholds.
+10. If Gate0 is waiting for supplemental data, use newly supplied user data as first-hand evidence, compare it with thresholds, and mark whether more customer discovery is still required.
 
 ## Evidence Rules
 
@@ -48,6 +49,12 @@ Adoption objections:
 Willingness-to-pay or adoption signals:
 Data sufficiency:
 Required supplemental data:
+Why supplemental data is needed:
+Collection method:
+Minimum sample:
+Continue thresholds:
+Stop thresholds:
+Supplemental data checklist version:
 Original customer assumptions:
 Supporting evidence:
 Opposing evidence:

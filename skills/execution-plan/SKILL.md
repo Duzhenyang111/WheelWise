@@ -18,6 +18,7 @@ Create a plan Codex can execute without rediscovering product decisions.
 - Technical plan.
 - Key risks and mitigations.
 - Evidence coverage, evidence gaps, and required supplemental data.
+- Gate0 Evidence Intake status, supplemental-data checklist version, resume instruction, and whether the workflow is waiting for user supplemental data.
 - Compliance and launch prerequisites when relevant.
 - Visual brief.
 - UI demo or simulator spec when applicable.
@@ -49,7 +50,7 @@ If an input is missing, state the assumption or route back through `using-wheelw
 - Explicit task to generate or update `prototype.html` as the independent product prototype or simulator.
 - Report contract checks: folder structure, Chinese visible text, required visual assets or fallback, complete prototype details, webpage visualization record, UI quality baseline, and final action advice.
 - Validation experiments when the verdict is Validate First.
-- Supplemental-data tasks when Gate0 returns `Field Data Required`.
+- Supplemental-data tasks when Gate0 Evidence Intake returns `Field Data Required`, including collection method, minimum sample, continue/stop thresholds, compliance items to confirm, and resume-from-Gate0 instruction.
 - Compliance reminder tasks for the final report when China mainland launch, App, website, platform, AI, payments, personal information, minors, or regulated industries are involved.
 - Decision rationale for execution order using `../../shared/references/decision-rationale-standard.md`.
 

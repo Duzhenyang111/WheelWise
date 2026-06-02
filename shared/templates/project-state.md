@@ -32,6 +32,18 @@ Evidence requirement status:
 
 Required supplemental data:
 
+Gate0 intake status:
+
+Waiting for supplemental data:
+
+Supplemental data checklist version:
+
+Resume from phase:
+
+Resume instruction:
+
+Last user supplemental data received:
+
 Gate status:
 
 Gate rationale:

@@ -25,7 +25,8 @@ These internal artifacts guide the workflow but do not replace `report.md`.
 7. Run final self-check before returning artifact paths.
 8. Return only artifact paths after final report generation.
 9. Treat user-provided direction as original assumptions and challenge them with supporting and opposing evidence.
-10. In V4.3, enforce that every conclusion is backed by evidence, first-hand data, or an explicit evidence gap.
+10. In V4.4, enforce that every conclusion is backed by evidence, first-hand data, or an explicit evidence gap.
+11. Run Gate0 Evidence Intake as one unified entrance for basic routing questions, dynamic supplemental-data checklists, and resumable pauses.
 
 ## Internal State Files
 
@@ -71,16 +72,25 @@ Direction shift levels:
 
 If a major shift is recommended but not confirmed by the user, do not enter Delivery except for an explicitly assumption-led artifact that marks the shift as unconfirmed.
 
-## V4.3 Applicability and Evidence Gate
+## V4.4 Gate0 Evidence Intake
 
 Read `../../shared/references/idea-applicability-standard.md` during Phase 0.
 
 WheelWise's core scope is digital products, software products, internet services, automation tools, developer tools, and ideas that can be shown through a web display or prototype. For local, offline, physical, regulated, supply-chain, hardware, platform-dependent, B2B, content, community, or service-heavy ideas, WheelWise must classify the idea before normal Discovery.
 
-Gate0 includes an `Evidence Requirement Check`:
+Gate0 uses a single `Gate0 Evidence Intake` instead of separate evidence-check and information-sufficiency steps. It must classify what is missing and return exactly one of these statuses:
+
+- `Ready`: basic routing information and required evidence are enough to continue.
+- `Need Basic Input`: only basic routing information is missing; ask no more than three necessary Gate0 questions.
+- `Field Data Required`: first-hand market, field, compliance, supply-chain, hardware, platform, B2B, content/community, or service data is missing; return an idea-type-specific supplemental-data checklist with collection method, minimum sample, continue thresholds, and stop thresholds.
+
+If both basic input and first-hand data are missing, ask the fewest basic questions needed to route the idea and include the Phase 1 supplemental-data checklist in the same Gate0 response. Do not create a second Gate0 interruption.
+
+For local, offline, physical, regulated, supply-chain, hardware, platform-dependent, B2B, content/community, or service-heavy ideas, the checklist must be generated from the detected idea-type combination. A composite idea such as "selling one-yuan turkey noodles beside a Nanchang middle school" should be treated as local/offline + physical/food + minors context + geography-heavy, not as a generic small business.
+
+If Gate0 returns `Field Data Required`, write a resumable pause into `project-state.md`: `Gate0 intake status`, `Waiting for supplemental data`, `Supplemental data checklist version`, `Resume from phase`, `Resume instruction`, and `Last user supplemental data received`. When the user later provides data, merge it into `evidence-board.md`, rerun Gate0 Evidence Intake, and only then decide whether to continue, stop, or request more data. If a long time has passed, keep first-hand user data but lightly re-check or mark time-sensitive market, competitor, regulation, and platform-rule evidence as needing refresh.
 
 - If a digital product has enough target user, problem, surface, constraints, and validation intent, continue the normal workflow.
-- If a local, offline, physical, regulated, supply-chain, or hardware-heavy idea lacks necessary first-hand data, return a `补充数据清单` with collection method, sample size, continue thresholds, and stop thresholds.
 - If the idea can continue only as a limited assessment, record that limit in `project-state.md` and the final report.
 - Do not turn WheelWise into a generic business, legal, supply-chain, or industry consultant; use this gate to prevent unsupported conclusions.
 
@@ -93,8 +103,7 @@ using-wheelwise
 -> read/update project-state.md
 -> Phase 0 Intake
    -> idea-intake
-   -> Gate0 Evidence Requirement Check
-   -> Gate0 information sufficiency
+   -> Gate0 Evidence Intake
    -> surface-strategy
    -> feasibility-review: early-screening
 -> Gate1 early screen
@@ -126,11 +135,11 @@ using-wheelwise
 
 ## Gate Rules
 
-### Gate0: Information Sufficiency
+### Gate0: Evidence Intake
 
-Ask the user only when basic information is insufficient to route the idea.
+Ask the user only when basic information is insufficient to route the idea. Return supplemental-data requirements only when first-hand data is necessary for a high-confidence assessment.
 
-Before asking ordinary Gate0 questions, classify the idea and run the Evidence Requirement Check from `idea-applicability-standard.md`.
+Before asking ordinary Gate0 questions, classify the idea and run Gate0 Evidence Intake from `idea-applicability-standard.md`.
 
 Allowed Gate0 questions:
 
@@ -138,7 +147,9 @@ Allowed Gate0 questions:
 2. 你想先验证，还是直接做最小可行产品？
 3. 时间、预算或技术栈限制是什么？
 
-For local, offline, physical, regulated, supply-chain, or hardware-heavy ideas, return a `补充数据清单` instead of only asking the three generic questions. Include required data, how to collect it, minimum sample, continue threshold, and stop threshold.
+For local, offline, physical, regulated, supply-chain, hardware, platform-dependent, B2B, content/community, or service-heavy ideas, return a dynamic `补充数据清单` instead of only asking the three generic questions. Include applicability class, why the data is needed, required data, how to collect it, minimum sample, continue threshold, stop threshold, and compliance items to confirm.
+
+When Gate0 pauses at `Field Data Required`, record the resumable state in `project-state.md` and tell the user they can reply with the data later to resume from Gate0 review.
 
 If reasonable assumptions can keep the workflow moving, record assumptions in `project-state.md` and continue.
 
@@ -148,7 +159,8 @@ Gate1 uses `feasibility-review: early-screening`.
 
 - If the idea cannot continue or is not recommended now, output the stop reason and end.
 - If the idea can continue, do not ask the user; automatically enter Discovery.
-- If the only blocker is Gate0 information, ask the allowed Gate0 questions.
+- If the only blocker is Gate0 information, use `Need Basic Input` and ask the allowed Gate0 questions.
+- If first-hand data is required, use `Field Data Required`, return the dynamic checklist, and pause at Gate0.
 
 ### Gate2: Full Review
 

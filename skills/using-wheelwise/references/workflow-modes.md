@@ -27,7 +27,7 @@ Use for complete product ideas or when the user asks for a full WheelWise report
 
 ```text
 Phase 0 Intake:
-idea-intake -> Gate0 -> surface-strategy -> feasibility-review: early-screening
+idea-intake -> Gate0 Evidence Intake -> surface-strategy -> feasibility-review: early-screening
 
 Gate1:
 stop if impossible/not recommended; otherwise continue automatically
@@ -63,11 +63,15 @@ Required:
 
 ### Gate0
 
-Ask only if information is insufficient. Allowed questions:
+Gate0 is a single Evidence Intake step. It returns `Ready`, `Need Basic Input`, or `Field Data Required`.
+
+Ask only if basic routing information is insufficient. Allowed questions:
 
 - 面向谁？
 - 你想先验证，还是直接做最小可行产品？
 - 时间、预算或技术栈限制是什么？
+
+When first-hand data is required, return a dynamic checklist based on the detected idea-type combination and pause with a resumable `Field Data Required` state in `project-state.md`.
 
 ### Gate1
 
