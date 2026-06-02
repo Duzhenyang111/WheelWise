@@ -15,7 +15,7 @@ All routes return to `using-wheelwise` for state updates, Gate control, and synt
 | "Is this worth pursuing?" | `idea-intake` -> Gate0 -> `surface-strategy` -> `feasibility-review: early-screening`; full review if evidence exists |
 | "Define MVP or product strategy" | Ensure Gate1 passed -> Discovery as needed -> `product-strategy` |
 | "Pick stack or architecture" | `reuse-evaluator` -> `evidence-board` -> `technical-planning` -> `risk-review` |
-| "Make this presentable" | Ensure Gate2 is Go or assumption-led -> `visual-brief` -> `ui-demo` -> `index.html` / prototype |
+| "Make this presentable" | Ensure Gate2 is Go or assumption-led -> `visual-brief` -> `ui-demo` -> `report-visualization` |
 | "Create a clickable demo" | `product-strategy` -> `technical-planning` -> `ui-demo` |
 | "Create API/CLI/automation demo" | `technical-planning` -> `ui-demo` simulator mode |
 | "Turn this into Codex tasks" | Ensure state and evidence exist -> `execution-plan` |

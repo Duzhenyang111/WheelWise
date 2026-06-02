@@ -1005,7 +1005,7 @@ wheelwise-report-<idea-slug>/
 - `final-output-contract.md` 定义文件夹结构、命名、必需文件、图片规则和校验规则。
 - `new-product-brief.md` 和 `final-wheelwise-report.md` 使用 `report.md` 作为源报告，并增加输出文件夹字段。
 - `visual-brief` 把图片资产保存到 `assets/`，并要求图片内文字中文，或使用无文字图片。
-- `ui-demo` 指定 `index.html` 为网页展示文件，并要求所有可见界面文案中文。
+- `report-visualization` 指定 `index.html` 为报告可视化解释层，`ui-demo` 指定独立的 `prototype.html`；两者都要求可见界面文案中文。
 - `execution-plan` 包含创建报告文件夹、写入 `report.md`、生成 `index.html`、保存资产和运行契约检查的任务。
 
 ### 16.3 校验
@@ -1053,8 +1053,8 @@ using-wheelwise
 -> Phase 1 Discovery：market-research + customer-discovery + reuse-evaluator + 可选 technical spike -> evidence-board
 -> Phase 2 Synthesis：product-strategy -> commercialization -> risk-review -> feasibility-review: full-review
 -> Gate2
--> Phase 3 Delivery：technical-planning -> visual-brief -> ui-demo 或 simulator -> execution-plan
--> final-report：report.md + index.html + assets/
+-> Phase 3 Delivery：technical-planning -> visual-brief -> ui-demo 或 simulator -> report-visualization -> execution-plan
+-> final-report：report.md + index.html + prototype.html + assets/
 ```
 
 ### 17.3 Gate 规则
@@ -1115,3 +1115,28 @@ wheelwise-report-<idea-slug>/
 - 自动化/工作流工具：触发器、动作、运行历史、重试、错误和成功路径。
 
 V4 完整报告还应包含一张高信息密度视觉资产，例如产品决策海报或实施地图。单薄的装饰图不足以支撑完整 WheelWise 报告。
+
+## 附录 B. V4.1 视觉交付架构
+
+V4.1 保持 V4 的产品判断流程不变，重点重新定义最终交付物职责：
+
+```text
+report.md       = 源报告和事实来源
+index.html      = 完整报告的可视化解释层
+prototype.html  = 独立产品原型或模拟器
+assets/         = SVG、图片、图表、Mermaid 兜底图和静态视觉资源
+```
+
+Phase 3 Delivery 调整为：
+
+```text
+technical-planning -> visual-brief -> ui-demo 或 simulator -> report-visualization -> execution-plan
+```
+
+`report-visualization` 是新的一级内部 skill。它读取 `report.md`、`project-state.md`、`evidence-board.md`、视觉资产和原型路径，负责创建或规划 `index.html`。该页面必须把报告实质内容转成视觉结构，例如结论横幅、用户卡片、前后流程、市场矩阵、假设卡、范围看板、模块决策图、架构图、商业化漏斗、风险矩阵、验证看板、执行时间线和行动卡。它不能是 Markdown 转网页、第二份报告、短摘要页或原型替代品。
+
+`ui-demo` 现在只负责 `prototype.html` 或等效模拟器。它必须用本地数据、交互控件、状态变化、加载 / 空状态 / 错误 / 成功状态、响应式布局和后端边界说明来模拟目标产品载体。
+
+`visual-brief` 不得依赖 AI 生图。中文密集的信息图应优先使用 SVG 或 HTML/CSS。AI 生图只适合无文字或少文字概念场景。Mermaid 是最后兜底，不是默认方案。
+
+V4 校验器应拒绝缺少 `prototype.html`、缺少导航或视觉模块的薄弱 `index.html`、没有交互和状态变化的原型、失效的本地资产引用、缺少非装饰性资产，以及用户可见英文展示文案。

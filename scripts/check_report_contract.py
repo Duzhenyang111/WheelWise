@@ -74,6 +74,63 @@ BANNED_VISIBLE_TERMS = [
 
 IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg"}
 
+INDEX_VISUAL_KEYWORDS = [
+    "核心结论",
+    "目标用户",
+    "问题",
+    "市场",
+    "用户假设",
+    "范围",
+    "自研",
+    "技术",
+    "商业化",
+    "风险",
+    "验证",
+    "执行计划",
+    "行动",
+]
+
+INDEX_MODULE_KEYWORDS = [
+    "横幅",
+    "卡片",
+    "矩阵",
+    "时间线",
+    "流程",
+    "架构",
+    "路线",
+    "看板",
+    "漏斗",
+    "决策图",
+    "风险图",
+    "原型入口",
+]
+
+VISUAL_STRUCTURE_PATTERNS = [
+    r"\bnav\b",
+    r"\bgrid\b",
+    r"\bcard\b",
+    r"\bmatrix\b",
+    r"\btimeline\b",
+    r"\bboard\b",
+    r"\bflow\b",
+    r"\bdiagram\b",
+    r"\bchart\b",
+    r"\brisk\b",
+    r"\bpersona\b",
+    r"<table\b",
+    r"<svg\b",
+]
+
+PROTOTYPE_INTERACTIVE_PATTERNS = [
+    r"<button\b",
+    r"<input\b",
+    r"<select\b",
+    r"<textarea\b",
+    r"<a\b",
+]
+
+PROTOTYPE_STATE_KEYWORDS = ["加载", "空状态", "暂无", "错误", "失败", "成功", "完成"]
+
 PROJECT_STATE_REQUIRED_FIELDS = [
     "Idea summary",
     "Current phase",
@@ -195,6 +252,83 @@ def validate_image_file(path: Path) -> list[str]:
         dimensions = png_dimensions(path)
         if not dimensions or dimensions[0] <= 0 or dimensions[1] <= 0:
             problems.append(f"PNG 图片尺寸无效：{path}")
+    if path.suffix.lower() == ".svg":
+        text = path.read_text(encoding="utf-8", errors="ignore")
+        if "<svg" not in text or "</svg>" not in text:
+            problems.append(f"SVG 图片内容无效：{path}")
+    return problems
+
+
+def count_present_keywords(text: str, keywords: list[str]) -> int:
+    return sum(1 for keyword in keywords if keyword in text)
+
+
+def validate_index_html_quality(path: Path) -> list[str]:
+    raw = path.read_text(encoding="utf-8")
+    visible = html_visible_text(path)
+    problems: list[str] = []
+
+    if "<nav" not in raw.lower() and not re.search(r"href=[\"']#[^\"']+[\"']", raw, re.I):
+        problems.append("index.html 缺少导航或锚点目录")
+    if "prototype.html" not in raw:
+        problems.append("index.html 缺少 prototype.html 原型入口")
+    if not re.search(r"<header\b|\bhero\b", raw, re.I):
+        problems.append("index.html 缺少封面或核心结论区域")
+    if "核心结论" not in visible and "结论" not in visible:
+        problems.append("index.html 缺少可见核心结论")
+    if "@media" not in raw:
+        problems.append("index.html 缺少响应式布局规则")
+    if "<img" not in raw.lower() and "<svg" not in raw.lower():
+        problems.append("index.html 缺少图片、SVG 或可视化资产")
+
+    coverage_count = count_present_keywords(visible, INDEX_VISUAL_KEYWORDS)
+    if coverage_count < 9:
+        problems.append(
+            f"index.html 覆盖报告主要内容不足：命中 {coverage_count}/"
+            f"{len(INDEX_VISUAL_KEYWORDS)} 个关键主题"
+        )
+
+    module_count = count_present_keywords(visible, INDEX_MODULE_KEYWORDS)
+    structure_count = sum(
+        1 for pattern in VISUAL_STRUCTURE_PATTERNS if re.search(pattern, raw, re.I)
+    )
+    if module_count < 4 and structure_count < 6:
+        problems.append("index.html 缺少足够的视觉模块结构，疑似普通摘要页")
+
+    heading_count = len(re.findall(r"<h[1-3]\b", raw, re.I))
+    paragraph_count = len(re.findall(r"<p\b|<li\b", raw, re.I))
+    if heading_count >= 8 and structure_count < 4 and paragraph_count > heading_count * 2:
+        problems.append("index.html 疑似简单 Markdown 转网页，缺少矩阵、时间线、看板或图表结构")
+
+    return problems
+
+
+def validate_prototype_html(path: Path) -> list[str]:
+    raw = path.read_text(encoding="utf-8")
+    visible = html_visible_text(path)
+    problems: list[str] = []
+
+    interactive_count = sum(
+        1 for pattern in PROTOTYPE_INTERACTIVE_PATTERNS if re.search(pattern, raw, re.I)
+    )
+    if interactive_count < 3:
+        problems.append("prototype.html 交互元素不足，至少需要按钮、输入、选择、链接等多类控件")
+    if not re.search(r"<script\b|addEventListener|onclick=", raw, re.I):
+        problems.append("prototype.html 缺少脚本或事件处理，无法体现状态变化")
+    if "模拟数据" not in visible and not re.search(r"\b(const|let|var)\s+\w+\s*=", raw):
+        problems.append("prototype.html 缺少模拟数据说明或本地数据结构")
+    missing_states = [
+        keyword for keyword in ["加载", "错误", "成功"] if keyword not in visible
+    ]
+    if missing_states:
+        problems.append("prototype.html 缺少关键状态：" + "、".join(missing_states))
+    if "空状态" not in visible and "暂无" not in visible:
+        problems.append("prototype.html 缺少空状态")
+    if "未接入真实后端" not in visible and "模拟边界" not in visible:
+        problems.append("prototype.html 缺少未接入真实后端范围说明")
+    if "@media" not in raw:
+        problems.append("prototype.html 缺少响应式布局规则")
+
     return problems
 
 
@@ -256,9 +390,11 @@ def validate_report(
             problems.append(f"交互演示缺少：{keyword}")
 
     html = section_body(text, "网页展示文件")
-    for keyword in ["index.html", "展示层", "源报告"]:
+    for keyword in ["index.html", "源报告"]:
         if keyword not in html:
             problems.append(f"网页展示文件缺少：{keyword}")
+    if "展示层" not in html and "可视化" not in html:
+        problems.append("网页展示文件缺少：展示层或可视化定位")
     if check_local_assets and "已生成" in html:
         html_refs = re.findall(r"`([^`]+\.html(?:#[^`]+)?)`|(?<![\w.-])([./\w-]+\.html)(?:#[\w-]+)?", html)
         flattened_refs = [left or right for left, right in html_refs]
@@ -325,12 +461,15 @@ def validate_folder(
 
     report_path = folder / "report.md"
     html_path = folder / "index.html"
+    prototype_path = folder / "prototype.html"
     assets_dir = folder / "assets"
 
     if not report_path.exists():
         problems.append("报告目录缺少 report.md")
     if not html_path.exists():
         problems.append("报告目录缺少 index.html")
+    if v4 and not prototype_path.exists():
+        problems.append("V4 报告目录缺少 prototype.html")
     if not assets_dir.exists() or not assets_dir.is_dir():
         problems.append("报告目录缺少 assets/ 目录")
 
@@ -360,6 +499,8 @@ def validate_folder(
         html_terms = find_banned_visible_terms(visible)
         if html_terms:
             problems.append("HTML 可见文字包含禁止英文展示词：" + "、".join(html_terms))
+        if v4:
+            problems.extend(validate_index_html_quality(html_path))
         for image_ref in local_image_refs_from_html(html_path):
             clean_ref = image_ref.split("#", 1)[0]
             image_path = (html_path.parent / clean_ref).resolve()
@@ -367,6 +508,13 @@ def validate_folder(
                 problems.append(f"HTML 图片引用不存在：{image_ref}")
             elif not normalize_local_ref(clean_ref).startswith("assets/"):
                 problems.append(f"HTML 图片引用必须指向 assets/：{image_ref}")
+
+    if v4 and prototype_path.exists():
+        visible = html_visible_text(prototype_path)
+        html_terms = find_banned_visible_terms(visible)
+        if html_terms:
+            problems.append("prototype.html 可见文字包含禁止英文展示词：" + "、".join(html_terms))
+        problems.extend(validate_prototype_html(prototype_path))
 
     if v4:
         problems.extend(validate_internal_v4_files(folder))

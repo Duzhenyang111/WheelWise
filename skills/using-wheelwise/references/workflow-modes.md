@@ -42,10 +42,10 @@ Gate2:
 Go continues automatically; Pivot / Need More Evidence / Kill / Park asks user
 
 Phase 3 Delivery:
-technical-planning -> visual-brief -> ui-demo or simulator -> execution-plan
+technical-planning -> visual-brief -> ui-demo or simulator -> report-visualization -> execution-plan
 
 Final report:
-report.md -> index.html -> assets/
+report.md -> index.html -> prototype.html -> assets/
 ```
 
 ## Research-Heavy Workflow
@@ -93,7 +93,8 @@ Steps:
 2. Run `technical-planning`.
 3. Run `visual-brief` for dense explanatory assets.
 4. Run `ui-demo` for traditional UI surfaces or simulator mode for API/CLI/automation.
-5. Ensure `execution-plan` includes `report.md`, `index.html`, prototype, and asset tasks.
+5. Run `report-visualization` for the report visualization layer.
+6. Ensure `execution-plan` includes `report.md`, `index.html`, `prototype.html`, and asset tasks.
 
 ## Final Report Workflow
 
@@ -106,7 +107,8 @@ Steps:
 3. Use `new-product-brief.md` unless the user explicitly wants a shorter report.
 4. Create the report folder: `wheelwise-report/` or `wheelwise-report-<idea-slug>/`.
 5. Write `report.md` in progressive Chinese sections.
-6. Generate `index.html` as a designed display layer sourced from `report.md`.
-7. Include image assets under `assets/`, or Mermaid as the Chinese-labeled backup.
-8. Include interaction demo or simulator details.
-9. Run final self-check before responding with artifact paths.
+6. Generate `index.html` as the report visualization layer sourced from `report.md`.
+7. Generate or specify `prototype.html` as the independent product prototype or simulator.
+8. Include visual assets under `assets/`, or Mermaid as the Chinese-labeled last fallback.
+9. Include interaction prototype or simulator details.
+10. Run final self-check before responding with artifact paths.

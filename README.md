@@ -1,6 +1,6 @@
 # WheelWise
 
-WheelWise is a Superpowers-style multi-skill pack for Codex. It turns a raw product idea into a structured product decision, delivery-surface recommendation, reuse strategy, technical direction, visual plan, interaction-demo plan, and an execution plan that Codex can act on.
+WheelWise is a Superpowers-style multi-skill pack for Codex. It turns a raw product idea into a structured product decision, delivery-surface recommendation, reuse strategy, technical direction, visual asset plan, report visualization layer, independent interaction prototype, and an execution plan that Codex can act on.
 
 The primary entry point is always `using-wheelwise`. Users should call that skill once; it routes the workflow through the internal skills and owns the final synthesis.
 
@@ -26,13 +26,14 @@ Core workflow:
 8. Produce a technical implementation path.
 9. Plan business model, pricing, packaging, channels, and early monetization tests.
 10. Review product, market, technical, privacy, license, dependency, and execution risks.
-11. Create visual explanation assets or a Chinese Mermaid backup.
-12. Plan an interaction demo, simulator, playground, or workflow preview when useful.
-13. Generate a complete Chinese report folder.
+11. Create visual explanation assets without depending on AI image generation.
+12. Generate a report visualization layer for `index.html`.
+13. Plan an independent interaction prototype, simulator, playground, or workflow preview.
+14. Generate a complete Chinese report folder.
 
-## V4.0 Workflow And Output Contract
+## V4.1 Workflow And Output Contract
 
-WheelWise V4.0 keeps the Superpowers-style multi-skill pack architecture and upgrades the workflow with controller-managed state, evidence consolidation, and Gate decisions.
+WheelWise V4.1 keeps the Superpowers-style multi-skill pack architecture and upgrades the workflow with controller-managed state, evidence consolidation, Gate decisions, report visualization, independent prototypes, and visual assets that do not depend on AI image generation.
 
 `using-wheelwise` is the controller, router, state manager, Gate owner, self-check owner, and final-report synthesizer. It reads and updates internal state as the workflow moves across skills.
 
@@ -70,9 +71,11 @@ wheelwise-report-<idea-slug>/
   assets/
 ```
 
-`report.md` is the source of truth. `index.html` is a static display layer generated from the same Chinese report. `assets/` stores generated or selected visuals.
+`report.md` is the source of truth. `index.html` is the report visualization layer generated from the same Chinese report. `prototype.html` is the independent interaction prototype or simulator. `assets/` stores generated or selected visuals.
 
-In V4.0, `index.html` must be a designed presentation page with imagery, charts, layout, visual hierarchy, and motion. It must not be a plain Markdown-to-HTML conversion. For products with a user-facing surface, add a separate prototype page such as `prototype.html` to simulate the actual website, web application, mobile app, desktop app, browser extension, API playground, CLI terminal, or workflow tool.
+In V4.1, `index.html` must be a visual consulting-style report layer. It converts the report's judgments, evidence, workflows, risks, validation experiments, commercialization notes, and execution plan into cards, matrices, timelines, flows, architecture diagrams, risk boards, validation boards, and action panels. It must not be a plain Markdown-to-HTML conversion, second report, short landing page, or prototype substitute.
+
+`prototype.html` must simulate the product surface independently with local data, clickable controls, inputs, state changes, loading/empty/error/success states, responsive behavior, and a clear backend boundary. API, CLI, automation, backend, data, and developer-tool ideas use playground, terminal, request explorer, or workflow simulator modes.
 
 V4 Gate behavior:
 
@@ -120,13 +123,14 @@ skills/
   risk-review/
   visual-brief/
   ui-demo/
+  report-visualization/
   execution-plan/
   parallel-research/
 shared/
   references/
   templates/
 examples/
-  ai-payment-chaser/
+  community-tool-share/
     project-state.md
     evidence-board.md
     report.md
@@ -154,8 +158,9 @@ scripts/
 | `technical-planning` | Converts decisions into stack, architecture, data, integration, and deployment guidance |
 | `commercialization` | Plans business model, pricing, packaging, channels, sales motion, and early monetization tests |
 | `risk-review` | Reviews market, product, technical, legal, privacy, license, dependency, and execution risks |
-| `visual-brief` | Plans or creates visual assets under `assets/` |
-| `ui-demo` | Plans a clickable demo, simulator, playground, terminal preview, or workflow preview |
+| `visual-brief` | Plans or creates explanatory SVG, HTML/CSS, image, or fallback visual assets under `assets/` |
+| `ui-demo` | Plans an independent clickable prototype, simulator, playground, terminal preview, or workflow preview |
+| `report-visualization` | Turns `report.md` into `index.html` as a complete visual explanation layer |
 | `execution-plan` | Produces milestones, tasks, tests, acceptance criteria, and report-generation tasks |
 | `parallel-research` | Optional research or independent review support for complex cases |
 
@@ -181,18 +186,18 @@ Use $using-wheelwise to evaluate which modules should be self-built, purchased, 
 Expected final chat response should be short and artifact-oriented:
 
 ```text
-Report folder: wheelwise-report-ai-payment-chaser/
-Source report: wheelwise-report-ai-payment-chaser/report.md
-Web display: wheelwise-report-ai-payment-chaser/index.html
-Interactive prototype: wheelwise-report-ai-payment-chaser/prototype.html
+Report folder: wheelwise-report-community-tool-share/
+Source report: wheelwise-report-community-tool-share/report.md
+Web display: wheelwise-report-community-tool-share/index.html
+Interactive prototype: wheelwise-report-community-tool-share/prototype.html
 ```
 
 ## Example
 
-See the included V4-compatible example:
+See the included V4.1-compatible canonical example:
 
 ```text
-examples/ai-payment-chaser/
+examples/community-tool-share/
   project-state.md
   evidence-board.md
   report.md
@@ -202,14 +207,14 @@ examples/ai-payment-chaser/
     concept.svg
 ```
 
-The example demonstrates the V4 folder output contract, internal state, evidence board, Chinese Markdown report, designed HTML display, interactive product prototype, and dense visual asset placement.
+The example demonstrates the V4.1 folder output contract, internal state, evidence board, Chinese Markdown report, visualized `index.html`, independent `prototype.html`, and SVG visual assets that do not depend on AI image generation.
 
 ## Validation
 
 Validate the example report folder:
 
 ```powershell
-python scripts\check_report_contract.py examples\ai-payment-chaser --folder --skip-filename --v4
+python scripts\check_report_contract.py examples\community-tool-share --folder --skip-filename --v4
 ```
 
 Validate the full report templates:
@@ -249,7 +254,7 @@ WheelWise may reference external skill ecosystems such as UI UX Pro Max, pm-skil
 
 Current plugin version: `4.0.0`.
 
-V4.0 focuses on:
+V4.1 focuses on:
 
 - `using-wheelwise` as controller, router, state manager, Gate controller, self-check owner, and final-report synthesizer.
 - `project-state.md` as internal workflow state.
@@ -257,4 +262,4 @@ V4.0 focuses on:
 - Gate0, Gate1, and Gate2 flow discipline.
 - Automatic continuation for normal `Go` paths.
 - Evidence-based Discovery before Synthesis.
-- Final Chinese report folder with `report.md`, `index.html`, `assets/`, and optional prototype.
+- Final Chinese report folder with `report.md`, visualized `index.html`, independent `prototype.html`, and `assets/`.

@@ -3,7 +3,7 @@
 A WheelWise answer is acceptable only when it:
 
 - Produces a Chinese report folder: `wheelwise-report/` by default or `wheelwise-report-<idea-slug>/` when the idea name is available.
-- Includes `report.md`, `index.html`, `assets/`, and at least one image asset.
+- Includes `report.md`, `index.html`, `prototype.html`, `assets/`, and at least one visual asset.
 - For V4 full workflows, includes internal `project-state.md` and `evidence-board.md`, or explicitly records why they are not generated in the current run.
 - Treats `project-state.md` and `evidence-board.md` as internal artifacts, not final report replacements.
 - Does not substitute a chat summary for the report folder.
@@ -28,15 +28,18 @@ A WheelWise answer is acceptable only when it:
 - Connects `feasibility-review` to `product-strategy`.
 - Gives module-level 自研 / 购买 / 复用 / 分叉改造 / 参考 decisions.
 - Connects `reuse-evaluator` decisions to `technical-planning` without contradictions.
-- Includes image-level visual explanation via `visual-brief` for full reports, written into the `视觉说明` section with image references under `assets/`, or Mermaid 兜底图表 when image generation is unavailable.
-- Uses a dense, explanatory primary visual for full reports; the image should communicate value proposition, user, workflow, technical route, commercialization, validation, and next actions rather than acting as decoration.
-- Includes an interactive demo plan or API/CLI/workflow simulator spec when applicable, expressed in Chinese visible text.
+- Includes visual explanation via `visual-brief` for full reports, written into the `视觉说明` section with asset references under `assets/`, or Mermaid 兜底图表 only as the last fallback.
+- Uses SVG or HTML/CSS for Chinese text-heavy information visuals such as decision maps, roadmaps, architecture diagrams, module maps, risk matrices, and validation boards.
+- Uses AI image generation only for no-text or low-text concept scenes; it must not be the only visual asset for a full report.
+- Includes an interactive prototype, API playground, CLI simulator, or workflow simulator, expressed in Chinese visible text.
 - Includes 演示路径, run command when needed, core interactions, simulated data notes, and backend simulation boundary in the `交互演示` section.
-- Includes a `网页展示文件` section. If `index.html` is generated, it is listed as a display layer sourced from `report.md`; if not, the report records whether it is recommended or skipped.
-- If `index.html` is generated for a full report, it displays the complete `report.md` content, not only an abridged landing-page summary.
-- `index.html` reinterprets the report as a designed HTML presentation with images, charts, hierarchy, and motion; it is not a plain Markdown-to-HTML conversion.
-- User-facing products include a separate interactive prototype page, such as `demo.html`, that simulates the actual product surface and core interactions with local data.
+- Includes a `网页展示文件` section. If `index.html` is generated, it is listed as the report visualization layer sourced from `report.md`; if not, the report records the concrete creation task.
+- If `index.html` is generated for a full report, it covers the complete report through visual modules: verdict banner, persona cards, before/after workflow, market matrix, assumption cards, scope board, module decision graph, architecture/data flow, commercialization funnel, risk matrix, validation board, execution timeline, and action cards as appropriate.
+- `index.html` is not a plain Markdown-to-HTML conversion, second report, short landing page, or prototype substitute.
+- `index.html` includes navigation, a core-conclusion area, a prototype entry, responsive layout, local asset references under `assets/`, and Chinese visible text.
+- User-facing products include a separate interactive prototype page, such as `prototype.html`, that simulates the actual product surface and core interactions with local data.
+- `prototype.html` includes clickable controls, inputs or selectors, local simulated data, state changes, loading/empty/error/success states, responsive behavior, and a clear backend boundary.
 - Calls out license, privacy, security, dependency, market, and execution risks where relevant.
-- Produces a plan Codex can act on, including visual-brief, demo, report folder creation/update tasks, source report tasks, webpage display tasks, and asset generation tasks.
+- Produces a plan Codex can act on, including visual-brief, report-visualization, ui-demo, report folder creation/update tasks, source report tasks, `index.html` visualization tasks, `prototype.html` tasks, and asset generation tasks.
 - Keeps `using-wheelwise` responsible for final synthesis.
 - Final self-check confirms project-state completeness, evidence-board coverage or gaps, Gate consistency, decision rationale, visuals, interaction demo/simulator, report folder contract, and Chinese visible text.

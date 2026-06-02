@@ -24,6 +24,7 @@ Create a plan Codex can execute without rediscovering product decisions.
 - Internal evidence board path: `evidence-board.md`.
 - Source report path: `report.md`.
 - Webpage display path: `index.html`.
+- Interactive prototype path: `prototype.html`.
 - Asset directory path: `assets/`.
 
 If an input is missing, state the assumption or route back through `using-wheelwise`.
@@ -42,8 +43,9 @@ If an input is missing, state the assumption or route back through `using-wheelw
 - Explicit task to create or update `project-state.md`.
 - Explicit task to create or update `evidence-board.md`.
 - Explicit task to generate or update `report.md`.
-- Explicit task to generate or update `index.html`.
-- Report contract checks: folder structure, Chinese visible text, required visual or Mermaid backup, complete demo details, webpage display record, and final action advice.
+- Explicit task to generate or update `index.html` as the report visualization layer.
+- Explicit task to generate or update `prototype.html` as the independent product prototype or simulator.
+- Report contract checks: folder structure, Chinese visible text, required visual assets or fallback, complete prototype details, webpage visualization record, UI quality baseline, and final action advice.
 - Validation experiments when the verdict is Validate First.
 - Decision rationale for execution order using `../../shared/references/decision-rationale-standard.md`.
 
@@ -61,6 +63,7 @@ Acceptance criteria:
 Visual-brief task:
 UI demo or simulator task:
 Webpage display task:
+Interactive prototype task:
 Source report task:
 Report self-check:
 Decision rationale:
@@ -68,4 +71,6 @@ Decision rationale:
 
 The source report task must say where `report.md` will be written and must require visible output text to be Chinese. It must also require `报告说明与阅读导览`, `视觉说明`, `交互演示`, `网页展示文件`, and `最终建议与下一步行动`.
 
-The webpage display task must say that `index.html` is a display layer sourced from `report.md`, not a replacement source of truth. If no webpage file is created in the current run, include a concrete task for creating it later.
+The webpage display task must say that `index.html` is a report visualization layer sourced from `report.md`, not a replacement source of truth or a plain Markdown conversion. It must require visual modules that cover the report's conclusion, user/problem, decision path, market/alternatives, scope, reuse decisions, technical path, commercialization, risks, validation experiments, execution plan, and final action advice. If no webpage file is created in the current run, include a concrete task for creating it later.
+
+The interactive prototype task must say that `prototype.html` is separate from `index.html` and must simulate the delivery surface with local data, user inputs, clickable interactions, loading/empty/error/success states, responsive behavior, and a clear backend boundary. If no prototype is created in the current run, include a concrete task for creating it later.

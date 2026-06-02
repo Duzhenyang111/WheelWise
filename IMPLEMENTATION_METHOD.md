@@ -1005,7 +1005,7 @@ If image generation cannot reliably render Chinese text, prefer text-free images
 - `final-output-contract.md` defines the folder structure, naming, required files, image rules, and validation rules.
 - `new-product-brief.md` and `final-wheelwise-report.md` use `report.md` as the source report and include an output-folder field.
 - `visual-brief` saves image assets under `assets/` and requires Chinese image text or text-free images.
-- `ui-demo` specifies `index.html` as the webpage display file and requires all visible interface copy to be Chinese.
+- `report-visualization` specifies `index.html` as the report visualization layer, while `ui-demo` specifies the independent `prototype.html`; both require Chinese visible copy.
 - `execution-plan` includes tasks for creating the report folder, writing `report.md`, generating `index.html`, saving assets, and running contract checks.
 
 ### 16.3 Validation
@@ -1053,8 +1053,8 @@ using-wheelwise
 -> Phase 1 Discovery: market-research + customer-discovery + reuse-evaluator + optional technical spike -> evidence-board
 -> Phase 2 Synthesis: product-strategy -> commercialization -> risk-review -> feasibility-review: full-review
 -> Gate2
--> Phase 3 Delivery: technical-planning -> visual-brief -> ui-demo or simulator -> execution-plan
--> final-report: report.md + index.html + assets/
+-> Phase 3 Delivery: technical-planning -> visual-brief -> ui-demo or simulator -> report-visualization -> execution-plan
+-> final-report: report.md + index.html + prototype.html + assets/
 ```
 
 ### 17.3 Gate Rules
@@ -1115,3 +1115,28 @@ wheelwise-report-<idea-slug>/
 - Automation/workflow tool: trigger/action builder, run history, retry, error, and success paths.
 
 V4 full reports should also include a high-information-density visual asset, such as a product decision poster or implementation map. Thin decorative imagery is not enough for a full WheelWise report.
+
+## Appendix B. V4.1 Visual Delivery Architecture
+
+V4.1 keeps the V4 judgment workflow and changes the final delivery architecture:
+
+```text
+report.md       = source report and fact source
+index.html      = visual explanation layer for the full report
+prototype.html  = independent product prototype or simulator
+assets/         = SVG, image, diagram, Mermaid fallback, and static visual resources
+```
+
+Phase 3 Delivery is now:
+
+```text
+technical-planning -> visual-brief -> ui-demo or simulator -> report-visualization -> execution-plan
+```
+
+`report-visualization` is a first-class internal skill. It reads `report.md`, `project-state.md`, `evidence-board.md`, visual assets, and the prototype path, then creates or specifies `index.html`. The page must translate report substance into visual structures such as verdict banners, persona cards, before/after workflows, market matrices, assumption cards, in/out boards, module decision graphs, architecture diagrams, commercialization funnels, risk matrices, validation boards, execution timelines, and action cards. It must not be a Markdown conversion, second report, short landing page, or prototype substitute.
+
+`ui-demo` now owns only `prototype.html` or the equivalent simulator. It must simulate the target product surface with local data, interaction controls, state changes, loading/empty/error/success states, responsive behavior, and backend-boundary notes.
+
+`visual-brief` must not depend on AI image generation. Text-heavy Chinese information visuals should prefer SVG or HTML/CSS. AI-generated images are only appropriate for no-text or low-text concept scenes. Mermaid is the last fallback, not the default.
+
+The V4 validator should reject missing `prototype.html`, weak `index.html` pages that lack navigation or visual modules, prototypes without interaction/state behavior, broken local asset references, missing non-decorative assets, and user-visible English display copy.

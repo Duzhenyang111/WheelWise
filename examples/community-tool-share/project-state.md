@@ -92,13 +92,19 @@ Mitigation summary: 首轮限制工具类型、使用押金说明、管理员审
 
 Visual/demo status: Done
 
-Visual assets planned: 产品概念图、借用流程、验证条件说明。
+Visual assets planned: 产品概念图、先验证决策图、借用流程、验证条件说明。
 
-Visual assets created: assets/concept.svg
+Visual assets created: assets/concept.svg, assets/decision-map.svg
 
 Interaction demo type: 网页应用原型
 
 Interaction demo path: prototype.html
+
+Report visualization path: index.html
+
+Report visualization status: Done; covers verdict, personas, workflow, market matrix, scope board, sourcing decisions, architecture, commercialization, risk, validation, timeline, and prototype entry.
+
+Prototype states: loading, empty, error, success, pending review, returned, issue flagged.
 
 ## Final Report State
 

@@ -3,70 +3,177 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>邻里工具共享管家报告展示</title>
+  <title>邻里工具共享管家可视化报告</title>
   <style>
-    body{margin:0;font-family:Arial,"Microsoft YaHei",sans-serif;color:#17324d;background:#f5f7f2}
-    header{padding:56px 8vw;background:#17324d;color:white}
-    main{max-width:1100px;margin:auto;padding:34px 22px}
-    section{margin:28px 0;padding:28px;background:white;border:1px solid #d8e0e8;border-radius:18px}
-    h1{font-size:44px;margin:0 0 12px}
-    h2{font-size:28px;margin:0 0 16px}
-    p,li{font-size:18px;line-height:1.8}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
-    .card{padding:18px;border-radius:14px;background:#f0f6f0;border:1px solid #c9dbc9}
-    img{width:100%;border-radius:16px;border:1px solid #d8e0e8;background:white}
-    .tag{display:inline-block;padding:6px 12px;border-radius:999px;background:#dff0e6;color:#22543d;margin-right:8px}
-    a{color:#2c6fb7;font-weight:700}
+    :root{--ink:#17324d;--muted:#5b6f80;--line:#d8e1e7;--paper:#fbfcf7;--panel:#fff;--green:#2f7d57;--blue:#316fb0;--amber:#c8822f;--red:#b65454}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,"Microsoft YaHei",sans-serif;background:var(--paper);color:var(--ink)}
+    a{color:var(--blue);font-weight:700;text-decoration:none}
+    header{padding:44px 7vw 34px;background:#18334a;color:#fff}
+    nav{position:sticky;top:0;z-index:5;background:#ffffffe8;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:10px 7vw;display:flex;gap:14px;overflow:auto}
+    nav a{white-space:nowrap;color:#24465f;font-size:14px}
+    main{max-width:1240px;margin:auto;padding:26px 20px 60px}
+    section{margin:22px 0;padding:26px;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+    h1{font-size:42px;line-height:1.15;margin:10px 0}
+    h2{font-size:25px;margin:0 0 18px}
+    h3{font-size:18px;margin:0 0 8px}
+    p,li{font-size:16px;line-height:1.75;color:#304b63}
+    .hero-grid,.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+    .banner{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch}
+    .verdict{padding:20px;border-radius:8px;background:#e8f3ec;border:1px solid #b9d4c4}
+    .tag{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#e8f3ec;color:#1d5d3f;font-size:13px;font-weight:700}
+    .card{padding:16px;border:1px solid var(--line);border-radius:8px;background:#f7faf7}
+    .matrix,.scope,.timeline,.risk,.kanban,.flow,.architecture{display:grid;gap:12px}
+    .matrix{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .scope{grid-template-columns:1fr 1fr}
+    .timeline{grid-template-columns:repeat(3,1fr)}
+    .risk{grid-template-columns:repeat(2,1fr)}
+    .kanban{grid-template-columns:repeat(3,1fr)}
+    .flow{grid-template-columns:repeat(5,1fr);align-items:center}
+    .architecture{grid-template-columns:repeat(4,1fr)}
+    .step,.cell{padding:14px;border:1px solid var(--line);border-radius:8px;background:white;min-height:112px}
+    .step strong,.cell strong{display:block;color:var(--ink);margin-bottom:6px}
+    .metric{font-size:30px;font-weight:800;color:var(--green)}
+    .asset{width:100%;border:1px solid var(--line);border-radius:8px;background:#fff}
+    .prototype-callout{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:18px;border:1px solid #b9d4c4;border-radius:8px;background:#eef7f0}
+    .btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--green);color:white}
+    .red{border-left:5px solid var(--red)}.amber{border-left:5px solid var(--amber)}.green{border-left:5px solid var(--green)}.blue{border-left:5px solid var(--blue)}
+    footer{padding:28px 7vw;background:#18334a;color:white}
+    footer p{color:#dce7ef}
+    @media(max-width:860px){.banner,.scope,.timeline,.risk,.kanban,.matrix,.flow,.architecture{grid-template-columns:1fr}.prototype-callout{display:block}h1{font-size:32px}}
   </style>
 </head>
 <body>
-  <header>
-    <p class="tag">WheelWise V4 示例</p>
+  <header id="top">
+    <span class="tag">WheelWise V4.1 示例</span>
     <h1>邻里工具共享管家</h1>
-    <p>一个社区工具借用网页应用：登记闲置工具、预约借用、归还提醒，并帮助管理员降低纠纷。</p>
+    <p>这不是第二份报告，而是把源报告中的判断、证据、流程、风险和执行计划转成可浏览的视觉解释层。</p>
   </header>
+  <nav aria-label="报告导航">
+    <a href="#verdict">核心结论</a>
+    <a href="#people">目标用户</a>
+    <a href="#workflow">问题流程</a>
+    <a href="#market">市场矩阵</a>
+    <a href="#scope">范围看板</a>
+    <a href="#decisions">决策图</a>
+    <a href="#tech">技术架构</a>
+    <a href="#risk">风险验证</a>
+    <a href="#plan">执行计划</a>
+    <a href="prototype.html">原型入口</a>
+  </nav>
   <main>
-    <section>
-      <h2>核心结论</h2>
-      <p>建议先验证。这个想法技术上可以轻量实现，但真正风险在工具主是否愿意上架、居民是否愿意预约、押金规则是否被接受，以及管理员是否能持续维护。</p>
+    <section id="verdict" class="banner">
+      <div class="verdict">
+        <h2>核心结论横幅</h2>
+        <p class="metric">建议先验证</p>
+        <p>技术实现并不难，最大不确定性来自社区真实参与、押金规则、损坏责任和管理员持续维护成本。因此先用一个社区、20 件工具和三周试点验证，再决定是否进入正式开发。</p>
+      </div>
       <div class="grid">
-        <div class="card"><strong>交付形态</strong><p>网页应用，二维码访问，兼顾居民端和管理员端。</p></div>
-        <div class="card"><strong>验证范围</strong><p>一个社区、20 件工具、三周试点。</p></div>
-        <div class="card"><strong>继续条件</strong><p>10 次预约、8 次顺利归还、管理员每周低于 2 小时。</p></div>
+        <div class="card green"><strong>交付形态</strong><p>二维码访问的网页应用，居民端和管理员端共用一套轻量工作台。</p></div>
+        <div class="card amber"><strong>继续条件</strong><p>20 件工具上架、10 次预约、8 次顺利归还、管理员每周低于 2 小时。</p></div>
       </div>
     </section>
-    <section>
-      <h2>视觉说明</h2>
-      <img src="assets/concept.svg" alt="社区工具共享平台概念图">
-    </section>
-    <section>
-      <h2>证据与缺口</h2>
-      <ul>
-        <li>当前证据主要来自场景推理和产品假设，已经写入内部证据中枢。</li>
-        <li>最大缺口是工具主上架意愿、押金接受度和损坏责任边界。</li>
-        <li>三周社区试点是进入真实开发前的关键动作。</li>
-      </ul>
-    </section>
-    <section>
-      <h2>最小可行产品范围</h2>
+
+    <section id="people">
+      <h2>目标用户卡片</h2>
       <div class="grid">
-        <div class="card"><strong>工具登记</strong><p>名称、图片、说明、可借时间和注意事项。</p></div>
-        <div class="card"><strong>预约申请</strong><p>居民提交借用时间和用途，管理员确认。</p></div>
-        <div class="card"><strong>归还提醒</strong><p>到期提醒、状态记录和异常标记。</p></div>
+        <div class="card blue"><h3>社区管理员</h3><p>负责试点规则、审核预约、处理异常。他关心的是纠纷少、流程清楚、工作量可控。</p></div>
+        <div class="card green"><h3>工具拥有者</h3><p>愿意共享电钻、梯子、小推车等低频工具，但担心损坏、押金和归还延迟。</p></div>
+        <div class="card amber"><h3>借用居民</h3><p>临时需要工具，不想购买和存放，希望预约简单、责任边界明确。</p></div>
       </div>
     </section>
-    <section>
-      <h2>交互原型</h2>
-      <p>原型文件：<a href="prototype.html">prototype.html</a>。它展示工具列表、预约表单、管理员审核和归还状态。</p>
+
+    <section id="workflow">
+      <h2>问题与场景流程</h2>
+      <div class="flow">
+        <div class="step"><strong>现在</strong><p>居民临时需要工具，只能购买、询问邻居或放弃。</p></div>
+        <div class="step"><strong>上架</strong><p>工具主登记工具、押金建议和可借时间。</p></div>
+        <div class="step"><strong>预约</strong><p>居民提交用途和借用时间，管理员确认。</p></div>
+        <div class="step"><strong>归还</strong><p>系统提醒归还，管理员记录状态。</p></div>
+        <div class="step"><strong>复盘</strong><p>统计预约、纠纷、逾期和管理员耗时。</p></div>
+      </div>
     </section>
+
+    <section id="market">
+      <h2>市场与替代方案矩阵</h2>
+      <div class="matrix">
+        <div class="cell"><strong>直接购买</strong><p>方便但浪费，低频工具长期闲置。</p></div>
+        <div class="cell"><strong>邻里口头借用</strong><p>信任成本低，但没有记录、提醒和责任边界。</p></div>
+        <div class="cell"><strong>租赁平台</strong><p>规则较完整，但对单个社区的轻量工具不够贴近。</p></div>
+        <div class="cell"><strong>社区工具共享</strong><p>场景更近，但要先验证参与意愿和运营成本。</p></div>
+      </div>
+    </section>
+
+    <section id="scope">
+      <h2>最小可行产品范围看板</h2>
+      <div class="scope">
+        <div class="card green"><h3>范围内</h3><p>工具登记、预约申请、管理员确认、归还提醒、异常标记、试点数据复盘。</p></div>
+        <div class="card red"><h3>范围外</h3><p>真实支付、信用评分、跨社区市场、复杂权限、自动赔付、移动应用。</p></div>
+      </div>
+    </section>
+
+    <section id="decisions">
+      <h2>自研 / 购买 / 复用 / 分叉改造 / 参考决策图</h2>
+      <img class="asset" src="assets/decision-map.svg" alt="邻里工具共享管家决策图">
+      <div class="grid">
+        <div class="card"><strong>自研</strong><p>工具目录、预约流程、管理员工作台和试点复盘。</p></div>
+        <div class="card"><strong>复用</strong><p>通知、表单校验、静态部署和基础样式组件。</p></div>
+        <div class="card"><strong>参考</strong><p>租赁平台的押金、损坏责任和逾期规则，但先不接入复杂支付。</p></div>
+      </div>
+    </section>
+
+    <section id="tech">
+      <h2>技术架构与数据流程</h2>
+      <div class="architecture">
+        <div class="step"><strong>居民端</strong><p>浏览工具、提交预约、查看状态。</p></div>
+        <div class="step"><strong>管理员端</strong><p>审核预约、标记归还、记录异常。</p></div>
+        <div class="step"><strong>数据层</strong><p>工具、用户、预约、归还、异常记录。</p></div>
+        <div class="step"><strong>通知层</strong><p>先用人工或轻量通知复用，验证后再接入自动提醒。</p></div>
+      </div>
+    </section>
+
     <section>
-      <h2>下一步行动</h2>
-      <ol>
-        <li>7 天内找到一个社区管理员，招募首批工具。</li>
-        <li>14 天内开放二维码入口，收集预约数据。</li>
-        <li>30 天内复盘归还、纠纷和管理员耗时。</li>
-      </ol>
+      <h2>商业化漏斗</h2>
+      <div class="flow">
+        <div class="step"><strong>获客</strong><p>社区管理员邀请首批工具主。</p></div>
+        <div class="step"><strong>激活</strong><p>居民通过二维码完成第一次预约。</p></div>
+        <div class="step"><strong>留存</strong><p>归还顺畅后增加更多工具。</p></div>
+        <div class="step"><strong>变现</strong><p>先验证管理费或社区服务费。</p></div>
+        <div class="step"><strong>扩展</strong><p>仅在试点数据达标后复制到第二个社区。</p></div>
+      </div>
+    </section>
+
+    <section id="risk">
+      <h2>风险图与验证看板</h2>
+      <div class="risk">
+        <div class="card red"><h3>高风险</h3><p>押金争议、损坏责任、工具主不愿上架。</p></div>
+        <div class="card amber"><h3>中风险</h3><p>管理员耗时过高、预约频率不足、逾期归还。</p></div>
+      </div>
+      <div class="kanban">
+        <div class="cell"><strong>第 1 周验证</strong><p>招募管理员和 10 位工具主，收集上架阻力。</p></div>
+        <div class="cell"><strong>第 2 周验证</strong><p>开放二维码预约，观察预约提交和确认效率。</p></div>
+        <div class="cell"><strong>第 3 周验证</strong><p>复盘归还、纠纷、逾期和管理员耗时。</p></div>
+      </div>
+    </section>
+
+    <section id="plan">
+      <h2>执行计划时间线与行动卡</h2>
+      <div class="timeline">
+        <div class="step"><strong>7 天行动</strong><p>确定试点社区、管理员、工具清单和责任说明。</p></div>
+        <div class="step"><strong>14 天行动</strong><p>上线轻量原型，完成首批预约和归还提醒。</p></div>
+        <div class="step"><strong>30 天行动</strong><p>根据预约、归还、纠纷和耗时数据决定继续或停止。</p></div>
+      </div>
+      <div class="prototype-callout">
+        <div>
+          <h3>原型入口</h3>
+          <p>交互原型独立存在，用来试用工具浏览、预约提交、管理员审核和状态切换，不承担报告说明职责。</p>
+        </div>
+        <a class="btn" href="prototype.html">打开交互原型</a>
+      </div>
     </section>
   </main>
+  <footer>
+    <p>源报告：report.md。网页展示文件：index.html。交互原型：prototype.html。资源目录：assets/。</p>
+  </footer>
 </body>
 </html>

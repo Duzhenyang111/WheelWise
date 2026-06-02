@@ -78,11 +78,11 @@ using-wheelwise
 -> Phase 3 Delivery
    -> technical-planning
    -> visual-brief
-   -> presentation surface decision
    -> ui-demo or simulator mode
+   -> report-visualization
    -> execution-plan
 -> final-report
-   -> report.md + index.html + assets/
+   -> report.md + index.html + prototype.html + assets/
 ```
 
 ## Gate Rules
@@ -161,8 +161,8 @@ Run:
 
 1. `technical-planning`
 2. `visual-brief`
-3. Presentation surface decision
-4. `ui-demo` for UI products or simulator mode for API, CLI, automation, and developer tools
+3. `ui-demo` for UI products or simulator mode for API, CLI, automation, and developer tools
+4. `report-visualization` for `index.html`
 5. `execution-plan`
 
 If the product has no traditional UI, do not skip demonstration. Use API playground, CLI simulator, workflow simulator, request explorer, terminal simulator, or automation run simulator.
@@ -174,10 +174,13 @@ Generate the Chinese report folder:
 ```text
 report.md
 index.html
+prototype.html
 assets/
 ```
 
 For user-facing products, also create or specify an interactive prototype such as `prototype.html`.
+
+`report.md` is the source of truth. `index.html` is the report visualization layer: it must convert the report's decisions, evidence, workflows, risks, validation, commercialization, and execution plan into visual modules. `prototype.html` is the separate product-surface simulation owned by `ui-demo`.
 
 `project-state.md` and `evidence-board.md` may live in the folder as internal artifacts, but they are not final report substitutes.
 
@@ -202,9 +205,10 @@ Before final response, confirm:
 - Key decisions include rationale: decision, why chosen, why alternatives lose, evidence, assumptions, risks, fallback, confidence.
 - `visual-brief` produced an image, image prompt, or Mermaid 兜底图表.
 - `ui-demo` or simulator output exists for the delivery surface.
+- `report-visualization` produced or specified `index.html` as a complete visual explanation layer.
 - `report.md`, `index.html`, and `assets/` satisfy the final-output contract.
-- `index.html` is a designed display of the complete report, not a short summary or plain Markdown conversion.
-- User-facing products have a prototype page or a concrete prototype task.
+- `index.html` covers the complete report through visual modules, not a short summary or plain Markdown conversion.
+- User-facing products have `prototype.html` or a concrete prototype task, and the prototype is not used as a report display substitute.
 - Visible generated text is Chinese.
 - Market, customer, reuse, and commercialization evidence is separated from assumptions.
 

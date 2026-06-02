@@ -1,14 +1,14 @@
 # 最终输出契约
 
-WheelWise 的最终产物是一个中文报告文件夹，而不是单个 Markdown 文件。文件夹内必须包含源报告、网页展示文件和图片资源。V4 还可以包含内部状态文件 `project-state.md` 和 `evidence-board.md`，但它们不能替代最终报告。
+WheelWise 的最终产物是一个中文报告文件夹，而不是单个 Markdown 文件。文件夹内必须包含源报告、报告可视化网页、独立交互原型和视觉资源。V4 还可以包含内部状态文件 `project-state.md` 和 `evidence-board.md`，但它们不能替代最终报告。
 
 ## 文件夹契约
 
 - 默认目录：`wheelwise-report/`。
 - 如果用户提供 idea 名称，使用：`wheelwise-report-<idea-slug>/`。
 - 源报告文件：`report.md`。
-- 网页展示文件：`index.html`。
-- 交互原型文件：`prototype.html` 或等效文件；用户可见产品需要生成或明确规划。
+- 报告可视化网页：`index.html`。
+- 交互原型文件：`prototype.html` 或等效文件；所有产品都需要生成或明确规划对应交互模拟。
 - 图片与静态资源目录：`assets/`。
 - 内部状态文件：`project-state.md`。
 - 内部证据文件：`evidence-board.md`。
@@ -126,18 +126,25 @@ Markdown、网页、图片内文字、图表标签、图片替代文本、表格
 ## 视觉与网页规则
 
 - `视觉说明` 必须写入图片资产、图片生成方式或图表兜底方案。
-- 有生图能力时，优先把图片保存到 `assets/` 并在源报告中引用，例如 `![产品概念图](./assets/concept.png)`。
+- 视觉资产不依赖 AI 生图。中文密集的信息图、路线图、架构图、模块图、风险图和决策图优先使用 SVG 或 HTML/CSS 静态图。
+- AI 生图只适合无文字或少文字的概念图、氛围图和场景图。
 - 图片 prompt 必须要求图片内所有文字为中文。如果无法稳定生成正确中文，优先生成无文字图片，并把中文说明放在 `report.md` 和 `index.html`。
-- 无法生成图片时，使用 Mermaid 图表兜底；图表节点文字必须中文。
+- Mermaid 只能作为最后兜底；图表节点文字必须中文。
+- 不得把单张装饰性概念图作为唯一视觉资产。至少一个视觉资产必须解释决策、流程、架构、路线、风险或验证。
 - `交互演示` 必须写入演示路径、运行方式、核心交互、模拟数据说明、加载 / 空状态 / 错误 / 成功状态，以及未接入真实后端的范围。
-- `网页展示文件` 必须写入 `index.html`、展示层定位、源报告关系和包含模块。
-- `index.html` 是展示层，内容必须来自同一份 `report.md`，不能成为第二套事实来源。
+- `网页展示文件` 必须写入 `index.html`、报告可视化层定位、源报告关系、包含模块和原型入口。
+- `index.html` 是报告可视化解释层，内容必须来自同一份 `report.md`，不能成为第二套事实来源。
+- `index.html` 必须把报告中的核心判断、证据、用户、问题、方案、范围、复用决策、技术路径、商业化、风险、验证实验、执行计划和最终建议转成视觉结构。
+- `index.html` 不能是普通 Markdown 转网页、短摘要页、第二份报告或产品原型。
+- `index.html` 应包含导航、封面或核心结论、多个可视化模块、至少一个 `assets/` 本地视觉资产、`prototype.html` 入口和响应式布局。
+- `prototype.html` 是独立交互原型或模拟器，用来模拟真实产品体验。它不能承担报告展示职责。
+- `prototype.html` 必须包含模拟数据、可点击交互、输入或选择、局部状态变化、加载 / 空状态 / 错误 / 成功状态、响应式布局和未接入真实后端范围。
 - 没有传统 UI 的产品不能跳过展示；必须通过 API playground、CLI simulator、workflow simulator、request explorer 或 terminal simulator 说明交互。
 
 ## 集成规则
 
 - 关键决策解释必须使用 `../../shared/references/decision-rationale-standard.md` 中的中文字段。
-- 可交给 Codex 执行的计划必须包含创建报告文件夹、写入 `project-state.md`、写入 `evidence-board.md`、写入 `report.md`、生成 `index.html`、保存图片到 `assets/`、运行产物检查的任务。
+- 可交给 Codex 执行的计划必须包含创建报告文件夹、写入 `project-state.md`、写入 `evidence-board.md`、写入 `report.md`、生成 `index.html`、生成 `prototype.html`、保存视觉资产到 `assets/`、运行产物检查的任务。
 - 使用 `../../shared/templates/new-product-brief.md` 生成完整中文报告；短报告才使用 `../../shared/templates/final-wheelwise-report.md`。
 
 ## V4 最终自检
@@ -150,5 +157,7 @@ Markdown、网页、图片内文字、图表标签、图片替代文本、表格
 - 关键决策都有解释。
 - `visual-brief` 有图片、图片生成说明或兜底图。
 - `ui-demo` 或模拟器方案存在。
+- `report-visualization` 或等效步骤已确认 `index.html` 覆盖报告主要内容并不是 Markdown 转网页。
 - `report.md`、`index.html`、`assets/` 满足契约。
+- `prototype.html` 已生成或有明确任务，且与 `index.html` 职责分离。
 - 可见文字中文化。
