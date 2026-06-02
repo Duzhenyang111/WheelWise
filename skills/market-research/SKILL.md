@@ -67,3 +67,10 @@ Confidence:
 ```
 
 In the final Chinese report, write the results into `市场备注`, `决策解释摘要`, `关键风险`, and `验证实验` as needed. Do not use `Market Research` as a report section heading.
+
+## V4 State Integration
+
+- Before research, read `project-state.md` to confirm phase, delivery surface, assumptions, and open questions.
+- After research, write each meaningful finding into `evidence-board.md` through `evidence-board`.
+- Update `project-state.md` with market evidence summary, evidence gaps, contradictions, and last updated by skill.
+- If no current research is possible, record the gap in `evidence-board.md` instead of inventing facts.

@@ -61,3 +61,10 @@ Confidence:
 ```
 
 In the final Chinese report, write the results into `目标用户`, `问题与紧迫性`, `用户假设`, `验证实验`, and `最终建议与下一步行动` as needed. Do not use `Customer Discovery` as a report section heading.
+
+## V4 State Integration
+
+- Before discovery, read `project-state.md` for current target customer, delivery surface, assumptions, and Gate status.
+- Write user evidence, interview hypotheses, adoption objections, and validation thresholds into `evidence-board.md` through `evidence-board`.
+- Update `project-state.md` with customer evidence summary, open questions, and last updated by skill.
+- If the output is assumption-led, mark it clearly so Gate2 can avoid treating it as strong evidence.

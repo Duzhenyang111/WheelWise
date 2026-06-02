@@ -45,3 +45,10 @@ Confidence:
 
 Read `../../shared/references/build-buy-reuse-vocabulary.md` for shared terminology.
 Read `../../shared/references/decision-rationale-standard.md` for decision rationale requirements.
+
+## V4 State Integration
+
+- Read `project-state.md` before module decomposition to preserve the selected delivery surface and current assumptions.
+- Write vendor, API, open-source, license, maturity, cost, and lock-in findings into `evidence-board.md` through `evidence-board`.
+- Update `project-state.md` with reuse decisions summary and last updated by skill.
+- If a module needs a technical spike before a safe decision, mark the spike as an evidence gap and recommended next action.

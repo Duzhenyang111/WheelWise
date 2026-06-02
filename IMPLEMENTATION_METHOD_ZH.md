@@ -1024,9 +1024,73 @@ python scripts/check_report_contract.py examples/ai-resume-optimizer --folder --
 
 校验器必须拒绝缺少 `report.md`、缺少 `index.html`、缺少 `assets/`、缺少图片资产、Markdown 图片引用失效、HTML 图片引用失效，以及 Markdown 或网页可见文字中出现常见英文展示词的情况。
 
-## 17. V3.0 升级：设计化 HTML 展示与独立交互原型
+## 17. V4 升级：总控状态、证据中枢与 Gate 流程
 
-V3.0 保留报告文件夹契约，并增加两个更强的展示要求：
+V4 不推翻 Superpowers 风格多 skill pack 架构，而是优化 skill 流转：`using-wheelwise` 升级为总控、路由、状态管理、Gate 控制、自检和最终报告汇总者。
+
+### 17.1 内部状态
+
+V4 新增两个内部产物：
+
+```text
+project-state.md
+evidence-board.md
+```
+
+`project-state.md` 记录 idea summary、current phase、delivery surface、gate status、feasibility verdict、product strategy summary、reuse decisions summary、technical plan summary、commercialization summary、risk summary、visual/demo status、final report status、open questions、assumptions 和 last updated by skill。
+
+`evidence-board.md` 汇总 `market-research`、`customer-discovery`、`reuse-evaluator`、可选 technical spike 和商业化工作产生的证据。字段包括 evidence item、source/origin skill、evidence type、affected decision、strength、confidence、assumption vs evidence、contradiction、evidence gap 和 recommended next action。
+
+这两个文件是内部流程产物，不替代 `report.md`，也不能作为最终报告章节标题。
+
+### 17.2 V4 流程
+
+```text
+using-wheelwise
+-> 读取/更新 project-state.md
+-> Phase 0 Intake：idea-intake -> Gate0 -> surface-strategy -> feasibility-review: early-screening
+-> Gate1
+-> Phase 1 Discovery：market-research + customer-discovery + reuse-evaluator + 可选 technical spike -> evidence-board
+-> Phase 2 Synthesis：product-strategy -> commercialization -> risk-review -> feasibility-review: full-review
+-> Gate2
+-> Phase 3 Delivery：technical-planning -> visual-brief -> ui-demo 或 simulator -> execution-plan
+-> final-report：report.md + index.html + assets/
+```
+
+### 17.3 Gate 规则
+
+Gate0 只在基础信息不足时询问：
+
+- 面向谁？
+- 先验证还是做最小可行产品？
+- 时间、预算或技术栈限制是什么？
+
+Gate1 使用 `feasibility-review: early-screening`：
+
+- 不能继续或不建议现在继续：输出停止理由并结束。
+- 可以继续：自动进入 Discovery。
+
+Gate2 使用 `feasibility-review: full-review`：
+
+- `Go`：自动进入 Delivery。
+- `Pivot`、`Need More Evidence`、`Kill`、`Park`：询问用户下一步方向。
+
+### 17.4 最终自检
+
+最终报告前，`using-wheelwise` 必须确认：
+
+- `project-state.md` 对当前阶段足够完整。
+- `evidence-board.md` 有证据或明确证据缺口。
+- Gate 状态与可行性结论一致。
+- 关键决策都有解释。
+- 视觉说明有图片、图片生成说明或 Mermaid 兜底图。
+- UI 演示或模拟器存在。
+- `report.md`、`index.html`、`assets/` 满足契约。
+- 生成产物的可见文字中文化。
+
+## 附录 A. V4 保留的 V3 展示能力
+
+V4 保留 V3 的设计化 HTML 展示与独立交互原型要求：
 
 ```text
 wheelwise-report-<idea-slug>/
@@ -1050,4 +1114,4 @@ wheelwise-report-<idea-slug>/
 - 命令行/开发者工具：终端命令、配置、错误和成功状态。
 - 自动化/工作流工具：触发器、动作、运行历史、重试、错误和成功路径。
 
-V3.0 完整报告还应包含一张高信息密度视觉资产，例如产品决策海报或实施地图。单薄的装饰图不足以支撑完整 WheelWise 报告。
+V4 完整报告还应包含一张高信息密度视觉资产，例如产品决策海报或实施地图。单薄的装饰图不足以支撑完整 WheelWise 报告。

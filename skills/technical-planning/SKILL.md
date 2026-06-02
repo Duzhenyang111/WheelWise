@@ -31,6 +31,13 @@ Connect `reuse-evaluator` to `execution-plan`. The technical plan must honor the
 - If `reuse-evaluator` says Build a differentiating module, keep that module in the task plan.
 - If the selected surface is API/CLI/no traditional UI, plan a playground, terminal simulator, request explorer, or workflow simulator for demo purposes.
 
+## V4 State Integration
+
+- Read `project-state.md` and `evidence-board.md` before planning.
+- If a technical spike was marked as needed, either incorporate its finding or keep it as an explicit evidence gap.
+- Update `project-state.md` with technical plan summary, technical spike status, integration constraints, and last updated by skill.
+- Do not enter Delivery planning unless Gate2 is `Go`, assumption-led by explicit user request, or the user confirmed a non-Go Gate2 path.
+
 ## Output Shape
 
 ```text

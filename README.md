@@ -30,12 +30,27 @@ Core workflow:
 12. Plan an interaction demo, simulator, playground, or workflow preview when useful.
 13. Generate a complete Chinese report folder.
 
-## V3.0 Output Contract
+## V4.0 Workflow And Output Contract
 
-WheelWise V3.0 no longer outputs a loose Markdown file. The final artifact is a report folder:
+WheelWise V4.0 keeps the Superpowers-style multi-skill pack architecture and upgrades the workflow with controller-managed state, evidence consolidation, and Gate decisions.
+
+`using-wheelwise` is the controller, router, state manager, Gate owner, self-check owner, and final-report synthesizer. It reads and updates internal state as the workflow moves across skills.
+
+Internal V4 artifacts:
+
+```text
+project-state.md
+evidence-board.md
+```
+
+`project-state.md` tracks phase, delivery surface, Gate status, feasibility verdict, strategy summaries, open questions, assumptions, and last updated skill. `evidence-board.md` consolidates evidence from market research, customer discovery, reuse evaluation, technical spikes, and commercialization work.
+
+The final artifact is still a Chinese report folder:
 
 ```text
 wheelwise-report/
+  project-state.md
+  evidence-board.md
   report.md
   index.html
   prototype.html
@@ -47,14 +62,23 @@ When an idea slug is available, the folder should be named:
 
 ```text
 wheelwise-report-<idea-slug>/
+  project-state.md
+  evidence-board.md
   report.md
   index.html
+  prototype.html
   assets/
 ```
 
 `report.md` is the source of truth. `index.html` is a static display layer generated from the same Chinese report. `assets/` stores generated or selected visuals.
 
-In V3.0, `index.html` must be a designed presentation page with imagery, charts, layout, visual hierarchy, and motion. It must not be a plain Markdown-to-HTML conversion. For products with a user-facing surface, add a separate prototype page such as `prototype.html` to simulate the actual website, web application, mobile app, desktop app, browser extension, API playground, CLI terminal, or workflow tool.
+In V4.0, `index.html` must be a designed presentation page with imagery, charts, layout, visual hierarchy, and motion. It must not be a plain Markdown-to-HTML conversion. For products with a user-facing surface, add a separate prototype page such as `prototype.html` to simulate the actual website, web application, mobile app, desktop app, browser extension, API playground, CLI terminal, or workflow tool.
+
+V4 Gate behavior:
+
+- Gate0 asks only when basic intake information is missing: who it is for, whether to validate or build a minimum viable product, and time/budget/stack constraints.
+- Gate1 uses early feasibility screening. If the idea cannot continue, it stops; if it can continue, it automatically enters Discovery.
+- Gate2 uses full feasibility review. `Go` continues automatically; `Pivot`, `Need More Evidence`, `Kill`, and `Park` ask the user for direction.
 
 All user-visible text in generated artifacts must be Chinese, including Markdown body text, webpage copy, image text, chart labels, alt text, table fields, and report explanations. Technical stacks, code identifiers, commands, package names, API names, and file paths may remain English when they are literal technical references.
 
@@ -88,6 +112,7 @@ skills/
   feasibility-review/
   market-research/
   customer-discovery/
+  evidence-board/
   product-strategy/
   reuse-evaluator/
   technical-planning/
@@ -102,6 +127,8 @@ shared/
   templates/
 examples/
   ai-payment-chaser/
+    project-state.md
+    evidence-board.md
     report.md
     index.html
     prototype.html
@@ -121,6 +148,7 @@ scripts/
 | `feasibility-review` | Decides whether to build a minimum viable product, validate first, pause, or reject |
 | `market-research` | Researches market category, competitors, substitutes, demand signals, trends, maturity, and entry barriers |
 | `customer-discovery` | Defines personas, jobs-to-be-done, pain intensity, workflows, adoption objections, and validation experiments |
+| `evidence-board` | Consolidates market, customer, reuse, technical-spike, and commercialization evidence into an internal decision ledger |
 | `product-strategy` | Defines positioning, differentiation, product wedge, and minimum viable product scope |
 | `reuse-evaluator` | Evaluates self-build, purchase, reuse, fork, and reference choices by module |
 | `technical-planning` | Converts decisions into stack, architecture, data, integration, and deployment guidance |
@@ -161,10 +189,12 @@ Interactive prototype: wheelwise-report-ai-payment-chaser/prototype.html
 
 ## Example
 
-See the included V3.0 example:
+See the included V4-compatible example:
 
 ```text
 examples/ai-payment-chaser/
+  project-state.md
+  evidence-board.md
   report.md
   index.html
   prototype.html
@@ -172,14 +202,14 @@ examples/ai-payment-chaser/
     concept.svg
 ```
 
-The example demonstrates the folder output contract, Chinese Markdown report, designed HTML display, interactive product prototype, and dense visual asset placement.
+The example demonstrates the V4 folder output contract, internal state, evidence board, Chinese Markdown report, designed HTML display, interactive product prototype, and dense visual asset placement.
 
 ## Validation
 
 Validate the example report folder:
 
 ```powershell
-python scripts\check_report_contract.py examples\ai-payment-chaser --folder --skip-filename
+python scripts\check_report_contract.py examples\ai-payment-chaser --folder --skip-filename --v4
 ```
 
 Validate the full report templates:
@@ -217,16 +247,14 @@ WheelWise may reference external skill ecosystems such as UI UX Pro Max, pm-skil
 
 ## Version
 
-Current plugin version: `3.0.0`.
+Current plugin version: `4.0.0`.
 
-V3.0 focuses on:
+V4.0 focuses on:
 
-- Report-folder output instead of single-file output.
-- `report.md` as source report.
-- `index.html` as a designed Chinese webpage display layer, not a Markdown conversion.
-- A separate interactive prototype HTML for user-facing product surfaces.
-- `assets/` as the required resource directory.
-- Dense product-information visuals for full reports.
-- Fully Chinese user-visible generated artifacts.
-- Stronger contract validation through `scripts/check_report_contract.py`.
-- First-class market research, customer discovery, and commercialization skills with current-source research standards.
+- `using-wheelwise` as controller, router, state manager, Gate controller, self-check owner, and final-report synthesizer.
+- `project-state.md` as internal workflow state.
+- `evidence-board.md` as internal evidence ledger.
+- Gate0, Gate1, and Gate2 flow discipline.
+- Automatic continuation for normal `Go` paths.
+- Evidence-based Discovery before Synthesis.
+- Final Chinese report folder with `report.md`, `index.html`, `assets/`, and optional prototype.

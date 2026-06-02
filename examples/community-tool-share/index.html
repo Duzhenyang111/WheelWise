@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>邻里工具共享管家报告展示</title>
+  <style>
+    body{margin:0;font-family:Arial,"Microsoft YaHei",sans-serif;color:#17324d;background:#f5f7f2}
+    header{padding:56px 8vw;background:#17324d;color:white}
+    main{max-width:1100px;margin:auto;padding:34px 22px}
+    section{margin:28px 0;padding:28px;background:white;border:1px solid #d8e0e8;border-radius:18px}
+    h1{font-size:44px;margin:0 0 12px}
+    h2{font-size:28px;margin:0 0 16px}
+    p,li{font-size:18px;line-height:1.8}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+    .card{padding:18px;border-radius:14px;background:#f0f6f0;border:1px solid #c9dbc9}
+    img{width:100%;border-radius:16px;border:1px solid #d8e0e8;background:white}
+    .tag{display:inline-block;padding:6px 12px;border-radius:999px;background:#dff0e6;color:#22543d;margin-right:8px}
+    a{color:#2c6fb7;font-weight:700}
+  </style>
+</head>
+<body>
+  <header>
+    <p class="tag">WheelWise V4 示例</p>
+    <h1>邻里工具共享管家</h1>
+    <p>一个社区工具借用网页应用：登记闲置工具、预约借用、归还提醒，并帮助管理员降低纠纷。</p>
+  </header>
+  <main>
+    <section>
+      <h2>核心结论</h2>
+      <p>建议先验证。这个想法技术上可以轻量实现，但真正风险在工具主是否愿意上架、居民是否愿意预约、押金规则是否被接受，以及管理员是否能持续维护。</p>
+      <div class="grid">
+        <div class="card"><strong>交付形态</strong><p>网页应用，二维码访问，兼顾居民端和管理员端。</p></div>
+        <div class="card"><strong>验证范围</strong><p>一个社区、20 件工具、三周试点。</p></div>
+        <div class="card"><strong>继续条件</strong><p>10 次预约、8 次顺利归还、管理员每周低于 2 小时。</p></div>
+      </div>
+    </section>
+    <section>
+      <h2>视觉说明</h2>
+      <img src="assets/concept.svg" alt="社区工具共享平台概念图">
+    </section>
+    <section>
+      <h2>证据与缺口</h2>
+      <ul>
+        <li>当前证据主要来自场景推理和产品假设，已经写入内部证据中枢。</li>
+        <li>最大缺口是工具主上架意愿、押金接受度和损坏责任边界。</li>
+        <li>三周社区试点是进入真实开发前的关键动作。</li>
+      </ul>
+    </section>
+    <section>
+      <h2>最小可行产品范围</h2>
+      <div class="grid">
+        <div class="card"><strong>工具登记</strong><p>名称、图片、说明、可借时间和注意事项。</p></div>
+        <div class="card"><strong>预约申请</strong><p>居民提交借用时间和用途，管理员确认。</p></div>
+        <div class="card"><strong>归还提醒</strong><p>到期提醒、状态记录和异常标记。</p></div>
+      </div>
+    </section>
+    <section>
+      <h2>交互原型</h2>
+      <p>原型文件：<a href="prototype.html">prototype.html</a>。它展示工具列表、预约表单、管理员审核和归还状态。</p>
+    </section>
+    <section>
+      <h2>下一步行动</h2>
+      <ol>
+        <li>7 天内找到一个社区管理员，招募首批工具。</li>
+        <li>14 天内开放二维码入口，收集预约数据。</li>
+        <li>30 天内复盘归还、纠纷和管理员耗时。</li>
+      </ol>
+    </section>
+  </main>
+</body>
+</html>

@@ -38,6 +38,12 @@ Use one or more:
 ![产品概念图](./assets/concept.png)
 ```
 
+## V4 State Integration
+
+- Read `project-state.md` and `evidence-board.md` before selecting visuals.
+- Use visuals to explain the strongest decision path, biggest contradiction, or highest-priority evidence gap.
+- Update `project-state.md` with visual assets planned, visual assets created, visual/demo status, and last updated by skill.
+
 ## Required Coverage
 
 - At least one visual must explain the main decision path or tradeoff.

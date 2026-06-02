@@ -14,6 +14,8 @@ Plan a complete interactive demo that helps users see and test the product conce
 - CLI/dev tool ideas need a terminal simulator with commands, outputs, errors, config, and success states.
 - Automation/workflow ideas need a trigger/action workflow simulator with retry, error, and success paths.
 
+In V4, no product skips interaction demonstration only because it lacks a traditional graphical UI. API, CLI, automation, backend, data, or developer products must use simulator mode.
+
 ## Required Demo Coverage
 
 Include:
@@ -68,6 +70,13 @@ Create or specify a separate interactive prototype page, defaulting to `demo.htm
 - Automation/workflow idea: simulate trigger/action builder, run history, retry, error, and success paths.
 
 The prototype page must use local simulated data and must explain what is simulated. It is separate from the report display page.
+
+## V4 State Integration
+
+- Read `project-state.md` before choosing the demo mode.
+- Use delivery surface and Gate2 status to decide whether to create a UI prototype, API playground, CLI simulator, workflow simulator, request explorer, or terminal simulator.
+- Update `project-state.md` with visual/demo status, interaction demo type, interaction demo path, and last updated by skill.
+- If no prototype is generated in the current run, write a concrete prototype task into `execution-plan`.
 
 ## Output Shape
 

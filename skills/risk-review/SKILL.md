@@ -31,4 +31,11 @@ Owner or decision point:
 
 Surface-specific risk must be included. A browser extension has permission and store-review risk; a mobile app has app-store and device-permission risk; an API/SaaS has uptime, abuse, auth, and observability risk.
 
+## V4 State Integration
+
+- Read `project-state.md` and `evidence-board.md` before risk review.
+- Treat unresolved contradictions and high-impact evidence gaps as risks.
+- Update `project-state.md` with risk summary, highest-priority risk, mitigation summary, and last updated by skill.
+- Feed risks into `feasibility-review: full-review` for Gate2.
+
 When risk review changes the verdict, scope, stack, demo, or execution order, apply `../../shared/references/decision-rationale-standard.md`.

@@ -1,102 +1,220 @@
 ---
 name: using-wheelwise
-description: Use when evaluating, shaping, researching, visualizing, demoing, or planning a product idea with WheelWise, especially when the user wants market research, customer discovery, commercialization, MVP scope, delivery surface choice, feasibility, product strategy, build/buy/reuse/fork/reference decisions, technical planning, visual brief, interactive demo, risk review, or a Codex-ready execution plan.
+description: Use when evaluating, shaping, researching, visualizing, demoing, or planning a product idea with WheelWise, especially when the user wants a routed product decision workflow, evidence-based gates, state tracking, market research, customer discovery, commercialization, feasibility, reuse, technical planning, visuals, demos, risks, or final report generation.
 ---
 
 # 使用 WheelWise
 
-WheelWise turns a raw product idea into an explainable, presentable product plan. The primary artifact is a Chinese report folder, not a chat summary, a single loose file, or a dump of internal skill outputs. The folder contains `report.md`, `index.html`, and `assets/`.
+`using-wheelwise` is the only user-facing entry point. In V4 it acts as controller, router, state manager, Gate controller, self-check owner, and final-report synthesizer.
 
-## Core Discipline
+The final artifact remains a Chinese report folder. V4 adds two internal artifacts:
 
-1. Start with `idea-intake` unless the user already supplied a complete product brief.
-2. Run `surface-strategy` before architecture or reuse decisions. Delivery surface changes validation, reuse options, and execution path.
-3. Run `feasibility-review` before detailed planning. Internally use one verdict: Build MVP, Validate First, Pause, or Reject; in final visible output translate it to Chinese.
-4. Run `market-research` for full reports or whenever market category, competitors, substitutes, trends, pricing clues, channels, or current demand signals affect the decision.
-5. Run `customer-discovery` for full reports or whenever persona, jobs-to-be-done, pain intensity, workflow adoption, buyer/user distinction, or validation experiments affect the decision.
-6. Run `product-strategy` after feasibility and research context. It must inherit the verdict and focus the MVP around the riskiest assumption.
-7. Run `reuse-evaluator` for each important product module. Every module needs one internal decision: Build, Buy, Reuse, Fork, or Reference; final visible output must use 自研 / 购买 / 复用 / 分叉改造 / 参考.
-8. Run `technical-planning` after reuse decisions. It must not contradict module strategy choices.
-9. Run `commercialization` for full reports or whenever business model, pricing, packaging, channels, sales motion, or early monetization tests affect the decision.
-10. Run `risk-review` when decisions touch license, privacy, security, compliance, dependency, market, product, commercialization, or execution risk.
-11. Run `visual-brief` for full reports so the recommendation has image-level visual explanation, not only text or Mermaid.
-12. Run `ui-demo` when the product has a user-visible surface. For API, CLI, automation, or developer-tool products, route internally to a playground, terminal simulator, request explorer, or workflow simulator; final visible output must describe these in Chinese.
-13. Run `execution-plan` only after the idea, surface, feasibility, market research, customer discovery, product strategy, reuse decisions, technical plan, commercialization, risks, visuals, and demo scope are coherent.
-14. Generate one final report folder. Default path: `wheelwise-report/`; if the user supplied an idea name, use `wheelwise-report-<idea-slug>/`.
-15. The folder must contain `report.md`, `index.html`, and `assets/`; images and other static resources must live under `assets/`.
-16. Run the final report self-check before responding: Chinese visible text, folder structure, progressive structure, visuals, demo details, webpage rule, detailed intro, detailed outro, and no English skill-module headings.
-17. Use `parallel-research` only for complex research or independent review. Treat subagent findings as evidence; final judgment belongs to this skill.
+- `project-state.md`: workflow state and cross-skill memory.
+- `evidence-board.md`: evidence ledger for market, customer, reuse, technical-spike, and validation findings.
 
-## Route Selection
+These internal artifacts guide the workflow but do not replace `report.md`.
 
-Read `references/routing-map.md` when the user request is narrow or ambiguous.
-Read `references/workflow-modes.md` to choose short workflow, core workflow, or research-heavy workflow.
-Read `references/final-output-contract.md` before producing the final WheelWise report file.
+## Core Responsibilities
 
-## Default Core Workflow
+1. Own the full workflow and keep `using-wheelwise` as the single main entry point.
+2. Before and after each internal skill, read or update `project-state.md`.
+3. During Discovery, create or update `evidence-board.md`.
+4. Control Gate0, Gate1, and Gate2 according to the interruption rules.
+5. Route to internal skills without exposing internal skill sections as final report headings.
+6. Keep decisions explainable through evidence, assumptions, risks, and fallback plans.
+7. Run final self-check before returning artifact paths.
+8. Return only artifact paths after final report generation.
+
+## Internal State Files
+
+Use these templates:
+
+- `../../shared/templates/project-state.md`
+- `../../shared/templates/evidence-board.md`
+
+Default internal paths inside a report folder:
 
 ```text
-Idea
--> idea-intake
--> surface-strategy
--> feasibility-review
--> market-research
--> customer-discovery
--> product-strategy
--> reuse-evaluator
--> technical-planning
--> commercialization
--> risk-review
--> visual-brief
--> ui-demo when applicable
--> execution-plan
--> Chinese report folder
+wheelwise-report-<idea-slug>/
+  project-state.md
+  evidence-board.md
+  report.md
+  index.html
+  prototype.html
+  assets/
 ```
+
+`project-state.md` fields must cover idea summary, current phase, delivery surface, gate status, feasibility verdict, product strategy summary, reuse decisions summary, technical plan summary, commercialization summary, risk summary, visual/demo status, final report status, open questions, assumptions, and last updated by skill.
+
+`evidence-board.md` must include evidence item, source/origin skill, evidence type, affected decision, strength, confidence, assumption vs evidence, contradiction, evidence gap, and recommended next action.
+
+## V4 Phase Flow
+
+```text
+using-wheelwise
+-> read/update project-state.md
+-> Phase 0 Intake
+   -> idea-intake
+   -> Gate0 information sufficiency
+   -> surface-strategy
+   -> feasibility-review: early-screening
+-> Gate1 early screen
+   -> stop if cannot continue or not recommended now
+   -> continue automatically if viable
+-> Phase 1 Discovery
+   -> market-research
+   -> customer-discovery
+   -> reuse-evaluator
+   -> technical spike when needed
+   -> evidence-board
+-> Phase 2 Synthesis
+   -> product-strategy
+   -> commercialization
+   -> risk-review
+   -> feasibility-review: full-review
+-> Gate2 full review
+   -> Go continues automatically
+   -> Pivot / Need More Evidence / Kill / Park asks user
+-> Phase 3 Delivery
+   -> technical-planning
+   -> visual-brief
+   -> presentation surface decision
+   -> ui-demo or simulator mode
+   -> execution-plan
+-> final-report
+   -> report.md + index.html + assets/
+```
+
+## Gate Rules
+
+### Gate0: Information Sufficiency
+
+Ask the user only when basic information is insufficient to route the idea.
+
+Allowed Gate0 questions:
+
+1. 面向谁？
+2. 你想先验证，还是直接做最小可行产品？
+3. 时间、预算或技术栈限制是什么？
+
+If reasonable assumptions can keep the workflow moving, record assumptions in `project-state.md` and continue.
+
+### Gate1: Early Screen
+
+Gate1 uses `feasibility-review: early-screening`.
+
+- If the idea cannot continue or is not recommended now, output the stop reason and end.
+- If the idea can continue, do not ask the user; automatically enter Discovery.
+- If the only blocker is Gate0 information, ask the allowed Gate0 questions.
+
+### Gate2: Full Review
+
+Gate2 uses `feasibility-review: full-review`.
+
+- `Go`: do not ask the user; automatically enter Delivery.
+- `Pivot`: ask whether to pivot to the recommended direction.
+- `Need More Evidence`: ask whether to run the recommended research or validation.
+- `Kill`: ask only if the user wants an alternative direction or stop.
+- `Park`: ask whether to park or change constraints.
+
+Normal `Go` flow must not be interrupted.
+
+## Phase Details
+
+### Phase 0 Intake
+
+Run:
+
+1. `idea-intake`
+2. Gate0 check
+3. `surface-strategy`
+4. `feasibility-review` in `early-screening` mode
+
+Update `project-state.md` after each step.
+
+### Phase 1 Discovery
+
+Run:
+
+1. `market-research`
+2. `customer-discovery`
+3. `reuse-evaluator`
+4. Optional technical spike when technical feasibility, API limits, integration risk, license risk, or architecture uncertainty could change the verdict
+5. `evidence-board`
+
+Write market, customer, reuse, and spike findings into `evidence-board.md`. Summarize evidence coverage, contradictions, and gaps in `project-state.md`.
+
+### Phase 2 Synthesis
+
+Run:
+
+1. `product-strategy`
+2. `commercialization`
+3. `risk-review`
+4. `feasibility-review` in `full-review` mode
+
+Gate2 decides whether to continue into Delivery automatically or ask the user.
+
+### Phase 3 Delivery
+
+Run:
+
+1. `technical-planning`
+2. `visual-brief`
+3. Presentation surface decision
+4. `ui-demo` for UI products or simulator mode for API, CLI, automation, and developer tools
+5. `execution-plan`
+
+If the product has no traditional UI, do not skip demonstration. Use API playground, CLI simulator, workflow simulator, request explorer, terminal simulator, or automation run simulator.
+
+### Final Report
+
+Generate the Chinese report folder:
+
+```text
+report.md
+index.html
+assets/
+```
+
+For user-facing products, also create or specify an interactive prototype such as `prototype.html`.
+
+`project-state.md` and `evidence-board.md` may live in the folder as internal artifacts, but they are not final report substitutes.
 
 ## Output Rules
 
-- Prefer clear decisions over broad option lists.
-- Apply `../../shared/references/decision-rationale-standard.md` to every key decision: verdict, surface, product strategy, module strategy, technical stack, visual brief, UI demo, commercialization notes, and execution order.
-- Primary final output must be a Chinese report folder. Use `wheelwise-report/` by default or `wheelwise-report-<idea-slug>/` when the user provides an idea name.
-- Visible text in `report.md`, `index.html`, image text, chart labels, alt text, table fields, explanations, decision rationales, risks, experiments, and execution-plan prose must be Chinese.
+- Visible text in `report.md`, `index.html`, prototype pages, image text, chart labels, alt text, table fields, explanations, risks, experiments, and execution-plan prose must be Chinese.
 - Technical commands, file paths, package names, API names, code identifiers, and technology names may remain English only when they are literal technical identifiers.
-- Do not answer with a structured chat summary. After writing artifacts, the chat response should only state the report folder path, `report.md` path, `index.html` path, and a very short completion note.
-- Do not use internal skill names as final report sections. Forbidden report headings include `Idea Intake`, `Surface Strategy`, `Feasibility Review`, `Product Strategy`, `Reuse Evaluator`, `Technical Planning`, `Risk Review`, `UI Demo Scope`, and `MVP Execution Plan`.
-- The final report must be progressive: `报告说明与阅读导览` -> user/problem -> decision/recommendation -> visual/demo -> risk/validation -> execution plan -> `最终建议与下一步行动`.
-- If visual-brief produces images or image prompts, place them in the report's `视觉说明` section. If image assets exist, reference them with Markdown such as `![产品概念图](./assets/concept.png)`.
-- For full reports, visual assets should be information-dense and presentation-ready, such as a product decision poster, feature map, implementation map, or validation roadmap. A thin decorative image is not enough.
-- Prefer real image assets when image generation is available. If image generation is unavailable, include a Mermaid 兜底图表 in `视觉说明`; all chart labels must be Chinese.
-- If image generation cannot reliably render Chinese text, generate images without text and place Chinese explanations in `report.md` and `index.html`.
-- If ui-demo produces a demo, place 演示路径、运行方式、核心交互、模拟数据说明、状态覆盖、后端边界 in the report's `交互演示` section.
-- Add a `网页展示文件` section. Default path is `index.html`. State that it is a display layer sourced from `report.md` and list the required display modules.
-- `index.html` must present the complete source report content, not only a short landing-page summary. It may add a cover, navigation, callouts, or visual panels, but every substantive section from `report.md` must remain visible in the page.
-- `index.html` must reinterpret the report as a designed HTML presentation with layout, imagery, charts, visual hierarchy, and motion. Do not merely convert Markdown headings and tables into HTML.
-- When a product has any user-facing surface, create or specify a separate interactive prototype page such as `demo.html`. For websites, show the actual website interface; for web applications, show the product workspace; for mobile, desktop, extension, API, CLI, or automation products, simulate that surface in HTML.
-- If UI UX Pro Max or another UI/UX skill is available, it may be used as design intelligence for the webpage display file, visual brief, or demo surface. Do not copy external skill content.
-- Keep implementation surface visible throughout: website, web app, mobile app, desktop app, browser extension, API/SaaS, CLI, or automation tool.
-- Do not invent market, customer, pricing, channel, policy, license, or repository facts. If current facts matter, browse using `../../shared/references/web-research-standard.md` or mark the evidence gap and lower confidence.
-- Full reports must include market evidence, user evidence, commercialization assumptions, and a source-evidence summary when current research was needed.
-- Full reports must be understandable to a beginner: explain whether the idea is feasible, why it is feasible or not, the main selling proposition, what the product becomes after validation, frontend design, backend design, technical route, user acquisition, and operations plan.
-- Do not copy external skill content. External skills belong in `../../shared/references/external-skills.md` as references or optional dependencies.
-- Use `risk-review` consistently for risk work. Do not create alternate risk skill names.
-- Final report should follow `../../shared/templates/new-product-brief.md` unless the user explicitly asks for a shorter Chinese report, in which case use `../../shared/templates/final-wheelwise-report.md`.
+- Do not answer with a structured chat summary when final artifacts are requested.
+- Do not use internal skill names as final report headings.
+- Keep implementation surface visible throughout: website, web app, mobile app, desktop app, browser extension, API/SaaS, CLI, automation tool, or hybrid.
+- Do not invent current market, customer, pricing, channel, policy, license, vendor, or repository facts. Browse when current facts matter or mark the evidence gap.
+- Use `risk-review` consistently for risk work.
+- Use `parallel-research` only for complex research or independent review. Final judgment belongs to `using-wheelwise`.
 
 ## Final Self-Check
 
-Before sending the final chat response, confirm:
+Before final response, confirm:
 
-- The report folder is `wheelwise-report/` or `wheelwise-report-<idea-slug>/`.
-- The folder contains `report.md`, `index.html`, `assets/`, and at least one image.
-- The report includes all required Chinese sections from `references/final-output-contract.md` in progressive order.
-- The opening `报告说明与阅读导览` includes report purpose, applicable stage, core conclusion preview, and reading path.
-- The ending `最终建议与下一步行动` includes one-sentence judgment, 7-day, 14-day, and 30-day actions, plus 继续 / 停止条件.
-- No forbidden English skill-module headings appear as report sections.
-- No visible output text contains English display terms such as Build, Buy, Reuse, Fork, Reference, Web App, SaaS, MVP, Demo, mock, fallback, go/no-go, or Codex-ready.
-- `视觉说明` contains real Markdown image references under `assets/`, or Mermaid 兜底图表 when image generation is unavailable.
-- `交互演示` includes 演示路径、运行方式、核心交互、模拟数据、加载 / 空状态 / 错误 / 成功状态、后端边界。
-- `网页展示文件` records `index.html` rules.
-- `index.html` displays the complete `report.md` content in a readable, structured page; it is not an abridged summary.
-- A separate interactive prototype page exists or is explicitly planned when the product has a user-facing surface; it demonstrates the target product UI rather than the report.
-- `可交给 Codex 执行的计划` includes tasks to create or update the report folder, source report, webpage display file, and assets.
-- Market, customer, and commercialization claims separate source evidence from analysis assumptions, and any current fact that matters has been browsed or marked as an evidence gap.
-- The report clearly explains feasibility, why the recommendation is believable, main selling proposition, frontend design, backend design, technical route, acquisition, and operations in Chinese.
+- `project-state.md` is complete enough for the phase reached.
+- `evidence-board.md` has evidence items or explicit evidence gaps.
+- Gate status is consistent with feasibility verdict and phase.
+- Key decisions include rationale: decision, why chosen, why alternatives lose, evidence, assumptions, risks, fallback, confidence.
+- `visual-brief` produced an image, image prompt, or Mermaid 兜底图表.
+- `ui-demo` or simulator output exists for the delivery surface.
+- `report.md`, `index.html`, and `assets/` satisfy the final-output contract.
+- `index.html` is a designed display of the complete report, not a short summary or plain Markdown conversion.
+- User-facing products have a prototype page or a concrete prototype task.
+- Visible generated text is Chinese.
+- Market, customer, reuse, and commercialization evidence is separated from assumptions.
+
+Final chat response should list only:
+
+```text
+报告文件夹：
+源报告：
+网页展示：
+交互原型：
+```
+
+If Gate1 stops the workflow, return the stop reason and the current `project-state.md` path. If Gate2 needs user input, ask only the Gate2-specific decision question.

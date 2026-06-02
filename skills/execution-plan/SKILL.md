@@ -20,6 +20,8 @@ Create a plan Codex can execute without rediscovering product decisions.
 - Visual brief.
 - UI demo or simulator spec when applicable.
 - Final Chinese report folder path: `wheelwise-report/` or `wheelwise-report-<idea-slug>/`.
+- Internal project state path: `project-state.md`.
+- Internal evidence board path: `evidence-board.md`.
 - Source report path: `report.md`.
 - Webpage display path: `index.html`.
 - Asset directory path: `assets/`.
@@ -37,6 +39,8 @@ If an input is missing, state the assumption or route back through `using-wheelw
 - Explicit visual-brief generation tasks and asset save paths under `assets/`.
 - Explicit UI demo or API/CLI/workflow simulator tasks when applicable.
 - Explicit task to create or update the final Chinese report folder.
+- Explicit task to create or update `project-state.md`.
+- Explicit task to create or update `evidence-board.md`.
 - Explicit task to generate or update `report.md`.
 - Explicit task to generate or update `index.html`.
 - Report contract checks: folder structure, Chinese visible text, required visual or Mermaid backup, complete demo details, webpage display record, and final action advice.

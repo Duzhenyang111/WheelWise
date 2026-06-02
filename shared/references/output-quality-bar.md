@@ -4,6 +4,8 @@ A WheelWise answer is acceptable only when it:
 
 - Produces a Chinese report folder: `wheelwise-report/` by default or `wheelwise-report-<idea-slug>/` when the idea name is available.
 - Includes `report.md`, `index.html`, `assets/`, and at least one image asset.
+- For V4 full workflows, includes internal `project-state.md` and `evidence-board.md`, or explicitly records why they are not generated in the current run.
+- Treats `project-state.md` and `evidence-board.md` as internal artifacts, not final report replacements.
 - Does not substitute a chat summary for the report folder.
 - Uses Chinese for report title, section names, table fields, explanations, decision rationales, risks, experiments, and execution-plan prose.
 - Uses Chinese for all visible webpage text, image text, chart labels, alt text, and presentation copy.
@@ -15,6 +17,9 @@ A WheelWise answer is acceptable only when it:
 - Makes a clear verdict.
 - Names the delivery surface.
 - Includes market evidence, user evidence, commercialization assumptions, and a source-evidence summary when current facts materially affect the recommendation.
+- Uses `evidence-board` to consolidate market, customer, reuse, technical-spike, and commercialization evidence before synthesis.
+- Uses `project-state.md` to keep current phase, gate status, feasibility verdict, strategy summaries, open questions, assumptions, and last-updated skill consistent.
+- Follows V4 Gate behavior: Gate0 asks only when basic information is missing; Gate1 never asks when it can continue or stop; Gate2 asks only for Pivot, Need More Evidence, Kill, or Park.
 - Explains the idea clearly enough for a beginner: feasibility, why it is feasible or not, main selling proposition, product shape after validation, frontend design, backend design, technical route, user acquisition, and operations.
 - Includes decision rationale for key decisions in Chinese: 决策是什么, 为什么选择它, 为什么不选替代方案, 证据, 假设, 风险, 兜底方案, 信心等级.
 - Separates evidence from assumptions.
@@ -34,3 +39,4 @@ A WheelWise answer is acceptable only when it:
 - Calls out license, privacy, security, dependency, market, and execution risks where relevant.
 - Produces a plan Codex can act on, including visual-brief, demo, report folder creation/update tasks, source report tasks, webpage display tasks, and asset generation tasks.
 - Keeps `using-wheelwise` responsible for final synthesis.
+- Final self-check confirms project-state completeness, evidence-board coverage or gaps, Gate consistency, decision rationale, visuals, interaction demo/simulator, report folder contract, and Chinese visible text.

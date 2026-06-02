@@ -71,3 +71,10 @@ Confidence:
 ```
 
 In the final Chinese report, write the results into `商业化备注`, `验证实验`, `关键风险`, and `最终建议与下一步行动` as needed. Do not use `Commercialization` as a report section heading.
+
+## V4 State Integration
+
+- Read `project-state.md` and `evidence-board.md` before choosing the business model.
+- Write pricing, packaging, channel, buyer, and monetization evidence into `evidence-board.md` through `evidence-board`.
+- Update `project-state.md` with commercialization summary, revenue risks, operating cadence, and last updated by skill.
+- If commercialization is mostly assumption-led, mark it as a Gate2 risk.

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-label="社区工具共享平台概念图">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f7f2"/>
+      <stop offset="1" stop-color="#e6f0ff"/>
+    </linearGradient>
+    <style>
+      .title{font:700 42px Arial,"Microsoft YaHei",sans-serif;fill:#17324d}
+      .h{font:700 26px Arial,"Microsoft YaHei",sans-serif;fill:#17324d}
+      .t{font:20px Arial,"Microsoft YaHei",sans-serif;fill:#28445f}
+      .small{font:17px Arial,"Microsoft YaHei",sans-serif;fill:#456178}
+      .card{fill:#fff;stroke:#cdd9e5;stroke-width:2}
+      .accent{fill:#2f7d57}
+      .blue{fill:#2c6fb7}
+      .warn{fill:#c7802d}
+    </style>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg)"/>
+  <text x="64" y="78" class="title">邻里工具共享管家</text>
+  <text x="64" y="116" class="t">把闲置工具、预约、押金和归还提醒放进一个社区工作台</text>
+  <rect x="64" y="160" width="315" height="190" rx="18" class="card"/>
+  <circle cx="108" cy="212" r="24" class="accent"/>
+  <text x="144" y="218" class="h">用户问题</text>
+  <text x="94" y="264" class="t">家里偶尔需要工具</text>
+  <text x="94" y="300" class="t">购买成本高、存放麻烦</text>
+  <text x="94" y="336" class="t">邻里借用缺少记录</text>
+  <rect x="442" y="160" width="315" height="190" rx="18" class="card"/>
+  <circle cx="486" cy="212" r="24" class="blue"/>
+  <text x="522" y="218" class="h">推荐形态</text>
+  <text x="472" y="264" class="t">先做网页应用</text>
+  <text x="472" y="300" class="t">支持目录、预约、押金</text>
+  <text x="472" y="336" class="t">社区管理员可审核</text>
+  <rect x="820" y="160" width="315" height="190" rx="18" class="card"/>
+  <circle cx="864" cy="212" r="24" class="warn"/>
+  <text x="900" y="218" class="h">验证重点</text>
+  <text x="850" y="264" class="t">真实工具是否愿意上架</text>
+  <text x="850" y="300" class="t">押金规则是否被接受</text>
+  <text x="850" y="336" class="t">归还流程是否可信</text>
+  <path d="M379 255 H442" stroke="#8aa0b6" stroke-width="5" stroke-linecap="round"/>
+  <path d="M757 255 H820" stroke="#8aa0b6" stroke-width="5" stroke-linecap="round"/>
+  <rect x="64" y="430" width="1071" height="210" rx="22" class="card"/>
+  <text x="94" y="486" class="h">首轮闭环</text>
+  <text x="94" y="535" class="t">工具上架</text>
+  <text x="270" y="535" class="t">邻居预约</text>
+  <text x="460" y="535" class="t">管理员确认</text>
+  <text x="680" y="535" class="t">归还提醒</text>
+  <text x="880" y="535" class="t">信用记录</text>
+  <path d="M195 526 H245" stroke="#2f7d57" stroke-width="4"/>
+  <path d="M385 526 H435" stroke="#2f7d57" stroke-width="4"/>
+  <path d="M600 526 H650" stroke="#2f7d57" stroke-width="4"/>
+  <path d="M795 526 H855" stroke="#2f7d57" stroke-width="4"/>
+  <text x="94" y="604" class="small">继续条件：三周内 20 件工具上架，10 次预约，归还无重大纠纷</text>
+  <text x="94" y="640" class="small">停止条件：工具主不愿上架，押金争议高，管理员负担过重</text>
+</svg>

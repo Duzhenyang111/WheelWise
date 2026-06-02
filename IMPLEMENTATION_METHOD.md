@@ -1024,9 +1024,73 @@ python scripts/check_report_contract.py examples/ai-resume-optimizer --folder --
 
 The validator must reject missing `report.md`, missing `index.html`, missing `assets/`, missing image assets, broken Markdown image references, broken HTML image references, and common English display terms in Markdown or webpage visible text.
 
-## 17. Version 3.0 Upgrade: Designed HTML Display and Interactive Prototype
+## 17. Version 4 Upgrade: Controller State, Evidence Board, And Gate Flow
 
-V3.0 keeps the report-folder contract and adds two stronger presentation requirements:
+V4 does not replace the Superpowers-style multi-skill pack. It improves skill flow by making `using-wheelwise` the controller, router, state manager, Gate controller, self-check owner, and final-report synthesizer.
+
+### 17.1 Internal State
+
+V4 adds two internal artifacts:
+
+```text
+project-state.md
+evidence-board.md
+```
+
+`project-state.md` tracks idea summary, current phase, delivery surface, Gate status, feasibility verdict, product strategy summary, reuse decisions summary, technical plan summary, commercialization summary, risk summary, visual/demo status, final report status, open questions, assumptions, and last updated by skill.
+
+`evidence-board.md` consolidates evidence from `market-research`, `customer-discovery`, `reuse-evaluator`, optional technical spikes, and commercialization work. It records evidence item, source/origin skill, evidence type, affected decision, strength, confidence, assumption vs evidence, contradiction, evidence gap, and recommended next action.
+
+These files are internal workflow artifacts. They do not replace `report.md` and must not appear as final report section headings.
+
+### 17.2 V4 Flow
+
+```text
+using-wheelwise
+-> read/update project-state.md
+-> Phase 0 Intake: idea-intake -> Gate0 -> surface-strategy -> feasibility-review: early-screening
+-> Gate1
+-> Phase 1 Discovery: market-research + customer-discovery + reuse-evaluator + optional technical spike -> evidence-board
+-> Phase 2 Synthesis: product-strategy -> commercialization -> risk-review -> feasibility-review: full-review
+-> Gate2
+-> Phase 3 Delivery: technical-planning -> visual-brief -> ui-demo or simulator -> execution-plan
+-> final-report: report.md + index.html + assets/
+```
+
+### 17.3 Gate Rules
+
+Gate0 asks only when basic information is missing:
+
+- Who is it for?
+- Validate first or build a minimum viable product?
+- Time, budget, or stack constraints?
+
+Gate1 uses `feasibility-review: early-screening`:
+
+- Cannot continue or not recommended now: stop with the reason.
+- Can continue: automatically enter Discovery.
+
+Gate2 uses `feasibility-review: full-review`:
+
+- `Go`: automatically enter Delivery.
+- `Pivot`, `Need More Evidence`, `Kill`, or `Park`: ask the user for direction.
+
+### 17.4 Final Self-Check
+
+Before final report, `using-wheelwise` must confirm:
+
+- `project-state.md` is complete enough for the phase reached.
+- `evidence-board.md` has evidence or explicit gaps.
+- Gate status is consistent with feasibility verdict.
+- Key decisions have rationale.
+- Visual brief has image, prompt, or Mermaid backup.
+- UI demo or simulator exists.
+- `report.md`, `index.html`, and `assets/` satisfy the contract.
+- Visible generated text is Chinese.
+
+## Appendix A. V3 Presentation Capabilities Preserved In V4
+
+V4 preserves the V3 designed HTML display and interactive prototype requirements:
 
 ```text
 wheelwise-report-<idea-slug>/
@@ -1050,4 +1114,4 @@ wheelwise-report-<idea-slug>/
 - CLI/dev tool: terminal commands, config, errors, and success states.
 - Automation/workflow tool: trigger/action builder, run history, retry, error, and success paths.
 
-V3.0 full reports should also include a high-information-density visual asset, such as a product decision poster or implementation map. Thin decorative imagery is not enough for a full WheelWise report.
+V4 full reports should also include a high-information-density visual asset, such as a product decision poster or implementation map. Thin decorative imagery is not enough for a full WheelWise report.

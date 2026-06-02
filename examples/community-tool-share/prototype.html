@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>邻里工具共享管家原型</title>
+  <style>
+    body{margin:0;font-family:Arial,"Microsoft YaHei",sans-serif;background:#eef3ef;color:#18334a}
+    header{padding:28px 6vw;background:#2f7d57;color:white}
+    main{display:grid;grid-template-columns:1.4fr .9fr;gap:22px;max-width:1180px;margin:auto;padding:24px}
+    .panel{background:white;border:1px solid #d5dfd8;border-radius:16px;padding:22px}
+    .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+    .tool{border:1px solid #d5dfd8;border-radius:14px;padding:16px;background:#fbfdfb}
+    button{border:0;background:#2f7d57;color:white;padding:10px 14px;border-radius:10px;font-size:15px;cursor:pointer}
+    input,select{width:100%;box-sizing:border-box;padding:10px;margin:6px 0 12px;border:1px solid #cbd8d0;border-radius:10px}
+    .status{padding:6px 10px;border-radius:999px;background:#e3f1e9;color:#23523a;font-size:14px}
+    li{margin:10px 0;line-height:1.6}
+    @media(max-width:800px){main{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>邻里工具共享管家</h1>
+    <p>本页使用本地模拟数据展示工具浏览、预约申请和管理员归还提醒。</p>
+  </header>
+  <main>
+    <section class="panel">
+      <h2>可借工具</h2>
+      <div class="tools">
+        <div class="tool"><h3>冲击电钻</h3><p>适合安装置物架，押金建议 100 元。</p><span class="status">今天可借</span></div>
+        <div class="tool"><h3>折叠梯</h3><p>适合换灯和清洁高处，需两人搬运。</p><span class="status">周末可借</span></div>
+        <div class="tool"><h3>露营灯</h3><p>适合小区活动和露营。</p><span class="status">可预约</span></div>
+        <div class="tool"><h3>小推车</h3><p>适合搬运快递和小件家具。</p><span class="status">待归还</span></div>
+      </div>
+      <h2>提交预约</h2>
+      <label>选择工具</label>
+      <select><option>冲击电钻</option><option>折叠梯</option><option>露营灯</option><option>小推车</option></select>
+      <label>借用日期</label>
+      <input value="本周六上午">
+      <label>用途说明</label>
+      <input value="安装阳台置物架，预计使用 2 小时">
+      <button onclick="document.getElementById('result').textContent='预约已提交，等待管理员确认。'">提交预约</button>
+      <p id="result" class="status">请填写预约信息</p>
+    </section>
+    <aside class="panel">
+      <h2>管理员面板</h2>
+      <ul>
+        <li><strong>待确认：</strong>冲击电钻，本周六上午。</li>
+        <li><strong>待归还：</strong>小推车，已逾期 1 天。</li>
+        <li><strong>已完成：</strong>露营灯，按时归还。</li>
+      </ul>
+      <h2>模拟边界</h2>
+      <p>未接入真实登录、数据库、通知、支付和信用记录。所有内容都是本地模拟数据。</p>
+    </aside>
+  </main>
+</body>
+</html>

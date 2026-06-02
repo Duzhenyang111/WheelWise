@@ -74,6 +74,37 @@ BANNED_VISIBLE_TERMS = [
 
 IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg"}
 
+PROJECT_STATE_REQUIRED_FIELDS = [
+    "Idea summary",
+    "Current phase",
+    "Delivery surface",
+    "Gate status",
+    "Feasibility",
+    "Product strategy summary",
+    "Reuse decisions summary",
+    "Technical plan summary",
+    "Commercialization summary",
+    "Risk summary",
+    "Visual/demo status",
+    "Final report status",
+    "Open questions",
+    "Assumptions",
+    "Last updated by skill",
+]
+
+EVIDENCE_BOARD_REQUIRED_FIELDS = [
+    "Evidence item",
+    "Source / origin skill",
+    "Evidence type",
+    "Affected decision",
+    "Strength",
+    "Confidence",
+    "Assumption vs evidence",
+    "Contradiction",
+    "Evidence gap",
+    "Recommended next action",
+]
+
 
 class VisibleTextParser(HTMLParser):
     def __init__(self) -> None:
@@ -253,7 +284,37 @@ def normalize_local_ref(ref: str) -> str:
     return ref.replace("\\", "/").removeprefix("./")
 
 
-def validate_folder(folder: Path, *, skip_filename: bool = False) -> list[str]:
+def validate_internal_v4_files(folder: Path) -> list[str]:
+    problems: list[str] = []
+    project_state = folder / "project-state.md"
+    evidence_board = folder / "evidence-board.md"
+
+    if not project_state.exists():
+        problems.append("V4 报告目录缺少 project-state.md")
+    else:
+        state_text = project_state.read_text(encoding="utf-8")
+        missing_state = [
+            field for field in PROJECT_STATE_REQUIRED_FIELDS if field not in state_text
+        ]
+        if missing_state:
+            problems.append("project-state.md 缺少字段：" + "、".join(missing_state))
+
+    if not evidence_board.exists():
+        problems.append("V4 报告目录缺少 evidence-board.md")
+    else:
+        evidence_text = evidence_board.read_text(encoding="utf-8")
+        missing_evidence = [
+            field for field in EVIDENCE_BOARD_REQUIRED_FIELDS if field not in evidence_text
+        ]
+        if missing_evidence:
+            problems.append("evidence-board.md 缺少字段：" + "、".join(missing_evidence))
+
+    return problems
+
+
+def validate_folder(
+    folder: Path, *, skip_filename: bool = False, v4: bool = False
+) -> list[str]:
     problems: list[str] = []
     if not folder.exists() or not folder.is_dir():
         return [f"报告目录不存在：{folder}"]
@@ -307,6 +368,9 @@ def validate_folder(folder: Path, *, skip_filename: bool = False) -> list[str]:
             elif not normalize_local_ref(clean_ref).startswith("assets/"):
                 problems.append(f"HTML 图片引用必须指向 assets/：{image_ref}")
 
+    if v4:
+        problems.extend(validate_internal_v4_files(folder))
+
     return problems
 
 
@@ -317,6 +381,11 @@ def main() -> int:
         "--folder",
         action="store_true",
         help="Validate a WheelWise report folder with report.md, index.html, and assets/.",
+    )
+    parser.add_argument(
+        "--v4",
+        action="store_true",
+        help="In folder mode, also require V4 internal project-state.md and evidence-board.md.",
     )
     parser.add_argument(
         "--skip-filename",
@@ -331,7 +400,9 @@ def main() -> int:
     args = parser.parse_args()
 
     if args.folder:
-        problems = validate_folder(args.report, skip_filename=args.skip_filename)
+        problems = validate_folder(
+            args.report, skip_filename=args.skip_filename, v4=args.v4
+        )
     else:
         problems = validate_report(
             args.report,

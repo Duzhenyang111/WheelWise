@@ -1,46 +1,122 @@
 ---
 name: feasibility-review
-description: Use when WheelWise must judge whether a product idea should be built as an MVP, validated first, paused, or rejected before detailed execution planning.
+description: Use when WheelWise must screen a product idea early or make a full Go, Pivot, Need More Evidence, Kill, or Park decision before delivery planning.
 ---
 
 # Feasibility Review
 
-Produce one verdict: Build MVP, Validate First, Pause, or Reject.
+Feasibility review has two V4 modes: `early-screening` and `full-review`.
 
-## Score Dimensions
+## Mode Selection
 
-Rate each dimension Low / Medium / High:
+| Mode | Use when | Output |
+| --- | --- | --- |
+| `early-screening` | Phase 0 after `idea-intake` and `surface-strategy` | Can continue / cannot continue / not recommended now |
+| `full-review` | Phase 2 after evidence-board, product strategy, commercialization, and risk review | Go / Pivot / Need More Evidence / Kill / Park |
+
+## Early-Screening
+
+Purpose: quickly detect ideas that are clearly unsafe, impossible, incoherent, or not worth continuing before spending effort on discovery.
+
+Inputs:
+
+- `project-state.md`.
+- Idea brief from `idea-intake`.
+- Delivery surface from `surface-strategy`.
+- Known constraints, open questions, and assumptions.
+
+Score Low / Medium / High:
 
 - Problem urgency.
-- Reachable target customer.
-- Willingness to pay or adopt.
-- Differentiation.
+- Target customer clarity.
 - Delivery surface fit.
-- Technical complexity.
-- Data or integration dependency.
 - Legal, privacy, or compliance burden.
-- Time to credible MVP.
-- Team capability.
+- Basic technical plausibility.
+- Time and budget fit.
+- Dependency or data-access risk.
 
-## Verdict Rules
+Early verdict rules:
 
 | Verdict | Use when |
 | --- | --- |
-| Build MVP | Problem, customer, surface, and implementation path are clear enough for a small build |
-| Validate First | Demand, willingness to pay, channel, data access, or workflow adoption is uncertain |
-| Pause | Timing, dependency, team, or compliance issues make near-term progress weak |
-| Reject | The idea is legally unsafe, technically implausible, undifferentiated, or lacks a real buyer/user |
+| Can continue | No obvious blocker; enough information exists for discovery |
+| Cannot continue | Legally unsafe, technically impossible, incoherent, or missing a real user/problem |
+| Not recommended now | Timing, dependency, budget, compliance, or user clarity makes discovery weak |
+| Need Gate0 input | The only blocker is missing basic user, scope, or constraint information |
 
-## Output Shape
+Gate1 behavior:
+
+- If `Cannot continue` or `Not recommended now`, output the stop reason and end.
+- If `Can continue`, do not ask the user; automatically enter Discovery.
+- If `Need Gate0 input`, return control to `using-wheelwise` so it asks only the allowed Gate0 questions.
+
+Early output shape:
 
 ```text
-Verdict:
+Mode:
+Early verdict:
 Confidence:
 Why:
 Main evidence:
 Blocking unknowns:
-Validation needed:
-Go/no-go threshold:
+Gate1 action:
+Project-state update:
+```
+
+## Full Review
+
+Purpose: decide whether the synthesized product direction should enter Delivery.
+
+Inputs:
+
+- Updated `project-state.md`.
+- `evidence-board.md`.
+- Product strategy.
+- Commercialization summary.
+- Risk review.
+- Reuse and technical constraints.
+
+Score Low / Medium / High:
+
+- Problem urgency.
+- Reachable target customer.
+- Evidence strength.
+- Willingness to pay or adopt.
+- Differentiation.
+- Delivery surface fit.
+- Technical feasibility.
+- Data or integration dependency.
+- Legal, privacy, or compliance burden.
+- Commercial path.
+- Execution path.
+
+Full verdict rules:
+
+| Verdict | Use when |
+| --- | --- |
+| Go | Evidence, strategy, risk, and execution path are coherent enough to enter Delivery |
+| Pivot | Evidence supports a different customer, problem, surface, or wedge |
+| Need More Evidence | A high-impact evidence gap blocks a credible delivery plan |
+| Kill | The idea is unsafe, implausible, undifferentiated, or lacks a buyer/user after review |
+| Park | The idea may be valid, but timing, dependency, regulation, budget, or team fit blocks near-term progress |
+
+Gate2 behavior:
+
+- `Go`: do not ask the user; automatically enter Delivery.
+- `Pivot`, `Need More Evidence`, `Kill`, or `Park`: return control to `using-wheelwise` to ask for user confirmation or next direction.
+
+Full output shape:
+
+```text
+Mode:
+Full verdict:
+Confidence:
+Gate2 action:
+Why:
+Evidence summary:
+Evidence gaps:
+Contradictions:
+Validation threshold:
 Decision:
 Why chosen:
 Why alternatives lose:
@@ -48,4 +124,11 @@ Evidence:
 Assumptions:
 Risks:
 Fallback:
+Project-state update:
 ```
+
+## State Rules
+
+- Always write the verdict, confidence, gate action, and rationale back to `project-state.md`.
+- Full review must reference `evidence-board.md`; if the board is empty, the verdict cannot be `Go` unless the report is explicitly marked as assumption-led.
+- Do not use `Go`, `Pivot`, `Need More Evidence`, `Kill`, or `Park` as final Chinese report section titles; translate and synthesize them into Chinese report content.
