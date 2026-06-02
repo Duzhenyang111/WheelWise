@@ -20,7 +20,8 @@ Read `../../shared/references/decision-rationale-standard.md` for commercializat
 4. Define pricing assumptions, package boundaries, acquisition channels, sales motion, activation path, retention loop, and early monetization tests.
 5. Define the first 30-day operating cadence: content, outreach, onboarding, customer success, support, and metric review.
 6. Identify revenue risks and validation thresholds.
-7. Apply the decision rationale fields to the recommended commercial path.
+7. Check whether pricing, packaging, channels, platform rules, or buyer behavior support or weaken the user's original commercial assumptions.
+8. Apply the decision rationale fields to the recommended commercial path.
 
 ## Minimum Search Coverage
 
@@ -51,6 +52,12 @@ Retention loop:
 Operating cadence:
 Early monetization tests:
 Revenue risks:
+Original commercial assumptions:
+Supporting evidence:
+Opposing evidence:
+Why original commercial path may be weak:
+Direction shift:
+User confirmation needed:
 
 Source evidence:
 Source:
@@ -58,11 +65,17 @@ Source type:
 Key finding:
 Evidence strength:
 Affected decision:
+Supports or opposes:
 
 Decision rationale:
 Decision:
+Original assumption:
 Why chosen:
 Why alternatives lose:
+Supporting evidence:
+Opposing evidence:
+Why adjust:
+Direction shift:
 Evidence:
 Assumptions:
 Risks:
@@ -77,4 +90,5 @@ In the final Chinese report, write the results into `商业化备注`, `验证�
 - Read `project-state.md` and `evidence-board.md` before choosing the business model.
 - Write pricing, packaging, channel, buyer, and monetization evidence into `evidence-board.md` through `evidence-board`.
 - Update `project-state.md` with commercialization summary, revenue risks, operating cadence, and last updated by skill.
+- If commercial evidence pushes the product toward a different buyer, pricing model, packaging, or channel, mark the direction shift and user confirmation need in `evidence-board.md`.
 - If commercialization is mostly assumption-led, mark it as a Gate2 risk.

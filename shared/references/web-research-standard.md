@@ -36,6 +36,20 @@ Prefer primary sources for pricing, policies, terms, repository health, and vend
 - Note contradictory evidence instead of smoothing it away.
 - Tie evidence back to the WheelWise decision it affects: feasibility, product strategy, reuse choice, risk, commercialization, validation, or execution order.
 
+## Counter-Evidence Discipline
+
+Treat user-provided claims as original assumptions until evidence supports them. Research must look for evidence that weakens the user's initial direction, not only evidence that supports it.
+
+Actively check for:
+
+- Stronger competitors, substitutes, or existing workflows that make the idea less differentiated.
+- Weak user urgency, unclear buyer, low adoption intent, or poor willingness to pay.
+- Pricing, channel, platform, policy, compliance, or distribution constraints that make the proposed path unrealistic.
+- Vendor, API, open-source, license, repository health, data-access, or technical dependency risks that undermine the technical plan.
+- Evidence that supports a different customer, problem, delivery surface, product wedge, business model, compliance boundary, or technical path.
+
+When counter-evidence changes the recommendation, record why the original direction is weak, how much the recommendation shifted, and whether user confirmation is required before continuing.
+
 ## Output Fields
 
 Use these fields in research-heavy outputs:
@@ -47,5 +61,9 @@ Use these fields in research-heavy outputs:
 关键发现：
 证据强度：
 影响的决策：
+原始假设：
+支持 / 反驳：
+偏移程度：
+是否需要用户确认：
 仍未知：
 ```

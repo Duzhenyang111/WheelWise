@@ -13,7 +13,8 @@ This is WheelWise's core moat. For each important product module, recommend one 
 2. Mark which modules create product differentiation.
 3. Identify existing SaaS/API/open-source/starter-kit/library options when needed.
 4. Score fit, maturity, cost, lock-in, customization, license, security, maintenance, and delivery surface fit.
-5. Make one decision per module.
+5. Check whether reuse evidence weakens the user's assumed build, buy, reuse, fork, or reference path.
+6. Make one decision per module.
 
 ## Decision Rules
 
@@ -33,6 +34,12 @@ Recommended strategy:
 Suggested option(s):
 Why:
 Why alternatives lose:
+Original module assumption:
+Supporting evidence:
+Opposing evidence:
+Why original module path may be weak:
+Direction shift:
+User confirmation needed:
 Evidence:
 Assumptions:
 Surface fit:
@@ -51,4 +58,5 @@ Read `../../shared/references/decision-rationale-standard.md` for decision ratio
 - Read `project-state.md` before module decomposition to preserve the selected delivery surface and current assumptions.
 - Write vendor, API, open-source, license, maturity, cost, and lock-in findings into `evidence-board.md` through `evidence-board`.
 - Update `project-state.md` with reuse decisions summary and last updated by skill.
+- If reuse evidence changes a differentiating module, core dependency, license boundary, or build/buy strategy materially, mark the direction shift and user confirmation need in `evidence-board.md`.
 - If a module needs a technical spike before a safe decision, mark the spike as an evidence gap and recommended next action.

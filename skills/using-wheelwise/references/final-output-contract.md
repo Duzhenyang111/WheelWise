@@ -73,10 +73,12 @@ Markdown、网页、图片内文字、图表标签、图片替代文本、表格
 ## V4 状态与证据规则
 
 - `project-state.md` 是内部流程状态，记录 idea summary、current phase、delivery surface、gate status、feasibility verdict、product strategy summary、reuse decisions summary、technical plan summary、commercialization summary、risk summary、visual/demo status、final report status、open questions、assumptions 和 last updated by skill。
-- `evidence-board.md` 是内部证据中枢，记录 evidence item、source/origin skill、evidence type、affected decision、strength、confidence、assumption vs evidence、contradiction、evidence gap 和 recommended next action。
+- `evidence-board.md` 是内部证据中枢，记录 evidence item、source/origin skill、evidence type、affected decision、strength、confidence、original assumption、supports or opposes、direction shift、user confirmation needed、assumption vs evidence、contradiction、evidence gap 和 recommended next action。
 - 两者都不是最终报告章节名。
 - 最终报告必须吸收 evidence-board 的内容，把证据写入 `市场备注`、`用户假设`、`决策解释摘要`、`关键风险` 和 `验证实验`。
 - Gate 状态必须与 `project-state.md` 中的 feasibility verdict 一致。
+- 如果最终建议不同于用户原始方向，报告必须详细说明原始假设、支持证据、反驳证据、为什么原方向不成立或不建议继续、推荐调整方向、偏移程度和用户确认状态。
+- 重大偏移必须有 Gate2 用户确认记录；如果未确认，只能标记为假设驱动或待确认方向，不能当作已批准的交付计划。
 
 ## 必需中文章节
 
@@ -88,23 +90,24 @@ Markdown、网页、图片内文字、图表标签、图片替代文本、表格
 4. 交付形态
 5. 结论：构建最小可行产品 / 先验证 / 暂停 / 放弃
 6. 决策解释摘要
-7. 目标用户
-8. 问题与紧迫性
-9. 市场备注
-10. 用户假设
-11. 差异化
-12. 最小可行产品范围
-13. 产品策略
-14. 自研 / 购买 / 复用 / 分叉改造 / 参考决策
-15. 技术实现路径
-16. 视觉说明
-17. 交互演示
-18. 网页展示文件
-19. 商业化备注
-20. 关键风险
-21. 验证实验
-22. 可交给 Codex 执行的计划
-23. 最终建议与下一步行动
+7. 原始方向校准
+8. 目标用户
+9. 问题与紧迫性
+10. 市场备注
+11. 用户假设
+12. 差异化
+13. 最小可行产品范围
+14. 产品策略
+15. 自研 / 购买 / 复用 / 分叉改造 / 参考决策
+16. 技术实现路径
+17. 视觉说明
+18. 交互演示
+19. 网页展示文件
+20. 商业化备注
+21. 关键风险
+22. 验证实验
+23. 可交给 Codex 执行的计划
+24. 最终建议与下一步行动
 
 ## 开头与结尾
 
@@ -161,3 +164,4 @@ Markdown、网页、图片内文字、图表标签、图片替代文本、表格
 - `report.md`、`index.html`、`assets/` 满足契约。
 - `prototype.html` 已生成或有明确任务，且与 `index.html` 职责分离。
 - 可见文字中文化。
+- 报告没有无批判复述用户想法；若有重大方向偏移，Gate2 用户确认状态已写入报告。

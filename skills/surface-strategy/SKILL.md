@@ -26,6 +26,8 @@ Choose the implementation form before planning architecture, reuse, validation, 
 - Pick one primary surface for MVP. Mark secondary surfaces as later unless needed for validation.
 - If the idea depends on another product's UI context, consider browser extension or automation first.
 - If monetization depends on recurring team workflows, web app or API/SaaS often wins.
+- If the user's requested surface is not the best validation surface, explain the counter-evidence and mark direction shift as `Minor` or `Major`.
+- A material change from the user's requested surface is a major direction shift and must feed Gate2 user confirmation.
 
 ## Output Shape
 
@@ -34,11 +36,21 @@ Primary surface:
 Secondary surfaces:
 Why this surface:
 Why alternatives lose:
+Original surface assumption:
+Supporting evidence:
+Opposing evidence:
+Direction shift:
+User confirmation needed:
 Surface-specific constraints:
 Validation implication:
 Decision:
+Original assumption:
 Why chosen:
 Why alternatives lose:
+Supporting evidence:
+Opposing evidence:
+Why adjust:
+Direction shift:
 Evidence:
 Assumptions:
 Risks:

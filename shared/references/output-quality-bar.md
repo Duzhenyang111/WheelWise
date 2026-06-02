@@ -15,6 +15,9 @@ A WheelWise answer is acceptable only when it:
 - Includes `最终建议与下一步行动` with one-sentence judgment, 7-day, 14-day, 30-day actions, and continue/stop conditions.
 - Does not use English internal module headings such as `Idea Intake`, `Surface Strategy`, `Reuse Evaluator`, `Technical Planning`, `Risk Review`, `UI Demo Scope`, or `MVP Execution Plan`.
 - Makes a clear verdict.
+- Does not uncritically restate the user's idea; user-provided direction is treated as original assumptions until evidence supports it.
+- Explains supporting evidence, opposing evidence, why the original direction is weak, direction shift level, and user confirmation status when the recommendation changes.
+- Requires Gate2 confirmation for major direction shifts; if unconfirmed, the report marks the recommendation as unconfirmed or assumption-led.
 - Names the delivery surface.
 - Includes market evidence, user evidence, commercialization assumptions, and a source-evidence summary when current facts materially affect the recommendation.
 - Uses `evidence-board` to consolidate market, customer, reuse, technical-spike, and commercialization evidence before synthesis.
