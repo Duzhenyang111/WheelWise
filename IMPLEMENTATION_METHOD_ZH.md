@@ -1026,7 +1026,7 @@ python scripts/check_report_contract.py examples/ai-resume-optimizer --folder --
 
 ## 17. V4 升级：总控状态、证据中枢与 Gate 流程
 
-V4 不推翻 Superpowers 风格多 skill pack 架构，而是优化 skill 流转：`using-wheelwise` 升级为总控、路由、状态管理、Gate 控制、自检和最终报告汇总者。
+V4 不推翻 Superpowers 风格多 skill pack 架构，而是优化 skill 流转：`using-wheelwise` 升级为总控、路由、状态管理、Gate 控制、自检和最终报告汇总者。当前实现基线是 V4.4。
 
 ### 17.1 内部状态
 
@@ -1037,9 +1037,9 @@ project-state.md
 evidence-board.md
 ```
 
-`project-state.md` 记录 idea summary、current phase、delivery surface、gate status、feasibility verdict、product strategy summary、reuse decisions summary、technical plan summary、commercialization summary、risk summary、visual/demo status、final report status、open questions、assumptions 和 last updated by skill。
+`project-state.md` 记录 idea summary、current phase、delivery surface、Gate0 Evidence Intake status、evidence requirement status、supplemental-data checklist version、resume instruction、gate status、feasibility verdict、product strategy summary、reuse decisions summary、technical plan summary、commercialization summary、risk summary、visual/demo status、final report status、open questions、assumptions 和 last updated by skill。
 
-`evidence-board.md` 汇总 `market-research`、`customer-discovery`、`reuse-evaluator`、可选 technical spike 和商业化工作产生的证据。字段包括 evidence item、source/origin skill、evidence type、affected decision、strength、confidence、assumption vs evidence、contradiction、evidence gap 和 recommended next action。
+`evidence-board.md` 汇总 `market-research`、`customer-discovery`、`reuse-evaluator`、可选 technical spike、商业化工作、动态补充数据要求和用户补回的数据。字段包括 evidence item、source/origin skill、evidence type、affected decision、strength、confidence、assumption vs evidence、contradiction、evidence gap、threshold comparison、time-sensitive recheck needed 和 recommended next action。
 
 这两个文件是内部流程产物，不替代 `report.md`，也不能作为最终报告章节标题。
 
@@ -1048,7 +1048,7 @@ evidence-board.md
 ```text
 using-wheelwise
 -> 读取/更新 project-state.md
--> Phase 0 Intake：idea-intake -> Gate0 -> surface-strategy -> feasibility-review: early-screening
+-> Phase 0 Intake：idea-intake -> Gate0 Evidence Intake -> surface-strategy -> feasibility-review: early-screening
 -> Gate1
 -> Phase 1 Discovery：market-research + customer-discovery + reuse-evaluator + 可选 technical spike -> evidence-board
 -> Phase 2 Synthesis：product-strategy -> commercialization -> risk-review -> feasibility-review: full-review
@@ -1059,11 +1059,15 @@ using-wheelwise
 
 ### 17.3 Gate 规则
 
-Gate0 只在基础信息不足时询问：
+Gate0 使用统一的 `Gate0 Evidence Intake`，只返回三类状态：
 
-- 面向谁？
-- 先验证还是做最小可行产品？
-- 时间、预算或技术栈限制是什么？
+- `Ready`：基础路由信息和证据足够，可以继续。
+- `Need Basic Input`：只缺基础路由信息，最多问三个问题：面向谁、先验证还是做最小可行产品、时间/预算/技术栈限制。
+- `Field Data Required`：缺实地、市场、合规、供应链、硬件、平台、B2B、内容/社群或服务类一手数据，不能给高信心判断。
+
+如果基础信息和一手数据都缺，Gate0 先问最少基础问题，同时返回第一阶段补充数据清单，不能拆成两次打断。
+
+`Field Data Required` 的清单必须根据 idea 类型组合动态生成，包含适用性分类、为什么需要这些数据、数据项、采集方法、最小样本、继续阈值、停止阈值、合规待确认项和清单版本。`project-state.md` 记录可恢复暂停状态；用户之后补回数据时，`evidence-board.md` 记录这些数据。
 
 Gate1 使用 `feasibility-review: early-screening`：
 
@@ -1079,7 +1083,7 @@ Gate2 使用 `feasibility-review: full-review`：
 
 最终报告前，`using-wheelwise` 必须确认：
 
-- `project-state.md` 对当前阶段足够完整。
+- `project-state.md` 对当前阶段足够完整；如果 Gate0 暂停，必须包含恢复字段。
 - `evidence-board.md` 有证据或明确证据缺口。
 - Gate 状态与可行性结论一致。
 - 关键决策都有解释。
@@ -1139,4 +1143,18 @@ technical-planning -> visual-brief -> ui-demo 或 simulator -> report-visualizat
 
 `visual-brief` 不得依赖 AI 生图。中文密集的信息图应优先使用 SVG 或 HTML/CSS。AI 生图只适合无文字或少文字概念场景。Mermaid 是最后兜底，不是默认方案。
 
-V4 校验器应拒绝缺少 `prototype.html`、缺少导航或视觉模块的薄弱 `index.html`、没有交互和状态变化的原型、失效的本地资产引用、缺少非装饰性资产，以及用户可见英文展示文案。
+V4 校验器应拒绝缺少 `prototype.html`、缺少导航或视觉模块的薄弱 `index.html`、没有交互和状态变化的原型、失效的本地资产引用、缺少非装饰性资产、用户可见英文展示文案、缺少 Gate0 恢复字段，以及缺少动态补充数据清单字段。
+
+## 附录 C. V4.4 Gate0 Evidence Intake
+
+V4.4 解决的是“询问基础信息”和“返回补充数据要求”之间的歧义。Gate0 现在是一个统一数据入口，而不是两个相邻决策点。
+
+V4.4 行为：
+
+- 数字产品或软件产品，如果目标用户、问题、交付形态、约束和验证意图足够清楚，通常返回 `Ready`。
+- “做个 App”这类模糊想法返回 `Need Basic Input`，只问最少路由问题。
+- 本地、线下、实体、强监管、供应链、平台依赖、B2B、内容/社群或服务类 idea，如果缺一手证据，返回 `Field Data Required`。
+- 复合 idea 要叠加清单模块。例如“南昌中学门口卖一元火鸡面”应识别为本地/线下 + 实体食品 + 未成年人场景 + 地域强相关，Gate0 应要求人流、许可/合规、竞品价格、单份成本、试卖销量、投诉和被中断风险，而不是返回通用市场规模清单。
+- 用户之后补回实地数据时，WheelWise 从 Gate0 Evidence Intake 复核继续，把数据写入 `evidence-board.md`，对照继续/停止阈值，并刷新或标记市场、竞品、法规、平台规则等时间敏感证据。
+
+V4.4 计划里的场景例子还没有做成可执行测试。当前已提交的验证覆盖静态契约检查、报告模板检查、Python 语法检查和空白检查。后续可以补脚本化 prompt 场景测试，覆盖 SaaS、南昌学校摆摊、模糊 App、补数据恢复和证据过期复核等案例。

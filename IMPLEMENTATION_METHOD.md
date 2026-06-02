@@ -1026,7 +1026,7 @@ The validator must reject missing `report.md`, missing `index.html`, missing `as
 
 ## 17. Version 4 Upgrade: Controller State, Evidence Board, And Gate Flow
 
-V4 does not replace the Superpowers-style multi-skill pack. It improves skill flow by making `using-wheelwise` the controller, router, state manager, Gate controller, self-check owner, and final-report synthesizer.
+V4 does not replace the Superpowers-style multi-skill pack. It improves skill flow by making `using-wheelwise` the controller, router, state manager, Gate controller, self-check owner, and final-report synthesizer. The current implementation baseline is V4.4.
 
 ### 17.1 Internal State
 
@@ -1037,9 +1037,9 @@ project-state.md
 evidence-board.md
 ```
 
-`project-state.md` tracks idea summary, current phase, delivery surface, Gate status, feasibility verdict, product strategy summary, reuse decisions summary, technical plan summary, commercialization summary, risk summary, visual/demo status, final report status, open questions, assumptions, and last updated by skill.
+`project-state.md` tracks idea summary, current phase, delivery surface, Gate0 Evidence Intake status, evidence requirement status, supplemental-data checklist version, resume instruction, Gate status, feasibility verdict, product strategy summary, reuse decisions summary, technical plan summary, commercialization summary, risk summary, visual/demo status, final report status, open questions, assumptions, and last updated by skill.
 
-`evidence-board.md` consolidates evidence from `market-research`, `customer-discovery`, `reuse-evaluator`, optional technical spikes, and commercialization work. It records evidence item, source/origin skill, evidence type, affected decision, strength, confidence, assumption vs evidence, contradiction, evidence gap, and recommended next action.
+`evidence-board.md` consolidates evidence from `market-research`, `customer-discovery`, `reuse-evaluator`, optional technical spikes, commercialization work, dynamic supplemental-data requirements, and user-provided supplemental data. It records evidence item, source/origin skill, evidence type, affected decision, strength, confidence, assumption vs evidence, contradiction, evidence gap, threshold comparison, time-sensitive recheck needs, and recommended next action.
 
 These files are internal workflow artifacts. They do not replace `report.md` and must not appear as final report section headings.
 
@@ -1048,7 +1048,7 @@ These files are internal workflow artifacts. They do not replace `report.md` and
 ```text
 using-wheelwise
 -> read/update project-state.md
--> Phase 0 Intake: idea-intake -> Gate0 -> surface-strategy -> feasibility-review: early-screening
+-> Phase 0 Intake: idea-intake -> Gate0 Evidence Intake -> surface-strategy -> feasibility-review: early-screening
 -> Gate1
 -> Phase 1 Discovery: market-research + customer-discovery + reuse-evaluator + optional technical spike -> evidence-board
 -> Phase 2 Synthesis: product-strategy -> commercialization -> risk-review -> feasibility-review: full-review
@@ -1059,11 +1059,15 @@ using-wheelwise
 
 ### 17.3 Gate Rules
 
-Gate0 asks only when basic information is missing:
+Gate0 uses one `Gate0 Evidence Intake` step. It returns exactly one of:
 
-- Who is it for?
-- Validate first or build a minimum viable product?
-- Time, budget, or stack constraints?
+- `Ready`: basic routing information and evidence are enough to continue.
+- `Need Basic Input`: only basic routing information is missing; ask at most three questions: who it is for, whether to validate first or build a minimum viable product, and time/budget/stack constraints.
+- `Field Data Required`: first-hand field, market, compliance, supply-chain, hardware, platform, B2B, content/community, or service evidence is required before a high-confidence verdict.
+
+If both basic input and first-hand data are missing, Gate0 asks the fewest basic questions needed for routing and returns the Phase 1 supplemental-data checklist in the same response. It must not split those into two interruptions.
+
+For `Field Data Required`, the checklist is generated from the detected idea-type combination. It must include applicability class, why the data is needed, required data, collection method, minimum sample, continue threshold, stop threshold, compliance items to confirm, and checklist version. `project-state.md` records a resumable pause, and `evidence-board.md` records user-supplied data when the user returns.
 
 Gate1 uses `feasibility-review: early-screening`:
 
@@ -1079,7 +1083,7 @@ Gate2 uses `feasibility-review: full-review`:
 
 Before final report, `using-wheelwise` must confirm:
 
-- `project-state.md` is complete enough for the phase reached.
+- `project-state.md` is complete enough for the phase reached, including Gate0 resume fields when relevant.
 - `evidence-board.md` has evidence or explicit gaps.
 - Gate status is consistent with feasibility verdict.
 - Key decisions have rationale.
@@ -1139,4 +1143,18 @@ technical-planning -> visual-brief -> ui-demo or simulator -> report-visualizati
 
 `visual-brief` must not depend on AI image generation. Text-heavy Chinese information visuals should prefer SVG or HTML/CSS. AI-generated images are only appropriate for no-text or low-text concept scenes. Mermaid is the last fallback, not the default.
 
-The V4 validator should reject missing `prototype.html`, weak `index.html` pages that lack navigation or visual modules, prototypes without interaction/state behavior, broken local asset references, missing non-decorative assets, and user-visible English display copy.
+The V4 validator should reject missing `prototype.html`, weak `index.html` pages that lack navigation or visual modules, prototypes without interaction/state behavior, broken local asset references, missing non-decorative assets, user-visible English display copy, missing Gate0 resume fields, and missing dynamic supplemental-data checklist fields.
+
+## Appendix C. V4.4 Gate0 Evidence Intake
+
+V4.4 fixes the ambiguity between "ask basic information" and "return supplemental data requirements." Gate0 is now one data entrance, not two adjacent decision points.
+
+The V4.4 behavior:
+
+- Digital or software ideas with clear target user, problem, surface, constraints, and validation intent usually return `Ready`.
+- Vague ideas such as "make an app" return `Need Basic Input` and ask only the minimum routing questions.
+- Local, offline, physical, regulated, supply-chain, platform-dependent, B2B, content/community, or service-heavy ideas return `Field Data Required` when first-hand evidence is missing.
+- Composite ideas combine checklist modules. For example, selling one-yuan turkey noodles beside a Nanchang middle school is local/offline + physical food sales + minors context + geography-heavy, so Gate0 should request foot traffic, permission/compliance, competitor pricing, unit cost, trial sales, complaints, and interruption risk instead of a generic market-size checklist.
+- When the user returns later with field data, WheelWise resumes from Gate0 Evidence Intake, writes the data into `evidence-board.md`, compares it with continue/stop thresholds, and refreshes or flags stale market, competitor, regulation, and platform-rule evidence.
+
+Scenario examples in the V4.4 plan are not implemented as executable tests yet. The current committed verification covers static contract checks, report-template checks, Python syntax, and whitespace checks. A future enhancement should add scripted prompt-scenario tests for the SaaS, Nanchang school-stall, vague app, resume-after-data, and stale-evidence cases.
