@@ -13,6 +13,7 @@ Connect `reuse-evaluator` to `execution-plan`. The technical plan must honor the
 - Product strategy and MVP workflow from `product-strategy`.
 - Module decisions from `reuse-evaluator`.
 - Known risks from `risk-review` when available.
+- V4.5 pre-review state and next-stage recommendation from `project-state.md`.
 
 ## Process
 
@@ -24,6 +25,7 @@ Connect `reuse-evaluator` to `execution-plan`. The technical plan must honor the
 6. Call out surface-specific constraints such as mobile store review, browser permissions, API uptime, CLI packaging, or automation retries.
 7. Check whether technical feasibility, integration, data access, compliance, or platform constraints weaken the user's original technical path.
 8. Apply `../../shared/references/decision-rationale-standard.md` to stack and architecture choices.
+9. Output the technical-review committee viewpoint and classify key technical claims as `事实`, `假设`, `推断`, or `证据缺口`.
 
 ## Conflict Check
 
@@ -38,7 +40,8 @@ Connect `reuse-evaluator` to `execution-plan`. The technical plan must honor the
 - If a technical spike was marked as needed, either incorporate its finding or keep it as an explicit evidence gap.
 - Update `project-state.md` with technical plan summary, technical spike status, integration constraints, and last updated by skill.
 - If technical planning changes the delivery surface, compliance boundary, core integration path, or feasibility path materially, return control to Gate2 unless the user already confirmed the shift.
-- Do not enter Delivery planning unless Gate2 is `Go`, assumption-led by explicit user request, or the user confirmed a non-Go Gate2 path.
+- Do not enter full Delivery planning unless Gate2 is `Go`, the V4.5 pre-review state is `可进入原型验证` or `可进入最小可行产品实验`, the workflow is assumption-led by explicit user request, or the user confirmed a non-Go Gate2 path.
+- If the state is `需要补充关键证据`, produce technical spike or prototype-validation tasks instead of a full architecture plan.
 
 ## Output Shape
 
@@ -54,6 +57,8 @@ Integrations:
 Deployment path:
 Surface-specific constraints:
 Technical risks:
+Technical-review viewpoint:
+Evidence classification:
 Reuse alignment notes:
 Original technical assumptions:
 Supporting evidence:

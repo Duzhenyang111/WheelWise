@@ -64,6 +64,38 @@ Stop / continue rationale:
 
 Validation threshold:
 
+Pre-review state:
+
+Next-stage recommendation:
+
+Review scorecard:
+
+Comparable idea score:
+
+## Pre-Analysis State
+
+Idea type:
+
+Key job to be done:
+
+Current workaround:
+
+Biggest opportunity:
+
+Biggest uncertainty:
+
+Biggest adoption resistance:
+
+Strongest substitute:
+
+Evidence-supported stage:
+
+Highest-information validation action:
+
+Narrative angle:
+
+Report variation notes:
+
 ## Strategy State
 
 Product strategy summary:
@@ -93,6 +125,12 @@ Contradictions:
 Assumptions:
 
 Original assumptions:
+
+Critical assumption dependencies:
+
+Options considered:
+
+Options rejected:
 
 Supporting evidence summary:
 

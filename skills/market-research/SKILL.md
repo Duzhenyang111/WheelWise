@@ -24,6 +24,7 @@ Read `../../shared/references/idea-applicability-standard.md` when the idea is l
 8. Mark whether findings support or oppose the original direction and whether they imply a minor or major direction shift.
 9. If the market is local, offline, physical, supply-chain-heavy, platform-dependent, B2B, content/community, service-heavy, or regulated, identify what cannot be answered by web research and return idea-type-specific first-hand data needs.
 10. If Gate0 is waiting for supplemental data, use any newly supplied user data as evidence, compare it with thresholds, and mark time-sensitive market or competitor facts that need refresh.
+11. Output the market-review committee viewpoint and classify key market claims as `事实`, `假设`, `推断`, or `证据缺口`.
 
 ## Minimum Search Coverage
 
@@ -55,6 +56,7 @@ Distribution channels:
 Market maturity:
 Entry barriers:
 Opportunity window:
+Market-review viewpoint:
 Data sufficiency:
 Required supplemental data:
 Why supplemental data is needed:
@@ -76,6 +78,7 @@ Source:
 Source type:
 Data source:
 Key finding:
+Evidence classification:
 Evidence strength:
 Affected decision:
 Supports or opposes:

@@ -19,7 +19,7 @@ For non-digital ideas, `prototype.html` may be a validation tool instead of a pr
 - Automation/workflow ideas need a trigger/action workflow simulator with retry, error, and success paths.
 - Local/offline, physical, regulated, supply-chain, or hardware-heavy ideas need a validation workflow prototype when a product UI would be misleading.
 
-In V4, no product skips interaction demonstration only because it lacks a traditional graphical UI. API, CLI, automation, backend, data, or developer products must use simulator mode.
+In V4.5, no product skips interaction demonstration only because it lacks a traditional graphical UI. API, CLI, automation, backend, data, or developer products must use simulator mode. If the pre-review state is `需要补充关键证据`, `prototype.html` may be a validation simulator instead of a product UI.
 
 ## Required Demo Coverage
 
@@ -69,6 +69,7 @@ The prototype must include at least one real state transition. Prefer multiple s
 
 - Read `project-state.md` before choosing the demo mode.
 - Use delivery surface and Gate2 status to decide whether to create a UI prototype, API playground, CLI simulator, workflow simulator, request explorer, or terminal simulator.
+- Use V4.5 pre-review state to decide whether the prototype demonstrates the product concept, validates an evidence gap, or preserves a reference-only learning artifact.
 - Use applicability class to decide whether `prototype.html` should be a product UI or a validation tool.
 - Update `project-state.md` with prototype status, interaction demo type, interaction demo path, simulated states, backend boundary, and last updated by skill.
 - If no prototype is generated in the current run, write a concrete prototype task into `execution-plan`.
@@ -77,6 +78,7 @@ The prototype must include at least one real state transition. Prefer multiple s
 
 ```text
 演示类型:
+Pre-review state:
 Target surface:
 Applicability class:
 Primary flow:

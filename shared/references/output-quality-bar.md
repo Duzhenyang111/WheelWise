@@ -2,7 +2,7 @@
 
 A WheelWise answer is acceptable only when it:
 
-- Produces a Chinese report folder: `wheelwise-report/` by default or `wheelwise-report-<idea-slug>/` when the idea name is available.
+- Produces a Chinese AI product pre-review package folder: `wheelwise-report/` by default or `wheelwise-report-<idea-slug>/` when the idea name is available.
 - Includes `report.md`, `index.html`, `prototype.html`, `assets/`, and at least one visual asset.
 - For V4 full workflows, includes internal `project-state.md` and `evidence-board.md`, or explicitly records why they are not generated in the current run.
 - Treats `project-state.md` and `evidence-board.md` as internal artifacts, not final report replacements.
@@ -10,25 +10,38 @@ A WheelWise answer is acceptable only when it:
 - Uses Chinese for report title, section names, table fields, explanations, decision rationales, risks, experiments, and execution-plan prose.
 - Uses Chinese for all visible webpage text, image text, chart labels, alt text, and presentation copy.
 - Uses Chinese display terms: 自研, 购买, 复用, 分叉改造, 参考, 网页应用, 软件服务, 最小可行产品, 演示, 模拟数据, 兜底方案, 继续 / 停止条件, 可交给 Codex 执行的计划.
-- Reads as a progressive report, not a dump of internal skill sections: opening guide, user/problem, decisions/solution, visual/demo, risks/validation, execution plan, and final action advice.
-- Reads like a product pre-research report: executive summary, assumptions, research method, evidence level, users, demand, market attractiveness, competitors, calibration, product recommendation, commercialization, compliance, risk, staged validation, technical/reuse path, prototype, and next actions.
-- Includes `报告说明与阅读导览` with report purpose, applicable stage, core conclusion preview, and reading path.
-- Includes `最终建议与下一步行动` with one-sentence judgment, 7-day, 14-day, 30-day actions, and continue/stop conditions.
+- Reads as a progressive pre-review package, not a dump of internal skill sections: opening guide, pre-review conclusion, evidence level, review-board viewpoints, user/problem, decisions/solution, decision records, scorecard, visual/demo, risks/validation, execution or validation plan, and final action advice.
+- Reads like a product pre-review package: pre-review state, executive summary, assumptions, research method, evidence level, users, demand, market attractiveness, competitors, calibration, review-board viewpoints, product recommendation, decision records, comparable scorecard, commercialization, compliance, risk, staged validation, technical/reuse path, prototype, and next actions.
+- Reads like a real pre-review opinion, not a template form: key sections are written as complete analytical paragraphs before any bullets or tables.
+- Includes `核心判断逻辑` immediately after `预评审结论`, written as continuous prose with no table.
+- Makes the judgment chain visible: idea type, target user, key job, current workaround, biggest opportunity, biggest uncertainty, biggest adoption resistance, strongest substitute, evidence-supported stage, and highest-information validation action.
+- Explains why the selected pre-review state is right, why a more aggressive state is not justified, why a more conservative state would lose information, what evidence would upgrade the state, and what failure signals would downgrade or stop the idea.
+- Uses tables only to organize comparison, evidence, scoring, risk, or plans; tables do not replace the paragraphs that explain what the table means for the decision.
+- Avoids long runs of `字段：短句`, one-line judgments, mechanical lists, and repeated generic actions such as “访谈用户”, “做原型测试”, “验证付费意愿”, or “确认合规边界” without idea-specific reasoning.
+- Includes `报告说明与阅读导览` with report purpose, applicable stage, what WheelWise can and cannot replace, core conclusion preview, and reading path.
+- Includes `预评审结论`, `评审委员会意见`, `决策记录与选项排除`, and `横向比较评分`.
+- Includes a staged validation plan where every action states 验证目标, 为什么现在验证, 方法, 需要收集的数据, 成功标准, 失败信号, 失败后调整, and 当前阶段不应该做.
+- Includes `最终建议与下一步行动` with one-sentence judgment, pre-review state, 7-day, 14-day, 30-day actions, continue/stop conditions, and evidence-gap experiment priority when relevant.
 - Does not use English internal module headings such as `Idea Intake`, `Surface Strategy`, `Reuse Evaluator`, `Technical Planning`, `Risk Review`, `UI Demo Scope`, or `MVP Execution Plan`.
 - Makes a clear verdict.
+- Maps the verdict to exactly one V4.5 pre-review state: 可进入原型验证, 可进入最小可行产品实验, 需要补充关键证据, 建议转向后再评审, 建议暂缓, 建议放弃, or 仅作为参考.
 - Every conclusion is backed by data, source evidence, user-provided evidence, first-hand field data, prototype observation, technical spike, or an explicit evidence gap.
-- If evidence is missing, the conclusion is downgraded to an assumption, `Need More Evidence`, or `需要补充数据`.
+- Key claims are classified as `事实`, `假设`, `推断`, or `证据缺口`.
+- If evidence is missing, the conclusion is downgraded to an assumption, `证据缺口`, or `需要补充关键证据`.
 - Uses Gate0 Evidence Intake to classify applicability and returns `Ready`, `Need Basic Input`, or `Field Data Required`.
 - Returns dynamic supplemental data requirements for local/offline, physical, regulated, supply-chain, hardware, platform-dependent, B2B, content/community, or service-heavy ideas when current data is insufficient.
 - If Gate0 returns `Field Data Required`, records a resumable pause in `project-state.md` and records user-supplied supplemental data in `evidence-board.md` before resuming.
 - Does not uncritically restate the user's idea; user-provided direction is treated as original assumptions until evidence supports it.
 - Explains supporting evidence, opposing evidence, why the original direction is weak, direction shift level, and user confirmation status when the recommendation changes.
 - Requires Gate2 confirmation for major direction shifts; if unconfirmed, the report marks the recommendation as unconfirmed or assumption-led.
+- Records options considered, options rejected, rejected option rationale, critical assumption dependencies, and the action if an assumption fails.
+- Uses a stable comparable scorecard covering user problem strength, target user clarity, evidence sufficiency, market opportunity, differentiation, delivery-surface fit, technical feasibility, commercialization feasibility, risk controllability, execution complexity, and overall pre-review grade.
+- States that the scorecard is a pre-review signal, not an objective investment ranking or success-rate promise.
 - Names the delivery surface.
 - Includes market evidence, user evidence, commercialization assumptions, and a source-evidence summary when current facts materially affect the recommendation.
 - Uses `evidence-board` to consolidate market, customer, reuse, technical-spike, and commercialization evidence before synthesis.
 - Uses `project-state.md` to keep current phase, Gate0 intake status, gate status, feasibility verdict, strategy summaries, open questions, assumptions, resume instruction, and last-updated skill consistent.
-- Follows V4.4 Gate behavior: Gate0 Evidence Intake asks only when basic information is missing, returns a dynamic data checklist when first-hand evidence is missing, and does not split those into two interruptions; Gate1 never asks when it can continue or stop; Gate2 asks only for Pivot, Need More Evidence, Kill, or Park.
+- Follows V4.5 Gate behavior: Gate0 Evidence Intake asks only when basic information is missing, returns a dynamic data checklist when first-hand evidence is missing, and does not split those into two interruptions; Gate1 never asks when it can continue or stop; Gate2 maps verdicts to the seven Chinese pre-review states and asks only for Pivot, Need More Evidence, Kill, or Park.
 - Explains the idea clearly enough for a beginner: feasibility, why it is feasible or not, main selling proposition, product shape after validation, frontend design, backend design, technical route, user acquisition, and operations.
 - Includes decision rationale for key decisions in Chinese: 决策是什么, 为什么选择它, 为什么不选替代方案, 证据, 假设, 风险, 兜底方案, 信心等级.
 - Separates evidence from assumptions.
@@ -50,6 +63,6 @@ A WheelWise answer is acceptable only when it:
 - `prototype.html` includes clickable controls, inputs or selectors, local simulated data, state changes, loading/empty/error/success states, responsive behavior, and a clear backend boundary.
 - Calls out license, privacy, security, dependency, market, and execution risks where relevant.
 - Includes `合规与上线前置项` when relevant, including business entity, ICP/App filing, platform review, public-security filing, privacy/user agreement, payment/tax/invoice, AI/algorithm, and industry-license reminders. These are launch prerequisites or professional-review items, not legal guarantees.
-- Produces a plan Codex can act on, including visual-brief, report-visualization, ui-demo, report folder creation/update tasks, source report tasks, `index.html` visualization tasks, `prototype.html` tasks, and asset generation tasks.
+- Produces a state-appropriate plan Codex can act on, including visual-brief, report-visualization, ui-demo, report folder creation/update tasks, source report tasks, `index.html` visualization tasks, `prototype.html` tasks, asset generation tasks, and validation/pivot/pause/stop/reference-preservation tasks when the state is not ready for build.
 - Keeps `using-wheelwise` responsible for final synthesis.
 - Final self-check confirms project-state completeness, evidence-board coverage or gaps, Gate consistency, decision rationale, visuals, interaction demo/simulator, report folder contract, and Chinese visible text.

@@ -7,6 +7,8 @@ description: Use when WheelWise must review product, technical, market, license,
 
 Review risks after the delivery surface and reuse decisions are known. Use this skill as WheelWise's risk entry point.
 
+In V4.5, risk review acts as the risk-review committee viewpoint for the pre-review board. It must distinguish risks backed by facts from risks based on assumptions, inferences, or evidence gaps.
+
 ## Risk Categories
 
 - Market: weak demand, crowded category, unclear buyer, poor distribution.
@@ -30,7 +32,9 @@ Likelihood: Low / Medium / High
 Evidence:
 Data source:
 Evidence type:
+Evidence classification: 事实 / 假设 / 推断 / 证据缺口
 Evidence strength:
+Pre-review state impact:
 Original assumption:
 Supporting evidence:
 Opposing evidence:
@@ -42,6 +46,7 @@ Direction shift:
 User confirmation needed:
 Mitigation:
 Owner or decision point:
+Validation priority:
 ```
 
 Surface-specific risk must be included. A browser extension has permission and store-review risk; a mobile app has app-store and device-permission risk; an API/SaaS has uptime, abuse, auth, and observability risk.
@@ -54,5 +59,7 @@ Surface-specific risk must be included. A browser extension has permission and s
 - Record compliance and launch prerequisites in the final report, but do not block the workflow by default unless the idea is unsafe or illegal.
 - Update `project-state.md` with risk summary, highest-priority risk, mitigation summary, and last updated by skill.
 - Feed risks into `feasibility-review: full-review` for Gate2.
+- Update `project-state.md` when risk evidence changes pre-review state, review scorecard, or next-stage recommendation.
+- If risk evidence is only assumption-led, lower confidence and mark the required validation before build planning.
 
 When risk review changes the verdict, scope, stack, demo, or execution order, apply `../../shared/references/decision-rationale-standard.md`.

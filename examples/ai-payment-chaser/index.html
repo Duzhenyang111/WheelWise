@@ -3,57 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>款到助手完整方案展示</title>
+  <title>AI 付款跟进助手预评审包</title>
   <style>
-    :root{--ink:#102033;--muted:#647184;--paper:#eef5fb;--card:#fff;--line:#d8e4f2;--blue:#0759ad;--cyan:#03a4c8;--green:#15824b;--orange:#f97316;--red:#c0262d;--navy:#061d38}
-    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:Verdana,'Microsoft YaHei',sans-serif;line-height:1.72} a{color:inherit} .wrap{width:min(1220px,calc(100% - 32px));margin:0 auto}
-    header{min-height:720px;color:#fff;background:radial-gradient(circle at 78% 22%,rgba(3,164,200,.55),transparent 28%),linear-gradient(135deg,#061d38,#0759ad 60%,#07374d);overflow:hidden;position:relative}.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(#000,transparent 90%)}
-    .hero{position:relative;padding:48px 0}.badge{display:inline-flex;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:7px 14px;background:rgba(255,255,255,.12);font-weight:800}.hero h1{font-size:clamp(42px,7vw,92px);line-height:1;margin:20px 0 12px;letter-spacing:0}.hero p{font-size:23px;color:#e8f8ff;max-width:860px}.hero-layout{display:grid;grid-template-columns:1fr 430px;gap:26px;align-items:start}.hero-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:20px;backdrop-filter:blur(10px)}.hero-card strong{font-size:42px;display:block}.poster{width:100%;border:1px solid rgba(255,255,255,.35);border-radius:8px;background:#fff;box-shadow:0 26px 60px rgba(0,0,0,.35);animation:rise .9s ease both}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}.metric{border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:16px;background:rgba(255,255,255,.12);min-height:116px;animation:rise .7s ease both}.metric:nth-child(2){animation-delay:.08s}.metric:nth-child(3){animation-delay:.16s}.metric:nth-child(4){animation-delay:.24s}.metric b{display:block;font-size:31px;margin-bottom:4px}@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-    nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}nav .wrap{display:flex;gap:16px;overflow:auto;padding:10px 0}nav a{white-space:nowrap;text-decoration:none;font-size:14px;padding:7px 10px;border-radius:999px;color:#12324a}nav a:hover{background:#e2efff}
-    section{padding:34px 0}.panel{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:26px;margin:0 0 18px;box-shadow:0 14px 32px rgba(23,53,84,.08)}h2{font-size:34px;line-height:1.15;margin:0 0 18px}h3{font-size:21px;margin:0 0 8px}.sub{color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{border:1px solid var(--line);border-radius:8px;padding:18px;background:#fbfdff}.card.top-blue{border-top:5px solid var(--blue)}.card.top-green{border-top:5px solid var(--green)}.card.top-orange{border-top:5px solid var(--orange)}.card.top-red{border-top:5px solid var(--red)}.big{font-size:36px;font-weight:900;color:var(--blue)}
-    .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.step{position:relative;padding:18px;border-radius:8px;background:#f8fbff;border:1px solid var(--line);min-height:170px}.step span{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;font-weight:900;margin-bottom:12px}.step:after{content:'→';position:absolute;right:-15px;top:62px;font-size:28px;color:var(--blue);font-weight:900}.step:last-child:after{content:''}
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:18px}.screen{background:#071d35;color:#fff;border-radius:8px;padding:18px;min-height:420px}.screen-inner{background:#f7fbff;color:var(--ink);border-radius:8px;padding:16px}.invoice{display:flex;justify-content:space-between;gap:12px;align-items:center;background:#fff;border:1px solid #d6e4f2;border-radius:8px;padding:12px;margin:10px 0}.pill{display:inline-flex;border-radius:999px;padding:4px 9px;font-weight:800;background:#e0f2fe;color:#075985}.cta{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:var(--blue);color:#fff;border-radius:999px;padding:12px 20px;font-weight:900;box-shadow:0 12px 24px rgba(7,89,173,.25)}
-    table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#eaf4ff;color:#0b3b66}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px}.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.time{padding:20px;border-radius:8px;color:#fff;background:linear-gradient(135deg,#0759ad,#03a4c8)}.time b{font-size:30px;display:block}.report-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.dense p{margin:0 0 11px}.notice{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:16px}.foot{padding:34px;text-align:center;color:var(--muted)}
-    @media(max-width:980px){.hero-layout,.split,.cards,.flow,.timeline,.report-grid{grid-template-columns:1fr}.step:after{display:none}.metrics{grid-template-columns:1fr 1fr}.hero{padding-top:28px}header{min-height:0}.poster{margin-top:12px}}@media(max-width:560px){.metrics{grid-template-columns:1fr}.panel{padding:18px}.hero p{font-size:19px}}
+    body{margin:0;font-family:Arial,"Microsoft YaHei",sans-serif;color:#1f2937;background:#f7f7fb}
+    header{padding:32px;background:#4b2e83;color:#fff}
+    nav{display:flex;gap:12px;flex-wrap:wrap}nav a{color:#fff;border:1px solid #d9cfff;padding:6px 10px;border-radius:6px;text-decoration:none}
+    main{max-width:1080px;margin:auto;padding:22px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .card,.matrix,.timeline,.board,.flow,.chart,.risk,.persona{background:#fff;border:1px solid #e3e1ed;border-radius:8px;padding:18px;margin-bottom:16px}
+    .badge{display:inline-block;background:#fff3cd;color:#5f4200;padding:6px 10px;border-radius:999px}
+    table{width:100%;border-collapse:collapse}td,th{border:1px solid #e3e1ed;padding:8px;text-align:left}
+    img{max-width:100%;border-radius:8px}@media(max-width:720px){.grid{grid-template-columns:1fr}main{padding:14px}}
   </style>
 </head>
 <body>
-  <header>
-    <div class="grid-bg"></div>
-    <div class="wrap hero">
-      <div class="badge">完整方案展示页｜不是简单文档转网页</div>
-      <div class="hero-layout">
-        <div>
-          <h1>款到助手</h1>
-          <p>给自由职业者和小型服务商的智能收款提醒工作台。它不是会计系统，而是把逾期发票、提醒文案、发送确认、回款复盘做成一套可信流程。</p>
-          <div class="metrics">
-            <div class="metric"><b>先验证</b>竞品多，先验证真实发票和付费意愿。</div>
-            <div class="metric"><b>4/10</b>十位用户中四位愿导入才继续。</div>
-            <div class="metric"><b>5 分钟</b>生成第一条提醒计划完成激活。</div>
-            <div class="metric"><b>30 天</b>决定继续开发或转为轻服务。</div>
-          </div>
-        </div>
-        <div class="hero-card"><strong>核心卖点</strong><p>不伤客户关系地提高回款跟进效率。</p><a class="cta" href="./prototype.html">打开产品交互原型</a></div>
-      </div>
-    </div>
-  </header>
-  <nav><div class="wrap"><a href="#poster">信息图</a><a href="#why">可行性</a><a href="#product">产品</a><a href="#tech">技术</a><a href="#growth">拉新运营</a><a href="#risk">风险验证</a><a href="#plan">执行计划</a><a href="#full">完整内容</a></div></nav>
-  <main class="wrap">
-    <section id="poster"><div class="panel"><h2>满版产品信息图</h2><p class="sub">这张图浓缩了完整报告：卖点、用户、流程、前端、后端、技术、拉新、风险和 30 天路线。</p><img class="poster" src="./assets/concept.svg" alt="款到助手完整产品信息图"></div></section>
-    <section id="why"><div class="panel"><h2>是否可行，为什么可行</h2><div class="cards"><div class="card top-blue"><div class="big">痛点真</div><p>逾期发票影响现金流，小团队通常没有专职收款人员。</p></div><div class="card top-green"><div class="big">切口窄</div><p>不挑战完整会计系统，只做逾期后的提醒节奏和人工确认。</p></div><div class="card top-orange"><div class="big">能验证</div><p>表格导入、文案生成和手工服务即可在 7 到 30 天内验证。</p></div></div></div></section>
-    <section id="product"><div class="panel"><h2>产品长什么样</h2><div class="flow"><div class="step"><span>1</span><h3>导入发票</h3><p>上传表格或手动录入客户、金额、到期日。</p></div><div class="step"><span>2</span><h3>查看队列</h3><p>按未到期、逾期、暂停、已付款分组。</p></div><div class="step"><span>3</span><h3>生成文案</h3><p>自动给出温和、正常、坚定三种语气。</p></div><div class="step"><span>4</span><h3>确认发送</h3><p>用户保留最后控制权，避免伤客户关系。</p></div><div class="step"><span>5</span><h3>回款复盘</h3><p>每周看提醒效果和仍需跟进的客户。</p></div></div></div></section>
-    <section id="tech"><div class="split"><div class="panel"><h2>前端设计</h2><p>产品首页是工作台，不是营销页。左侧导航包含总览、发票、提醒队列、客户、设置；右侧用提醒编辑抽屉承载语气、正文、发送预览和确认。</p><div class="screen"><h3>工作台截面</h3><div class="screen-inner"><div class="invoice"><b>蓝鲸设计工作室</b><span class="pill">逾期 7 天</span></div><div class="invoice"><b>北岸顾问公司</b><span class="pill">建议坚定</span></div><div class="notice">提醒草稿：您好，想确认这张发票是否已经进入付款流程。</div></div></div></div><div class="panel"><h2>后端设计与技术路线</h2><p>后端围绕用户、组织、客户、发票、提醒计划、消息草稿、发送日志和付款状态建模。提醒策略自研，登录、邮件、支付链接购买成熟能力。</p><div class="table-wrap"><table><tr><th>层</th><th>建议</th></tr><tr><td>前端</td><td>Next.js、TypeScript、Tailwind CSS、shadcn/ui</td></tr><tr><td>数据</td><td>Supabase、PostgreSQL</td></tr><tr><td>发送</td><td>Resend 或 Postmark</td></tr><tr><td>付款</td><td>Stripe 付款链接</td></tr><tr><td>智能</td><td>OpenAI 接口生成提醒草稿</td></tr></table></div></div></div></section>
-    <section id="growth"><div class="panel"><h2>拉新、激活和运营</h2><div class="cards"><div class="card top-blue"><h3>拉新</h3><p>提醒文案生成器、催款邮件模板库、小型服务商回款检查表、会计师合作。</p></div><div class="card top-green"><h3>激活</h3><p>用户 5 分钟内上传一张发票并生成第一条提醒计划。</p></div><div class="card top-orange"><h3>留存</h3><p>周一待跟进摘要，周五回款复盘，帮助用户形成固定收款习惯。</p></div></div></div></section>
-
-    <section id="evidence"><div class="panel"><h2>调研证据和启示</h2><div class="table-wrap"><table><tr><th>来源</th><th>看到什么</th><th>怎么影响方案</th></tr><tr><td>QuickBooks 逾期付款报告</td><td>小企业未付发票和现金流压力明显相关。</td><td>证明痛点不是想象出来的，但要找高频欠款用户。</td></tr><tr><td>Chaser</td><td>专业收款自动化已覆盖邮件、短信、门户和预测。</td><td>不要正面做重型系统，要从轻量关系安全切入。</td></tr><tr><td>HoneyBook</td><td>付款提醒既有自动也有手动，且受文件状态影响。</td><td>人工确认和状态流转应放在首版核心。</td></tr><tr><td>FreshBooks 与 Stripe</td><td>订阅、试用、按已付款发票比例收费等模式都存在。</td><td>首轮用简单订阅验证，付款基础设施直接购买。</td></tr></table></div></div></section>
-    <section id="assumption"><div class="panel"><h2>用户假设和验证问题</h2><div class="cards"><div class="card top-blue"><h3>关系压力</h3><p>用户真正害怕的不是发一封邮件，而是语气不合适导致客户关系变差。</p></div><div class="card top-green"><h3>数据信任</h3><p>用户愿不愿意上传逾期发票，是产品能否成立的第一道门槛。</p></div><div class="card top-orange"><h3>人工确认</h3><p>人工确认可能降低自动化程度，但会提升信任和可控感。</p></div><div class="card top-red"><h3>付费意愿</h3><p>如果用户只觉得模板有趣但不愿付费，产品应转成轻服务或工具引流。</p></div></div></div></section>
-    <section id="modules"><div class="panel"><h2>哪些自研，哪些购买，哪些复用</h2><div class="table-wrap"><table><tr><th>模块</th><th>决策</th><th>原因</th><th>兜底</th></tr><tr><td>用户登录</td><td>购买</td><td>安全要求高，不是差异化。</td><td>后续可迁移到自托管认证。</td></tr><tr><td>发票导入</td><td>自研</td><td>字段映射和验证流程决定首版体验。</td><td>先提供模板下载。</td></tr><tr><td>提醒节奏</td><td>自研</td><td>这是产品核心差异化。</td><td>用固定模板兜底。</td></tr><tr><td>邮件发送</td><td>购买</td><td>送达率、退信和信誉维护复杂。</td><td>支持复制文案自行发送。</td></tr><tr><td>前端组件</td><td>复用</td><td>看板、表格、抽屉和图表都是成熟模式。</td><td>用行业化文案和状态设计拉开差异。</td></tr></table></div></div></section>
-    <section id="implementation"><div class="panel"><h2>实施细节：从前端动作到后端处理</h2><div class="flow"><div class="step"><span>1</span><h3>上传</h3><p>用户上传发票表格，前端预览字段和错误。</p></div><div class="step"><span>2</span><h3>解析</h3><p>后端生成客户、发票和付款链接字段。</p></div><div class="step"><span>3</span><h3>编排</h3><p>规则引擎按到期日和关系标签生成提醒计划。</p></div><div class="step"><span>4</span><h3>生成</h3><p>智能文案服务输出草稿，默认进入待确认。</p></div><div class="step"><span>5</span><h3>记录</h3><p>发送结果、失败原因和付款标记写入日志。</p></div></div><div class="notice" style="margin-top:14px">首轮只做表格导入、邮件发送和外部付款链接保存；QuickBooks、Stripe、FreshBooks 等深度同步后置。</div></div></section>
-    <section id="pricing"><div class="panel"><h2>商业化设计</h2><div class="cards"><div class="card top-blue"><h3>免费试用</h3><p>允许导入 10 张发票并生成提醒草稿，用于验证激活。</p></div><div class="card top-green"><h3>个人版</h3><p>每月 9 到 19 美元，适合自由职业者和独立顾问。</p></div><div class="card top-orange"><h3>小团队版</h3><p>每月 29 到 49 美元，支持团队成员、客户分组和周报。</p></div></div><p class="sub">不建议按回款金额抽成，因为这会引发信任和归因争议。</p></div></section>
-    <section id="experiments"><div class="panel"><h2>验证实验表</h2><div class="table-wrap"><table><tr><th>实验</th><th>验证内容</th><th>成功标准</th><th>失败后怎么做</th></tr><tr><td>发票导入测试</td><td>用户是否愿意使用真实流程</td><td>十人中四人完成导入</td><td>改成复制粘贴信息</td></tr><tr><td>文案偏好测试</td><td>语气建议是否有价值</td><td>六人选择并编辑文案</td><td>转成模板库</td></tr><tr><td>发送意愿测试</td><td>用户是否信任工具代发</td><td>三人愿意系统发送</td><td>保持只生成不发送</td></tr><tr><td>价格测试</td><td>是否愿意付费</td><td>一成访客预约或留邮箱</td><td>改成一次性设置服务</td></tr></table></div></div></section>
-
-    <section id="risk"><div class="panel"><h2>风险和验证</h2><div class="table-wrap"><table><tr><th>风险</th><th>验证方式</th><th>处理</th></tr><tr><td>竞品已有提醒</td><td>测试“关系安全”卖点是否更打动用户</td><td>聚焦人工确认和语气</td></tr><tr><td>用户不愿上传发票</td><td>十人访谈和脱敏发票导入</td><td>降级为文案生成器</td></tr><tr><td>付费意愿不足</td><td>三档价格落地页测试</td><td>转为一次性设置服务</td></tr></table></div></div></section>
-    <section id="plan"><div class="panel"><h2>30 天执行路线</h2><div class="timeline"><div class="time"><b>7 天</b>访谈 10 个目标用户，收集逾期发票样例，手工生成提醒节奏。</div><div class="time"><b>14 天</b>上线落地页、免费工具和交互原型，测试卖点和价格。</div><div class="time"><b>30 天</b>验证通过后开发真实版本；不通过则缩小为模板库或服务。</div></div></div></section>
-    <section id="full"><div class="panel dense"><h2>完整报告内容重组展示</h2><p>下面不是逐字转换 Markdown，而是按读者理解顺序重新组织源报告的实质内容。</p><div class="report-grid"><div class="card"><h3>目标用户</h3><p>1 到 20 人的小型服务商、自由职业者、小型代理公司、独立顾问。早期用户每月开 10 到 80 张发票，经常有 7 天以上逾期款。</p></div><div class="card"><h3>市场证据</h3><p>QuickBooks 逾期付款报告证明痛点存在；Chaser、HoneyBook、FreshBooks、Stripe 证明替代方案成熟，因此必须避开完整会计系统。</p></div><div class="card"><h3>最小可行范围</h3><p>发票导入、逾期看板、三步提醒节奏、可编辑文案、人工确认、发送记录、回款复盘。</p></div><div class="card"><h3>范围外</h3><p>完整会计系统、债务催收服务、法律函件自动生成、多币种税务、企业级审批流。</p></div><div class="card"><h3>自研与购买</h3><p>登录、邮件、支付购买；组件和图表复用；提醒节奏、关系语气和状态流自研；会计系统集成先参考后实现。</p></div><div class="card"><h3>继续条件</h3><p>10 个用户中 4 个完成导入，3 个使用提醒文案，2 个愿意付费或预约后续试用。</p></div></div></div></section>
-  </main><div class="foot">源报告：report.md｜展示页：index.html｜交互原型：prototype.html</div>
-</body></html>
+<header>
+  <p class="badge">预评审状态：需要补充关键证据</p>
+  <h1>AI 付款跟进助手预评审包</h1>
+  <p>核心结论：先补充用户信任和合规边界证据，不直接开发自动化付款跟进产品。</p>
+  <nav><a href="#score">评分</a><a href="#evidence">证据</a><a href="#committee">评审委员会</a><a href="#market">市场</a><a href="#risk">风险</a><a href="#validation">验证</a><a href="prototype.html">原型入口</a></nav>
+</header>
+<main>
+  <section class="grid"><div class="card"><h2>横幅：核心结论</h2><p>需要补充关键证据。</p></div><div class="persona"><h2>目标用户</h2><p>自由职业者、小型服务团队和财务运营人员。</p></div></section>
+  <section id="score" class="chart"><h2>评分矩阵</h2><table><tr><th>维度</th><th>评分</th><th>证据分类</th></tr><tr><td>证据充分度</td><td>1/5</td><td>证据缺口</td></tr><tr><td>风险可控性</td><td>2/5</td><td>推断</td></tr><tr><td>技术可行性</td><td>4/5</td><td>事实</td></tr></table><p>评分是预评审信号，不是投资排序或成功率承诺。</p></section>
+  <section id="evidence" class="board"><h2>证据看板</h2><p>事实：替代工具存在。假设：小团队愿意录入账单。推断：自动催付有关系风险。证据缺口：真实工作流和合规边界。</p></section>
+  <section id="committee" class="matrix"><h2>评审委员会意见</h2><p>产品、市场、用户、技术、复用、商业化、风险、执行和视觉 / 原型视角一致建议先补证。</p></section>
+  <section id="market" class="flow"><h2>市场流程</h2><p>现金流痛点 -> 人工提醒 -> 人审草稿 -> 验证是否继续。</p></section>
+  <section class="card"><h2>决策图</h2><svg viewBox="0 0 520 90" role="img" aria-label="决策图"><text x="10" y="50">自动化想法</text><line x1="115" y1="45" x2="190" y2="45" stroke="#4b2e83"/><text x="200" y="50">风险校准</text><line x1="290" y1="45" x2="380" y2="45" stroke="#4b2e83"/><text x="390" y="50">补证验证</text></svg></section>
+  <section id="risk" class="risk"><h2>风险图</h2><p>客户信息、催付话术和支付边界是最高优先级风险。</p></section>
+  <section id="validation" class="timeline"><h2>验证路线</h2><p>7 天访谈，14 天草稿测试，30 天决定是否进入原型验证。</p></section>
+  <section class="card"><h2>架构与路线</h2><p>模拟账单 -> 风险分级 -> 草稿建议 -> 人工确认。</p><img src="assets/concept.svg" alt="产品概念图"></section>
+</main>
+</body>
+</html>

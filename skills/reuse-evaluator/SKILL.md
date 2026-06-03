@@ -15,6 +15,7 @@ This is WheelWise's core moat. For each important product module, recommend one 
 4. Score fit, maturity, cost, lock-in, customization, license, security, maintenance, and delivery surface fit.
 5. Check whether reuse evidence weakens the user's assumed build, buy, reuse, fork, or reference path.
 6. Make one decision per module.
+7. Output the reuse-review committee viewpoint and classify key reuse claims as `事实`, `假设`, `推断`, or `证据缺口`.
 
 ## Decision Rules
 
@@ -34,9 +35,13 @@ Recommended strategy:
 Suggested option(s):
 Why:
 Why alternatives lose:
+Reuse-review viewpoint:
 Original module assumption:
 Supporting evidence:
 Opposing evidence:
+Evidence classification:
+Decision dependency:
+Rejected option rationale:
 Why original module path may be weak:
 Direction shift:
 User confirmation needed:

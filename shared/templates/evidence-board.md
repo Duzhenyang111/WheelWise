@@ -14,6 +14,8 @@ Evidence coverage:
 
 Data sufficiency:
 
+Pre-review state:
+
 Highest-confidence evidence:
 
 Highest-impact evidence gap:
@@ -28,18 +30,18 @@ Recommended next action:
 
 ## Evidence Items
 
-| Evidence item | Source / origin skill | Data source | Evidence type | Affected decision | Strength | Confidence | Original assumption | Supports or opposes | Direction shift | User confirmation needed | Assumption vs evidence | Contradiction | Evidence gap | Recommended next action |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Evidence item | Source / origin skill | Data source | Evidence type | Evidence classification | Claim type | Affected decision | Decision dependency | Strength | Confidence | Original assumption | Supports or opposes | Direction shift | User confirmation needed | Assumption vs evidence | Contradiction | Evidence gap | Rejected option rationale | Validation priority | Recommended next action |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 ## Decision Coverage
 
-| Decision | Original assumption | Supporting evidence | Opposing evidence | Direction shift | User confirmation needed | Evidence gap | Confidence | Next action |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Decision | Original assumption | Options considered | Options rejected | Supporting evidence | Opposing evidence | Critical assumption dependency | Direction shift | User confirmation needed | Evidence gap | Confidence | Next action |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 ## Evidence Gaps
 
-| Gap | Why it matters | Affected phase | Suggested research or validation |
-| --- | --- | --- | --- |
+| Gap | Why it matters | Affected phase | Validation priority | Suggested research or validation |
+| --- | --- | --- | --- | --- |
 
 ## Supplemental Data Requirements
 
@@ -65,3 +67,8 @@ Recommended next action:
 
 | Assumption | Owner skill | Why acceptable now | When to revisit |
 | --- | --- | --- | --- |
+
+## Review Scorecard Evidence
+
+| Score dimension | Current score | Evidence classification | Evidence basis | Evidence gap | Next validation |
+| --- | --- | --- | --- | --- | --- |

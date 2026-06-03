@@ -1,18 +1,18 @@
 ---
 name: feasibility-review
-description: Use when WheelWise must screen a product idea early or make a full Go, Pivot, Need More Evidence, Kill, or Park decision before delivery planning.
+description: Use when WheelWise must screen a product idea early or make a full feasibility verdict before delivery, validation, pivot, pause, stop, or reference-only planning.
 ---
 
 # Feasibility Review
 
-Feasibility review has two V4 modes: `early-screening` and `full-review`.
+Feasibility review has two V4.5 modes: `early-screening` and `full-review`. Full review must map the verdict into one Chinese pre-review state.
 
 ## Mode Selection
 
 | Mode | Use when | Output |
 | --- | --- | --- |
 | `early-screening` | Phase 0 after `idea-intake` and `surface-strategy` | Can continue / cannot continue / not recommended now |
-| `full-review` | Phase 2 after evidence-board, product strategy, commercialization, and risk review | Go / Pivot / Need More Evidence / Kill / Park |
+| `full-review` | Phase 2 after evidence-board, product strategy, commercialization, and risk review | Go / Pivot / Need More Evidence / Kill / Park plus V4.5 pre-review state |
 
 ## Early-Screening
 
@@ -111,6 +111,18 @@ Full verdict rules:
 | Kill | The idea is unsafe, implausible, undifferentiated, or lacks a buyer/user after review |
 | Park | The idea may be valid, but timing, dependency, regulation, budget, or team fit blocks near-term progress |
 
+Map full verdicts to V4.5 Chinese pre-review states:
+
+| Full verdict | Pre-review state |
+| --- | --- |
+| Go with prototype-first evidence | 可进入原型验证 |
+| Go with bounded MVP evidence | 可进入最小可行产品实验 |
+| Pivot | 建议转向后再评审 |
+| Need More Evidence | 需要补充关键证据 |
+| Kill | 建议放弃 |
+| Park for timing or dependency | 建议暂缓 |
+| Park for learning/reference value only | 仅作为参考 |
+
 Gate2 behavior:
 
 - `Go`: do not ask the user; automatically enter Delivery.
@@ -122,6 +134,8 @@ Full output shape:
 ```text
 Mode:
 Full verdict:
+Pre-review state:
+Next-stage recommendation:
 Confidence:
 Gate2 action:
 Why:
@@ -134,6 +148,10 @@ Evidence summary:
 Evidence gaps:
 Contradictions:
 Validation threshold:
+Review scorecard:
+Options considered:
+Options rejected:
+Critical assumption dependencies:
 Decision:
 Original assumption:
 Why chosen:
@@ -146,6 +164,7 @@ Evidence:
 Assumptions:
 Risks:
 Fallback:
+Next validation:
 Project-state update:
 ```
 
@@ -154,3 +173,5 @@ Project-state update:
 - Always write the verdict, confidence, gate action, and rationale back to `project-state.md`.
 - Full review must reference `evidence-board.md`; if the board is empty, the verdict cannot be `Go` unless the report is explicitly marked as assumption-led.
 - Do not use `Go`, `Pivot`, `Need More Evidence`, `Kill`, or `Park` as final Chinese report section titles; translate and synthesize them into Chinese report content.
+- Always write `Pre-review state`, `Next-stage recommendation`, `Review scorecard`, `Options considered`, `Options rejected`, and `Critical assumption dependencies` back to `project-state.md`.
+- If the state is not `可进入原型验证` or `可进入最小可行产品实验`, route `execution-plan` toward validation, pivot, pause, stop, or reference-preservation tasks instead of full build planning.

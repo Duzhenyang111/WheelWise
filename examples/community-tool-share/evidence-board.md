@@ -4,60 +4,84 @@
 
 ## Summary
 
-Idea summary: 邻里工具共享管家帮助社区登记低频工具、处理预约、归还提醒和信用记录。
+Idea summary: 社区工具共享平台
 
 Report folder: examples/community-tool-share/
 
-Last updated by skill: evidence-board
+Last updated by skill: using-wheelwise
 
-Evidence coverage: 当前示例未联网调研，证据以场景推理、产品假设和执行验证设计为主；市场、用户和商业化均明确缺口。
+Evidence coverage: product, local risk, technical, validation
 
-Highest-confidence evidence: 低频工具购买和存放成本高，社区内借用需要记录和归还提醒。
+Data sufficiency: enough for bounded experiment
 
-Highest-impact evidence gap: 工具主是否愿意把工具登记给邻居借用，以及押金规则是否被接受。
+Pre-review state: 可进入最小可行产品实验
 
-Key contradiction: 同社区关系有助于信任，但工具损坏和逾期归还也可能让邻里关系更敏感。
+Highest-confidence evidence: offline item sharing carries damage and dispute risk.
 
-Recommended next action: 通过一个社区的三周试点收集真实上架、预约、归还和纠纷数据。
+Highest-impact evidence gap: real supply and demand density.
+
+Key contradiction: local sharing is attractive but operations may be heavy.
+
+Direction shift summary: broad platform narrowed to one-community experiment.
+
+User confirmation needed: No
+
+Recommended next action: run pilot
 
 ## Evidence Items
 
-| Evidence item | Source / origin skill | Evidence type | Affected decision | Strength | Confidence | Assumption vs evidence | Contradiction | Evidence gap | Recommended next action |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 低频工具存在购买和存放成本 | idea-intake | Assumption | Feasibility | Medium | Medium | Assumption | 无 | 需要用户访谈确认高频工具类型 | 访谈 10 位居民 |
-| 社区借用需要记录、归还提醒和责任边界 | customer-discovery | Assumption | Product strategy | High | Medium | Assumption | 熟人关系可能减少也可能放大纠纷 | 缺少真实纠纷案例 | 试点中记录逾期和损坏情况 |
-| 网页应用能承载目录、预约和管理员审核 | surface-strategy | Expert judgment | Delivery surface | High | Medium | Evidence from product reasoning | 移动端更方便但开发更重 | 需要验证居民是否接受网页入口 | 首轮用二维码访问网页 |
-| 工具目录和预约状态应自研 | reuse-evaluator | Expert judgment | Reuse decision | Medium | Medium | Assumption | 表单工具也可临时代替 | 需要验证流程复杂度 | 先用轻量自研原型 |
-| 首轮不接入真实支付 | technical-planning | Expert judgment | Technical plan | High | High | Evidence from risk reduction | 押金线下处理会增加管理员负担 | 需要试点记录押金争议 | 只记录押金状态和说明 |
-| 社区运营者可能是付费方 | commercialization | Assumption | Commercialization | Medium | Low | Assumption | 居民也可能愿意按次支付 | 缺少付费访谈 | 访谈社区管理员 |
+| Evidence item | Source / origin skill | Data source | Evidence type | Evidence classification | Claim type | Affected decision | Decision dependency | Strength | Confidence | Original assumption | Supports or opposes | Direction shift | User confirmation needed | Assumption vs evidence | Contradiction | Evidence gap | Rejected option rationale | Validation priority | Recommended next action |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 低频工具共享场景具体 | customer-discovery | scenario analysis | Customer source | 推断 | recommendation | Pre-review state | local demand | Medium | Medium | broad platform | Supports | Minor | No | inference | operations risk | real demand | broad platform rejected | High | pilot |
+| 损坏纠纷风险存在 | risk-review | risk analysis | Risk | 事实 | risk | Risk | liability | High | High | easy sharing | Opposes | None | No | evidence-led | demand plausible | dispute rate | no-rules option rejected | High | rule test |
+| 商业化未知 | commercialization | missing data | Evidence gap | 证据缺口 | validation requirement | Commercialization | fee acceptance | Medium | Low | service fee | Opposes | None | No | gap | none | fee test | fee plan rejected | Low | no-fee pilot |
 
 ## Decision Coverage
 
-| Decision | Supporting evidence | Opposing evidence | Evidence gap | Confidence | Next action |
-| --- | --- | --- | --- | --- | --- |
-| 先验证 | 可低成本试点，风险主要在治理和采用 | 没有真实社区数据 | 上架意愿和押金接受度 | Medium | 三周试点 |
-| 网页应用 | 能快速做目录、预约、审核和状态 | 移动端更方便 | 网页入口接受度 | Medium | 用二维码入口测试 |
-| 不接真实支付 | 降低合规和技术复杂度 | 押金线下处理麻烦 | 押金争议数据 | High | 只记录押金确认 |
+| Decision | Original assumption | Options considered | Options rejected | Supporting evidence | Opposing evidence | Critical assumption dependency | Direction shift | User confirmation needed | Evidence gap | Confidence | Next action |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Pre-review state | broad platform | broad platform; community pilot; reference-only | broad platform | clear use case | operation risk | local trust | Minor | No | pilot data | Medium | MVP experiment |
 
 ## Evidence Gaps
 
-| Gap | Why it matters | Affected phase | Suggested research or validation |
-| --- | --- | --- | --- |
-| 工具主上架意愿 | 决定供给密度 | Discovery / Gate2 | 招募 20 件工具做试点 |
-| 借用者预约意愿 | 决定需求强度 | Discovery / Delivery | 三周内观察 10 次预约 |
-| 押金和损坏赔偿规则 | 决定风险和信任 | Synthesis / Risk | 试点前让居民阅读并反馈规则 |
-| 管理员负担 | 决定商业化和运营可持续性 | Commercialization | 记录每周处理时间 |
+| Gap | Why it matters | Affected phase | Validation priority | Suggested research or validation |
+| --- | --- | --- | --- | --- |
+| 供需密度 | 决定是否值得继续 | MVP experiment | High | community inventory and booking pilot |
+| 纠纷率 | 决定风险可控性 | Risk | High | return inspection log |
+
+## Supplemental Data Requirements
+
+| Applicability class | Why this data is needed | Required data | Collection method | Minimum sample | Continue threshold | Stop threshold | Compliance items to confirm | Checklist version |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| local community | offline fulfillment | supply and booking data | pilot | 20 bookings | low disputes | high disputes | liability, privacy, deposit | V4.5-community-001 |
+
+## User Supplemental Data Received
+
+| Received data | Source | Received date | Related checklist version | Evidence type | Threshold comparison | Time-sensitive recheck needed | Next Gate0 action |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| None | None | None | V4.5-community-001 | Evidence gap | Not met | Yes | continue pilot |
 
 ## Contradictions
 
 | Contradiction | Sources or origin skills | Possible explanation | How to resolve |
 | --- | --- | --- | --- |
-| 熟人关系既增加信任，也增加纠纷尴尬 | customer-discovery / risk-review | 借用前信任高，出问题后关系成本更高 | 用押金说明、归还确认和管理员介入降低风险 |
+| Useful locally but hard operationally | product and risk review | offline item handling | bounded pilot |
+
+## Direction Shifts
+
+| Original direction | Recommended direction | Why original direction is weak | Evidence | Shift level | User confirmation status |
+| --- | --- | --- | --- | --- | --- |
+| broad platform | one-community experiment | scale evidence missing | gaps | Minor | not required |
 
 ## Assumptions To Carry Forward
 
 | Assumption | Owner skill | Why acceptable now | When to revisit |
 | --- | --- | --- | --- |
-| 一个社区能凑够 20 件可借工具 | customer-discovery | 首轮试点可快速验证 | 招募不足时 |
-| 管理员愿意每周投入少量时间 | commercialization | 社区服务试点可接受 | 每周超过 2 小时时 |
-| 网页二维码入口足够方便 | surface-strategy | 避免移动端开发成本 | 居民使用率低时 |
+| residents will participate | product-strategy | pilot can test it | after 30 days |
+
+## Review Scorecard Evidence
+
+| Score dimension | Current score | Evidence classification | Evidence basis | Evidence gap | Next validation |
+| --- | --- | --- | --- | --- | --- |
+| 交付形态匹配 | 4/5 | 事实 | list and booking are simple | small program rules | prototype |
+| 风险可控性 | 3/5 | 推断 | bounded pilot | dispute data | pilot |

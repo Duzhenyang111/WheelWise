@@ -4,33 +4,51 @@
 
 ## Identity
 
-Idea summary: 邻里工具共享管家是一个社区工具借用网页应用，帮助居民把电钻、梯子、露营灯等低频工具登记、预约、押金、归还提醒和信用记录集中管理。
+Idea summary: 社区工具共享平台，帮助居民发布、预约和归还低频工具。
 
 Idea slug: community-tool-share
 
-Target customer: 小区业委会、社区运营者、共享空间管理员，以及愿意共享低频工具的居民。
+Target customer: 小区居民和社区组织者。
 
-Problem and urgency: 居民偶尔需要工具但不想购买；邻里私下借用缺少记录、押金和归还提醒，容易产生纠纷。
+Problem and urgency: 低频工具购买浪费，临时借用不方便。
 
-Current phase: Final report generated
+Current phase: V4.5 pre-review package complete.
 
 Last updated by skill: using-wheelwise
 
-Last updated reason: 生成 V4 示例报告文件夹。
+Last updated reason: V4.5 example upgrade.
 
 ## Routing State
 
 Delivery surface: 网页应用
 
-Secondary surfaces: 微信群表单、社区公告页、移动端小程序
+Secondary surfaces: community operation workflow
 
-Workflow mode: V4 full workflow
+Workflow mode: V4.5 full workflow
 
-Gate status: Gate2 Go
+Applicability class: local community / offline fulfillment
 
-Gate rationale: 想法可低成本验证，最大不确定性是工具主上架意愿和社区治理规则，而不是基础技术可行性。
+Evidence requirement status: enough for bounded experiment
 
-Next skill: final-report complete
+Required supplemental data: tool supply, booking frequency, dispute rate
+
+Gate0 intake status: Ready
+
+Waiting for supplemental data: No
+
+Supplemental data checklist version: V4.5-community-001
+
+Resume from phase: Phase 1 Discovery if pilot data arrives
+
+Resume instruction: Merge pilot data into evidence-board.md and rerun scorecard.
+
+Last user supplemental data received: None
+
+Gate status: Gate2 Go mapped to 可进入最小可行产品实验
+
+Gate rationale: bounded local experiment can control risk.
+
+Next skill: execution-plan
 
 User input required: No
 
@@ -38,77 +56,129 @@ User input required: No
 
 Early-screening verdict: Can continue
 
-Full-review verdict: Go with validation-first delivery
+Full-review verdict: Go
 
 Feasibility confidence: Medium
 
-Stop / continue rationale: 可以继续做验证型最小可行产品，但首轮必须限制在一个社区和少量工具。
+Stop / continue rationale: Continue only as one-community experiment.
 
-Validation threshold: 三周内至少 20 件工具上架、10 次预约、8 次顺利归还，且管理员每周处理时间低于 2 小时。
+Validation threshold: 20 bookings in 30 days with low disputes.
+
+Pre-review state: 可进入最小可行产品实验
+
+Next-stage recommendation: run bounded community pilot.
+
+Review scorecard: 用户问题强度 3/5; 目标用户清晰度 4/5; 证据充分度 3/5; 市场机会 3/5; 差异化 3/5; 交付形态匹配 4/5; 技术可行性 4/5; 商业化可行性 2/5; 风险可控性 3/5; 执行复杂度 3/5.
+
+Comparable idea score: Medium
+
+## Pre-Analysis State
+
+Idea type: Local community sharing and offline fulfillment marketplace
+
+Key job to be done: Borrow low-frequency tools nearby without buying or searching through chat history.
+
+Current workaround: Neighborhood chat groups, buying tools, borrowing from friends, or local rental shops.
+
+Biggest opportunity: A single-community booking loop with clearer availability, handoff, and return records.
+
+Biggest uncertainty: Whether one community has enough supply, demand, and manageable dispute cost.
+
+Biggest adoption resistance: Damage responsibility, deposits, handoff friction, and low borrowing frequency.
+
+Strongest substitute: Neighborhood chat group.
+
+Evidence-supported stage: Bounded minimum viable product experiment.
+
+Highest-information validation action: 30-day single-community supply, booking, return, and incident experiment.
+
+Narrative angle: Offline fulfillment and density experiment, not a platform-scale product launch.
+
+Report variation notes: Emphasize supply density, offline handoff, and dispute cost.
 
 ## Strategy State
 
-Product strategy summary: 先做一个轻量社区工具目录和预约工作台，验证工具主、借用者和管理员三方是否愿意使用。
+Product strategy summary: one-community tool sharing pilot.
 
-Minimum viable product scope: 工具登记、可用时间、预约申请、押金说明、归还提醒、状态记录、管理员审核。
+Minimum viable product scope: tool listing, booking, status, return.
 
-Differentiation: 不是普通二手平台，而是围绕同社区信任、归还提醒和管理员治理的轻量借用闭环。
+Differentiation: structured local sharing.
 
-Product wedge: 一个小区或共享空间里的低频高价值工具借用。
+Product wedge: one apartment community.
 
 ## Evidence State
 
 Evidence-board path: evidence-board.md
 
-Evidence summary: 证据以产品假设和社区场景推理为主，未做联网市场调研；最大证据缺口是居民真实上架意愿和押金接受度。
+Evidence summary: scenario clear; supply and dispute data missing.
 
-Evidence gaps: 工具主上架意愿、押金争议、损坏赔偿规则、社区管理员执行负担。
+Evidence coverage: product, local risk, technical, validation
 
-Contradictions: 熟人社区更容易建立信任，但也更容易因为损坏和逾期归还产生尴尬。
+Evidence gaps: supply density, booking frequency, dispute rate
 
-Assumptions: 社区内存在足够闲置低频工具；管理员愿意承担轻量审核；押金和信用记录能降低纠纷。
+Highest-impact evidence gap: supply and demand density
+
+Data sufficiency: enough for MVP experiment
+
+Contradictions: local need plausible but operations may be heavy
+
+Assumptions: residents will participate with clear rules
+
+Original assumptions: broad community platform
+
+Critical assumption dependencies: trust, supply density, damage handling
+
+Options considered: broad platform, one-community experiment, reference-only
+
+Options rejected: broad platform
+
+Supporting evidence summary: clear local use case
+
+Opposing evidence summary: offline fulfillment risk
+
+Direction shift level: Minor
+
+User confirmation status: not required
+
+Limited assessment boundary: no legal or insurance guarantee
 
 ## Reuse And Technical State
 
-Reuse decisions summary: 工具目录和预约状态自研；登录、通知、表单和静态展示可复用成熟组件或服务。
+Reuse decisions summary: build booking workflow, reference deposit rules.
 
-Technical plan summary: 用网页应用承载居民目录和管理员工作台；后端记录工具、预约、押金说明、归还状态和提醒任务。
+Technical plan summary: static prototype; future database optional.
 
-Technical spike status: 不需要复杂技术探针；需要验证通知渠道和押金规则。
+Technical spike status: not required for prototype.
 
-Integration constraints: 首轮不接入真实支付，押金只记录线下规则和确认状态。
+Integration constraints: no real payment.
 
 ## Commercial And Risk State
 
-Commercialization summary: 首轮不向居民收费，面向社区运营者收取轻量工具管理服务费或作为社区服务试点。
+Commercialization summary: no fee during pilot.
 
-Risk summary: 治理成本、损坏纠纷、押金争议、工具安全责任、供需密度不足。
+Risk summary: damage, deposit, identity, privacy.
 
-Highest-priority risk: 工具损坏或逾期归还导致信任受损。
+Compliance prerequisites summary: liability, privacy, payment rules.
 
-Mitigation summary: 首轮限制工具类型、使用押金说明、管理员审核、归还确认和黑名单机制。
+Highest-priority risk: item damage dispute.
+
+Mitigation summary: clear rules and small pilot.
 
 ## Visual And Demo State
 
-Visual/demo status: Done
+Visual/demo status: generated.
 
-Visual assets planned: 产品概念图、先验证决策图、借用流程、验证条件说明。
+Visual assets planned: concept and decision map.
 
-Visual assets created: assets/concept.svg, assets/decision-map.svg
+Visual assets created: assets/concept.svg; assets/decision-map.svg
 
-Interaction demo type: 网页应用原型
+Interaction demo type: booking prototype
 
 Interaction demo path: prototype.html
 
-Report visualization path: index.html
-
-Report visualization status: Done; covers verdict, personas, workflow, market matrix, scope board, sourcing decisions, architecture, commercialization, risk, validation, timeline, and prototype entry.
-
-Prototype states: loading, empty, error, success, pending review, returned, issue flagged.
-
 ## Final Report State
 
-Final report status: Done
+Final report status: complete
 
 Report folder: examples/community-tool-share/
 
@@ -120,12 +190,12 @@ Prototype path: prototype.html
 
 Assets path: assets/
 
-Self-check status: Passed
+Self-check status: pending validation script
 
 ## Open Items
 
-Open questions: 哪些工具适合首批上架；押金是否必须；管理员审核是否可持续；工具损坏责任如何写清楚。
+Open questions: supply density, deposit rule, dispute handling
 
-Blocking unknowns: 无阻塞报告生成的问题；真实社区验证前不应扩大开发。
+Blocking unknowns: pilot data
 
-Recommended next action: 找一个小区或共享空间，用 20 件工具跑三周人工辅助试点。
+Recommended next action: run one-community pilot

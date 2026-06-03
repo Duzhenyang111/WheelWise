@@ -6,17 +6,24 @@ In the final WheelWise report, use Chinese field names:
 
 ```text
 决策是什么：
+判断类型：
 原始假设是什么：
 为什么选择它：
 为什么不选替代方案：
+考虑过的选项：
+排除原因：
 数据来源：
 证据类型：
+证据分类：
 证据强度：
 哪些证据支持：
 哪些证据反驳：
 证据缺口：
 为什么需要调整：
 偏移程度：
+依赖的关键假设：
+假设失效后的动作：
+下一步验证：
 证据：
 假设：
 风险：
@@ -28,17 +35,24 @@ Use this structure for verdict, delivery surface, product strategy, module strat
 
 ```text
 Decision:
+Claim type:
 Original assumption:
 Why chosen:
 Why alternatives lose:
+Options considered:
+Rejected option rationale:
 Data source:
 Evidence type:
+Evidence classification:
 Evidence strength:
 Supporting evidence:
 Opposing evidence:
 Evidence gap:
 Why adjust:
 Direction shift:
+Critical assumption dependency:
+If assumption fails:
+Next validation:
 Evidence:
 Assumptions:
 Risks:
@@ -49,6 +63,8 @@ Confidence:
 Guidelines:
 
 - Evidence can be user-provided facts, repository inspection, current web research, known platform constraints, or explicit analysis.
+- Evidence classification must be one of `事实`, `假设`, `推断`, or `证据缺口`.
+- Claim type should explain whether the statement is a verdict, recommendation, risk, comparison, score, or validation requirement.
 - Every conclusion must be backed by user-provided data, first-hand field data, current-source evidence, prototype observation, technical spike, or an explicit evidence gap.
 - Assumptions must be labeled when evidence is missing.
 - Confidence must be High, Medium, or Low.
@@ -56,4 +72,5 @@ Guidelines:
 - If a decision depends on current vendor, competitor, license, or repository facts, verify with current sources or mark the evidence gap.
 - If the recommendation differs from the user's original direction, explain why the original direction is weak or not recommended.
 - Direction shift must be `None`, `Minor`, or `Major`. Major shifts require Gate2 user confirmation before Delivery.
-- If a conclusion has no supporting data, do not present it as a conclusion; mark it as an assumption or `Need More Evidence`.
+- If a conclusion has no supporting data, do not present it as a conclusion; mark it as an assumption, `证据缺口`, or `需要补充关键证据`.
+- Decision records must name options considered, options rejected, why the current recommendation wins, and which critical assumptions could change it.

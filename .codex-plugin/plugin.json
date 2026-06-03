@@ -1,7 +1,7 @@
 {
   "name": "wheelwise",
-  "version": "4.4.0",
-  "description": "A product and engineering decision skill pack for turning ideas into data-backed Chinese pre-research reports with Gate0 Evidence Intake, dynamic supplemental-data checklists, compliance reminders, project-state, evidence-board, report.md, visualized index.html, independent prototype.html, assets, and execution plans.",
+  "version": "4.5.0",
+  "description": "An AI Idea Pre-review Board skill pack for turning raw ideas into Chinese pre-review packages with review states, evidence classification, Gate decisions, decision records, comparison scorecards, validation plans, visuals, prototypes, and execution plans.",
   "author": {
     "name": "WheelWise",
     "email": "noreply@example.com"
@@ -18,8 +18,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "WheelWise",
-    "shortDescription": "Generate data-backed Chinese pre-research reports with Gate0 intake, dynamic data checklists, compliance reminders, visuals, prototypes, and execution plans.",
-    "longDescription": "WheelWise is a multi-skill product decision pack that structures raw ideas, classifies applicability, runs Gate0 Evidence Intake, requests missing basic input or dynamic idea-type supplemental data early, manages project state and evidence boards, controls feasibility gates, researches market/customer/commercial evidence, reviews feasibility and risk, evaluates existing solutions, adds compliance and launch prerequisites, creates dense visual briefs, turns report.md into a visualized index.html, creates an independent prototype.html or validation simulator, and produces one complete Chinese report folder with project-state.md, evidence-board.md, report.md, index.html, prototype.html, assets, and an execution plan.",
+    "shortDescription": "Create Chinese AI product pre-review packages with review states, evidence gaps, Gate decisions, scorecards, visuals, prototypes, and validation plans.",
+    "longDescription": "WheelWise is a multi-skill AI Idea Pre-review Board for shaping raw ideas before formal development, team review, or MVP decisions. It structures ideas, classifies applicability, runs Gate0 Evidence Intake, manages project-state and evidence-board files, separates facts, assumptions, inferences, and evidence gaps, controls feasibility Gates, synthesizes product, market, customer, technical, reuse, risk, commercialization, execution, visual, and prototype review viewpoints, maps Gate2 verdicts to Chinese pre-review states, records options considered and rejected, creates comparable scorecards, turns report.md into a visualized index.html, creates an independent prototype.html or validation simulator, and produces one Chinese pre-review package folder. It does not replace real user research, business data, compliance approval, legal advice, investment judgment, or organization decisions.",
     "developerName": "WheelWise",
     "category": "Productivity",
     "capabilities": [
@@ -30,7 +30,7 @@
     "defaultPrompt": [
       "Use $using-wheelwise to evaluate this product idea.",
       "Use $using-wheelwise to decide what to build, buy, reuse, fork, or reference.",
-      "Use $using-wheelwise to create a V4.4 wheelwise-report folder with data-backed report.md, project-state.md, evidence-board.md, visualized index.html, independent prototype.html, and assets for this idea."
+      "Use $using-wheelwise to create a V4.5 AI product pre-review package with report.md, project-state.md, evidence-board.md, visualized index.html, independent prototype.html, assets, review state, evidence gaps, scorecard, and validation plan for this idea."
     ],
     "brandColor": "#2563EB"
   }

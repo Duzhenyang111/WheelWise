@@ -1,6 +1,6 @@
 ---
 name: report-visualization
-description: Use when WheelWise must turn report.md, project-state.md, evidence-board.md, visual assets, and prototype links into index.html as a complete visual explanation layer for a Chinese product report.
+description: Use when WheelWise must turn report.md, project-state.md, evidence-board.md, visual assets, and prototype links into index.html as a complete visual explanation layer for a Chinese product pre-review package.
 ---
 
 # Report Visualization
@@ -35,8 +35,12 @@ Choose modules according to the report content. Do not hard-code every report in
 
 | Report content | Preferred visual expression |
 | --- | --- |
-| Verdict and confidence | Verdict banner, decision score strip, confidence meter |
+| Pre-review state and confidence | Verdict banner, pre-review state badge, decision score strip, confidence meter |
 | Research method and evidence level | Evidence source map, data-quality ladder, confidence matrix |
+| Facts, assumptions, inferences, evidence gaps | Evidence classification board, claim-type matrix |
+| Review-board viewpoints | Committee panel, viewpoint matrix, dissent board |
+| Options considered and rejected | Decision path map, rejected-option board |
+| Comparable scorecard | Radar chart, score strip, dimension matrix |
 | Delivery surface | Surface badge row, surface tradeoff comparison |
 | Target customer | Persona cards, segment cards, role map |
 | Problem and urgency | Before/after workflow, pain timeline, scenario storyboard |
@@ -61,6 +65,9 @@ For a full report, `index.html` must include:
 - Navigation or anchored section index.
 - Cover or hero area with project name and core conclusion.
 - Verdict banner.
+- Visible V4.5 pre-review state.
+- Visual scorecard and evidence-gap module when present in `report.md`.
+- Review-board viewpoint module when present in `report.md`.
 - At least eight substantive visual modules, selected from the mapping above.
 - Visual coverage for evidence level, competitor/alternative comparison, compliance prerequisites, and staged validation when those sections exist in `report.md`.
 - A visible link or callout to `prototype.html` when a prototype exists.
@@ -91,6 +98,9 @@ For a full report, `index.html` must include:
 原型入口:
 视觉系统:
 模块覆盖:
+预评审状态:
+横向比较评分:
+证据分类展示:
 使用资产:
 响应式布局:
 不是 Markdown 转网页的证据:

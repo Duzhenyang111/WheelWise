@@ -1,6 +1,8 @@
 # 最终输出契约
 
-WheelWise 的最终产物是一个中文报告文件夹，而不是单个 Markdown 文件。文件夹内必须包含源报告、报告可视化网页、独立交互原型和视觉资源。V4 还可以包含内部状态文件 `project-state.md` 和 `evidence-board.md`，但它们不能替代最终报告。
+WheelWise V4.5 的最终产物是一个中文 **AI 产品预评审包** 文件夹，而不是单个 Markdown 文件。文件夹内必须包含源报告、报告可视化网页、独立交互原型或验证模拟器和视觉资源。它还可以包含内部状态文件 `project-state.md` 和 `evidence-board.md`，但它们不能替代最终报告。
+
+WheelWise 不是普通 AI 报告生成器，也不是大厂正式审批系统。它不替代真实用户调研、真实业务数据、法律/合规审批、投资判断或组织决策。它的定位是在正式评审之前，把模糊 idea 变成可讨论、可验证、可比较、可决策的预评审包。
 
 ## 文件夹契约
 
@@ -58,31 +60,55 @@ Markdown、网页、图片内文字、图表标签、图片替代文本、表格
 
 ## 递进式报告顺序
 
-报告必须像一份面向读者的产品前期调研报告，而不是内部 skill 输出拼接：
+报告必须像一份面向读者的产品预评审包，而不是内部 skill 输出拼接：
 
 ```text
 报告说明与阅读导览
+-> 预评审结论
+-> 核心判断逻辑
 -> 执行摘要
 -> 原始想法与关键假设
 -> 调研方法与证据等级
+-> 评审委员会意见
 -> 用户、需求、市场、竞品
 -> 产品、商业化、合规、风险、验证
+-> 决策记录与选项排除
+-> 横向比较评分
 -> 技术与复用、前端展示与交互原型
 -> 可交给 Codex 执行的计划
 -> 最终建议与下一步行动
 ```
 
+## 预评审状态
+
+最终报告必须给出统一的 `预评审状态`，并与 Gate、证据覆盖和下一步动作一致：
+
+```text
+可进入原型验证
+可进入最小可行产品实验
+需要补充关键证据
+建议转向后再评审
+建议暂缓
+建议放弃
+仅作为参考
+```
+
+如果预评审状态不是 `可进入原型验证` 或 `可进入最小可行产品实验`，可交给 Codex 执行的计划必须转为补证、转向、暂缓、放弃或参考保留任务，不能包装成完整开发计划。
+
 ## V4 状态与证据规则
 
-- `project-state.md` 是内部流程状态，记录 idea summary、current phase、delivery surface、gate status、feasibility verdict、product strategy summary、reuse decisions summary、technical plan summary、commercialization summary、risk summary、visual/demo status、final report status、open questions、assumptions 和 last updated by skill。
-- `evidence-board.md` 是内部证据中枢，记录 evidence item、source/origin skill、evidence type、affected decision、strength、confidence、original assumption、supports or opposes、direction shift、user confirmation needed、assumption vs evidence、contradiction、evidence gap 和 recommended next action。
+- `project-state.md` 是内部流程状态，记录 idea summary、current phase、delivery surface、pre-review state、next-stage recommendation、gate status、feasibility verdict、review scorecard、product strategy summary、reuse decisions summary、technical plan summary、commercialization summary、risk summary、visual/demo status、final report status、open questions、assumptions、critical assumption dependencies、options considered/rejected、comparable idea score 和 last updated by skill。
+- `evidence-board.md` 是内部证据中枢，记录 evidence item、source/origin skill、evidence type、evidence classification、claim type、affected decision、decision dependency、strength、confidence、original assumption、supports or opposes、direction shift、user confirmation needed、assumption vs evidence、contradiction、evidence gap、rejected option rationale、validation priority 和 recommended next action。
 - 两者都不是最终报告章节名。
 - 最终报告必须吸收 evidence-board 的内容，把证据写入 `市场备注`、`用户假设`、`决策解释摘要`、`关键风险` 和 `验证实验`。
-- V4.4 所有结论都必须有数据、证据或明确证据缺口支撑；无证据结论必须降级为假设、需要补充数据或 Need More Evidence。
+- V4.5 所有重要结论都必须标注为 `事实`、`假设`、`推断` 或 `证据缺口`；无证据结论必须降级为假设、需要补充数据或 `需要补充关键证据`。
 - Gate0 必须使用统一的 `Gate0 Evidence Intake`。如果暂停在 `Field Data Required`，最终报告必须说明动态补充数据清单、继续/停止阈值、恢复方式，以及用户补充数据后先复核 Gate0。
 - Gate 状态必须与 `project-state.md` 中的 feasibility verdict 一致。
+- 预评审状态必须与 Gate2 verdict、证据覆盖、风险等级和下一步动作一致。
 - 如果最终建议不同于用户原始方向，报告必须详细说明原始假设、支持证据、反驳证据、为什么原方向不成立或不建议继续、推荐调整方向、偏移程度和用户确认状态。
 - 重大偏移必须有 Gate2 用户确认记录；如果未确认，只能标记为假设驱动或待确认方向，不能当作已批准的交付计划。
+- 报告必须记录考虑过的关键选项、被排除的选项、排除原因、当前建议依赖的关键假设和一旦假设不成立时的兜底动作。
+- 报告必须包含稳定评分口径，便于多个 idea 横向比较；评分是预评审信号，不是客观投资排序。
 
 ## 必需中文章节
 
@@ -90,24 +116,43 @@ Markdown、网页、图片内文字、图表标签、图片替代文本、表格
 
 1. 报告说明与阅读导览
 2. 项目标题
-3. 执行摘要
-4. 原始想法与关键假设
-5. 调研方法与证据等级
-6. 目标用户与使用场景
-7. 问题痛点与需求强度
-8. 市场吸引力与机会窗口
-9. 竞品与替代方案分析
-10. 原始方向校准
-11. 产品定位与差异化
-12. 最小可行产品范围
-13. 商业模式与获客假设
-14. 合规与上线前置项
-15. 关键风险与不确定性
-16. 分阶段验证计划
-17. 技术与复用方案
-18. 前端展示与交互原型
-19. 可交给 Codex 执行的计划
-20. 最终建议与下一步行动
+3. 预评审结论
+4. 核心判断逻辑
+5. 执行摘要
+6. 原始想法与关键假设
+7. 调研方法与证据等级
+8. 评审委员会意见
+9. 目标用户与使用场景
+10. 问题痛点与需求强度
+11. 市场吸引力与机会窗口
+12. 竞品与替代方案分析
+13. 原始方向校准
+14. 产品定位与差异化
+15. 最小可行产品范围
+16. 商业模式与获客假设
+17. 合规与上线前置项
+18. 关键风险与不确定性
+19. 决策记录与选项排除
+20. 横向比较评分
+21. 分阶段验证计划
+22. 技术与复用方案
+23. 前端展示与交互原型
+24. 可交给 Codex 执行的计划
+25. 最终建议与下一步行动
+
+## 段落化报告写作契约
+
+正式 `report.md` 必须像真实 idea 预审意见，而不是模板填空。生成报告前必须先形成判断链，至少回答：idea 类型、目标用户、关键任务、当前替代做法、最大机会、最大不确定性、最大采用阻力、最强替代方案、当前证据支持阶段和下一步最高信息量验证动作。报告正文必须让这些判断可见地影响结论、风险、验证计划、原型定位和技术范围。
+
+`核心判断逻辑` 必须位于 `预评审结论` 后、`执行摘要` 前，只使用连续自然段，不使用表格。它要讲清楚这个 idea 为什么值得或不值得继续推进、当前结论的主要依据、最大风险与最大证据缺口、为什么当前阶段不应过度推进或过度保守，以及为什么下一步验证是当前最合适动作。
+
+以下章节必须先用完整分析段落表达判断，再使用表格或要点补充：`预评审结论`、`核心判断逻辑`、`执行摘要`、`目标用户与使用场景`、`问题痛点与需求强度`、`市场吸引力与机会窗口`、`原始方向校准`、`产品定位与差异化`、`最小可行产品范围`、`最终建议与下一步行动`。这些章节不得只由短句、列表或表格构成，也不得连续堆叠 `字段：短句`。
+
+表格只能承载对比、评分、风险、证据和计划，不能替代核心判断。任何表格密集的章节都必须有表格前后的段落说明：这个表格说明什么、为什么重要、它如何影响当前预评审状态。
+
+`预评审结论` 必须解释为什么是当前状态、为什么不是更激进状态、为什么不是更保守状态、哪些证据会让状态升级、哪些失败信号会让状态降级或停止。
+
+`分阶段验证计划` 必须服务于当前最大的证据缺口。每个验证动作都要说明验证目标、为什么现在验证、方法、需要收集的数据、成功标准、失败信号、失败后调整和当前阶段不应该做什么。不得机械套用“访谈用户”“做原型测试”“验证付费意愿”“确认合规边界”或固定 7/14/30 天行动，除非明确解释它与当前 idea 类型、用户行为、采用阻力和证据缺口的关系。
 
 ## 开头与结尾
 
@@ -115,16 +160,19 @@ Markdown、网页、图片内文字、图表标签、图片替代文本、表格
 
 - 报告目的。
 - 适用阶段。
+- 能做什么与不能替代什么。
 - 核心结论预览。
 - 阅读方式。
 
 `最终建议与下一步行动` 必须包含：
 
 - 一句话判断。
+- 预评审状态。
 - 7 天行动。
 - 14 天行动。
 - 30 天行动。
 - 继续 / 停止条件。
+- 需要补充关键证据时的实验优先级。
 
 ## 视觉与网页规则
 
@@ -147,7 +195,7 @@ Markdown、网页、图片内文字、图表标签、图片替代文本、表格
 
 - 关键决策解释必须使用 `../../shared/references/decision-rationale-standard.md` 中的中文字段，并包含数据来源、证据类型、证据强度、证据缺口和信心等级。
 - 适用性分类和补充数据要求必须使用 `../../shared/references/idea-applicability-standard.md`。
-- 可交给 Codex 执行的计划必须包含创建报告文件夹、写入 `project-state.md`、写入 `evidence-board.md`、写入 `report.md`、生成 `index.html`、生成 `prototype.html`、保存视觉资产到 `assets/`、运行产物检查的任务。
+- 可交给 Codex 执行的计划必须包含创建报告文件夹、写入 `project-state.md`、写入 `evidence-board.md`、写入 `report.md`、生成 `index.html`、生成 `prototype.html`、保存视觉资产到 `assets/`、运行产物检查的任务。若预评审状态不是 `可进入原型验证` 或 `可进入最小可行产品实验`，执行计划必须转为补证、暂停、转向、放弃或参考保留任务，不能包装成完整开发计划。
 - 使用 `../../shared/templates/new-product-brief.md` 生成完整中文报告；短报告才使用 `../../shared/templates/final-wheelwise-report.md`。
 
 ## V4 最终自检
@@ -157,7 +205,12 @@ Markdown、网页、图片内文字、图表标签、图片替代文本、表格
 - `project-state.md` 关键字段完整。
 - `evidence-board.md` 有证据或明确证据缺口。
 - Gate0、Gate1、Gate2 状态与当前阶段一致；如 Gate0 等待补充数据，`project-state.md` 必须包含恢复字段。
+- 预评审状态与 Gate verdict、证据缺口和下一步动作一致。
+- 评审委员会意见覆盖产品、市场、用户、技术、复用、商业化、风险、执行和视觉/原型视角。
+- 事实、假设、推断和证据缺口已经区分。
 - 关键决策都有解释。
+- 选项考虑、排除原因和关键假设依赖已经写入报告。
+- 横向比较评分存在，且说明评分只是预评审信号。
 - `visual-brief` 有图片、图片生成说明或兜底图。
 - `ui-demo` 或模拟器方案存在。
 - `report-visualization` 或等效步骤已确认 `index.html` 覆盖报告主要内容并不是 Markdown 转网页。

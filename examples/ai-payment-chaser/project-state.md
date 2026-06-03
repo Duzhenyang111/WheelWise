@@ -4,105 +4,181 @@
 
 ## Identity
 
-Idea summary: 款到助手是一个面向自由职业者和小型服务商的智能收款提醒工具，帮助用户整理逾期发票、生成礼貌坚定的提醒节奏，并人工确认发送。
+Idea summary: AI 付款跟进助手，帮助小团队管理账期和提醒草稿。
 
 Idea slug: ai-payment-chaser
 
-Target customer: 自由职业者、小型服务商、小型代理公司、独立顾问。
+Target customer: 自由职业者、小型服务团队、财务运营人员。
 
-Problem and urgency: 用户经常忘记跟进逾期发票，或担心催款伤害客户关系，导致现金流压力。
+Problem and urgency: 回款提醒容易遗漏且话术敏感。
 
-Current phase: Final report generated
+Current phase: V4.5 pre-review package complete.
 
 Last updated by skill: using-wheelwise
 
-Last updated reason: V4 示例补充内部状态文件。
+Last updated reason: V4.5 example upgrade.
 
 ## Routing State
 
-Delivery surface: 网页应用
+Delivery surface: 网页应用 / 验证数据看板
 
-Secondary surfaces: 邮件插件、电子表格导入工具、浏览器插件
+Secondary surfaces: automation workflow
 
-Workflow mode: V4 full workflow
+Workflow mode: V4.5 full workflow
 
-Gate status: Gate2 Go
+Applicability class: B2B / finance operations / sensitive customer data
 
-Gate rationale: 痛点真实且可以用轻量网页应用验证，但需要先验证用户是否愿意上传真实或脱敏发票。
+Evidence requirement status: key evidence required
 
-Next skill: final-report complete
+Required supplemental data: user workflow interviews, compliance boundary, willingness to use reminder drafts
 
-User input required: No
+Gate0 intake status: Ready with evidence gaps
+
+Waiting for supplemental data: Yes
+
+Supplemental data checklist version: V4.5-payment-001
+
+Resume from phase: Gate0 Evidence Intake
+
+Resume instruction: Merge interview data into evidence-board.md and rerun full review.
+
+Last user supplemental data received: None
+
+Gate status: Gate2 Need More Evidence mapped to 需要补充关键证据
+
+Gate rationale: high-impact trust and compliance gaps block build plan.
+
+Next skill: customer-discovery
+
+User input required: supplemental data
 
 ## Feasibility State
 
-Early-screening verdict: Can continue
+Early-screening verdict: Can continue as limited assessment
 
-Full-review verdict: Go with validation-first delivery
+Full-review verdict: Need More Evidence
 
-Feasibility confidence: Medium
+Feasibility confidence: Medium-low
 
-Stop / continue rationale: 可继续进入交付规划，但首轮应围绕真实发票上传和人工确认提醒验证。
+Stop / continue rationale: Continue only with validation tasks.
 
-Validation threshold: 10 个目标用户中至少 4 个愿意上传真实或脱敏逾期发票并试用提醒节奏。
+Validation threshold: 3 of 5 teams willing to use human-reviewed reminder drafts.
+
+Pre-review state: 需要补充关键证据
+
+Next-stage recommendation: collect workflow, compliance, and trust evidence.
+
+Review scorecard: 用户问题强度 3/5; 目标用户清晰度 3/5; 证据充分度 1/5; 市场机会 3/5; 差异化 2/5; 交付形态匹配 3/5; 技术可行性 4/5; 商业化可行性 2/5; 风险可控性 2/5; 执行复杂度 3/5.
+
+Comparable idea score: Medium-low
+
+## Pre-Analysis State
+
+Idea type: B2B finance-operations and customer-communication assistant
+
+Key job to be done: Reduce missed payment follow-ups without damaging customer relationships.
+
+Current workaround: Spreadsheets, calendars, accounting software, and manual messages.
+
+Biggest opportunity: Human-reviewed reminder drafts and lightweight receivables visibility for small teams.
+
+Biggest uncertainty: Whether users will let a system participate in sensitive payment communication.
+
+Biggest adoption resistance: Customer relationship risk, sensitive data, and unclear compliance boundary.
+
+Strongest substitute: Spreadsheet plus manual message follow-up.
+
+Evidence-supported stage: Key evidence collection before prototype validation.
+
+Highest-information validation action: Workflow interviews and reminder-draft acceptance test with small teams.
+
+Narrative angle: High-sensitivity workflow that must be reviewed as evidence collection, not development.
+
+Report variation notes: Emphasize trust, compliance, and human-reviewed drafts over automation.
 
 ## Strategy State
 
-Product strategy summary: 以“关系安全的收款提醒”为核心差异化，先做导入发票、生成提醒计划、人工确认发送、追踪状态。
+Product strategy summary: human-reviewed payment reminder validation board.
 
-Minimum viable product scope: 发票导入、逾期看板、提醒草稿、人工确认、发送记录、回款状态。
+Minimum viable product scope: bill entry, status board, reminder draft, manual confirmation.
 
-Differentiation: 不是完整会计系统，而是帮助小团队用可控语气和节奏跟进逾期款。
+Differentiation: relationship-safe reminder drafts.
 
-Product wedge: 小型服务商每周一次的逾期发票跟进工作流。
+Product wedge: small service teams with recurring overdue invoices.
 
 ## Evidence State
 
 Evidence-board path: evidence-board.md
 
-Evidence summary: 小企业逾期付款痛点有公开来源支持，竞品存在说明市场成熟，但差异化需要围绕关系安全和人工可控验证。
+Evidence summary: demand is inferred; trust and compliance are gaps.
 
-Evidence gaps: 目标用户真实上传意愿、付费意愿、邮件发送合规边界。
+Evidence coverage: product, risk, technical, commercialization gaps
 
-Contradictions: 现有会计软件已有提醒能力，但用户可能仍需要更细腻的语气和节奏控制。
+Evidence gaps: workflow evidence, user trust, compliance boundary
 
-Assumptions: 早期用户愿意手动导入发票；人工确认比全自动发送更容易建立信任。
+Highest-impact evidence gap: willingness to use reminder drafts
+
+Data sufficiency: insufficient for build
+
+Contradictions: cashflow pain may exist but automation may be unacceptable
+
+Assumptions: users will accept human-reviewed drafts
+
+Original assumptions: automated payment chasing product
+
+Critical assumption dependencies: trust, legal boundary, workflow frequency
+
+Options considered: full build, prototype, validation board, reference-only
+
+Options rejected: full build, automatic sending
+
+Supporting evidence summary: reminder workflow is plausible
+
+Opposing evidence summary: compliance and relationship risk
+
+Direction shift level: Major
+
+User confirmation status: not required for evidence-gathering
+
+Limited assessment boundary: not legal or compliance advice
 
 ## Reuse And Technical State
 
-Reuse decisions summary: 提醒编排自研；邮件、支付、认证和基础托管优先购买或复用成熟服务。
+Reuse decisions summary: reference templates, build local validation board.
 
-Technical plan summary: 使用网页应用承载看板、规则、提醒草稿和发送记录；后端负责发票、提醒、状态和审计。
+Technical plan summary: static prototype with local simulated invoices.
 
-Technical spike status: 建议后续验证邮件发送域名、退信、合规和第三方接口限制。
+Technical spike status: message sending integration deferred.
 
-Integration constraints: 先不深度接入 QuickBooks 或 Stripe，优先表格上传和手动确认。
+Integration constraints: no payment or messaging integration.
 
 ## Commercial And Risk State
 
-Commercialization summary: 免费试用后按月订阅；首轮验证小团队是否愿意为省时间和降低催款尴尬付费。
+Commercialization summary: pricing unvalidated.
 
-Risk summary: 信任门槛、数据隐私、竞品替代、邮件送达、付费意愿不确定。
+Risk summary: compliance, trust, customer relationship.
 
-Highest-priority risk: 用户不愿意把客户和发票数据交给新工具。
+Compliance prerequisites summary: privacy, messaging, payment, contract boundaries.
 
-Mitigation summary: 先支持脱敏上传、人工确认和导出，不接管真实发送。
+Highest-priority risk: inappropriate payment reminder.
+
+Mitigation summary: human review and local simulation.
 
 ## Visual And Demo State
 
-Visual/demo status: Done
+Visual/demo status: validation dashboard example generated.
 
-Visual assets planned: 产品决策图、流程看板、提醒节奏说明。
+Visual assets planned: concept SVG.
 
 Visual assets created: assets/concept.svg
 
-Interaction demo type: 网页应用原型
+Interaction demo type: validation data dashboard
 
 Interaction demo path: prototype.html
 
 ## Final Report State
 
-Final report status: Done
+Final report status: complete
 
 Report folder: examples/ai-payment-chaser/
 
@@ -114,12 +190,12 @@ Prototype path: prototype.html
 
 Assets path: assets/
 
-Self-check status: Passed for example folder
+Self-check status: pending validation script
 
 ## Open Items
 
-Open questions: 用户真实上传意愿、邮件发送合规、付费阈值。
+Open questions: trust, compliance, buyer, pricing
 
-Blocking unknowns: 无阻塞报告生成的问题；仍需真实用户验证。
+Blocking unknowns: real workflow evidence
 
-Recommended next action: 按报告中的 7 天行动计划招募 10 个目标用户做发票上传和提醒草稿测试。
+Recommended next action: run customer interviews

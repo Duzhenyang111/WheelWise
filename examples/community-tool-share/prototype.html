@@ -3,184 +3,45 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>邻里工具共享管家交互原型</title>
+  <title>社区工具预约原型</title>
   <style>
-    :root{--ink:#18334a;--muted:#617487;--line:#d6e0d9;--paper:#eef3ef;--panel:#fff;--green:#2f7d57;--amber:#c8822f;--red:#b65454;--blue:#316fb0}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Arial,"Microsoft YaHei",sans-serif;background:var(--paper);color:var(--ink)}
-    header{padding:26px 6vw;background:var(--green);color:white}
-    main{display:grid;grid-template-columns:1.25fr .9fr;gap:20px;max-width:1220px;margin:auto;padding:22px}
-    .panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px}
-    .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
-    .tool{border:1px solid var(--line);border-radius:8px;padding:14px;background:#fbfdfb}
-    .tool.selected{outline:3px solid #9bc9ac}
-    button{border:0;background:var(--green);color:white;padding:10px 14px;border-radius:8px;font-size:15px;cursor:pointer}
-    button.secondary{background:var(--blue)}
-    button.warn{background:var(--amber)}
-    button.danger{background:var(--red)}
-    input,select,textarea{width:100%;box-sizing:border-box;padding:10px;margin:6px 0 12px;border:1px solid #cbd8d0;border-radius:8px;font-size:15px}
-    textarea{min-height:76px}
-    .status{display:inline-block;padding:5px 9px;border-radius:999px;background:#e3f1e9;color:#23523a;font-size:13px}
-    .state{padding:12px;border-radius:8px;background:#f4f8f5;border:1px solid var(--line);line-height:1.7}
-    .error{background:#fff2f2;border-color:#e2b4b4;color:#8f3434}
-    .success{background:#edf8f0;border-color:#b9d4c4;color:#245c3d}
-    .loading{background:#eef4fb;border-color:#bfd2e5;color:#28547b}
-    .empty{background:#fff8e9;border-color:#e6cf9c;color:#7a5420}
-    .row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
-    li{margin:10px 0;line-height:1.6}
-    a{color:var(--blue);font-weight:700}
-    @media(max-width:880px){main{grid-template-columns:1fr}header{padding:22px}}
+    body{font-family:Arial,"Microsoft YaHei",sans-serif;margin:0;background:#f7fcf8;color:#16281d}
+    main{max-width:960px;margin:auto;padding:24px}.panel{background:#fff;border:1px solid #d7eadc;border-radius:8px;padding:18px;margin-bottom:16px}
+    input,select,textarea{width:100%;box-sizing:border-box;margin:6px 0 12px;padding:10px;border:1px solid #b9d6c1;border-radius:6px}
+    button,a.button{display:inline-block;background:#1f6b45;color:#fff;border:0;border-radius:6px;padding:10px 14px;text-decoration:none;cursor:pointer}
+    .state{padding:10px;background:#ebf8ef;border-radius:6px;margin-top:12px}@media(max-width:720px){main{padding:14px}}
   </style>
 </head>
 <body>
-  <header>
-    <h1>邻里工具共享管家</h1>
-    <p>本页是独立产品原型，使用本地模拟数据展示工具浏览、预约申请、管理员审核和归还状态。</p>
-  </header>
-  <main>
-    <section class="panel">
-      <h2>居民端：可借工具</h2>
-      <div id="toolList" class="tools" aria-live="polite"></div>
-
-      <h2>提交预约</h2>
-      <label for="toolSelect">选择工具</label>
-      <select id="toolSelect"></select>
-      <label for="dateInput">借用日期</label>
-      <input id="dateInput" value="本周六上午">
-      <label for="purposeInput">用途说明</label>
-      <textarea id="purposeInput">安装阳台置物架，预计使用 2 小时</textarea>
-      <div class="row">
-        <button id="submitBtn">提交预约</button>
-        <button id="emptyBtn" class="warn">查看空状态</button>
-        <button id="errorBtn" class="danger">模拟错误</button>
-      </div>
-      <p id="result" class="state empty">空状态：还没有提交预约，请选择工具并填写用途。</p>
-    </section>
-
-    <aside class="panel">
-      <h2>管理员面板</h2>
-      <div id="adminState" class="state loading">加载中：正在读取本地模拟数据。</div>
-      <ul id="requestList"></ul>
-      <div class="row">
-        <button class="secondary" id="approveBtn">确认预约</button>
-        <button class="warn" id="returnBtn">标记归还</button>
-        <button class="danger" id="issueBtn">标记异常</button>
-      </div>
-
-      <h2>模拟数据与状态</h2>
-      <ul>
-        <li>模拟数据：工具、预约、审核和归还记录都写在本页脚本里。</li>
-        <li>加载状态：管理员面板打开时先显示读取中。</li>
-        <li>空状态：没有预约时提示居民先提交。</li>
-        <li>错误状态：可以模拟押金规则缺失或日期为空。</li>
-        <li>成功状态：提交、确认和归还后会显示成功反馈。</li>
-      </ul>
-
-      <h2>模拟边界</h2>
-      <p>未接入真实后端、登录、数据库、通知、支付、信用记录和权限系统。所有状态变化只在当前页面内生效。</p>
-      <p><a href="index.html">返回可视化报告</a></p>
-    </aside>
-  </main>
-
-  <script>
-    const tools = [
-      {name:"冲击电钻", note:"适合安装置物架，押金建议 100 元。", state:"今天可借"},
-      {name:"折叠梯", note:"适合换灯和清洁高处，需两人搬运。", state:"周末可借"},
-      {name:"露营灯", note:"适合小区活动和露营。", state:"可预约"},
-      {name:"小推车", note:"适合搬运快递和小件家具。", state:"待归还"}
-    ];
-    let requests = [];
-
-    const toolList = document.getElementById("toolList");
-    const toolSelect = document.getElementById("toolSelect");
-    const result = document.getElementById("result");
-    const requestList = document.getElementById("requestList");
-    const adminState = document.getElementById("adminState");
-
-    function renderTools(selectedName = tools[0].name){
-      toolList.innerHTML = "";
-      toolSelect.innerHTML = "";
-      tools.forEach((tool) => {
-        const card = document.createElement("article");
-        card.className = "tool" + (tool.name === selectedName ? " selected" : "");
-        card.innerHTML = `<h3>${tool.name}</h3><p>${tool.note}</p><span class="status">${tool.state}</span>`;
-        card.addEventListener("click", () => {
-          toolSelect.value = tool.name;
-          renderTools(tool.name);
-        });
-        toolList.appendChild(card);
-
-        const option = document.createElement("option");
-        option.textContent = tool.name;
-        toolSelect.appendChild(option);
-      });
-      toolSelect.value = selectedName;
+<main>
+  <h1>社区工具预约原型</h1>
+  <p>模拟数据说明：本页面使用本地模拟工具和预约数据，未接入真实后端，不保存个人信息，不处理真实押金。</p>
+  <section class="panel">
+    <label>工具名称</label><input id="tool" value="家用电钻">
+    <label>预约时段</label><select id="slot"><option>周六上午</option><option>周六下午</option><option>周日晚上</option></select>
+    <label>借用说明</label><textarea id="note">安装置物架，预计使用两小时。</textarea>
+    <button id="book">提交预约</button>
+    <a class="button" href="index.html">返回预评审包</a>
+    <div id="state" class="state">空状态：暂无预约。加载、错误、成功状态会随操作变化。</div>
+  </section>
+  <section class="panel"><h2>预约结果</h2><ul id="result"><li>暂无预约记录。</li></ul></section>
+</main>
+<script>
+document.getElementById("book").addEventListener("click", () => {
+  const state = document.getElementById("state");
+  const result = document.getElementById("result");
+  state.textContent = "加载：正在生成本地模拟预约。";
+  result.innerHTML = "";
+  setTimeout(() => {
+    if (!document.getElementById("tool").value.trim()) {
+      state.textContent = "错误：工具名称为空。";
+      result.innerHTML = "<li>空状态：暂无可预约工具。</li>";
+      return;
     }
-
-    function renderRequests(){
-      requestList.innerHTML = "";
-      if(requests.length === 0){
-        adminState.className = "state empty";
-        adminState.textContent = "空状态：当前没有待处理预约。";
-        return;
-      }
-      adminState.className = "state success";
-      adminState.textContent = "成功状态：已读取本地预约记录。";
-      requests.forEach((request, index) => {
-        const item = document.createElement("li");
-        item.textContent = `${request.tool}，${request.date}，${request.status}`;
-        requestList.appendChild(item);
-      });
-    }
-
-    document.getElementById("submitBtn").addEventListener("click", () => {
-      const tool = toolSelect.value;
-      const date = document.getElementById("dateInput").value.trim();
-      const purpose = document.getElementById("purposeInput").value.trim();
-      result.className = "state loading";
-      result.textContent = "加载中：正在提交本地预约。";
-      setTimeout(() => {
-        if(!date || !purpose){
-          result.className = "state error";
-          result.textContent = "错误状态：借用日期和用途说明不能为空。";
-          return;
-        }
-        requests.push({tool, date, purpose, status:"等待管理员确认"});
-        result.className = "state success";
-        result.textContent = "成功状态：预约已提交，等待管理员确认。";
-        renderRequests();
-      }, 350);
-    });
-
-    document.getElementById("emptyBtn").addEventListener("click", () => {
-      requests = [];
-      result.className = "state empty";
-      result.textContent = "空状态：当前没有任何预约记录。";
-      renderRequests();
-    });
-
-    document.getElementById("errorBtn").addEventListener("click", () => {
-      result.className = "state error";
-      result.textContent = "错误状态：押金规则未配置，管理员需要先补充责任说明。";
-    });
-
-    document.getElementById("approveBtn").addEventListener("click", () => {
-      if(requests[0]) requests[0].status = "管理员已确认";
-      renderRequests();
-    });
-    document.getElementById("returnBtn").addEventListener("click", () => {
-      if(requests[0]) requests[0].status = "已按时归还";
-      renderRequests();
-    });
-    document.getElementById("issueBtn").addEventListener("click", () => {
-      if(requests[0]) requests[0].status = "出现异常，等待管理员处理";
-      adminState.className = "state error";
-      adminState.textContent = "错误状态：发现逾期或损坏，需要人工处理。";
-      renderRequests();
-    });
-
-    renderTools();
-    setTimeout(renderRequests, 300);
-  </script>
+    state.textContent = "成功：预约已进入待确认状态。未接入真实后端。";
+    result.innerHTML = "<li>家用电钻：周六上午，待工具主人确认。</li><li>归还提醒：使用后拍照确认工具状态。</li>";
+  }, 300);
+});
+</script>
 </body>
 </html>

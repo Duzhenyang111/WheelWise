@@ -24,6 +24,7 @@ Read `../../shared/references/idea-applicability-standard.md` for local/offline,
 7. Check whether pricing, packaging, channels, platform rules, or buyer behavior support or weaken the user's original commercial assumptions.
 8. Identify launch/commercial prerequisites such as business entity, filing, license, platform review, payment, tax, invoice, privacy, or industry permission when relevant.
 9. Apply the decision rationale fields to the recommended commercial path.
+10. Output the commercialization-review committee viewpoint and classify key commercial claims as `事实`, `假设`, `推断`, or `证据缺口`.
 
 ## Minimum Search Coverage
 
@@ -57,6 +58,7 @@ Early monetization tests:
 Revenue risks:
 Commercial prerequisites:
 Compliance and launch prerequisites:
+Commercialization-review viewpoint:
 Data sufficiency:
 Original commercial assumptions:
 Supporting evidence:
@@ -70,6 +72,7 @@ Source:
 Source type:
 Data source:
 Key finding:
+Evidence classification:
 Evidence strength:
 Affected decision:
 Supports or opposes:
@@ -81,6 +84,7 @@ Why chosen:
 Why alternatives lose:
 Data source:
 Evidence type:
+Evidence classification:
 Evidence strength:
 Supporting evidence:
 Opposing evidence:

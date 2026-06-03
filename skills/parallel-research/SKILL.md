@@ -17,6 +17,7 @@ Use parallel research only when one or more are true:
 - The user asks for broad or fast research.
 - A high-risk decision needs independent review.
 - A single-threaded analysis may miss important evidence.
+- The pre-review board needs an independent dissent, counter-evidence, license/security review, architecture critique, or scorecard sanity check.
 
 ## Rules
 
@@ -24,8 +25,10 @@ Use parallel research only when one or more are true:
 - Do not let subagents decide the final verdict.
 - Give each subagent one narrow brief with success criteria.
 - Ask for evidence, sources, and uncertainty.
+- Ask each pass to classify claims as `事实`, `假设`, `推断`, or `证据缺口`.
+- Ask independent passes to surface counter-evidence and rejected-option rationale, not only supporting evidence.
 - Use `../../shared/references/web-research-standard.md` for briefs that depend on current market, customer, pricing, channel, policy, vendor, or repository facts.
-- Synthesize contradictions in `using-wheelwise`.
+- Synthesize contradictions in `using-wheelwise`; subagents or independent passes must not decide the final pre-review state.
 
 ## Output Shape
 
@@ -34,6 +37,8 @@ Research question:
 Why parallelism is justified:
 Sub-briefs:
 Evidence requested:
+Evidence classification requested:
+Dissent or counter-evidence requested:
 Synthesis plan:
 Final owner: using-wheelwise
 ```

@@ -24,6 +24,7 @@ Read `../../shared/references/idea-applicability-standard.md` when first-hand us
 8. Mark whether the customer direction should be kept, narrowed, changed, or validated before continuing.
 9. If the target user, buyer, or purchase behavior depends on local observation, enterprise pilots, field sales, platform behavior, content/community operations, or service delivery, return idea-type-specific first-hand data and thresholds.
 10. If Gate0 is waiting for supplemental data, use newly supplied user data as first-hand evidence, compare it with thresholds, and mark whether more customer discovery is still required.
+11. Output the customer-review committee viewpoint and classify key user claims as `事实`, `假设`, `推断`, or `证据缺口`.
 
 ## Evidence Rules
 
@@ -47,6 +48,7 @@ Current alternatives:
 Pain intensity:
 Adoption objections:
 Willingness-to-pay or adoption signals:
+Customer-review viewpoint:
 Data sufficiency:
 Required supplemental data:
 Why supplemental data is needed:
@@ -67,6 +69,7 @@ Source:
 Source type:
 Data source:
 Key finding:
+Evidence classification:
 Evidence strength:
 Affected decision:
 Supports or opposes:

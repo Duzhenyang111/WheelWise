@@ -12,6 +12,8 @@ Create visual explanations that make the recommendation easier to understand. Do
 Use one or more:
 
 - Product concept image.
+- Pre-review state map.
+- Comparable scorecard visual.
 - Decision map.
 - Minimum viable product roadmap.
 - Module map.
@@ -27,13 +29,14 @@ Use one or more:
 2. For each visual, state the audience and Chinese report placement.
 3. Choose the production method before writing a prompt.
 4. Explain in Chinese why the visual improves understanding.
-5. Apply `../../shared/references/decision-rationale-standard.md` to visual choices.
-6. When UI/UX style guidance is needed, reference `../../shared/references/external-skills.md`; do not copy external skill content.
-7. For Chinese text-heavy visuals, prefer SVG or HTML/CSS static diagrams saved under `assets/`.
-8. Use AI image generation only for no-text or low-text concept scenes, atmosphere, product context, or user scenario visuals.
-9. Image prompts must require all text inside the image to be Chinese. If accurate Chinese text is uncertain, generate text-free images and put explanations in `report.md` and `index.html`.
-10. Use Mermaid only as the final fallback when SVG/HTML/CSS, existing assets, or image generation are not practical. At least one backup visual must be a decision map, roadmap, or validation funnel, and all node labels must be Chinese.
-11. If an image asset exists, include a Markdown image reference such as:
+5. For V4.5 reports, ensure at least one visual can explain pre-review state, evidence gaps, scorecard, decision path, rejected options, or validation priority.
+6. Apply `../../shared/references/decision-rationale-standard.md` to visual choices.
+7. When UI/UX style guidance is needed, reference `../../shared/references/external-skills.md`; do not copy external skill content.
+8. For Chinese text-heavy visuals, prefer SVG or HTML/CSS static diagrams saved under `assets/`.
+9. Use AI image generation only for no-text or low-text concept scenes, atmosphere, product context, or user scenario visuals.
+10. Image prompts must require all text inside the image to be Chinese. If accurate Chinese text is uncertain, generate text-free images and put explanations in `report.md` and `index.html`.
+11. Use Mermaid only as the final fallback when SVG/HTML/CSS, existing assets, or image generation are not practical. At least one backup visual must be a decision map, roadmap, scorecard, or validation funnel, and all node labels must be Chinese.
+12. If an image asset exists, include a Markdown image reference such as:
 
 ```markdown
 ![产品概念图](./assets/concept.png)

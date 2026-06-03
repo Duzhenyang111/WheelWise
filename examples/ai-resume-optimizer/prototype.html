@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 简历优化器原型</title>
+  <style>
+    body{font-family:Arial,"Microsoft YaHei",sans-serif;margin:0;background:#f7fafc;color:#172033}
+    main{max-width:960px;margin:auto;padding:24px}
+    .panel{background:#fff;border:1px solid #d8e1eb;border-radius:8px;padding:18px;margin-bottom:16px}
+    textarea,input,select{width:100%;box-sizing:border-box;margin:6px 0 12px;padding:10px;border:1px solid #b9c6d3;border-radius:6px}
+    button,a.button{display:inline-block;background:#165d8f;color:#fff;border:0;border-radius:6px;padding:10px 14px;text-decoration:none;cursor:pointer}
+    .state{padding:10px;background:#eef6ff;border-radius:6px;margin-top:12px}
+    @media(max-width:720px){main{padding:14px}}
+  </style>
+</head>
+<body>
+<main>
+  <h1>AI 简历优化器原型</h1>
+  <p>模拟数据说明：本页面只使用本地模拟数据，未接入真实后端，不上传、不保存简历。</p>
+  <section class="panel">
+    <label>目标岗位</label>
+    <input id="job" value="产品运营专员">
+    <label>简历片段</label>
+    <textarea id="resume">负责社群内容发布，整理用户反馈，协助活动复盘。</textarea>
+    <label>优化目标</label>
+    <select id="mode"><option>突出岗位关键词</option><option>强化量化成果</option><option>降低风险措辞</option></select>
+    <button id="run">开始分析</button>
+    <a class="button" href="index.html">返回预评审包</a>
+    <div id="state" class="state">空状态：等待输入并开始分析。加载、错误、成功状态会在交互后出现。</div>
+  </section>
+  <section class="panel">
+    <h2>建议结果</h2>
+    <ul id="result"><li>暂无建议。</li></ul>
+  </section>
+</main>
+<script>
+const data = ["加入岗位关键词：用户增长、活动复盘、数据分析。","把职责改成结果：推动活动复盘并沉淀用户反馈清单。","风险提示：不要夸大未验证的指标。"];
+document.getElementById("run").addEventListener("click", () => {
+  const state = document.getElementById("state");
+  const result = document.getElementById("result");
+  state.textContent = "加载：正在生成本地模拟分析。";
+  result.innerHTML = "";
+  setTimeout(() => {
+    if (!document.getElementById("resume").value.trim()) {
+      state.textContent = "错误：简历片段为空，请补充内容。";
+      result.innerHTML = "<li>空状态：暂无可分析内容。</li>";
+      return;
+    }
+    state.textContent = "成功：已完成模拟分析。未接入真实后端。";
+    result.innerHTML = data.map(item => `<li>${item}</li>`).join("");
+  }, 300);
+});
+</script>
+</body>
+</html>

@@ -19,9 +19,12 @@ from pathlib import Path
 REQUIRED_SECTIONS = [
     "报告说明与阅读导览",
     "项目标题",
+    "预评审结论",
+    "核心判断逻辑",
     "执行摘要",
     "原始想法与关键假设",
     "调研方法与证据等级",
+    "评审委员会意见",
     "目标用户与使用场景",
     "问题痛点与需求强度",
     "市场吸引力与机会窗口",
@@ -32,6 +35,8 @@ REQUIRED_SECTIONS = [
     "商业模式与获客假设",
     "合规与上线前置项",
     "关键风险与不确定性",
+    "决策记录与选项排除",
+    "横向比较评分",
     "分阶段验证计划",
     "技术与复用方案",
     "前端展示与交互原型",
@@ -73,6 +78,8 @@ IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg"}
 
 INDEX_VISUAL_KEYWORDS = [
     "核心结论",
+    "预评审",
+    "评分",
     "目标用户",
     "问题",
     "市场",
@@ -131,6 +138,74 @@ PROTOTYPE_INTERACTIVE_PATTERNS = [
 
 PROTOTYPE_STATE_KEYWORDS = ["加载", "空状态", "暂无", "错误", "失败", "成功", "完成"]
 
+PRE_REVIEW_STATES = [
+    "可进入原型验证",
+    "可进入最小可行产品实验",
+    "需要补充关键证据",
+    "建议转向后再评审",
+    "建议暂缓",
+    "建议放弃",
+    "仅作为参考",
+]
+
+EVIDENCE_CLASSIFICATIONS = ["事实", "假设", "推断", "证据缺口"]
+
+PARAGRAPH_FIRST_SECTIONS = [
+    "预评审结论",
+    "核心判断逻辑",
+    "执行摘要",
+    "目标用户与使用场景",
+    "问题痛点与需求强度",
+    "市场吸引力与机会窗口",
+    "原始方向校准",
+    "产品定位与差异化",
+    "最小可行产品范围",
+    "最终建议与下一步行动",
+]
+
+STATE_RATIONALE_KEYWORDS = [
+    "为什么是当前状态",
+    "为什么不是更激进",
+    "为什么不是更保守",
+    "升级条件",
+    "降级",
+    "停止信号",
+]
+
+VALIDATION_ACTION_KEYWORDS = [
+    "验证目标",
+    "为什么现在验证",
+    "方法",
+    "需要收集的数据",
+    "成功标准",
+    "失败信号",
+    "失败后调整",
+    "当前阶段不应该做",
+]
+
+GENERIC_VALIDATION_PHRASES = [
+    "访谈用户",
+    "做原型测试",
+    "验证付费意愿",
+    "确认合规边界",
+    "7 天行动",
+    "14 天行动",
+    "30 天行动",
+]
+
+SCORECARD_DIMENSIONS = [
+    "用户问题强度",
+    "目标用户清晰度",
+    "证据充分度",
+    "市场机会",
+    "差异化",
+    "交付形态匹配",
+    "技术可行性",
+    "商业化可行性",
+    "风险可控性",
+    "执行复杂度",
+]
+
 PROJECT_STATE_REQUIRED_FIELDS = [
     "Idea summary",
     "Current phase",
@@ -145,6 +220,21 @@ PROJECT_STATE_REQUIRED_FIELDS = [
     "Delivery surface",
     "Gate status",
     "Feasibility",
+    "Pre-review state",
+    "Next-stage recommendation",
+    "Review scorecard",
+    "Comparable idea score",
+    "Idea type",
+    "Key job to be done",
+    "Current workaround",
+    "Biggest opportunity",
+    "Biggest uncertainty",
+    "Biggest adoption resistance",
+    "Strongest substitute",
+    "Evidence-supported stage",
+    "Highest-information validation action",
+    "Narrative angle",
+    "Report variation notes",
     "Product strategy summary",
     "Reuse decisions summary",
     "Technical plan summary",
@@ -155,6 +245,9 @@ PROJECT_STATE_REQUIRED_FIELDS = [
     "Final report status",
     "Open questions",
     "Assumptions",
+    "Critical assumption dependencies",
+    "Options considered",
+    "Options rejected",
     "Last updated by skill",
 ]
 
@@ -163,12 +256,17 @@ EVIDENCE_BOARD_REQUIRED_FIELDS = [
     "Source / origin skill",
     "Data source",
     "Evidence type",
+    "Evidence classification",
+    "Claim type",
     "Affected decision",
+    "Decision dependency",
     "Strength",
     "Confidence",
     "Assumption vs evidence",
     "Contradiction",
     "Evidence gap",
+    "Rejected option rationale",
+    "Validation priority",
     "Recommended next action",
     "Supplemental Data Requirements",
     "Why this data is needed",
@@ -280,6 +378,113 @@ def count_present_keywords(text: str, keywords: list[str]) -> int:
     return sum(1 for keyword in keywords if keyword in text)
 
 
+def meaningful_paragraphs(text: str) -> list[str]:
+    """Return prose-like markdown paragraphs, excluding tables, headings, lists, and code."""
+    cleaned = strip_markdown_code(text)
+    paragraphs: list[str] = []
+    for block in re.split(r"\n\s*\n", cleaned):
+        lines = [line.strip() for line in block.splitlines() if line.strip()]
+        if not lines:
+            continue
+        if all(line.startswith("|") for line in lines):
+            continue
+        if any(line.startswith("#") for line in lines):
+            continue
+        if all(re.match(r"^[-*]\s+|^\d+[.)]\s+", line) for line in lines):
+            continue
+        joined = re.sub(r"\s+", "", "".join(lines))
+        if len(joined) >= 70:
+            paragraphs.append(joined)
+    return paragraphs
+
+
+def field_like_line_count(text: str) -> int:
+    count = 0
+    for line in strip_markdown_code(text).splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith(("#", "|", "-", "*", ">")):
+            continue
+        if re.match(r"^[\u4e00-\u9fffA-Za-z0-9 /（）()、-]{2,24}[:：]\s*\S{0,40}$", stripped):
+            count += 1
+    return count
+
+
+def max_consecutive_field_like_lines(text: str) -> int:
+    max_run = 0
+    current = 0
+    for line in strip_markdown_code(text).splitlines():
+        stripped = line.strip()
+        if re.match(r"^[\u4e00-\u9fffA-Za-z0-9 /（）()、-]{2,24}[:：]\s*\S{0,40}$", stripped):
+            current += 1
+            max_run = max(max_run, current)
+        elif stripped and not stripped.startswith("|"):
+            current = 0
+    return max_run
+
+
+def table_line_count(text: str) -> int:
+    return sum(1 for line in text.splitlines() if line.strip().startswith("|"))
+
+
+def validate_narrative_quality(text: str) -> list[str]:
+    problems: list[str] = []
+
+    for section in PARAGRAPH_FIRST_SECTIONS:
+        body = section_body(text, section)
+        if not body:
+            continue
+        paragraphs = meaningful_paragraphs(body)
+        minimum = 2 if section == "核心判断逻辑" else 1
+        if len(paragraphs) < minimum:
+            problems.append(f"{section} 缺少足够完整的判断段落")
+        if max_consecutive_field_like_lines(body) >= 4:
+            problems.append(f"{section} 存在连续字段式短句，疑似模板填空")
+        if table_line_count(body) > 0 and len(paragraphs) == 0:
+            problems.append(f"{section} 只有表格或清单，缺少表格前后的判断解释")
+
+    report_field_lines = field_like_line_count(text)
+    if report_field_lines >= 60:
+        problems.append(f"报告字段式短句过多：{report_field_lines} 行，疑似模板填空")
+
+    core_logic = section_body(text, "核心判断逻辑")
+    if table_line_count(core_logic) > 0:
+        problems.append("核心判断逻辑不得使用表格，应使用连续段落")
+    for keyword in ["为什么", "证据", "风险", "证据缺口", "下一步验证"]:
+        if keyword not in core_logic:
+            problems.append(f"核心判断逻辑缺少：{keyword}")
+
+    pre_review = section_body(text, "预评审结论")
+    missing_state_keywords = [
+        keyword for keyword in STATE_RATIONALE_KEYWORDS if keyword not in pre_review
+    ]
+    if missing_state_keywords:
+        problems.append("预评审结论缺少状态反证说明：" + "、".join(missing_state_keywords))
+
+    validation = section_body(text, "分阶段验证计划")
+    missing_validation = [
+        keyword for keyword in VALIDATION_ACTION_KEYWORDS if keyword not in validation
+    ]
+    if missing_validation:
+        problems.append("分阶段验证计划缺少验证动作字段：" + "、".join(missing_validation))
+    generic_hits = [phrase for phrase in GENERIC_VALIDATION_PHRASES if phrase in validation]
+    if len(generic_hits) >= 4 and "为什么现在验证" not in validation:
+        problems.append("分阶段验证计划疑似套用通用动作，缺少 idea-specific 验证理由")
+
+    tech = section_body(text, "技术与复用方案")
+    if "需要补充关键证据" in pre_review and any(
+        keyword in tech for keyword in ["完整开发", "生产级", "复杂架构", "规模化"]
+    ):
+        problems.append("需要补充关键证据时，技术方案不应包装成完整开发计划")
+    if "可进入原型验证" in pre_review and "核心流程" not in tech and "价值感知" not in tech:
+        problems.append("可进入原型验证时，技术方案需聚焦核心流程或价值感知")
+    if "可进入最小可行产品实验" in pre_review and not any(
+        keyword in tech for keyword in ["最小闭环", "数据模型", "状态流转", "实验指标"]
+    ):
+        problems.append("可进入最小可行产品实验时，技术方案需包含最小闭环、数据模型、状态流转或实验指标")
+
+    return problems
+
+
 def validate_index_html_quality(path: Path) -> list[str]:
     raw = path.read_text(encoding="utf-8")
     visible = html_visible_text(path)
@@ -389,9 +594,16 @@ def validate_report(
         problems.append("Markdown 可见文字包含禁止英文展示词：" + "、".join(visible_terms))
 
     intro = section_body(text, "报告说明与阅读导览")
-    for keyword in ["报告目的", "适用阶段", "核心结论预览", "阅读方式"]:
+    for keyword in ["报告目的", "适用阶段", "能做什么", "核心结论预览", "阅读方式"]:
         if keyword not in intro:
             problems.append(f"报告说明与阅读导览缺少：{keyword}")
+
+    pre_review = section_body(text, "预评审结论")
+    if not any(state in pre_review for state in PRE_REVIEW_STATES):
+        problems.append("预评审结论缺少有效预评审状态")
+    for keyword in ["下一阶段建议", "关键支持证据", "关键反驳证据", "证据缺口", "关键假设"]:
+        if keyword not in pre_review:
+            problems.append(f"预评审结论缺少：{keyword}")
 
     visual = section_body(text, "前端展示与交互原型")
     if not re.search(r"!\[[^\]]+\]\([^\)]+\)|```mermaid", visual):
@@ -424,7 +636,7 @@ def validate_report(
                 problems.append(f"前端展示与交互原型标记为已生成，但文件不存在：{html_ref}")
 
     outro = section_body(text, "最终建议与下一步行动")
-    for keyword in ["一句话判断", "7 天", "14 天", "30 天"]:
+    for keyword in ["一句话判断", "预评审状态", "7 天", "14 天", "30 天"]:
         if keyword not in outro:
             problems.append(f"最终建议与下一步行动缺少：{keyword}")
     if not re.search(r"继续\s*/\s*停止|推进\s*/\s*停止|继续条件|停止条件", outro):
@@ -434,6 +646,13 @@ def validate_report(
     for keyword in ["数据来源", "证据类型", "证据强度"]:
         if keyword not in evidence:
             problems.append(f"调研方法与证据等级缺少：{keyword}")
+    if not any(classification in evidence for classification in EVIDENCE_CLASSIFICATIONS):
+        problems.append("调研方法与证据等级缺少事实/假设/推断/证据缺口分类")
+
+    committee = section_body(text, "评审委员会意见")
+    for keyword in ["产品", "市场", "用户", "技术", "商业化", "风险", "执行"]:
+        if keyword not in committee:
+            problems.append(f"评审委员会意见缺少：{keyword}")
 
     competitors = section_body(text, "竞品与替代方案分析")
     for keyword in ["竞品", "替代", "优势", "弱点"]:
@@ -449,6 +668,20 @@ def validate_report(
     for keyword in ["阶段", "成功标准", "失败后的处理"]:
         if keyword not in validation:
             problems.append(f"分阶段验证计划缺少：{keyword}")
+
+    decisions = section_body(text, "决策记录与选项排除")
+    for keyword in ["考虑过的选项", "被排除的选项", "排除原因", "关键假设"]:
+        if keyword not in decisions:
+            problems.append(f"决策记录与选项排除缺少：{keyword}")
+
+    scorecard = section_body(text, "横向比较评分")
+    missing_scores = [dimension for dimension in SCORECARD_DIMENSIONS if dimension not in scorecard]
+    if missing_scores:
+        problems.append("横向比较评分缺少维度：" + "、".join(missing_scores))
+    if "预评审" not in scorecard or ("投资排序" not in scorecard and "成功率" not in scorecard):
+        problems.append("横向比较评分缺少评分边界说明")
+
+    problems.extend(validate_narrative_quality(text))
 
     return problems
 
