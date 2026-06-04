@@ -1,7 +1,7 @@
 # WheelWise
 
 <p align="center">
-  <img src="examples/community-tool-share/assets/decision-map.svg" alt="WheelWise 决策地图预览" width="860">
+  <img src="assets/wheelwise-hero.png" alt="WheelWise 宣传图与项目图标" width="860">
 </p>
 
 <p align="center">
@@ -244,25 +244,13 @@ git diff --check
 
 ## 更新目录
 
-| 日期 | 版本 / 提交 | 更新内容 | 功能含义 |
-| --- | --- | --- | --- |
-| 2026-06-04 | `v4.6.0` / `3832eaa` | Progressive WheelWise routing | 保留 `using-wheelwise` 单一入口，新增快速判断 / 专项评估 / 完整预评审三路线确认，每条路线都生成 `report.md`，完整产物契约只在需要时加载。 |
-| 2026-06-03 | `e021011` | 预评审报告升级 | 重做示例、模板、状态文件、证据台账、报告契约检查和最终输出规则，让生成报告更像完整产品预评审包。 |
-| 2026-06-02 | `e2a4122` | 实现文档同步 | 更新中英文实现方法文档，使其匹配 V4.4 工作流和输出纪律。 |
-| 2026-06-02 | `c221164` | WheelWise V4.4 | 强化 idea 适用性判断、Gate 行为、市场和用户路由、项目状态要求和 V4 报告校验。 |
-| 2026-06-02 | `bd04ef4` | WheelWise V4.3 | 新增 idea 适用性标准，强化决策理由、网页调研要求和模板 / 状态校验。 |
-| 2026-06-02 | `8a2608d` | 证据校准工作流 | 增加证据分类、决策理由、网页调研纪律、关键假设和跨 skill 证据交接规则。 |
-| 2026-06-02 | `d015adf` | V4.1 视觉交付架构 | 新增 `report-visualization` skill，强化视觉资产、原型 / 报告展示契约和可视化交付校验。 |
-| 2026-06-02 | `83b6e04` | WheelWise V4 工作流 | 引入 `project-state.md`、`evidence-board.md`、Gate 驱动流程、中文预评审状态、完整工作流指南和 V4 canonical 示例。 |
-| 2026-06-01 | `107b0cf` | V3 报告原型 | 增加报告文件夹示例、`index.html`、`prototype.html`、视觉资产和更强的展示契约。 |
-| 2026-06-01 | `acdebdf` | 调研与商业化 skill | 新增 `market-research`、`customer-discovery`、`commercialization` 和当前网页调研标准。 |
-| 2026-06-01 | `8ac3bc7` | README 文档扩展 | 新增中文版 README，并扩展项目使用方法、工作流、校验和仓库结构说明。 |
-| 2026-06-01 | `93b21f3` | V2.7 报告文件夹输出 | 把示例输出迁移成报告文件夹结构，包含 `report.md`、`index.html`、`assets/` 和更强的报告契约校验。 |
-| 2026-06-01 | `f9c8465` | 示例展示资产补齐 | 为 AI 简历优化器示例增加概念图和 HTML 报告展示页。 |
-| 2026-06-01 | `6aaeb79` | V2.6 报告展示契约 | 新增 `check_report_contract.py`，强化报告模板，并明确展示页 / 原型输出要求。 |
-| 2026-06-01 | `7d410a4` | V2.5 中文报告输出 | 要求中文报告输出词汇、决策记录和更完整的最终报告模板。 |
-| 2026-06-01 | `08f5e51` | V2 skill pack | 新增产品策略、技术规划、UI demo、视觉简报和更强的输出契约。 |
-| 2026-06-01 | `23bf618` | V1 skill pack | 创建第一版 WheelWise 插件、基础 skills、共享参考、模板、实现文档和 AI 简历优化器示例。 |
+| 版本 | 时间 | 功能含义 |
+| --- | --- | --- |
+| `v4.6.0` | 2026-06-04 | 新增渐进式路由：快速判断、专项评估或完整预评审。每条路线都生成 `report.md`，完整产物契约只在需要完整包时加载。 |
+| `v4.x` | 2026-06-02 至 2026-06-03 | 把 WheelWise 升级成 Gate 驱动的 AI 产品预评审系统，引入 `project-state.md`、`evidence-board.md`、中文预评审状态、证据分类、评审委员会汇总、更强报告和视觉交付。 |
+| `v3.0.0` | 2026-06-01 | 增加报告文件夹示例、`index.html`、`prototype.html`、视觉资产和更强的生成报告展示契约。 |
+| `v2.x` | 2026-06-01 | 扩展产品策略、技术规划、UI demo、视觉简报、中文报告词汇、报告文件夹输出和契约校验。 |
+| `v1.0.0` | 2026-06-01 | 创建第一版 WheelWise 插件、基础 skills、共享参考、模板、实现文档和 AI 简历优化器示例。 |
 
 ## Star History
 

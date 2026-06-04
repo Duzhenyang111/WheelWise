@@ -1,7 +1,7 @@
 # WheelWise
 
 <p align="center">
-  <img src="examples/community-tool-share/assets/decision-map.svg" alt="WheelWise decision map preview" width="860">
+  <img src="assets/wheelwise-hero.png" alt="WheelWise promotional banner and icon" width="860">
 </p>
 
 <p align="center">
@@ -244,25 +244,13 @@ References used for this structure: `sindresorhus/awesome` emphasizes a concise 
 
 ## Release Notes
 
-| Date | Version / Commit | Update | What changed functionally |
-| --- | --- | --- | --- |
-| 2026-06-04 | `v4.6.0` / `3832eaa` | Progressive WheelWise routing | Keeps `using-wheelwise` as the single entry point, adds fixed route confirmation for 快速判断 / 专项评估 / 完整预评审, requires every route to create `report.md`, and loads full contracts only when needed. |
-| 2026-06-03 | `e021011` | Pre-review reporting upgrade | Reworks examples, templates, state files, evidence boards, report contract checks, and final output rules so generated reports behave more like full product pre-review packages. |
-| 2026-06-02 | `e2a4122` | Implementation docs sync | Updates English and Chinese implementation-method docs to match the V4.4 workflow and output discipline. |
-| 2026-06-02 | `c221164` | WheelWise V4.4 | Strengthens idea applicability checks, Gate behavior, customer and market routing, project-state requirements, and V4 report validation. |
-| 2026-06-02 | `bd04ef4` | WheelWise V4.3 | Adds the idea applicability standard, stronger decision rationale rules, web research expectations, and broader template/state validation. |
-| 2026-06-02 | `8a2608d` | Evidence calibration | Adds evidence classification, decision rationale, web research discipline, stronger assumptions, and cross-skill evidence handoff rules. |
-| 2026-06-02 | `d015adf` | V4.1 visual delivery architecture | Adds the `report-visualization` skill, richer visual assets, improved prototype/report display contracts, and visual delivery validation. |
-| 2026-06-02 | `83b6e04` | WheelWise V4 workflow | Introduces `project-state.md`, `evidence-board.md`, Gate-driven workflow, Chinese pre-review states, full workflow guide, and canonical V4 examples. |
-| 2026-06-01 | `107b0cf` | V3 report prototypes | Adds report folder examples, `index.html`, `prototype.html`, visual assets, and a stronger display contract for generated reports. |
-| 2026-06-01 | `acdebdf` | Research and commercialization skills | Adds `market-research`, `customer-discovery`, `commercialization`, and current web research standards. |
-| 2026-06-01 | `8ac3bc7` | Expanded README documentation | Adds the Chinese README and expands project usage, workflow, validation, and structure documentation. |
-| 2026-06-01 | `93b21f3` | V2.7 report folder output | Moves example output into a report-folder format with `report.md`, `index.html`, `assets/`, and enhanced report contract validation. |
-| 2026-06-01 | `f9c8465` | Example display assets | Adds a generated concept image and HTML report display for the AI resume optimizer example. |
-| 2026-06-01 | `6aaeb79` | V2.6 report display contract | Adds `check_report_contract.py`, strengthens report templates, and formalizes display/prototype output expectations. |
-| 2026-06-01 | `7d410a4` | V2.5 Chinese report output | Requires Chinese report output vocabulary, decision records, and more complete final report templates. |
-| 2026-06-01 | `08f5e51` | V2 skill pack | Adds product strategy, technical planning, UI demo, visual brief, and stronger output contracts. |
-| 2026-06-01 | `23bf618` | V1 skill pack | Creates the first WheelWise plugin, base skills, shared references, templates, implementation docs, and AI resume optimizer example. |
+| Version | Period | What changed functionally |
+| --- | --- | --- |
+| `v4.6.0` | 2026-06-04 | Adds progressive routing: quick judgment, focused evaluation, or full pre-review. Every route creates `report.md`; full output contracts load only for complete packages. |
+| `v4.x` | 2026-06-02 to 2026-06-03 | Turns WheelWise into a Gate-driven AI product pre-review board with `project-state.md`, `evidence-board.md`, Chinese review states, evidence classification, review-board synthesis, stronger reporting, and visual delivery. |
+| `v3.0.0` | 2026-06-01 | Adds report-folder examples, `index.html`, `prototype.html`, visual assets, and a stronger generated-report display contract. |
+| `v2.x` | 2026-06-01 | Expands the skill pack with product strategy, technical planning, UI demo, visual brief, Chinese report vocabulary, report-folder output, and contract validation. |
+| `v1.0.0` | 2026-06-01 | Creates the initial WheelWise plugin, base skills, shared references, templates, implementation docs, and AI resume optimizer example. |
 
 ## Star History
 
