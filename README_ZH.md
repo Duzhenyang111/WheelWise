@@ -1,80 +1,112 @@
 # WheelWise
 
-WheelWise 是一个面向 Codex 的 Superpowers 风格多 skill 包，也是一个 **AI Idea Pre-review Board / AI 产品预评审系统**。它面向产品想法早期阶段，用结构化评审流程把模糊 idea 推进成可判断、可验证、可执行的产品立项方案。它可以按需路由到快速判断、专项评估或完整预评审；每条路线都会生成报告文件夹和 `report.md`，完整预评审才默认生成报告可视化网页、独立交互原型、视觉资产和内部状态文件。
+<p align="center">
+  <img src="examples/community-tool-share/assets/decision-map.svg" alt="WheelWise 决策地图预览" width="860">
+</p>
 
-WheelWise 不是正式审批系统，也不替代真实用户调研、真实业务数据、合规审批、法律意见、投资判断或组织决策。它适合在正式评审之前，把模糊 idea 变成可讨论、可验证、可比较、可决策的预评审包。
+<p align="center">
+  <strong>面向 Codex 的 AI Idea Pre-review Board / AI 产品预评审系统</strong><br>
+  把一个粗糙产品想法整理成中文预评审报告、证据台账、可视化展示页、交互原型和可交给 Codex 执行的计划。
+</p>
 
-主入口始终是 `using-wheelwise`。用户只需要调用这个 skill；后续由它路由到内部 skill，并负责最终汇总。
+<p align="center">
+  <a href="README.md">English</a>
+  ·
+  <a href="WORKFLOW_GUIDE_ZH.md">工作流指南</a>
+  ·
+  <a href="IMPLEMENTATION_METHOD_ZH.md">实现方法</a>
+  ·
+  <a href="#更新目录">更新目录</a>
+</p>
+
+<p align="center">
+  <img alt="GitHub stars" src="https://img.shields.io/github/stars/Duzhenyang111/WheelWise?style=social">
+  <img alt="GitHub forks" src="https://img.shields.io/github/forks/Duzhenyang111/WheelWise?style=social">
+  <img alt="Latest tag" src="https://img.shields.io/github/v/tag/Duzhenyang111/WheelWise?label=release">
+  <img alt="License" src="https://img.shields.io/github/license/Duzhenyang111/WheelWise">
+  <img alt="Codex skill pack" src="https://img.shields.io/badge/Codex-skill%20pack-2563EB">
+</p>
+
+## 它是什么
+
+WheelWise 是一个面向 Codex 的 Superpowers 风格多 skill 包，也是一个 **AI Idea Pre-review Board / AI 产品预评审系统**。它服务于正式开发、团队评审、MVP 投入之前的产品想法阶段。
+
+当一个 idea 还不够清楚时，可以用 WheelWise 回答这些问题：
+
+- 这个想法应该继续、转向、暂缓，还是放弃？
+- 下一步更适合做原型验证、补充调研，还是做有限的最小可行产品实验？
+- 哪些模块应该自研、购买、复用、分叉改造，哪些只适合作为参考？
+- 哪些关键证据还没补齐，导致现在不能做可信决策？
+- 如果预评审通过，下一步应该让 Codex 执行什么？
+
+WheelWise 不是正式审批系统，也不替代真实用户调研、真实业务数据、合规审批、法律意见、投资判断或组织决策。它的价值在于把模糊想法变成可讨论、可验证、可比较、可决策的预评审包。
+
+## 快速使用
+
+始终调用主入口：
 
 ```text
-Use $using-wheelwise to evaluate this idea: ...
+Use $using-wheelwise to evaluate this idea:
+I want to build an AI resume optimizer for job seekers.
 ```
 
-英文文档见 [README.md](README.md)。
+即使是更窄的问题，也建议通过同一个入口路由：
 
-## WheelWise 解决什么问题
+```text
+Use $using-wheelwise to decide whether this should be a browser extension or a webpage application.
+```
 
-WheelWise 适合在正式开发、团队评审或最小可行产品投入前使用。它帮助判断一个产品想法应该继续研究、进入原型验证、进入最小可行产品实验、转向后再评审、暂缓、放弃，还是仅作为参考；也会判断哪些模块应该自研、购买、复用、分叉改造，或仅作为参考。
+```text
+Use $using-wheelwise to evaluate which modules should be self-built, purchased, reused, forked, or used as reference.
+```
 
-WheelWise 不默认每次运行完整流程。用户请求深度不清楚时，主入口会先确认三种路线之一：
+最终聊天回复应该短，只给产物路径：
+
+```text
+报告文件夹：wheelwise-report-community-tool-share/
+源报告：wheelwise-report-community-tool-share/report.md
+网页展示：wheelwise-report-community-tool-share/index.html
+交互原型：wheelwise-report-community-tool-share/prototype.html
+```
+
+## 工作流路线
+
+WheelWise V4.6 不会默认每次运行完整流程。当用户请求深度不清楚时，`using-wheelwise` 会先确认三种路线之一。
 
 | 路线 | 适合场景 | 默认产物 |
 | --- | --- | --- |
 | 快速判断 | 判断 idea 是否值得继续 | `wheelwise-report-<idea-slug>/report.md` |
 | 专项评估 | 只看 MVP、复用、验证、技术、商业化、风险或执行计划中的一个问题 | `wheelwise-report-<idea-slug>/report.md` |
-| 完整预评审 | 需要正式报告、网页展示、交互原型或完整预评审包 | 完整报告文件夹 |
+| 完整预评审 | 需要正式报告、网页展示、交互原型或面向评审的完整包 | 完整报告文件夹 |
 
-完整预评审核心流程：
-
-1. 结构化原始想法。
-2. 判断交付形态。
-3. 做可行性判断。
-4. 在当前证据会影响判断时，调研市场类别、竞品、替代方案、需求信号和成熟度。
-5. 定义用户假设、待办任务、痛点强度、采用阻力和验证实验。
-6. 明确产品策略和最小可行产品范围。
-7. 按模块评估自研、购买、复用、分叉改造和参考决策。
-8. 生成技术实现路径。
-9. 规划商业模式、定价、包装、渠道和早期变现测试。
-10. 审查产品、市场、技术、隐私、许可、依赖和执行风险。
-11. 创建不依赖 AI 生图的视觉说明资产。
-12. 为 `index.html` 生成报告可视化解释层。
-13. 规划独立交互原型、模拟器、接口试验台、终端预览或工作流预览。
-14. 生成完整中文预评审包文件夹。
-
-## V4.5 流程与输出契约
-
-WheelWise V4.5 保持 Superpowers 风格多 skill pack 架构，并升级为 AI 产品预评审系统：`using-wheelwise` 是总控、路由、状态管理、Gate 控制、证据仲裁、评审委员会汇总、自检和最终预评审包汇总者，同时把数据支撑、Gate0 Evidence Intake、按 idea 类型动态生成的第一阶段补充数据清单、证据分类、中文预评审状态、决策记录、横向评分、合规与上线前置项、报告可视化、独立原型和不依赖生图的视觉资产作为交付能力固化下来。
-
-V4 新增两个内部产物：
+完整预评审流程：
 
 ```text
-project-state.md
-evidence-board.md
+想法结构化
+  -> Gate0 证据输入
+  -> 交付形态判断
+  -> Gate1 早期可行性
+  -> 市场 / 用户 / 复用发现
+  -> 证据台账
+  -> 产品 / 商业化 / 风险综合
+  -> Gate2 完整评审
+  -> 技术计划
+  -> 视觉说明
+  -> 交互原型
+  -> 报告可视化
+  -> 执行计划
 ```
 
-`project-state.md` 记录当前阶段、适用性分类、Gate0 Evidence Intake 状态、证据要求状态、补充数据清单版本、恢复说明、交付形态、Gate 状态、可行性结论、预评审状态、下一阶段建议、评审评分、策略摘要、开放问题、假设、关键假设依赖、考虑和排除的选项、合规前置项和最后更新 skill。`evidence-board.md` 汇总市场调研、用户发现、复用评估、技术探针、商业化证据、动态补充数据要求、用户补回的数据、证据分类、决策依赖、排除选项原因、验证优先级和证据缺口。
+## 输出产物
 
-所有路线的最小产物是中文报告文件夹和 `report.md`：
+每条路线至少生成：
 
 ```text
 wheelwise-report-<idea-slug>/
   report.md
 ```
 
-完整预评审产物是中文预评审包文件夹：
-
-```text
-wheelwise-report/
-  project-state.md
-  evidence-board.md
-  report.md
-  index.html
-  prototype.html
-  assets/
-    concept.png
-```
-
-如果有想法名称，可以使用：
+完整预评审生成：
 
 ```text
 wheelwise-report-<idea-slug>/
@@ -86,21 +118,11 @@ wheelwise-report-<idea-slug>/
   assets/
 ```
 
-`report.md` 是事实来源。`index.html` 是来自同一份中文报告的报告可视化解释层。`prototype.html` 是独立交互原型或模拟器。`assets/` 存放生成或选用的视觉资产。
+`report.md` 是事实来源。`index.html` 是咨询式可视化解释层。`prototype.html` 是独立产品界面模拟、接口试验台、成本测算器、终端预览、验证看板或工作流模拟器，具体形态取决于 idea。
 
-V4.5 要求 `report.md` 更像真实产品预评审包，包含预评审结论、执行摘要、原始假设、调研方法与证据等级、评审委员会意见、市场吸引力、竞品与替代方案、决策记录与选项排除、横向比较评分、合规与上线前置项、分阶段验证计划、前端展示与交互原型和最终建议。所有重要结论必须标注为事实、假设、推断或证据缺口。
+## 预评审状态
 
-V4.5 要求 `index.html` 像可视化预评审报告，用卡片、矩阵、时间线、流程图、架构图、风险图、验证看板和行动卡，把报告里的预评审状态、评分、判断、证据、流程、风险、验证、商业化、合规和执行或验证计划讲清楚。它不能只是 Markdown 转 HTML，不能成为第二份报告，不能只是短摘要页，也不能替代原型。
-
-`prototype.html` 必须独立模拟产品交付形态，使用本地模拟数据、可点击控件、输入、状态变化、加载 / 空状态 / 错误 / 成功状态、响应式布局和未接入真实后端说明。接口、命令行、自动化、后端、数据或开发者工具类想法，应使用接口试验台、终端模拟器、请求浏览器或工作流模拟器。线下、实体、强监管或供应链类想法可以使用验证数据看板、成本毛利测算器、合规清单、供应链验证面板或试点记录面板。
-
-V4.5 Gate 规则：
-
-- Gate0 使用统一的 Evidence Intake，返回 `Ready`、`Need Basic Input` 或 `Field Data Required`。补充数据清单必须按 idea 类型组合动态生成；用户之后补回数据时，从 Gate0 复核继续。
-- Gate1 做早期可行性初筛；不能继续就结束，可以继续就自动进入 Discovery。
-- Gate2 做完整评审；`Go` 映射到 `可进入原型验证` 或 `可进入最小可行产品实验` 并自动进入 Delivery，`Pivot`、`Need More Evidence`、`Kill`、`Park` 映射到 `建议转向后再评审`、`需要补充关键证据`、`建议放弃`、`建议暂缓` 或 `仅作为参考`，再按需询问用户。
-
-V4.5 统一预评审状态：
+WheelWise 会把 Gate 决策映射成一个中文预评审状态：
 
 | 状态 | 含义 |
 | --- | --- |
@@ -112,25 +134,29 @@ V4.5 统一预评审状态：
 | 建议放弃 | 不安全、不可行、无差异或缺少可信用户/买方 |
 | 仅作为参考 | 可作为学习、模块或横向比较素材，但不建议直接推进 |
 
-生成产物里的所有面向用户可见文字都必须使用中文，包括 Markdown 正文、网页文案、图片内文字、图表标签、图片替代文字、表格字段和报告说明。技术栈、代码标识符、命令、包名、API 名称和文件路径如果是技术引用，可以保留英文。
+所有重要结论都必须标注为 `事实`、`假设`、`推断` 或 `证据缺口`。
 
-必须使用的中文展示词：
+## Skill 地图
 
-| 概念 | 中文展示词 |
+| Skill | 作用 |
 | --- | --- |
-| Build | 自研 |
-| Buy | 购买 |
-| Reuse | 复用 |
-| Fork | 分叉改造 |
-| Reference | 参考 |
-| Web App | 网页应用 |
-| SaaS | 软件服务 |
-| MVP | 最小可行产品 |
-| Demo | 演示 |
-| mock data | 模拟数据 |
-| fallback | 兜底方案 |
-| go/no-go | 继续 / 停止条件 |
-| Codex-ready execution plan | 可交给 Codex 执行的计划 |
+| `using-wheelwise` | 主入口、路由、Gate 控制、证据仲裁、最终预评审包汇总 |
+| `idea-intake` | 把原始想法转成结构化产品简报 |
+| `surface-strategy` | 判断网站、网页应用、移动应用、桌面应用、浏览器插件、接口/服务、命令行工具或自动化工具等交付形态 |
+| `feasibility-review` | 做可行性筛查，并把 Gate 结论映射成预评审状态 |
+| `market-research` | 调研市场类别、竞品、替代方案、需求信号、趋势、成熟度和进入壁垒 |
+| `customer-discovery` | 定义用户画像、待办任务、痛点强度、采用阻力和验证实验 |
+| `evidence-board` | 把多来源证据汇总成内部决策台账 |
+| `product-strategy` | 定义定位、差异化、产品切入点和最小可行产品范围 |
+| `reuse-evaluator` | 按模块评估自研、购买、复用、分叉改造和参考 |
+| `technical-planning` | 把决策转成技术栈、架构、数据、集成和部署建议 |
+| `commercialization` | 规划商业模式、定价、包装、渠道、销售路径和早期变现测试 |
+| `risk-review` | 审查市场、产品、技术、法律、隐私、许可、依赖和执行风险 |
+| `visual-brief` | 规划或创建 `assets/` 下的视觉说明资产 |
+| `ui-demo` | 规划独立可点击原型、模拟器、接口试验台、终端预览或工作流预览 |
+| `report-visualization` | 把 `report.md` 转成可视化网页 `index.html` |
+| `execution-plan` | 按预评审状态生成开发、原型、补证、转向、暂缓、放弃或参考保留任务 |
+| `parallel-research` | 为复杂调研或独立复核提供可选支持 |
 
 ## 仓库结构
 
@@ -159,84 +185,22 @@ shared/
   references/
   templates/
 examples/
+  ai-resume-optimizer/
+  ai-payment-chaser/
   community-tool-share/
-    project-state.md
-    evidence-board.md
-    report.md
-    index.html
-    prototype.html
-    assets/
-      concept.svg
 scripts/
   check_report_contract.py
 ```
 
-## 内部 Skill
-
-| Skill | 作用 |
-| --- | --- |
-| `using-wheelwise` | 主入口、Gate 控制、证据仲裁、评审委员会汇总、预评审包契约 |
-| `idea-intake` | 把原始想法转成结构化产品简报 |
-| `surface-strategy` | 判断网站、网页应用、移动应用、桌面应用、浏览器插件、接口/服务、命令行工具或自动化工具等交付形态 |
-| `feasibility-review` | 将可行性结论映射到 V4.5 预评审状态 |
-| `market-research` | 调研市场类别、竞品、替代方案、需求信号、趋势、成熟度和进入壁垒 |
-| `customer-discovery` | 定义用户画像、待办任务、痛点强度、工作流、采用阻力和验证实验 |
-| `evidence-board` | 汇总市场、用户、复用、技术探针和商业化证据，形成内部决策证据台账 |
-| `product-strategy` | 定义定位、差异化、产品切入点和最小可行产品范围 |
-| `reuse-evaluator` | 按模块评估自研、购买、复用、分叉改造和参考 |
-| `technical-planning` | 把决策转成技术栈、架构、数据、集成和部署建议 |
-| `commercialization` | 规划商业模式、定价、包装、渠道、销售路径和早期变现测试 |
-| `risk-review` | 审查市场、产品、技术、法律、隐私、许可、依赖和执行风险 |
-| `visual-brief` | 规划或创建 `assets/` 下的 SVG、HTML/CSS、图片或兜底视觉资产 |
-| `ui-demo` | 规划独立可点击原型、模拟器、接口试验台、终端预览或工作流预览 |
-| `report-visualization` | 把 `report.md` 转成完整报告可视化解释层 `index.html` |
-| `execution-plan` | 按预评审状态生成开发、原型、补证、转向、暂缓、放弃或参考保留任务 |
-| `parallel-research` | 为复杂调研或独立复核提供可选支持 |
-
-## 如何使用
-
-完整评估一个产品想法：
-
-```text
-Use $using-wheelwise to evaluate this idea:
-I want to build an AI resume optimizer for job seekers.
-```
-
-即使是较窄的问题，也建议使用主入口，让路由和输出纪律保持一致：
-
-```text
-Use $using-wheelwise to decide whether this should be a browser extension or a webpage application.
-```
-
-```text
-Use $using-wheelwise to evaluate which modules should be self-built, purchased, reused, forked, or used as reference.
-```
-
-最终聊天回复应该很短，只给产物路径：
-
-```text
-报告文件夹：wheelwise-report-community-tool-share/
-源报告：wheelwise-report-community-tool-share/report.md
-网页展示：wheelwise-report-community-tool-share/index.html
-交互原型：wheelwise-report-community-tool-share/prototype.html
-```
-
 ## 示例
 
-仓库内置 V4.5 canonical 示例：
+仓库内置了完整示例包：
 
-```text
-examples/community-tool-share/
-  project-state.md
-  evidence-board.md
-  report.md
-  index.html
-  prototype.html
-  assets/
-    concept.svg
-```
-
-这些示例展示 V4.5 预评审包契约、内部状态、证据中枢、中文 Markdown 报告、可视化 `index.html`、独立 `prototype.html`、评分、预评审状态，以及不依赖 AI 生图的视觉资产。
+| 示例 | 展示重点 |
+| --- | --- |
+| `examples/ai-resume-optimizer/` | 报告文件夹、概念图、网页展示和交互原型 |
+| `examples/ai-payment-chaser/` | 回款流程类 idea 的评估、证据台账、原型和报告展示 |
+| `examples/community-tool-share/` | V4 状态、证据台账、决策地图、可视化报告和原型 |
 
 ## 校验
 
@@ -246,7 +210,7 @@ examples/community-tool-share/
 python scripts\check_report_contract.py examples\community-tool-share --folder --skip-filename --v4
 ```
 
-校验完整报告模板：
+校验报告模板：
 
 ```powershell
 python scripts\check_report_contract.py shared\templates\new-product-brief.md --skip-filename
@@ -260,38 +224,56 @@ python -m json.tool .codex-plugin\plugin.json
 python C:\Users\zhenyang.du\.codex\skills\.system\plugin-creator\scripts\validate_plugin.py D:\WheelWise
 ```
 
-校验所有 skill：
-
-```powershell
-$env:PYTHONUTF8='1'
-Get-ChildItem skills -Directory | ForEach-Object {
-  python C:\Users\zhenyang.du\.codex\skills\.system\skill-creator\scripts\quick_validate.py $_.FullName
-}
-```
-
 提交前检查空白问题：
 
 ```powershell
 git diff --check
 ```
 
-## 外部参考
+## README 参考方向
 
-WheelWise 可以参考 UI UX Pro Max、pm-skills、awesome-copilot 等外部 skill 生态，但不能复制它们的内容。外部资源只作为可选参考记录在 `shared/references/external-skills.md`。
+这版 README 参考了高 star GitHub 项目常见写法：
 
-## 版本
+- 顶部先给一句话定位、徽章和快速入口。
+- 先放真实项目视觉图，而不是纯文字说明。
+- 在深层实现细节前，先展示功能地图、产物树和示例。
+- 用 Star、Fork、Release、License 徽章帮助读者快速判断仓库状态。
+- 加入 Star History，让 GitHub 增长信息可以被直观看到。
 
-当前插件版本：`4.5.0`。
+结构参考来源包括：`sindresorhus/awesome` 的简洁顶部描述和徽章风格、`matiassingers/awesome-readme` 中收集的视觉化 README 示例，以及 Star History 对 GitHub README 星标图的嵌入说明。
 
-V4.5 重点包括：
+## 更新目录
 
-- `using-wheelwise` 成为总控、路由、状态管理、Gate 控制、证据仲裁、评审委员会汇总、自检和最终预评审包汇总者。
-- `project-state.md` 作为内部流程状态。
-- `evidence-board.md` 作为内部证据中枢。
-- Gate0、Gate1、Gate2 流转纪律。
-- 七个中文预评审状态。
-- 事实、假设、推断、证据缺口四类证据意识。
-- 决策记录、选项排除、关键假设依赖和横向比较评分。
-- 正常 `Go` 路径不打断用户。
-- Delivery 前先完成基于证据的 Discovery 和 Synthesis。
-- 最终仍输出中文报告文件夹：`report.md`、可视化 `index.html`、独立 `prototype.html` 和 `assets/`。
+| 日期 | 版本 / 提交 | 更新内容 | 功能含义 |
+| --- | --- | --- | --- |
+| 2026-06-04 | `v4.6.0` / `3832eaa` | Progressive WheelWise routing | 保留 `using-wheelwise` 单一入口，新增快速判断 / 专项评估 / 完整预评审三路线确认，每条路线都生成 `report.md`，完整产物契约只在需要时加载。 |
+| 2026-06-03 | `e021011` | 预评审报告升级 | 重做示例、模板、状态文件、证据台账、报告契约检查和最终输出规则，让生成报告更像完整产品预评审包。 |
+| 2026-06-02 | `e2a4122` | 实现文档同步 | 更新中英文实现方法文档，使其匹配 V4.4 工作流和输出纪律。 |
+| 2026-06-02 | `c221164` | WheelWise V4.4 | 强化 idea 适用性判断、Gate 行为、市场和用户路由、项目状态要求和 V4 报告校验。 |
+| 2026-06-02 | `bd04ef4` | WheelWise V4.3 | 新增 idea 适用性标准，强化决策理由、网页调研要求和模板 / 状态校验。 |
+| 2026-06-02 | `8a2608d` | 证据校准工作流 | 增加证据分类、决策理由、网页调研纪律、关键假设和跨 skill 证据交接规则。 |
+| 2026-06-02 | `d015adf` | V4.1 视觉交付架构 | 新增 `report-visualization` skill，强化视觉资产、原型 / 报告展示契约和可视化交付校验。 |
+| 2026-06-02 | `83b6e04` | WheelWise V4 工作流 | 引入 `project-state.md`、`evidence-board.md`、Gate 驱动流程、中文预评审状态、完整工作流指南和 V4 canonical 示例。 |
+| 2026-06-01 | `107b0cf` | V3 报告原型 | 增加报告文件夹示例、`index.html`、`prototype.html`、视觉资产和更强的展示契约。 |
+| 2026-06-01 | `acdebdf` | 调研与商业化 skill | 新增 `market-research`、`customer-discovery`、`commercialization` 和当前网页调研标准。 |
+| 2026-06-01 | `8ac3bc7` | README 文档扩展 | 新增中文版 README，并扩展项目使用方法、工作流、校验和仓库结构说明。 |
+| 2026-06-01 | `93b21f3` | V2.7 报告文件夹输出 | 把示例输出迁移成报告文件夹结构，包含 `report.md`、`index.html`、`assets/` 和更强的报告契约校验。 |
+| 2026-06-01 | `f9c8465` | 示例展示资产补齐 | 为 AI 简历优化器示例增加概念图和 HTML 报告展示页。 |
+| 2026-06-01 | `6aaeb79` | V2.6 报告展示契约 | 新增 `check_report_contract.py`，强化报告模板，并明确展示页 / 原型输出要求。 |
+| 2026-06-01 | `7d410a4` | V2.5 中文报告输出 | 要求中文报告输出词汇、决策记录和更完整的最终报告模板。 |
+| 2026-06-01 | `08f5e51` | V2 skill pack | 新增产品策略、技术规划、UI demo、视觉简报和更强的输出契约。 |
+| 2026-06-01 | `23bf618` | V1 skill pack | 创建第一版 WheelWise 插件、基础 skills、共享参考、模板、实现文档和 AI 简历优化器示例。 |
+
+## Star History
+
+<a href="https://www.star-history.com/#Duzhenyang111/WheelWise&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Duzhenyang111/WheelWise&type=Date&theme=dark">
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Duzhenyang111/WheelWise&type=Date">
+    <img alt="WheelWise Star History Chart" src="https://api.star-history.com/svg?repos=Duzhenyang111/WheelWise&type=Date">
+  </picture>
+</a>
+
+## 当前版本
+
+最新 Git tag 与插件清单版本：`v4.6.0`。

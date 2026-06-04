@@ -1,82 +1,112 @@
 # WheelWise
 
-WheelWise is a Superpowers-style multi-skill pack for Codex and an **AI Idea Pre-review Board**. It is for early-stage product ideas: it uses a structured review workflow to turn a vague idea into a product proposal that can be judged, validated, and executed. It can route on demand to quick judgment, focused evaluation, or full pre-review; every route creates a report folder and `report.md`, while the full pre-review route creates the visualization page, independent prototype, visual assets, and internal state files by default.
+<p align="center">
+  <img src="examples/community-tool-share/assets/decision-map.svg" alt="WheelWise decision map preview" width="860">
+</p>
 
-WheelWise is not a formal approval system and does not replace real user research, real business data, compliance approval, legal advice, investment judgment, or organization decisions. It helps before formal review: turning vague ideas into discussable, verifiable, comparable, and decision-ready pre-review packages.
+<p align="center">
+  <strong>AI Idea Pre-review Board for Codex</strong><br>
+  Turn a rough product idea into a Chinese pre-review report, evidence board, visual explanation page, prototype, and Codex-ready execution plan.
+</p>
 
-The primary entry point is always `using-wheelwise`. Users should call that skill once; it routes the workflow through the internal skills and owns the final synthesis.
+<p align="center">
+  <a href="README_ZH.md">中文文档</a>
+  ·
+  <a href="WORKFLOW_GUIDE_ZH.md">Workflow Guide</a>
+  ·
+  <a href="IMPLEMENTATION_METHOD.md">Implementation Method</a>
+  ·
+  <a href="#release-notes">Release Notes</a>
+</p>
+
+<p align="center">
+  <img alt="GitHub stars" src="https://img.shields.io/github/stars/Duzhenyang111/WheelWise?style=social">
+  <img alt="GitHub forks" src="https://img.shields.io/github/forks/Duzhenyang111/WheelWise?style=social">
+  <img alt="Latest tag" src="https://img.shields.io/github/v/tag/Duzhenyang111/WheelWise?label=release">
+  <img alt="License" src="https://img.shields.io/github/license/Duzhenyang111/WheelWise">
+  <img alt="Codex skill pack" src="https://img.shields.io/badge/Codex-skill%20pack-2563EB">
+</p>
+
+## What It Is
+
+WheelWise is a Superpowers-style multi-skill pack for Codex and an **AI Idea Pre-review Board**. It is built for early product ideas, before serious engineering, team review, or MVP investment starts.
+
+Use it when an idea is still blurry and you need a structured answer to questions like:
+
+- Should this idea continue, pivot, pause, or stop?
+- Is the right next step a prototype, validation experiment, or bounded MVP?
+- Which modules should be self-built, purchased, reused, forked, or used only as references?
+- What evidence is missing before a credible product decision?
+- What should Codex build next if the idea passes pre-review?
+
+WheelWise is not a formal approval system. It does not replace real user research, business data, compliance review, legal advice, investment judgment, or organization decisions. It creates a decision-ready pre-review package so those conversations become clearer.
+
+## Quick Start
+
+Always call the controller skill:
 
 ```text
-Use $using-wheelwise to evaluate this idea: ...
+Use $using-wheelwise to evaluate this idea:
+I want to build an AI resume optimizer for job seekers.
 ```
 
-Chinese documentation is available in [README_ZH.md](README_ZH.md).
+For focused decisions, still use the same entry point:
 
-## What WheelWise Does
+```text
+Use $using-wheelwise to decide whether this should be a browser extension or a webpage application.
+```
 
-WheelWise is meant for the stage before serious implementation, team review, or MVP investment starts. It helps decide whether an idea should enter research, prototype validation, bounded MVP experimentation, pivot review, pause, rejection, or reference-only preservation.
+```text
+Use $using-wheelwise to evaluate which modules should be self-built, purchased, reused, forked, or used as reference.
+```
 
-WheelWise does not run the full workflow by default. When the requested depth is unclear, the entry skill confirms one of three routes:
+Expected final chat response is short and artifact-oriented:
+
+```text
+Report folder: wheelwise-report-community-tool-share/
+Source report: wheelwise-report-community-tool-share/report.md
+Web display: wheelwise-report-community-tool-share/index.html
+Interactive prototype: wheelwise-report-community-tool-share/prototype.html
+```
+
+## Workflow Routes
+
+WheelWise V4.6 does not run the full workflow by default. If the requested depth is unclear, `using-wheelwise` asks the user to choose one of three routes.
 
 | Route | Use when | Default artifact |
 | --- | --- | --- |
 | 快速判断 | Decide whether the idea is worth continuing | `wheelwise-report-<idea-slug>/report.md` |
 | 专项评估 | Focus on one decision such as MVP, reuse, validation, technical route, commercialization, risk, or execution plan | `wheelwise-report-<idea-slug>/report.md` |
-| 完整预评审 | Create a formal report, web display, interactive prototype, or full pre-review package | Complete report folder |
+| 完整预评审 | Create a formal report, web display, interactive prototype, or stakeholder-ready package | Complete report folder |
 
-Full pre-review core workflow:
-
-1. Structure the raw idea.
-2. Choose the delivery surface.
-3. Review feasibility.
-4. Research market category, competitors, substitutes, demand signals, and maturity when current evidence matters.
-5. Define customer hypotheses, jobs-to-be-done, pain intensity, adoption objections, and validation experiments.
-6. Shape product strategy and minimum viable product scope.
-7. Evaluate module-level self-build, purchase, reuse, fork, and reference decisions.
-8. Produce a technical implementation path.
-9. Plan business model, pricing, packaging, channels, and early monetization tests.
-10. Review product, market, technical, privacy, license, dependency, and execution risks.
-11. Create visual explanation assets without depending on AI image generation.
-12. Generate a report visualization layer for `index.html`.
-13. Plan an independent interaction prototype, simulator, playground, or workflow preview.
-14. Generate a complete Chinese pre-review package folder.
-
-## V4.5 Workflow And Output Contract
-
-WheelWise V4.5 keeps the Superpowers-style multi-skill pack architecture and upgrades the workflow into an AI product pre-review system with controller-managed state, Gate0 Evidence Intake, dynamic supplemental-data checklists, evidence consolidation, evidence classification, Gate decisions, Chinese pre-review states, review-board synthesis, decision records, comparable scorecards, compliance reminders, report visualization, independent prototypes, and visual assets that do not depend on AI image generation.
-
-`using-wheelwise` is the controller, router, state manager, Gate owner, self-check owner, and final-report synthesizer. It reads and updates internal state as the workflow moves across skills.
-
-Internal V4 artifacts:
+Full pre-review core flow:
 
 ```text
-project-state.md
-evidence-board.md
+Idea Intake
+  -> Gate0 Evidence Intake
+  -> Surface Strategy
+  -> Gate1 Early Feasibility
+  -> Market / Customer / Reuse Discovery
+  -> Evidence Board
+  -> Product / Commercial / Risk Synthesis
+  -> Gate2 Full Review
+  -> Technical Plan
+  -> Visual Brief
+  -> Interactive Prototype
+  -> Report Visualization
+  -> Execution Plan
 ```
 
-`project-state.md` tracks phase, applicability class, Gate0 Evidence Intake status, evidence requirement status, supplemental-data checklist version, resume instruction, delivery surface, Gate status, feasibility verdict, pre-review state, next-stage recommendation, review scorecard, strategy summaries, open questions, assumptions, critical assumption dependencies, options considered/rejected, compliance prerequisites, and last updated skill. `evidence-board.md` consolidates evidence from market research, customer discovery, reuse evaluation, technical spikes, commercialization work, dynamic supplemental data requirements, user-provided supplemental data, claim classification, decision dependencies, rejected option rationale, validation priority, and evidence gaps.
+## Output Package
 
-The minimum artifact for every route is a Chinese report folder with `report.md`:
+Every route creates at least:
 
 ```text
 wheelwise-report-<idea-slug>/
   report.md
 ```
 
-The full pre-review artifact is a Chinese package folder:
-
-```text
-wheelwise-report/
-  project-state.md
-  evidence-board.md
-  report.md
-  index.html
-  prototype.html
-  assets/
-    concept.png
-```
-
-When an idea slug is available, the folder should be named:
+Full pre-review creates:
 
 ```text
 wheelwise-report-<idea-slug>/
@@ -88,21 +118,11 @@ wheelwise-report-<idea-slug>/
   assets/
 ```
 
-`report.md` is the source of truth. `index.html` is the report visualization layer generated from the same Chinese report. `prototype.html` is the independent interaction prototype or simulator. `assets/` stores generated or selected visuals.
+`report.md` is the source of truth. `index.html` is the consulting-style visual explanation layer. `prototype.html` is an independent product-surface simulation, playground, calculator, terminal preview, validation dashboard, or workflow simulator depending on the idea.
 
-In V4.5, `report.md` must read like a real product pre-review package, with pre-review conclusion, executive summary, original assumptions, research method and evidence levels, review-board viewpoints, market attractiveness, competitors and substitutes, decision records, comparable scorecard, compliance and launch prerequisites, staged validation, frontend display/prototype, and final recommendation. Every important conclusion must be labeled as fact, assumption, inference, or evidence gap.
+## Product States
 
-In V4.5, `index.html` must be a visual consulting-style pre-review layer. It converts the report's review state, scorecard, judgments, evidence, workflows, risks, validation experiments, commercialization notes, compliance reminders, and execution or validation plan into cards, matrices, timelines, flows, architecture diagrams, risk boards, validation boards, and action panels. It must not be a plain Markdown-to-HTML conversion, second report, short landing page, or prototype substitute.
-
-`prototype.html` must simulate the product surface independently with local data, clickable controls, inputs, state changes, loading/empty/error/success states, responsive behavior, and a clear backend boundary. API, CLI, automation, backend, data, and developer-tool ideas use playground, terminal, request explorer, or workflow simulator modes. Offline, physical, regulated, or supply-chain ideas may use validation dashboards, cost/margin calculators, compliance checklists, supplier validation panels, or pilot-record boards.
-
-V4.5 Gate behavior:
-
-- Gate0 uses one Evidence Intake step. It returns `Ready`, `Need Basic Input`, or `Field Data Required`; dynamic supplemental-data checklists are generated from the detected idea-type combination and can resume from Gate0 when the user later provides data.
-- Gate1 uses early feasibility screening. If the idea cannot continue, it stops; if it can continue, it automatically enters Discovery.
-- Gate2 uses full feasibility review. `Go` maps to `可进入原型验证` or `可进入最小可行产品实验` and continues automatically; `Pivot`, `Need More Evidence`, `Kill`, and `Park` map to `建议转向后再评审`, `需要补充关键证据`, `建议放弃`, `建议暂缓`, or `仅作为参考` and ask the user for direction when needed.
-
-V4.5 pre-review states:
+WheelWise maps Gate decisions to one Chinese pre-review state:
 
 | State | Meaning |
 | --- | --- |
@@ -111,30 +131,34 @@ V4.5 pre-review states:
 | 需要补充关键证据 | A high-impact evidence gap blocks a credible decision |
 | 建议转向后再评审 | Evidence supports a materially different direction |
 | 建议暂缓 | Timing, dependency, regulation, budget, team fit, or market condition blocks near-term progress |
-| 建议放弃 | The idea is unsafe, implausible, undifferentiated, or lacks a credible user/buyer |
-| 仅作为参考 | The idea is useful as learning or module reference but not worth direct build now |
+| 建议放弃 | The idea is unsafe, implausible, undifferentiated, or lacks a credible user or buyer |
+| 仅作为参考 | Useful as learning or module reference, but not worth direct build now |
 
-All user-visible text in generated artifacts must be Chinese, including Markdown body text, webpage copy, image text, chart labels, alt text, table fields, and report explanations. Technical stacks, code identifiers, commands, package names, API names, and file paths may remain English when they are literal technical references.
+Every important conclusion is labeled as `fact`, `assumption`, `inference`, or `evidence gap`.
 
-Required Chinese display vocabulary:
+## Skill Map
 
-| Concept | Chinese display term |
+| Skill | Role |
 | --- | --- |
-| Build | 自研 |
-| Buy | 购买 |
-| Reuse | 复用 |
-| Fork | 分叉改造 |
-| Reference | 参考 |
-| Web App | 网页应用 |
-| SaaS | 软件服务 |
-| MVP | 最小可行产品 |
-| Demo | 演示 |
-| mock data | 模拟数据 |
-| fallback | 兜底方案 |
-| go/no-go | 继续 / 停止条件 |
-| Codex-ready execution plan | 可交给 Codex 执行的计划 |
+| `using-wheelwise` | Main controller, router, Gate owner, evidence arbiter, final package synthesizer |
+| `idea-intake` | Converts a raw idea into a structured brief |
+| `surface-strategy` | Chooses website, web app, mobile app, desktop app, extension, API/service, CLI, or automation surface |
+| `feasibility-review` | Screens feasibility and maps Gate verdicts to pre-review states |
+| `market-research` | Reviews market category, competitors, substitutes, demand signals, trends, maturity, and barriers |
+| `customer-discovery` | Defines personas, jobs-to-be-done, pain intensity, adoption objections, and validation experiments |
+| `evidence-board` | Consolidates evidence into an internal decision ledger |
+| `product-strategy` | Defines positioning, differentiation, product wedge, and MVP scope |
+| `reuse-evaluator` | Evaluates self-build, purchase, reuse, fork, and reference decisions by module |
+| `technical-planning` | Converts decisions into stack, architecture, data, integration, and deployment guidance |
+| `commercialization` | Plans business model, pricing, packaging, channels, sales motion, and early monetization tests |
+| `risk-review` | Reviews market, product, technical, legal, privacy, license, dependency, and execution risks |
+| `visual-brief` | Plans or creates explanatory visuals under `assets/` |
+| `ui-demo` | Plans an independent clickable prototype, simulator, playground, terminal preview, or workflow preview |
+| `report-visualization` | Turns `report.md` into visualized `index.html` |
+| `execution-plan` | Produces build, prototype, validation, pivot, pause, stop, or reference-preservation tasks |
+| `parallel-research` | Optional independent research or review support for complex cases |
 
-## Skill Pack Structure
+## Repository Structure
 
 ```text
 .codex-plugin/
@@ -161,94 +185,32 @@ shared/
   references/
   templates/
 examples/
+  ai-resume-optimizer/
+  ai-payment-chaser/
   community-tool-share/
-    project-state.md
-    evidence-board.md
-    report.md
-    index.html
-    prototype.html
-    assets/
-      concept.svg
 scripts/
   check_report_contract.py
 ```
 
-## Internal Skills
+## Examples
 
-| Skill | Role |
+The repository includes complete example packages:
+
+| Example | Shows |
 | --- | --- |
-| `using-wheelwise` | Main router, Gate owner, evidence arbiter, review-board synthesizer, final pre-review package contract |
-| `idea-intake` | Converts a raw idea into a structured brief |
-| `surface-strategy` | Chooses website, webpage application, mobile app, desktop app, extension, API/service, CLI, or automation surface |
-| `feasibility-review` | Maps feasibility verdicts to V4.5 pre-review states before delivery planning |
-| `market-research` | Researches market category, competitors, substitutes, demand signals, trends, maturity, and entry barriers |
-| `customer-discovery` | Defines personas, jobs-to-be-done, pain intensity, workflows, adoption objections, and validation experiments |
-| `evidence-board` | Consolidates market, customer, reuse, technical-spike, and commercialization evidence into an internal decision ledger |
-| `product-strategy` | Defines positioning, differentiation, product wedge, and minimum viable product scope |
-| `reuse-evaluator` | Evaluates self-build, purchase, reuse, fork, and reference choices by module |
-| `technical-planning` | Converts decisions into stack, architecture, data, integration, and deployment guidance |
-| `commercialization` | Plans business model, pricing, packaging, channels, sales motion, and early monetization tests |
-| `risk-review` | Reviews market, product, technical, legal, privacy, license, dependency, and execution risks |
-| `visual-brief` | Plans or creates explanatory SVG, HTML/CSS, image, or fallback visual assets under `assets/` |
-| `ui-demo` | Plans an independent clickable prototype, simulator, playground, terminal preview, or workflow preview |
-| `report-visualization` | Turns `report.md` into `index.html` as a complete visual explanation layer |
-| `execution-plan` | Produces state-appropriate build, prototype, validation, pivot, pause, stop, or reference-preservation tasks |
-| `parallel-research` | Optional research or independent review support for complex cases |
-
-## How To Use
-
-Use the main skill for full product evaluation:
-
-```text
-Use $using-wheelwise to evaluate this idea:
-I want to build an AI resume optimizer for job seekers.
-```
-
-Use the main skill even for narrower questions so routing stays consistent:
-
-```text
-Use $using-wheelwise to decide whether this should be a browser extension or a webpage application.
-```
-
-```text
-Use $using-wheelwise to evaluate which modules should be self-built, purchased, reused, forked, or used as reference.
-```
-
-Expected final chat response should be short and artifact-oriented:
-
-```text
-Report folder: wheelwise-report-community-tool-share/
-Source report: wheelwise-report-community-tool-share/report.md
-Web display: wheelwise-report-community-tool-share/index.html
-Interactive prototype: wheelwise-report-community-tool-share/prototype.html
-```
-
-## Example
-
-See the included V4.5-compatible canonical examples:
-
-```text
-examples/community-tool-share/
-  project-state.md
-  evidence-board.md
-  report.md
-  index.html
-  prototype.html
-  assets/
-    concept.svg
-```
-
-The examples demonstrate the V4.5 pre-review package contract, internal state, evidence board, Chinese Markdown report, visualized `index.html`, independent `prototype.html`, scorecards, review states, and visual assets that do not depend on AI image generation.
+| `examples/ai-resume-optimizer/` | Report folder output, concept image, visual display, and prototype |
+| `examples/ai-payment-chaser/` | Payment workflow evaluation, evidence board, prototype, and report display |
+| `examples/community-tool-share/` | V4-style state, evidence board, decision map, visual report, and prototype |
 
 ## Validation
 
-Validate the example report folder:
+Validate an example report folder:
 
 ```powershell
 python scripts\check_report_contract.py examples\community-tool-share --folder --skip-filename --v4
 ```
 
-Validate the full report templates:
+Validate report templates:
 
 ```powershell
 python scripts\check_report_contract.py shared\templates\new-product-brief.md --skip-filename
@@ -262,38 +224,56 @@ python -m json.tool .codex-plugin\plugin.json
 python C:\Users\zhenyang.du\.codex\skills\.system\plugin-creator\scripts\validate_plugin.py D:\WheelWise
 ```
 
-Validate every skill:
-
-```powershell
-$env:PYTHONUTF8='1'
-Get-ChildItem skills -Directory | ForEach-Object {
-  python C:\Users\zhenyang.du\.codex\skills\.system\skill-creator\scripts\quick_validate.py $_.FullName
-}
-```
-
 Run whitespace checks before committing:
 
 ```powershell
 git diff --check
 ```
 
-## External References
+## README Inspiration
 
-WheelWise may reference external skill ecosystems such as UI UX Pro Max, pm-skills, and awesome-copilot, but it must not copy their content. External resources are recorded in `shared/references/external-skills.md` as optional references only.
+This README follows patterns common in high-star GitHub projects and README galleries:
 
-## Version
+- Prominent one-screen summary, badges, and quick start.
+- Real project visuals near the top instead of text-only description.
+- A clear feature map and artifact tree before deep implementation details.
+- Star and release badges for quick repository scanning.
+- A Star History section for GitHub growth visibility.
 
-Current plugin version: `4.5.0`.
+References used for this structure: `sindresorhus/awesome` emphasizes a concise top description and badges, `matiassingers/awesome-readme` curates visual/badge-heavy README examples, and Star History documents embeddable star charts for GitHub READMEs.
 
-V4.5 focuses on:
+## Release Notes
 
-- `using-wheelwise` as controller, router, state manager, Gate controller, evidence arbiter, review-board synthesizer, self-check owner, and final pre-review package owner.
-- `project-state.md` as internal workflow state.
-- `evidence-board.md` as internal evidence ledger.
-- Gate0, Gate1, and Gate2 flow discipline.
-- Seven Chinese pre-review states.
-- Evidence classification: fact, assumption, inference, and evidence gap.
-- Decision records, rejected options, critical assumption dependencies, and comparable scorecards.
-- Automatic continuation for normal `Go` paths.
-- Evidence-based Discovery before Synthesis.
-- Final Chinese report folder with `report.md`, visualized `index.html`, independent `prototype.html`, and `assets/`.
+| Date | Version / Commit | Update | What changed functionally |
+| --- | --- | --- | --- |
+| 2026-06-04 | `v4.6.0` / `3832eaa` | Progressive WheelWise routing | Keeps `using-wheelwise` as the single entry point, adds fixed route confirmation for 快速判断 / 专项评估 / 完整预评审, requires every route to create `report.md`, and loads full contracts only when needed. |
+| 2026-06-03 | `e021011` | Pre-review reporting upgrade | Reworks examples, templates, state files, evidence boards, report contract checks, and final output rules so generated reports behave more like full product pre-review packages. |
+| 2026-06-02 | `e2a4122` | Implementation docs sync | Updates English and Chinese implementation-method docs to match the V4.4 workflow and output discipline. |
+| 2026-06-02 | `c221164` | WheelWise V4.4 | Strengthens idea applicability checks, Gate behavior, customer and market routing, project-state requirements, and V4 report validation. |
+| 2026-06-02 | `bd04ef4` | WheelWise V4.3 | Adds the idea applicability standard, stronger decision rationale rules, web research expectations, and broader template/state validation. |
+| 2026-06-02 | `8a2608d` | Evidence calibration | Adds evidence classification, decision rationale, web research discipline, stronger assumptions, and cross-skill evidence handoff rules. |
+| 2026-06-02 | `d015adf` | V4.1 visual delivery architecture | Adds the `report-visualization` skill, richer visual assets, improved prototype/report display contracts, and visual delivery validation. |
+| 2026-06-02 | `83b6e04` | WheelWise V4 workflow | Introduces `project-state.md`, `evidence-board.md`, Gate-driven workflow, Chinese pre-review states, full workflow guide, and canonical V4 examples. |
+| 2026-06-01 | `107b0cf` | V3 report prototypes | Adds report folder examples, `index.html`, `prototype.html`, visual assets, and a stronger display contract for generated reports. |
+| 2026-06-01 | `acdebdf` | Research and commercialization skills | Adds `market-research`, `customer-discovery`, `commercialization`, and current web research standards. |
+| 2026-06-01 | `8ac3bc7` | Expanded README documentation | Adds the Chinese README and expands project usage, workflow, validation, and structure documentation. |
+| 2026-06-01 | `93b21f3` | V2.7 report folder output | Moves example output into a report-folder format with `report.md`, `index.html`, `assets/`, and enhanced report contract validation. |
+| 2026-06-01 | `f9c8465` | Example display assets | Adds a generated concept image and HTML report display for the AI resume optimizer example. |
+| 2026-06-01 | `6aaeb79` | V2.6 report display contract | Adds `check_report_contract.py`, strengthens report templates, and formalizes display/prototype output expectations. |
+| 2026-06-01 | `7d410a4` | V2.5 Chinese report output | Requires Chinese report output vocabulary, decision records, and more complete final report templates. |
+| 2026-06-01 | `08f5e51` | V2 skill pack | Adds product strategy, technical planning, UI demo, visual brief, and stronger output contracts. |
+| 2026-06-01 | `23bf618` | V1 skill pack | Creates the first WheelWise plugin, base skills, shared references, templates, implementation docs, and AI resume optimizer example. |
+
+## Star History
+
+<a href="https://www.star-history.com/#Duzhenyang111/WheelWise&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Duzhenyang111/WheelWise&type=Date&theme=dark">
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Duzhenyang111/WheelWise&type=Date">
+    <img alt="WheelWise Star History Chart" src="https://api.star-history.com/svg?repos=Duzhenyang111/WheelWise&type=Date">
+  </picture>
+</a>
+
+## Current Version
+
+Latest repository tag and plugin manifest version: `v4.6.0`.
