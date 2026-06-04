@@ -1,6 +1,6 @@
 # WheelWise
 
-WheelWise is a Superpowers-style multi-skill pack for Codex and an **AI Idea Pre-review Board**. It turns a raw product idea into a Chinese pre-review package with a review state, evidence classification, evidence gaps, decision records, comparable scorecard, delivery-surface recommendation, reuse strategy, technical direction, compliance and launch prerequisites, report visualization layer, independent interaction prototype, and an execution or validation plan that Codex can act on.
+WheelWise is a Superpowers-style multi-skill pack for Codex and an **AI Idea Pre-review Board**. It is for early-stage product ideas: it uses a structured review workflow to turn a vague idea into a product proposal that can be judged, validated, and executed. It can route on demand to quick judgment, focused evaluation, or full pre-review; every route creates a report folder and `report.md`, while the full pre-review route creates the visualization page, independent prototype, visual assets, and internal state files by default.
 
 WheelWise is not a formal approval system and does not replace real user research, real business data, compliance approval, legal advice, investment judgment, or organization decisions. It helps before formal review: turning vague ideas into discussable, verifiable, comparable, and decision-ready pre-review packages.
 
@@ -16,7 +16,15 @@ Chinese documentation is available in [README_ZH.md](README_ZH.md).
 
 WheelWise is meant for the stage before serious implementation, team review, or MVP investment starts. It helps decide whether an idea should enter research, prototype validation, bounded MVP experimentation, pivot review, pause, rejection, or reference-only preservation.
 
-Core workflow:
+WheelWise does not run the full workflow by default. When the requested depth is unclear, the entry skill confirms one of three routes:
+
+| Route | Use when | Default artifact |
+| --- | --- | --- |
+| 快速判断 | Decide whether the idea is worth continuing | `wheelwise-report-<idea-slug>/report.md` |
+| 专项评估 | Focus on one decision such as MVP, reuse, validation, technical route, commercialization, risk, or execution plan | `wheelwise-report-<idea-slug>/report.md` |
+| 完整预评审 | Create a formal report, web display, interactive prototype, or full pre-review package | Complete report folder |
+
+Full pre-review core workflow:
 
 1. Structure the raw idea.
 2. Choose the delivery surface.
@@ -48,7 +56,14 @@ evidence-board.md
 
 `project-state.md` tracks phase, applicability class, Gate0 Evidence Intake status, evidence requirement status, supplemental-data checklist version, resume instruction, delivery surface, Gate status, feasibility verdict, pre-review state, next-stage recommendation, review scorecard, strategy summaries, open questions, assumptions, critical assumption dependencies, options considered/rejected, compliance prerequisites, and last updated skill. `evidence-board.md` consolidates evidence from market research, customer discovery, reuse evaluation, technical spikes, commercialization work, dynamic supplemental data requirements, user-provided supplemental data, claim classification, decision dependencies, rejected option rationale, validation priority, and evidence gaps.
 
-The final artifact is a Chinese pre-review package folder:
+The minimum artifact for every route is a Chinese report folder with `report.md`:
+
+```text
+wheelwise-report-<idea-slug>/
+  report.md
+```
+
+The full pre-review artifact is a Chinese package folder:
 
 ```text
 wheelwise-report/

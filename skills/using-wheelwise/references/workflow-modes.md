@@ -1,29 +1,86 @@
 # Workflow Modes
 
-## V4.5 Controller Mode
+All workflows start and end through `using-wheelwise`. It owns route selection, artifact creation, Gate decisions, evidence discipline, pre-review state mapping, and final synthesis.
 
-All workflows start and end through `using-wheelwise`. It owns routing, `project-state.md`, Gate decisions, evidence arbitration, pre-review state mapping, review-board synthesis, self-checks, and final pre-review package synthesis.
+## Common Artifact Baseline
 
-## Short Workflow
+Every selected route must create:
 
-Use when the user asks one narrow question.
+```text
+wheelwise-report-<idea-slug>/
+  report.md
+```
 
-Steps:
+Use `wheelwise-report/` when no idea slug can be inferred.
 
-1. Read or create `project-state.md`.
-2. Run only the necessary skill.
-3. Update state with decision, assumptions, and next action.
-4. Return the decision without producing a full final report unless requested.
+`report.md` is the minimum source of truth for every workflow. Other artifacts are produced only when the selected route needs them.
 
-Examples:
+## Mode 1: 快速判断
 
-- "Should auth be built or bought?"
-- "Is this better as a browser extension or web app?"
-- "Can I fork this open-source repo?"
+Use when the user wants a fast product pre-review answer.
 
-## V4.5 Full Workflow
+Default internal flow:
 
-Use for complete product ideas or when the user asks for a full WheelWise AI product pre-review package.
+```text
+idea-intake -> Gate0 Evidence Intake -> surface-strategy -> feasibility-review: early-screening -> report.md
+```
+
+Minimum `report.md` sections:
+
+- 想法摘要
+- 预评审状态
+- 核心判断
+- 关键假设
+- 证据缺口
+- 下一步建议
+
+Do not create `index.html`, `prototype.html`, `assets/`, `project-state.md`, or `evidence-board.md` unless the quick judgment pauses at Gate0, requires resumable state, or the user explicitly requests extra artifacts.
+
+## Mode 2: 专项评估
+
+Use when the user asks one focused product decision question.
+
+Possible route intents:
+
+- `Pre-MVP Decision`
+- `Build/Buy/Reuse Planner`
+- `Idea-to-Validation Board`
+- `Codex-ready Product Brief`
+- focused market, customer, commercialization, risk, surface, technical, visual, or demo planning
+
+Minimum `report.md` sections:
+
+- 专项问题
+- 预评审状态
+- 结论
+- 决策理由
+- 证据分类
+- 风险与假设
+- 下一步行动
+
+Only generate route-specific extra files when needed:
+
+- Use `evidence-board.md` when multiple evidence sources, contradictions, or current research findings must be preserved.
+- Use `project-state.md` when the route needs resumable Gate state or continuity across later WheelWise runs.
+- Use `assets/`, `index.html`, or `prototype.html` only when the user asks for visuals, web presentation, or an interactive demo.
+
+## Mode 3: 完整预评审
+
+Use when the user asks for a finished WheelWise pre-review package, complete evaluation, stakeholder-ready report, web visualization, or interactive prototype.
+
+Default full package:
+
+```text
+wheelwise-report-<idea-slug>/
+  project-state.md
+  evidence-board.md
+  report.md
+  index.html
+  prototype.html
+  assets/
+```
+
+Full workflow:
 
 ```text
 Phase 0 Intake:
@@ -39,18 +96,52 @@ Phase 2 Synthesis:
 product-strategy -> commercialization -> risk-review -> feasibility-review: full-review -> review-board synthesis -> comparable scorecard
 
 Gate2:
-Go maps to 可进入原型验证 or 可进入最小可行产品实验 and continues automatically; Pivot / Need More Evidence / Kill / Park map to 建议转向后再评审 / 需要补充关键证据 / 建议放弃 / 建议暂缓 or 仅作为参考 and ask user when needed
+Go maps to 可进入原型验证 or 可进入最小可行产品实验 and continues automatically.
+Pivot / Need More Evidence / Kill / Park map to 建议转向后再评审 / 需要补充关键证据 / 建议放弃 / 建议暂缓 or 仅作为参考 and ask user when needed.
 
 Phase 3 Delivery:
 technical-planning -> visual-brief -> ui-demo or simulator -> report-visualization -> execution-plan
 
-Final report:
-report.md -> index.html -> prototype.html -> assets/ as one Chinese pre-review package
+Final package:
+report.md -> index.html -> prototype.html -> assets/
 ```
 
-## V4.5 Pre-Review States
+Read `final-output-contract.md` and `../../shared/references/output-quality-bar.md` only for this mode or when the user explicitly asks for the same artifact depth.
 
-Use exactly:
+## Gate-Driven Workflow
+
+### Gate0
+
+Gate0 is a single Evidence Intake step. It returns `Ready`, `Need Basic Input`, or `Field Data Required`.
+
+Ask only when basic routing information is insufficient. Allowed Gate0 questions:
+
+- 面向谁？
+- 你想先验证，还是直接做最小可行产品？
+- 时间、预算或技术栈限制是什么？
+
+When first-hand data is required, return a dynamic checklist based on the detected idea-type combination and pause with a resumable `Field Data Required` state. If a report folder already exists or must be created for this run, write the pause into `report.md`; create `project-state.md` only when the pause must be resumed later.
+
+### Gate1
+
+Uses `feasibility-review: early-screening`.
+
+- Cannot continue / not recommended now: write the stop reason into `report.md` and end.
+- Can continue: continue according to the selected route.
+
+### Gate2
+
+Uses `feasibility-review: full-review`.
+
+- `Go`: map to `可进入原型验证` or `可进入最小可行产品实验`; continue automatically only when the selected route requires Delivery.
+- `Pivot`: map to `建议转向后再评审`; ask whether to pivot to the recommended direction.
+- `Need More Evidence`: map to `需要补充关键证据`; ask whether to run the recommended research or validation.
+- `Kill`: map to `建议放弃`; ask only if the user wants an alternative direction or stop.
+- `Park`: map to `建议暂缓` or `仅作为参考`; ask whether to park or change constraints.
+
+## Pre-Review States
+
+Use exactly one:
 
 - 可进入原型验证
 - 可进入最小可行产品实验
@@ -60,75 +151,10 @@ Use exactly:
 - 建议放弃
 - 仅作为参考
 
-Each full workflow must record the state, next-stage recommendation, confidence, supporting evidence, opposing evidence, evidence gaps, decision dependencies, options rejected, and validation priority.
+Every `report.md` must include the selected state, confidence, supporting evidence or assumptions, opposing evidence or risks, evidence gaps, and next action.
 
-## Research-Heavy Workflow
+## Full Report Rules
 
-Use when competitor facts, pricing, user evidence, channel rules, platform policy, license status, repository health, market trends, or vendor capabilities materially change the answer.
+Full reports must be Chinese pre-review packages, not dumps of internal skill sections. They must include review-board viewpoints, facts/assumptions/inferences/evidence gaps, options considered and rejected, decision dependencies, validation experiments, comparable scorecard, visual explanation, prototype or simulator, and state-appropriate execution or validation plan.
 
-Required:
-
-- Use `../../shared/references/web-research-standard.md`.
-- Write evidence into `evidence-board.md`.
-- Label key claims as `事实`, `假设`, `推断`, or `证据缺口`.
-- Update evidence gaps and contradictions in `project-state.md`.
-- Use `parallel-research` only when independent research briefs are useful.
-
-## Gate-Driven Workflow
-
-### Gate0
-
-Gate0 is a single Evidence Intake step. It returns `Ready`, `Need Basic Input`, or `Field Data Required`.
-
-Ask only if basic routing information is insufficient. Allowed questions:
-
-- 面向谁？
-- 你想先验证，还是直接做最小可行产品？
-- 时间、预算或技术栈限制是什么？
-
-When first-hand data is required, return a dynamic checklist based on the detected idea-type combination and pause with a resumable `Field Data Required` state in `project-state.md`.
-
-### Gate1
-
-Uses `feasibility-review: early-screening`.
-
-- Cannot continue / not recommended now: stop and explain.
-- Can continue: enter Discovery automatically.
-
-### Gate2
-
-Uses `feasibility-review: full-review`.
-
-- Go: enter Delivery automatically.
-- Pivot / Need More Evidence / Kill / Park: ask the user for direction.
-- Map Gate2 verdicts into the V4.5 Chinese pre-review state before Delivery or final report synthesis.
-
-## Demo-Ready Workflow
-
-Use when the user needs something presentable to stakeholders or test users.
-
-Steps:
-
-1. Ensure Phase 2 has passed Gate2, has an explicit V4.5 pre-review state, or is explicitly assumption-led.
-2. Run `technical-planning`.
-3. Run `visual-brief` for dense explanatory assets.
-4. Run `ui-demo` for traditional UI surfaces or simulator mode for API/CLI/automation.
-5. Run `report-visualization` for the report visualization layer.
-6. Ensure `execution-plan` includes `report.md`, `index.html`, `prototype.html`, asset tasks, evidence-gap validation tasks, and state-appropriate next actions.
-
-## Final Report Workflow
-
-Use when the user asks for a finished WheelWise pre-review package or when a full workflow is complete.
-
-Steps:
-
-1. Read `final-output-contract.md`.
-2. Read `project-state.md` and `evidence-board.md`.
-3. Use `new-product-brief.md` unless the user explicitly wants a shorter report.
-4. Create the report folder: `wheelwise-report/` or `wheelwise-report-<idea-slug>/`.
-5. Write `report.md` in progressive Chinese pre-review sections, including `预评审结论`, `评审委员会意见`, `决策记录与选项排除`, and `横向比较评分`.
-6. Generate `index.html` as the report visualization layer sourced from `report.md`.
-7. Generate or specify `prototype.html` as the independent product prototype or simulator.
-8. Include visual assets under `assets/`, or Mermaid as the Chinese-labeled last fallback.
-9. Include interaction prototype or simulator details.
-10. Run final self-check before responding with artifact paths.
+`index.html` is a report visualization layer sourced from `report.md`. `prototype.html` is a separate product-surface simulation or validation tool.

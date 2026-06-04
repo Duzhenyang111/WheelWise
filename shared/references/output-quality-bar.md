@@ -1,6 +1,6 @@
 # WheelWise Output Quality Bar
 
-A WheelWise answer is acceptable only when it:
+A full WheelWise pre-review package is acceptable only when it:
 
 - Produces a Chinese AI product pre-review package folder: `wheelwise-report/` by default or `wheelwise-report-<idea-slug>/` when the idea name is available.
 - Includes `report.md`, `index.html`, `prototype.html`, `assets/`, and at least one visual asset.
